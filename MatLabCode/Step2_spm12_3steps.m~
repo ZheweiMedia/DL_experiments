@@ -160,10 +160,9 @@ for ifile = 1:numfiles
     nslices = Vin(1).dim(3);
     if nslices ~= numel(job.so)
         fprintf(fileWrite,'%d\n',IID(ifile));
-        fprintf(fileWrite,'%d\n',nslices);
-        continue
+        break
     end
-    % ==============================================================
+    %===============================================================
     
     spm_run_st(job);
     clearvars job;
