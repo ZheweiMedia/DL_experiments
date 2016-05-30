@@ -3,12 +3,15 @@ Input is all Pickle.gz. Now each pickle is a subject.
 
 train:validation:test = 8:1:1
 
+Generate experiment log in Experiment+time.txt
+
 @Zhewei
 5/29/2016
 
 """
 
 import sys,os
+import datetime
 import gzip
 import pickle as Pickle
 import numpy as np
@@ -20,7 +23,7 @@ from keras.layers import LSTM
 from keras.optimizers import RMSprop
 from keras.initializations import normal, identity
 
-iterationNo = 20
+iterationNo = 40
 Groups = 2
 totalNo = 71
 trainPercent = 60
@@ -47,6 +50,9 @@ def usage (programm):
     
 def work(fnames):
     finalResults = list()
+    logTime = datetime.datetime.strftime(datetime.datetime.now(), '%Y-%m-%d %H:%M:%S')
+    logName = '../data/Experiments_log'+logTime+'.txt'
+    f_txt = open(logName, 'w')
     for iNo in range(iterationNo):
         index = [i for i in range(totalNo-1)]
         shuffle(index)
@@ -57,6 +63,7 @@ def work(fnames):
         validationData, validationLabel = stackData(fnames, validationIndex)
         testData, testLabel = stackData(fnames, testIndex)
         print ('*'*30)
+        print ('Iteration:', iNo)
         print ('Training subjects:', trainPercent)
         print ('Training samples:', trainData.shape[0])
         print ('Validation subjects:', validationPercent)
@@ -101,8 +108,41 @@ def work(fnames):
         print('RNN test accuracy:', scores[1])
         print (model.predict_classes(testData))
         finalResults.append(scores[1])
+        
+        # record all the information
+        f_txt.write('*'*30)
+        f_txt.write('\n')
+        f_txt.write('Iteration: ' + str(iNo))
+        f_txt.write('\n')
+        f_txt.write('Training samples: ' + str(trainData.shape[0]))
+        f_txt.write('\n')
+        f_txt.write(str(trainIndex))
+        f_txt.write('\n')
+        f_txt.write('Validation samples: ' + str(validationData.shape[0]))
+        f_txt.write('\n')
+        f_txt.write(str(validationIndex))
+        f_txt.write('\n')
+        f_txt.write('Test samples: ' + str(testData.shape[0]))
+        f_txt.write('\n')
+        f_txt.write(str(testIndex))
+        f_txt.write('\n')
+        f_txt.write('Ground truth: ' + str(testLabel))
+        f_txt.write('\n')
+        f_txt.write('Test result: ' + str(model.predict_classes(testData)))
+        f_txt.write('\n')
+        f_txt.write('Test accurate: ' + str(scores[1]))
+        f_txt.write('\n')
         pass
-    print ('Final results of LSTM is:', sum(finalResults)/iterationNo)
+    
+    print ('Final results is:', finalResults)
+    print ('Final accurate results of LSTM is:', sum(finalResults)/iterationNo)
+    f_txt.write('\n'*3)
+    f_txt.write('Final accurate results of LSTM is:' + str(sum(finalResults)/iterationNo))
+    f_txt.write('\n')
+    f_txt.close()
+
+
+
         
 def stackData(fnames, index):
     Data = np.empty([1,1])
