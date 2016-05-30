@@ -63,7 +63,7 @@ def work(fnames):
         model.add(LSTM(hd_notes, input_shape=(timesteps, featureNo),\
                             init='normal',\
                             inner_init='identity',\
-                            activation='relu', return_sequences=False,\
+                            activation='sigmoid', return_sequences=False,\
                             dropout_W=0, dropout_U=0))
         model.add(Dense(nb_classes))
         model.add(Activation('softmax'))
