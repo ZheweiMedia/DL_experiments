@@ -25,12 +25,11 @@ from keras.initializations import normal, identity
 
 iterationNo = 40
 Groups = 2
-totalNo = 71
-trainPercent = 60
-validationPercent = 6
+totalNo = 86
+trainPercent = 70
+validationPercent = 8
+testpercent = 8
 
-
-testpercent = 5
 hd_notes = 10
 learning_rate = 1e-4
 nb_epoch = 500
@@ -108,6 +107,7 @@ def work(fnames):
         print('RNN test accuracy:', scores[1])
         print (model.predict_classes(testData))
         finalResults.append(scores[1])
+        validationScore = model.evaluate(validationData, Y_valid, verbose=0)
         
         # record all the information
         f_txt.write('*'*30)
@@ -116,17 +116,23 @@ def work(fnames):
         f_txt.write('\n')
         f_txt.write('Training samples: ' + str(trainData.shape[0]))
         f_txt.write('\n')
-        f_txt.write(str(trainIndex))
+        f_txt.write('Training Index: ' + str(trainIndex))
         f_txt.write('\n')
         f_txt.write('Validation samples: ' + str(validationData.shape[0]))
         f_txt.write('\n')
-        f_txt.write(str(validationIndex))
+        f_txt.write('Validation Index: ' + str(validationIndex))
         f_txt.write('\n')
         f_txt.write('Test samples: ' + str(testData.shape[0]))
         f_txt.write('\n')
-        f_txt.write(str(testIndex))
+        f_txt.write('Test Index: ' + str(testIndex))
         f_txt.write('\n')
-        f_txt.write('Ground truth: ' + str(testLabel))
+        f_txt.write('Validation ground truth: ' + str(validationLabel))
+        f_txt.write('\n')
+        f_txt.write('Validation result: ' + str(model.predict_classes(validationData)))
+        f_txt.write('\n')
+        f_txt.write('Validation accurate: ' + str(validationScore[1]))
+        f_txt.write('\n')
+        f_txt.write('Test ground truth: ' + str(testLabel))
         f_txt.write('\n')
         f_txt.write('Test result: ' + str(model.predict_classes(testData)))
         f_txt.write('\n')
@@ -137,7 +143,7 @@ def work(fnames):
     print ('Final results is:', finalResults)
     print ('Final accurate results of LSTM is:', sum(finalResults)/iterationNo)
     f_txt.write('\n'*3)
-    f_txt.write('Final accurate results of LSTM is:' + str(sum(finalResults)/iterationNo))
+    f_txt.write('Final accurate results of LSTM is: ' + str(sum(finalResults)/iterationNo))
     f_txt.write('\n')
     f_txt.close()
 

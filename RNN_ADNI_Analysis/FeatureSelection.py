@@ -19,15 +19,15 @@ from sklearn.feature_selection import chi2
 import matplotlib.pyplot as pyplot
 
 
-totalNo = 71
-trainPercent = 60
-validationPercent = 6
+totalNo = 80
+trainPercent = 70
+validationPercent = 8
 AD_No = 118
 NC_No = 190
 
-trainIndex = [44, 11, 64, 49, 19, 7, 46, 69, 34, 9, 23, 2, 1, 36, 38, 5, 0, 32, 56, 53, 65, 59, 24, 37, 33, 4, 62, 31, 39, 61, 18, 40, 60, 41, 51, 35, 16, 30, 20, 28, 42, 27, 54, 15, 50, 17, 13, 12, 3, 63, 43, 6, 26, 29, 45, 25, 58, 57, 48, 66]
-validationIndex = [55, 22, 67, 68, 8, 52]
-testIndex = [47, 21, 10, 14]
+trainIndex = [47, 28, 38, 54, 6, 9, 36, 17, 58, 65, 22, 11, 59, 16, 50, 76, 55, 63, 46, 10, 4, 2, 70, 12, 27, 14, 49, 78, 52, 53, 45, 81, 56, 69, 79, 73, 72, 33, 18, 34, 20, 7, 71, 80, 8, 39, 77, 44, 83, 74, 61, 13, 51, 19, 67, 21, 35, 82, 75, 1, 68, 26, 31, 37, 84, 48, 30, 57, 29, 41]
+validationIndex = [25, 60, 24, 62, 42, 40, 23, 5]
+testIndex = [0, 32, 43, 3, 64, 15, 66]
 
 def main(args):
     if len(args) < 2:
