@@ -52,6 +52,10 @@ def work(fnames):
     logTime = datetime.datetime.strftime(datetime.datetime.now(), '%Y-%m-%d %H:%M:%S')
     logName = '../data/Experiments_log'+logTime+'.txt'
     f_txt = open(logName, 'w')
+    f_txt.write(str(sys.argv[0]))
+    f_txt.write('\n')
+    f_txt.write(str(sys.argv[1:]))
+    f_txt.write('\n'*3)
     for iNo in range(iterationNo):
         index = [i for i in range(totalNo-1)]
         shuffle(index)
@@ -143,6 +147,8 @@ def work(fnames):
     print ('Final results is:', finalResults)
     print ('Final accurate results of LSTM is:', sum(finalResults)/iterationNo)
     f_txt.write('\n'*3)
+    f_txt_write('Final results are: ' + str(finalResults))
+    f_txt.write('\n')
     f_txt.write('Final accurate results of LSTM is: ' + str(sum(finalResults)/iterationNo))
     f_txt.write('\n')
     f_txt.close()
