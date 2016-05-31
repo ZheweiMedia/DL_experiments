@@ -47,6 +47,7 @@ def work(fnames):
     testData, testLabel = stackData(fnames, testIndex)
     wholeData = np.vstack((trainData, validationData,testData))
     print (wholeData.shape)
+    sampleNo = wholeData.shape[0]
     timeStep = wholeData.shape[1]
     featureNo = wholeData.shape[2]
     wholeData = wholeData.reshape(-1, featureNo)
@@ -73,8 +74,8 @@ def work(fnames):
     '''
     iAD = 0
     iNC = 0
-    for i in range(totalNo):
-        if i < totalNo:
+    for i in range(sampleNo):
+        if i < sampleNo:
             if wholeLabel[i] == 0: #NC
                 color = (0, (iAD+100)/(AD_No+100), 0)
                 plotNC, = pyplot.plot(SelectedData[i*timeStep:(i+1)*timeStep,0], SelectedData[i*timeStep:(i+1)*timeStep,1], 'o-', color = color, label = 'NC', alpha = 0.7)
@@ -85,7 +86,7 @@ def work(fnames):
                 iAD += 1
     
     print (iNC, iAD)
-    pyplot.legend(handles=[plotNC, plotAD])
+    pyplot.legend(handles=[plotNC, plotAD],loc = 4)
     pyplot.show()
     
     
