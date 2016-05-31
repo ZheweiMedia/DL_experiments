@@ -25,7 +25,7 @@ import gzip
 import pickle as Pickle
 import numpy as np
 
-label = 0 #<=========
+label = 1 #<=========
 
 FrameNo = 130
 FeatureNo = 120
