@@ -147,7 +147,7 @@ def work(fnames):
     print ('Final results is:', finalResults)
     print ('Final accurate results of LSTM is:', sum(finalResults)/iterationNo)
     f_txt.write('\n'*3)
-    f_txt_write('Final results are: ' + str(finalResults))
+    f_txt.write('Final results are: ' + str(finalResults))
     f_txt.write('\n')
     f_txt.write('Final accurate results of LSTM is: ' + str(sum(finalResults)/iterationNo))
     f_txt.write('\n')

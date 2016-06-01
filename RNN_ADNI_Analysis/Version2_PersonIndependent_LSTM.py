@@ -1,11 +1,17 @@
 """
-For baseline experiments. Actually we can use PersonIndependent_LSTM.py
-But the subjects are a little different. In PersonIndependent_LSTM we have
-34+52=86, for baseline one sample is bad data, so we have 34+50=84.
-
 Input is all Pickle.gz. Now each pickle is a subject.
 
 train:validation:test = 8:1:1
+
+Train use all record, validation and test use baseline.
+
+Now subjects with all records are pickle.gz, and subjects with baseline
+are pickle.gz, in different folds. So, what should we do?
+
+randomly choose train, validation, test index. For train, directly read the
+pickle.gz, for validation and test, from the index get the subjects name, then 
+find out corresponding pickle.gz. So if we want to expand this code to MCI, then 
+EMCI, LMCI and SMC should be named also with 2 prefix charactors.
 
 Generate experiment log in Experiment+time.txt
 
@@ -29,14 +35,14 @@ from keras.initializations import normal, identity
 
 iterationNo = 40
 Groups = 2
-totalNo = 84
+totalNo = 86
 trainPercent = 70
-validationPercent = 7
-testpercent = 7
+validationPercent = 8
+testpercent = 8
 
 hd_notes = 10
 learning_rate = 1e-4
-nb_epoch = 1000
+nb_epoch = 500
 
 
 def main(args):
@@ -49,7 +55,7 @@ def main(args):
     pass
 
 def usage (programm):
-    print ("usage: %s ..data/*Subj*.pickle.gz"%(programm))
+    print ("usage: %s ../data/Subjects_Alltime/*.gz ../data/Subjects_Baseline/*.gz"%(programm))
     
 def work(fnames):
     finalResults = list()
@@ -63,12 +69,39 @@ def work(fnames):
     for iNo in range(iterationNo):
         index = [i for i in range(totalNo)]
         shuffle(index)
+        AlltimeFile = fnames[0:totalNo]
+        BaselineFile = fnames[totalNo:]
         trainIndex = index[0:trainPercent]
+        trainData, trainLabel = stackData(AlltimeFile, trainIndex)
+        
+        # validation
         validationIndex = index[trainPercent:trainPercent+validationPercent]
+        validationFile = BaselineFile
+        validationBaselineIndex = list()
+        for iva in validationIndex:
+            tmpFile = os.path.basename(AlltimeFile[iva])
+            tmpSubj = tmpFile[0:17]#<=========================== magic number
+            validationBaseline = [sNo for sNo,s in enumerate(validationFile) if tmpSubj in s]
+            if validationBaseline:
+                validationBaseline = validationBaseline[0]
+                validationBaselineIndex.append(validationBaseline)
+                
+        validationData, validationLabel = stackData(BaselineFile, validationBaselineIndex)   
+        
+        # test   
         testIndex = index[trainPercent+validationPercent:]
-        trainData, trainLabel = stackData(fnames, trainIndex)
-        validationData, validationLabel = stackData(fnames, validationIndex)
-        testData, testLabel = stackData(fnames, testIndex)
+        testFile = BaselineFile
+        testBaselineIndex = list()
+        for ite in testIndex:
+            tmpFile = os.path.basename(AlltimeFile[ite])
+            tmpSubj = tmpFile[0:17]#<=========================== magic number
+            testBaseline = [sNo for sNo,s in enumerate(testFile) if tmpSubj in s]
+            if testBaseline:
+                testBaseline = testBaseline[0]
+                testBaselineIndex.append(testBaseline)
+                
+        testData, testLabel = stackData(BaselineFile, testBaselineIndex)
+        
         print ('*'*30)
         print ('Iteration:', iNo)
         print ('Training subjects:', trainPercent)
@@ -148,7 +181,7 @@ def work(fnames):
         f_txt.write('\n')
         pass
     
-    print ('Final results are:', finalResults)
+    print ('Final results is:', finalResults)
     print ('Final accurate results of LSTM is:', sum(finalResults)/iterationNo)
     f_txt.write('\n'*3)
     f_txt.write('Final results are: ' + str(finalResults))
