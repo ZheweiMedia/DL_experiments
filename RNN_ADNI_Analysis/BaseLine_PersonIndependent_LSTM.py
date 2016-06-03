@@ -12,6 +12,10 @@ Generate experiment log in Experiment+time.txt
 @Zhewei
 5/31/2016
 
+Add random.seed()
+@Zhewei
+6/3/2016
+
 """
 
 import sys,os
@@ -19,6 +23,7 @@ import datetime
 import gzip
 import pickle as Pickle
 import numpy as np
+np.random.seed(1337)  # for reproducibility
 from random import shuffle, randint
 from keras.utils import np_utils
 from keras.models import Sequential
@@ -27,7 +32,7 @@ from keras.layers import LSTM
 from keras.optimizers import RMSprop
 from keras.initializations import normal, identity
 
-iterationNo = 40
+iterationNo = 1
 Groups = 2
 totalNo = 84
 trainPercent = 70
@@ -35,8 +40,8 @@ validationPercent = 7
 testpercent = 7
 
 hd_notes = 10
-learning_rate = 1e-4
-nb_epoch = 1000
+learning_rate = 1e-5
+nb_epoch = 1500
 
 
 def main(args):
@@ -44,17 +49,18 @@ def main(args):
         usage( args[0] )
         pass
     else:
-        work( args[1:] )
+        work( args[1:-1], args[-1])
         pass
     pass
 
 def usage (programm):
-    print ("usage: %s ..data/*Subj*.pickle.gz"%(programm))
+    print ("usage: %s ..data/*Subj*.pickle.gz commentForRecord"%(programm))
     
-def work(fnames):
+def work(fnames, comment):
     finalResults = list()
+    comment = str(comment)
     logTime = datetime.datetime.strftime(datetime.datetime.now(), '%Y-%m-%d %H:%M:%S')
-    logName = '../data/Experiments_log'+logTime+'.txt'
+    logName = '../data/Experiments_log'+logTime+comment+'.txt'
     f_txt = open(logName, 'w')
     f_txt.write(str(sys.argv[0]))
     f_txt.write('\n')
@@ -95,14 +101,14 @@ def work(fnames):
         print ("Building model...")
         model = Sequential()
         model.add(LSTM(hd_notes, input_shape=(timesteps, featureNo),\
-                            init='normal',\
-                            inner_init='identity',\
-                            activation='sigmoid', return_sequences=False,\
+                            init='glorot_normal',\
+                            inner_init='glorot_uniform',\
+                            activation='tanh', return_sequences=False,\
                             dropout_W=0, dropout_U=0))
         model.add(Dense(nb_classes))
         model.add(Activation('softmax'))
         rmsprop = RMSprop(lr=learning_rate, rho=0.9, epsilon=1e-06)
-        model.compile(loss='categorical_crossentropy', optimizer=rmsprop, \
+        model.compile(loss='binary_crossentropy', optimizer=rmsprop, \
                         metrics=["accuracy"])
 
         print ("Training model...")

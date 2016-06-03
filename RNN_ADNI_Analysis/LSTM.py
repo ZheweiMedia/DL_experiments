@@ -4,6 +4,13 @@ From each group we choose train, test and validation, then np.vstack.
 
 train:validation:test = 8:1:1
 
+@Zhewei
+5/21/2016
+
+Add random.seed()
+@Zhewei
+6/3/2016
+
 """
 
 # from future import division
@@ -11,6 +18,7 @@ import sys,os
 import gzip
 import pickle as Pickle
 import numpy as np
+np.random.seed(1337)  # for reproducibility
 from random import shuffle
 from keras.utils import np_utils
 from keras.models import Sequential
@@ -24,7 +32,7 @@ iterationNo = 1
 trainPercent = 0.8
 validationPercent = 0.1
 
-hd_notes = 20
+hd_notes = 10
 learning_rate = 1e-9
 nb_epoch = 500
 

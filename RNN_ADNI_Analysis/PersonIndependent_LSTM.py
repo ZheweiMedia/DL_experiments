@@ -5,8 +5,13 @@ train:validation:test = 8:1:1
 
 Generate experiment log in Experiment+time.txt
 
+
 @Zhewei
 5/29/2016
+
+Add random.seed()
+@Zhewei
+6/3/2016
 
 """
 
@@ -15,6 +20,7 @@ import datetime
 import gzip
 import pickle as Pickle
 import numpy as np
+np.random.seed(1337)  # for reproducibility
 from random import shuffle, randint
 from keras.utils import np_utils
 from keras.models import Sequential
