@@ -33,15 +33,16 @@ from keras.optimizers import RMSprop
 from keras.initializations import normal, identity
 
 iterationNo = 1
-Groups = 2
-totalNo = 84
-trainPercent = 70
-validationPercent = 7
-testpercent = 7
+Groups = 3
+
+totalNo = 139
+trainPercent = 110
+validationPercent = 15
+testpercent = 14
 
 hd_notes = 10
-learning_rate = 1e-5
-nb_epoch = 1500
+learning_rate = 1e-4
+nb_epoch = 5000
 
 
 def main(args):
@@ -54,13 +55,13 @@ def main(args):
     pass
 
 def usage (programm):
-    print ("usage: %s ..data/*Subj*.pickle.gz commentForRecord"%(programm))
+    print ("usage: %s ..data/Subjects_Baseline/*Subj*.pickle.gz commentForRecord"%(programm))
     
 def work(fnames, comment):
     finalResults = list()
     comment = str(comment)
     logTime = datetime.datetime.strftime(datetime.datetime.now(), '%Y-%m-%d %H:%M:%S')
-    logName = '../data/Experiments_log'+logTime+comment+'.txt'
+    logName = '../data/Experiments_log '+logTime+comment+'.txt'
     f_txt = open(logName, 'w')
     f_txt.write(str(sys.argv[0]))
     f_txt.write('\n')
@@ -108,7 +109,7 @@ def work(fnames, comment):
         model.add(Dense(nb_classes))
         model.add(Activation('softmax'))
         rmsprop = RMSprop(lr=learning_rate, rho=0.9, epsilon=1e-06)
-        model.compile(loss='binary_crossentropy', optimizer=rmsprop, \
+        model.compile(loss='categorical_crossentropy', optimizer=rmsprop, \
                         metrics=["accuracy"])
 
         print ("Training model...")
@@ -119,6 +120,7 @@ def work(fnames, comment):
         scores = model.evaluate(testData, Y_test, verbose=1)
         print('RNN test score:', scores[0])
         print('RNN test accuracy:', scores[1])
+        print (testLabel)
         print (model.predict_classes(testData))
         finalResults.append(scores[1])
         validationScore = model.evaluate(validationData, Y_valid, verbose=0)

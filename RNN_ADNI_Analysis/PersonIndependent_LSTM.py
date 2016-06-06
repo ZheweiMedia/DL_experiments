@@ -56,7 +56,7 @@ def usage (programm):
 def work(fnames):
     finalResults = list()
     logTime = datetime.datetime.strftime(datetime.datetime.now(), '%Y-%m-%d %H:%M:%S')
-    logName = '../data/Experiments_log'+logTime+'.txt'
+    logName = '../data/Experiments_log '+logTime+'.txt'
     f_txt = open(logName, 'w')
     f_txt.write(str(sys.argv[0]))
     f_txt.write('\n')
