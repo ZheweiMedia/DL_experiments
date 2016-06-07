@@ -40,9 +40,9 @@ trainPercent = 110
 validationPercent = 15
 testpercent = 14
 
-hd_notes = 30
+hd_notes = 25
 learning_rate = 1e-4
-nb_epoch = 5000
+nb_epoch = 2000
 
 
 def main(args):
