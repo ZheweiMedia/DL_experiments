@@ -40,7 +40,7 @@ trainPercent = 110
 validationPercent = 15
 testpercent = 14
 
-hd_notes = 10
+hd_notes = 30
 learning_rate = 1e-4
 nb_epoch = 5000
 
@@ -102,8 +102,8 @@ def work(fnames, comment):
         print ("Building model...")
         model = Sequential()
         model.add(LSTM(hd_notes, input_shape=(timesteps, featureNo),\
-                            init='glorot_normal',\
-                            inner_init='glorot_uniform',\
+                            init='normal',\
+                            inner_init='identity',\
                             activation='tanh', return_sequences=False,\
                             dropout_W=0, dropout_U=0))
         model.add(Dense(nb_classes))
