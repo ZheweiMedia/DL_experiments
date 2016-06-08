@@ -36,13 +36,13 @@ iterationNo = 1
 Groups = 3
 
 totalNo = 139
-trainPercent = 110
+trainPercent = 115
 validationPercent = 15
-testpercent = 14
+testpercent = 9
 
-hd_notes = 25
-learning_rate = 1e-4
-nb_epoch = 2000
+hd_notes = 30
+learning_rate = 1e-5
+nb_epoch = 3000
 
 
 def main(args):
@@ -108,7 +108,7 @@ def work(fnames, comment):
                             dropout_W=0, dropout_U=0))
         model.add(Dense(nb_classes))
         model.add(Activation('softmax'))
-        rmsprop = RMSprop(lr=learning_rate, rho=0.9, epsilon=1e-06)
+        rmsprop = RMSprop(lr=learning_rate, rho=0.9, epsilon=1e-08)
         model.compile(loss='categorical_crossentropy', optimizer=rmsprop, \
                         metrics=["accuracy"])
 
