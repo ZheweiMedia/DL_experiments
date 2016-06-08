@@ -52,8 +52,8 @@ validationPercent = 15
 testpercent = 9
 
 hd_notes = 30
-learning_rate = 1e-5
-nb_epoch = 3000
+learning_rate = 1e-4
+nb_epoch = 1000
 
 
 def main(args):
