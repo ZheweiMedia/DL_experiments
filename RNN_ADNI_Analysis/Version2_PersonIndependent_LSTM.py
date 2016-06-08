@@ -3,15 +3,21 @@ Input is all Pickle.gz. Now each pickle is a subject.
 
 train:validation:test = 8:1:1
 
+********************************************************
 Train use all record, validation and test use baseline.
+********************************************************
 
 Now subjects with all records are pickle.gz, and subjects with baseline
 are pickle.gz, in different folds. So, what should we do?
 
 randomly choose train, validation, test index. For train, directly read the
 pickle.gz, for validation and test, from the index get the subjects name, then 
-find out corresponding pickle.gz. So if we want to expand this code to MCI, then 
+find out corresponding pickle.gz. 
+
+**********************************************************************
+So if we want to expand this code to MCI, then 
 EMCI, LMCI and SMC should be named also with 2 prefix charactors.
+**********************************************************************
 
 Generate experiment log in Experiment+time.txt
 
@@ -38,16 +44,16 @@ from keras.layers import LSTM
 from keras.optimizers import RMSprop
 from keras.initializations import normal, identity
 
-iterationNo = 40
-Groups = 2
-totalNo = 86
-trainPercent = 70
-validationPercent = 8
-testpercent = 8
+iterationNo = 1
+Groups = 3
+totalNo = 139
+trainPercent = 115
+validationPercent = 15
+testpercent = 9
 
-hd_notes = 10
-learning_rate = 1e-4
-nb_epoch = 500
+hd_notes = 30
+learning_rate = 1e-5
+nb_epoch = 3000
 
 
 def main(args):
@@ -55,17 +61,17 @@ def main(args):
         usage( args[0] )
         pass
     else:
-        work( args[1:] )
+        work( args[1:-1], args[-1])
         pass
     pass
 
 def usage (programm):
     print ("usage: %s ../data/Subjects_Alltime/*.gz ../data/Subjects_Baseline/*.gz"%(programm))
     
-def work(fnames):
+def work(fnames, comment):
     finalResults = list()
     logTime = datetime.datetime.strftime(datetime.datetime.now(), '%Y-%m-%d %H:%M:%S')
-    logName = '../data/Experiments_log '+logTime+'.txt'
+    logName = '../data/Experiments_log '+logTime+comment+'.txt'
     f_txt = open(logName, 'w')
     f_txt.write(str(sys.argv[0]))
     f_txt.write('\n')
@@ -85,7 +91,7 @@ def work(fnames):
         validationBaselineIndex = list()
         for iva in validationIndex:
             tmpFile = os.path.basename(AlltimeFile[iva])
-            tmpSubj = tmpFile[0:17]#<=========================== magic number
+            tmpSubj = tmpFile[0:17]#<=========================== magic number, to get subject value, such like 013_S_234
             validationBaseline = [sNo for sNo,s in enumerate(validationFile) if tmpSubj in s]
             if validationBaseline:
                 validationBaseline = validationBaseline[0]

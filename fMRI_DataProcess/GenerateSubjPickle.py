@@ -1,4 +1,6 @@
 """
+5/29/2016 start:
+
 This program used to generate general pickle files from the raw data from MatLab.
 
 Each subject as a pickle.
@@ -11,12 +13,19 @@ Label of SMC:   4
 
 all data read or write in ./data
 
+******************************************
+1. Set group label.
+2. Set how many sans with noise will generate.
+3. Set postfix name for output pickle. '.pickle.gz' for no-noise, 'noise.pickle.gz' for noise data.
+4. Make sure input correct .txt files.
+******************************************
+
 Usage:  python3.5 data/AD_Results/AD_Subj*.txt
 
 Output: an array with the 3D shape SampleNo*FrameNo*FeatureNo and label for each sample
 
 @Zhewei
-5/29/2016
+
 
 """
 
@@ -24,8 +33,13 @@ import sys,os
 import gzip
 import pickle as Pickle
 import numpy as np
+import random
 
-label = 2 #<=========
+#******************************
+label = 0
+NoiseScanNo = 4
+postfix = '_noise.pickle.gz'
+#******************************
 
 FrameNo = 130
 FeatureNo = 120
@@ -55,6 +69,19 @@ def work(files):
                 tmpData.append(tmp)
             except ValueError:
                 pass
+        
+        # now generate (copy) NoiseScanNo scans
+        TmpNoiseData = list()
+        for noiseNo in range(NoiseScanNo):
+            TmpNoiseData += tmpData
+        
+        # now generate noise (0-1) , add to scans
+        TmpNoiseData = [d+random.random() for d in TmpNoiseData]
+        
+        # print (len(TmpNoiseData))
+        # print (NoiseScanNo*len(tmpData))
+        
+        tmpData = tmpData+TmpNoiseData
         Data = np.asarray(tmpData)
         Data = Data.reshape(-1,FrameNo,FeatureNo)
         Label = [label for i in range(Data.shape[0])]
@@ -65,9 +92,10 @@ def work(files):
         print ('#'*20)
         
         fName = os.path.basename(fi)
-        fileName = '../data/'+fName+'.pickle.gz'
+        fileName = '../data/'+fName+postfix
         with gzip.open(fileName, "wb") as output_file:
             Pickle.dump((Data, Label), output_file)
+        
             
 
 

@@ -46,17 +46,17 @@ def main(args):
         usage( args[0] )
         pass
     else:
-        work( args[1:] )
+        work( args[1:-1], args[-1])
         pass
     pass
 
 def usage (programm):
     print ("usage: %s ..data/*Subj*.pickle.gz"%(programm))
     
-def work(fnames):
+def work(fnames, comment):
     finalResults = list()
     logTime = datetime.datetime.strftime(datetime.datetime.now(), '%Y-%m-%d %H:%M:%S')
-    logName = '../data/Experiments_log '+logTime+'.txt'
+    logName = '../data/Experiments_log '+logTime+comment+'.txt'
     f_txt = open(logName, 'w')
     f_txt.write(str(sys.argv[0]))
     f_txt.write('\n')
