@@ -17,6 +17,8 @@ find out corresponding pickle.gz.
 **********************************************************************
 So if we want to expand this code to MCI, then 
 EMCI, LMCI and SMC should be named also with 2 prefix charactors.
+
+Remember to add commit for experiment log. Did have the trigger to check it now.
 **********************************************************************
 
 Generate experiment log in Experiment+time.txt
@@ -45,7 +47,7 @@ from keras.optimizers import RMSprop
 from keras.initializations import normal, identity
 
 iterationNo = 1
-Groups = 3
+Groups = 4
 totalNo = 190
 trainPercent = 152
 validationPercent = 19
@@ -142,7 +144,7 @@ def work(fnames, comment):
         model.add(LSTM(hd_notes, input_shape=(timesteps, featureNo),\
                             init='normal',\
                             inner_init='identity',\
-                            activation='sigmoid', return_sequences=False,\
+                            activation='tanh', return_sequences=False,\
                             dropout_W=0, dropout_U=0))
         model.add(Dense(nb_classes))
         model.add(Activation('softmax'))
@@ -207,8 +209,8 @@ def work(fnames, comment):
 
         
 def stackData(fnames, index):
-    Data = np.empty([1,1])
-    Label = np.empty([1,1])
+    Data = np.zeros([1,1])
+    Label = np.zeros([1,1])
     for iNo, i in enumerate(index):
         f = gzip.open(fnames[i],'rb')
         tmpdata,tmplabel = Pickle.load(f)

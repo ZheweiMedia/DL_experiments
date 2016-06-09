@@ -33,12 +33,12 @@ from keras.optimizers import RMSprop
 from keras.initializations import normal, identity
 
 iterationNo = 1
-Groups = 3
+Groups = 4
 
-totalNo = 139
-trainPercent = 115
-validationPercent = 15
-testpercent = 9
+totalNo = 185
+trainPercent = 150
+validationPercent = 18
+testpercent = 17
 
 hd_notes = 30
 learning_rate = 1e-5

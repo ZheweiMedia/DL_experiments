@@ -18,6 +18,8 @@ all data read or write in ./data
 2. Set how many sans with noise will generate.
 3. Set postfix name for output pickle. '.pickle.gz' for no-noise, 'noise.pickle.gz' for noise data.
 4. Make sure input correct .txt files.
+5. Add some code to check if value is Nan. It happened for a subject of LMCI. Don't know why. 
+   So now if the file contains Nan, will print the file name.(maybe we can do better.)
 ******************************************
 
 Usage:  python3.5 data/AD_Results/AD_Subj*.txt
@@ -34,6 +36,7 @@ import gzip
 import pickle as Pickle
 import numpy as np
 import random
+import math
 
 #******************************
 label = 3
@@ -67,6 +70,8 @@ def work(files):
             try:
                 tmp = float(line)
                 tmpData.append(tmp)
+                if math.isnan(tmp):
+                    print (fi)
             except ValueError:
                 pass
         
