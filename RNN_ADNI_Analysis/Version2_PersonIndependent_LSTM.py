@@ -51,8 +51,8 @@ trainPercent = 115
 validationPercent = 15
 testpercent = 9
 
-hd_notes = 30
-learning_rate = 1e-4
+hd_notes = 20
+learning_rate = 1e-5
 nb_epoch = 1000
 
 
@@ -157,6 +157,7 @@ def work(fnames, comment):
         scores = model.evaluate(testData, Y_test, verbose=1)
         print('RNN test score:', scores[0])
         print('RNN test accuracy:', scores[1])
+        print (testLabel)
         print (model.predict_classes(testData))
         finalResults.append(scores[1])
         validationScore = model.evaluate(validationData, Y_valid, verbose=0)
