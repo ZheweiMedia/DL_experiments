@@ -36,9 +36,9 @@ import numpy as np
 import random
 
 #******************************
-label = 0
-NoiseScanNo = 4
-postfix = '_noise.pickle.gz'
+label = 3
+NoiseScanNo = 0
+postfix = '.pickle.gz'
 #******************************
 
 FrameNo = 130

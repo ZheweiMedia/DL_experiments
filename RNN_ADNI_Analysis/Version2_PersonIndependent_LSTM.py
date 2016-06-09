@@ -46,10 +46,11 @@ from keras.initializations import normal, identity
 
 iterationNo = 1
 Groups = 3
-totalNo = 139
-trainPercent = 115
-validationPercent = 15
-testpercent = 9
+totalNo = 190
+trainPercent = 152
+validationPercent = 19
+testpercent = 19
+MagicNumber = 17
 
 hd_notes = 20
 learning_rate = 1e-5
@@ -91,7 +92,7 @@ def work(fnames, comment):
         validationBaselineIndex = list()
         for iva in validationIndex:
             tmpFile = os.path.basename(AlltimeFile[iva])
-            tmpSubj = tmpFile[0:17]#<=========================== magic number, to get subject value, such like 013_S_234
+            tmpSubj = tmpFile[0:MagicNumber]#<=========================== magic number, to get subject value, such like 013_S_234
             validationBaseline = [sNo for sNo,s in enumerate(validationFile) if tmpSubj in s]
             if validationBaseline:
                 validationBaseline = validationBaseline[0]
@@ -105,7 +106,7 @@ def work(fnames, comment):
         testBaselineIndex = list()
         for ite in testIndex:
             tmpFile = os.path.basename(AlltimeFile[ite])
-            tmpSubj = tmpFile[0:17]#<=========================== magic number
+            tmpSubj = tmpFile[0:MagicNumber]#<=========================== magic number
             testBaseline = [sNo for sNo,s in enumerate(testFile) if tmpSubj in s]
             if testBaseline:
                 testBaseline = testBaseline[0]
