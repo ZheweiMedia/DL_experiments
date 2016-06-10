@@ -54,9 +54,9 @@ validationPercent = 19
 testpercent = 19
 MagicNumber = 17
 
-hd_notes = 20
+hd_notes = 40
 learning_rate = 1e-5
-nb_epoch = 1000
+nb_epoch = 2000
 
 
 def main(args):
@@ -145,7 +145,7 @@ def work(fnames, comment):
                             init='normal',\
                             inner_init='identity',\
                             activation='tanh', return_sequences=False,\
-                            dropout_W=0, dropout_U=0))
+                            dropout_W=0.1, dropout_U=0.1))
         model.add(Dense(nb_classes))
         model.add(Activation('softmax'))
         rmsprop = RMSprop(lr=learning_rate, rho=0.9, epsilon=1e-06)
@@ -181,6 +181,8 @@ def work(fnames, comment):
         f_txt.write('Test samples: ' + str(testData.shape[0]))
         f_txt.write('\n')
         f_txt.write('Test Index: ' + str(testIndex))
+        f_txt.write('\n')
+        f_txt.write('Training results: ' + str(model.predict_classes(trainData)))
         f_txt.write('\n')
         f_txt.write('Validation ground truth: ' + str(validationLabel))
         f_txt.write('\n')
