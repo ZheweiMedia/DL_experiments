@@ -47,16 +47,19 @@ from keras.optimizers import RMSprop
 from keras.initializations import normal, identity
 
 iterationNo = 1
-Groups = 4
-totalNo = 190
-trainPercent = 152
-validationPercent = 19
-testpercent = 19
+Groups = 2
+
+BATCH_SIZE = 30
+
+totalNo = 103#190
+trainPercent = 80#152
+validationPercent = 13#19
+testpercent = 10#19
 MagicNumber = 17
 
-hd_notes = 40
+hd_notes = 20
 learning_rate = 1e-5
-nb_epoch = 2000
+nb_epoch = 1500
 
 
 def main(args):
@@ -145,7 +148,7 @@ def work(fnames, comment):
                             init='normal',\
                             inner_init='identity',\
                             activation='tanh', return_sequences=False,\
-                            dropout_W=0.1, dropout_U=0.1))
+                            dropout_W=0, dropout_U=0))
         model.add(Dense(nb_classes))
         model.add(Activation('softmax'))
         rmsprop = RMSprop(lr=learning_rate, rho=0.9, epsilon=1e-06)
@@ -155,7 +158,7 @@ def work(fnames, comment):
         print ("Training model...")
 
         model.fit(trainData, Y_train, \
-                    nb_epoch=nb_epoch, verbose=1, validation_data=(validationData, Y_valid))
+                    batch_size = BATCH_SIZE, nb_epoch=nb_epoch, verbose=1, validation_data=(validationData, Y_valid))
 
         scores = model.evaluate(testData, Y_test, verbose=1)
         print('RNN test score:', scores[0])

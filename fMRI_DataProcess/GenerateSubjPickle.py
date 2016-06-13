@@ -39,7 +39,7 @@ import random
 import math
 
 #******************************
-label = 3
+label = 0
 NoiseScanNo = 0
 postfix = '.pickle.gz'
 #******************************
