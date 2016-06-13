@@ -1,0 +1,4 @@
+PersonIndependent_LSTM.py
+['../data/TMP_ALLtime/', 'Allrecords']
+
+

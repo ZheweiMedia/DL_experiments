@@ -29,16 +29,18 @@ from keras.layers import LSTM
 from keras.optimizers import RMSprop
 from keras.initializations import normal, identity
 
-iterationNo = 40
-Groups = 2
-totalNo = 86
-trainPercent = 70
-validationPercent = 8
-testpercent = 8
+iterationNo = 1
+Groups = 4
+totalNo = 190
+trainPercent = 152
+validationPercent = 19
+testpercent = 19
+
+BATCH_SIZE = 30
 
 hd_notes = 10
 learning_rate = 1e-4
-nb_epoch = 500
+nb_epoch = 1500
 
 
 def main(args):
@@ -110,11 +112,12 @@ def work(fnames, comment):
         print ("Training model...")
 
         model.fit(trainData, Y_train, \
-                    nb_epoch=nb_epoch, verbose=1, validation_data=(validationData, Y_valid))
+                    batch_size = BATCH_SIZE, nb_epoch=nb_epoch, verbose=1, validation_data=(validationData, Y_valid))
 
         scores = model.evaluate(testData, Y_test, verbose=1)
         print('RNN test score:', scores[0])
         print('RNN test accuracy:', scores[1])
+        print ('True Labels:', testLabel)
         print (model.predict_classes(testData))
         finalResults.append(scores[1])
         validationScore = model.evaluate(validationData, Y_valid, verbose=0)

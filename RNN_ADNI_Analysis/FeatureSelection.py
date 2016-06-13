@@ -22,12 +22,12 @@ from sklearn.feature_selection import chi2
 import matplotlib.pyplot as pyplot
 
 
-totalNo = 34
-trainPercent = 30
-validationPercent = 2
-testPercent = 2
-AD_No = 118
-NC_No = 190
+totalNo = 103
+trainPercent = 80
+validationPercent = 13
+testPercent = 10
+Group1_No = 167
+Group2_No = 219
 
 '''
 trainIndex = [47, 28, 38, 54, 6, 9, 36, 17, 58, 65, 22, 11, 59, 16, 50, 76, 55, 63, 46, 10, 4, 2, 70, 12, 27, 14, 49, 78, 52, 53, 45, 81, 56, 69, 79, 73, 72, 33, 18, 34, 20, 7, 71, 80, 8, 39, 77, 44, 83, 74, 61, 13, 51, 19, 67, 21, 35, 82, 75, 1, 68, 26, 31, 37, 84, 48, 30, 57, 29, 41]
@@ -96,23 +96,20 @@ def work(fnames):
     iAD = 0
     iNC = 0
     iLM = 0
+    print (sampleNo)
     for i in range(sampleNo):
         if i < sampleNo:
-            if wholeLabel[i] == 0: #NC
-                color = (0, (iAD+100)/(AD_No+100), 0)
-                plotNC, = pyplot.plot(SelectedData[i*timeStep:(i+1)*timeStep,0], SelectedData[i*timeStep:(i+1)*timeStep,1], 'o-', color = color, label = 'NC', alpha = 0.7)
-                iNC += 1
             if wholeLabel[i] == 1: #AD
-                color = ((iNC+200)/(NC_No+200),0,0)
-                plotAD, = pyplot.plot(SelectedData[i*timeStep:(i+1)*timeStep,0], SelectedData[i*timeStep:(i+1)*timeStep,1], 'o-', color = color, label = 'AD', alpha = 0.7)
+                color = (0, (iAD+(Group1_No))/(Group1_No+(Group1_No)), 0)
+                plotNC, = pyplot.plot(SelectedData[i*timeStep:(i+1)*timeStep,0], SelectedData[i*timeStep:(i+1)*timeStep,1], 'o-', color = color, label = 'LMCI', alpha = 0.7)
                 iAD += 1
-            if wholeLabel[i] == 3: #LMCI
-                color = (0,0,(iLM+200)/(LM_No+200))
-                plotLM, = pyplot.plot(SelectedData[i*timeStep:(i+1)*timeStep,0], SelectedData[i*timeStep:(i+1)*timeStep,1], 'o-', color = color, label = 'LM', alpha = 0.7)
-                iLM += 1
+            if wholeLabel[i] == 0: #NC
+                color = ((iNC+Group2_No)/(Group2_No+Group2_No),0,0)
+                plotAD, = pyplot.plot(SelectedData[i*timeStep:(i+1)*timeStep,0], SelectedData[i*timeStep:(i+1)*timeStep,1], 'o-', color = color, label = 'EMCI', alpha = 0.7)
+                iNC += 1
     
-    print (iNC, iAD, iLM)
-    pyplot.legend(handles=[plotNC, plotAD, plotLM], loc = 4)
+    print (iNC, iAD)
+    pyplot.legend(handles=[plotNC, plotAD], loc = 4)
     pyplot.show()
     
     

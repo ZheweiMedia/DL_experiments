@@ -57,9 +57,9 @@ validationPercent = 13#19
 testpercent = 10#19
 MagicNumber = 17
 
-hd_notes = 20
+hd_notes = 40
 learning_rate = 1e-5
-nb_epoch = 1500
+nb_epoch = 1000
 
 
 def main(args):
@@ -151,7 +151,7 @@ def work(fnames, comment):
                             dropout_W=0, dropout_U=0))
         model.add(Dense(nb_classes))
         model.add(Activation('softmax'))
-        rmsprop = RMSprop(lr=learning_rate, rho=0.9, epsilon=1e-06)
+        rmsprop = RMSprop(lr=learning_rate, rho=0.95, epsilon=1e-06)
         model.compile(loss='categorical_crossentropy', optimizer=rmsprop, \
                         metrics=["accuracy"])
 
