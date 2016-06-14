@@ -22,10 +22,10 @@ from sklearn.feature_selection import chi2
 import matplotlib.pyplot as pyplot
 
 
-totalNo = 103
-trainPercent = 80
-validationPercent = 13
-testPercent = 10
+totalNo = 86
+trainPercent = 70
+validationPercent = 8
+testPercent = 8
 Group1_No = 167
 Group2_No = 219
 
@@ -62,8 +62,11 @@ def work(fnames):
     sampleNo = wholeData.shape[0]
     timeStep = wholeData.shape[1]
     featureNo = wholeData.shape[2]
-
-    wholeLabel = np.append(trainLabel, validationLabel, testLabel)
+    
+    print (trainLabel.shape)
+    print (validationLabel.shape)
+    wholeLabel = np.append(trainLabel, validationLabel)
+    wholeLabel = np.append(wholeLabel, testLabel)
     print (wholeLabel.shape)
     print (np.amax(wholeData))
     print (np.amin(wholeData))
@@ -84,15 +87,16 @@ def work(fnames):
         if i < sampleNo:
             tmp = wholeData[i,:,:]
             tmp.reshape(timeStep,featureNo)
-            for j in range(timeStep):
-                if wholeLabel[i] == 1: #AD
+            if wholeLabel[i] == 1: #AD
+                for j in range(timeStep):
                     color = (0, (iAD+(Group1_No))/(Group1_No+(Group1_No)), 0)
-                    plotNC, = pyplot.plot(range(featureNo), tmp(j,:), 'o-', color = color, label = 'AD', alpha = 0.7)
+                    plotNC, = pyplot.plot(range(featureNo), tmp[j,:], 'o-', color = color, label = 'AD', alpha = 0.7)
             iAD += 1
-                if wholeLabel[i] == 0: #NC
+            if wholeLabel[i] == 0: #NC
+                for j in range(timeStep):
                     color = ((iNC+Group2_No)/(Group2_No+Group2_No),0,0)
-                    plotAD, = pyplot.plot(range(featureNo), tmp(j,:), 'o-', color = color, label = 'NC', alpha = 0.7)
-           iNC += 1
+                    plotAD, = pyplot.plot(range(featureNo), tmp[j,:], 'o-', color = color, label = 'NC', alpha = 0.7)
+            iNC += 1
     
     print (iNC, iAD)
     pyplot.legend(handles=[plotNC, plotAD], loc = 4)
