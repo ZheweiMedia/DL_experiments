@@ -18,7 +18,7 @@ find out corresponding pickle.gz.
 So if we want to expand this code to MCI, then 
 EMCI, LMCI and SMC should be named also with 2 prefix charactors.
 
-Remember to add commit for experiment log. Did have the trigger to check it now.
+Remember to add commit for experiment log. Didn't have the trigger to check it now.
 **********************************************************************
 
 Generate experiment log in Experiment+time.txt
@@ -51,9 +51,9 @@ Groups = 2
 
 BATCH_SIZE = 30
 
-totalNo = 103#190
-trainPercent = 80#152
-validationPercent = 13#19
+totalNo = 92#190
+trainPercent = 72#152
+validationPercent = 10#19
 testpercent = 10#19
 MagicNumber = 17
 
