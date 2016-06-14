@@ -23,23 +23,11 @@ import matplotlib.pyplot as pyplot
 
 
 totalNo = 86
-trainPercent = 70
-validationPercent = 8
-testPercent = 8
-Group1_No = 167
-Group2_No = 219
-
-'''
-trainIndex = [47, 28, 38, 54, 6, 9, 36, 17, 58, 65, 22, 11, 59, 16, 50, 76, 55, 63, 46, 10, 4, 2, 70, 12, 27, 14, 49, 78, 52, 53, 45, 81, 56, 69, 79, 73, 72, 33, 18, 34, 20, 7, 71, 80, 8, 39, 77, 44, 83, 74, 61, 13, 51, 19, 67, 21, 35, 82, 75, 1, 68, 26, 31, 37, 84, 48, 30, 57, 29, 41]
-validationIndex = [25, 60, 24, 62, 42, 40, 23, 5]
-testIndex = [0, 32, 43, 3, 64, 15, 66]
-'''
 
 index = [i for i in range(totalNo)]
 shuffle(index)
-trainIndex = index[0:trainPercent]
-validationIndex = index[trainPercent:trainPercent+validationPercent]
-testIndex = index[trainPercent+validationPercent:]
+DataIndex = index
+
 
 def main(args):
     if len(args) < 2:
@@ -54,10 +42,8 @@ def usage (programm):
     print ("usage: %s ..data/*Subj*.pickle.gz"%(programm))
     
 def work(fnames):
-    trainData, trainLabel = stackData(fnames, trainIndex)
-    validationData, validationLabel = stackData(fnames, validationIndex)
-    testData, testLabel = stackData(fnames, testIndex)
-    wholeData = np.vstack((trainData, validationData,testData))
+    WholeData, WholeLabel = stackData(fnames, DataIndex)
+
     print (wholeData.shape)
     sampleNo = wholeData.shape[0]
     timeStep = wholeData.shape[1]
