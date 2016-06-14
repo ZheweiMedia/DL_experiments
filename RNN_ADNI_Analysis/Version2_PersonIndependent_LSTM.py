@@ -57,9 +57,9 @@ validationPercent = 10#19
 testpercent = 10#19
 MagicNumber = 17
 
-hd_notes = 40
+hd_notes = 20
 learning_rate = 1e-5
-nb_epoch = 1000
+nb_epoch = 2000
 
 
 def main(args):

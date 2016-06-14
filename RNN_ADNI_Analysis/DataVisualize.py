@@ -1,85 +1,115 @@
 """
-Data visualize. Now the data should be compressed to 2D or 3D. But I don't think
-3D is better than 2D. So let's only handle the 2D data.
-Assume the data is output of AutoEncoder.py, then we have labels of each sample.
+Read all pickle.gz, and plot train, validation, test. 
+Given train, validation, test index.
 
-Label:  0: NC
-        1: AD
-        2: EMCI
-        3: LMCI
-        4: SMC
-color: each sample has its color but keep the whole group as close color.
 
 @Zhewei
-5/24/2016
+5/30/2016
+
+Randomly select train, validation and test index.
+6/9/2016 
 """
 
 import sys,os
+import datetime
 import gzip
-import cPickle as Pickle
+import pickle as Pickle
 import numpy as np
+from random import shuffle, randint
+from PersonIndependent_LSTM import stackData
+from sklearn.feature_selection import SelectKBest
+from sklearn.feature_selection import chi2
 import matplotlib.pyplot as pyplot
-from matplotlib.pyplot import figure, show
 
-timesteps = 130
 
+totalNo = 103
+trainPercent = 80
+validationPercent = 13
+testPercent = 10
+Group1_No = 167
+Group2_No = 219
+
+'''
+trainIndex = [47, 28, 38, 54, 6, 9, 36, 17, 58, 65, 22, 11, 59, 16, 50, 76, 55, 63, 46, 10, 4, 2, 70, 12, 27, 14, 49, 78, 52, 53, 45, 81, 56, 69, 79, 73, 72, 33, 18, 34, 20, 7, 71, 80, 8, 39, 77, 44, 83, 74, 61, 13, 51, 19, 67, 21, 35, 82, 75, 1, 68, 26, 31, 37, 84, 48, 30, 57, 29, 41]
+validationIndex = [25, 60, 24, 62, 42, 40, 23, 5]
+testIndex = [0, 32, 43, 3, 64, 15, 66]
+'''
+
+index = [i for i in range(totalNo)]
+shuffle(index)
+trainIndex = index[0:trainPercent]
+validationIndex = index[trainPercent:trainPercent+validationPercent]
+testIndex = index[trainPercent+validationPercent:]
 
 def main(args):
     if len(args) < 2:
         usage( args[0] )
         pass
     else:
-        work( args[1] )
+        work( args[1:] )
         pass
     pass
 
 def usage (programm):
-    print ("usage: %s data/CopmressedData.Pickle.gz"%(programm))
-
+    print ("usage: %s ..data/*Subj*.pickle.gz"%(programm))
+    
 def work(fnames):
-    f = gzip.open(files,'rb')
-    data,label = Pickle.load(f)
-    f.close()
-    for iLabel in label:
-        if iLabel == 0:
-            NCNo += 1
-        if iLabel == 1:
-            ADNo += 1
-        if iLabel == 2:
-            EMCINo += 1
-        if iLabel == 3:
-            LMCINo += 1
-        if iLabel == 4:
-            SMCNo += 1
-    print 'We have', NCNo, 'NC samples.'
-    print 'We have', ADNo, 'AD samples.'
-    print 'We have', EMCINo, 'EMCI samples.'
-    print 'We have', LMCINo, 'LMCI samples.'
-    print 'We have', SMCNo, 'SMC samples.'
+    trainData, trainLabel = stackData(fnames, trainIndex)
+    validationData, validationLabel = stackData(fnames, validationIndex)
+    testData, testLabel = stackData(fnames, testIndex)
+    wholeData = np.vstack((trainData, validationData,testData))
+    print (wholeData.shape)
+    sampleNo = wholeData.shape[0]
+    timeStep = wholeData.shape[1]
+    featureNo = wholeData.shape[2]
 
-    iNC = 0
+    wholeLabel = np.append(trainLabel, validationLabel, testLabel)
+    print (wholeLabel.shape)
+    print (np.amax(wholeData))
+    print (np.amin(wholeData))
+    
+    
+    
+
+
+    
+    '''
+    Draw
+    '''
     iAD = 0
-    iEMCI = 0
-    iLMCI = 0
-    iSMC = 0
-    for iLabel, Lb in enumerate(label):
-        if Lb == 0: # NC
-            color = ((iNC)/(NCNo),0,0)
-            iNC += 1
-        if Lb == 1:
-            color = (0,(iAD)/(ADNo),0)
+    iNC = 0
+    iLM = 0
+    print (sampleNo)
+    for i in range(sampleNo):
+        if i < sampleNo:
+            tmp = wholeData[i,:,:]
+            tmp.reshape(timeStep,featureNo)
+            for j in range(timeStep):
+                if wholeLabel[i] == 1: #AD
+                    color = (0, (iAD+(Group1_No))/(Group1_No+(Group1_No)), 0)
+                    plotNC, = pyplot.plot(range(featureNo), tmp(j,:), 'o-', color = color, label = 'AD', alpha = 0.7)
             iAD += 1
-        if Lb == 2:
-            color = (0,0,(iEMCI)/(EMCINo))
-            iEMCI += 1
-        if Lb == 3:
-            color = (0,0.5, (iLMCI)/(LMCINo))
-            iLMCI += 1
-        if Lb == 4:
-            color = (0.5, 0.5, (iSMC)/(SMCNo))
-            iSMC += 1
-
-        pyplot.plot(data(iLabel*timesteps:(iLabel+1)*timesteps,0), \
-                        data(iLabel*timesteps:(iLabel+1)*timesteps,1), \
-                            'o', color = color)
+                if wholeLabel[i] == 0: #NC
+                    color = ((iNC+Group2_No)/(Group2_No+Group2_No),0,0)
+                    plotAD, = pyplot.plot(range(featureNo), tmp(j,:), 'o-', color = color, label = 'NC', alpha = 0.7)
+           iNC += 1
+    
+    print (iNC, iAD)
+    pyplot.legend(handles=[plotNC, plotAD], loc = 4)
     pyplot.show()
+    
+    
+    
+    
+
+
+
+
+
+
+
+
+
+if __name__ == '__main__':
+    main(sys.argv)
+    pass
