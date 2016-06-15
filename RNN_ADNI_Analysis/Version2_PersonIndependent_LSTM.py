@@ -51,10 +51,10 @@ Groups = 2
 
 BATCH_SIZE = 10
 
-totalNo = 92#190
-trainPercent = 72#152
-validationPercent = 10#19
-testpercent = 10#19
+totalNo = 34#190
+trainPercent = 30#152
+validationPercent = 2#19
+testpercent = 2#19
 MagicNumber = 17
 
 hd_notes = 15
@@ -91,6 +91,7 @@ def work(fnames, comment):
         trainIndex = index[0:trainPercent]
         trainData, trainLabel = stackData(AlltimeFile, trainIndex)
         
+
         # validation
         validationIndex = index[trainPercent:trainPercent+validationPercent]
         validationFile = BaselineFile

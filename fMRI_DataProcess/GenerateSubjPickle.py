@@ -16,7 +16,7 @@ all data read or write in ./data
 ******************************************
 1. Set group label.
 2. Set how many sans with noise will generate.
-3. Set postfix name for output pickle. '.pickle.gz' for no-noise, 'noise.pickle.gz' for noise data.
+3. Set postfix name for output pickle. '.pickle.gz' for no-noise, '_noise.pickle.gz' for noise data.
 4. Make sure input correct .txt files.
 5. Add some code to check if value is Nan. It happened for a subject of LMCI. Don't know why. 
    So now if the file contains Nan, will print the file name.(maybe we can do better.)
@@ -39,9 +39,11 @@ import random
 import math
 
 #******************************
-label = 1
-NoiseScanNo = 0
-postfix = '.pickle.gz'
+#******************************
+label = 0
+NoiseScanNo = 5
+postfix = '_noise.pickle.gz'
+#******************************
 #******************************
 
 FrameNo = 130
@@ -65,7 +67,7 @@ def work(files):
         with open(fi) as f:
             content = f.readlines()
         
-        tmpData = []
+        tmpData = list()
         for line in content:
             try:
                 tmp = float(line)
@@ -81,7 +83,7 @@ def work(files):
             TmpNoiseData += tmpData
         
         # now generate noise (0-1) , add to scans
-        TmpNoiseData = [d+random.random() for d in TmpNoiseData]
+        TmpNoiseData = [d+random.uniform(-0.01,0.01) for d in TmpNoiseData]
         
         # print (len(TmpNoiseData))
         # print (NoiseScanNo*len(tmpData))
