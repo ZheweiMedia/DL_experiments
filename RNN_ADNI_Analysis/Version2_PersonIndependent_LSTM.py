@@ -52,13 +52,13 @@ Groups = 2
 BATCH_SIZE = 30
 
 totalNo = 92#190
-trainPercent = 72#152
-validationPercent = 10#19
-testpercent = 10#19
+trainPercent = 75#152
+validationPercent = 9#19
+testpercent = 8#19
 MagicNumber = 17
 
-hd_notes = 5
-learning_rate = 1e-4
+hd_notes = 10
+learning_rate = 1e-5
 nb_epoch = 500
 
 
@@ -149,7 +149,7 @@ def work(fnames, comment):
                             init='normal',\
                             inner_init='identity',\
                             activation='tanh', return_sequences=False,\
-                            dropout_W=0.1, dropout_U=0.1))
+                            dropout_W=0, dropout_U=0))
         model.add(Dense(nb_classes))
         model.add(Activation('softmax'))
         rmsprop = RMSprop(lr=learning_rate, rho=0.9, epsilon=1e-06)
@@ -159,7 +159,7 @@ def work(fnames, comment):
         print ("Training model...")
 
         model.fit(trainData, Y_train, \
-                    batch_size = BATCH_SIZE, nb_epoch=nb_epoch, verbose=1, validation_data=(validationData, Y_valid))
+                    nb_epoch=nb_epoch, verbose=1, validation_data=(validationData, Y_valid))
 
         scores = model.evaluate(testData, Y_test, verbose=1)
         print('RNN test score:', scores[0])

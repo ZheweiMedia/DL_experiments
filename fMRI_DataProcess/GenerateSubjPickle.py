@@ -41,7 +41,7 @@ import math
 #******************************
 #******************************
 label = 0
-NoiseScanNo = 5
+NoiseScanNo = 1
 postfix = '_noise.pickle.gz'
 #******************************
 #******************************
@@ -83,12 +83,13 @@ def work(files):
             TmpNoiseData += tmpData
         
         # now generate noise (0-1) , add to scans
-        TmpNoiseData = [d+random.uniform(-0.01,0.01) for d in TmpNoiseData]
+        TmpNoiseData = [d+0.05 for d in TmpNoiseData]
         
         # print (len(TmpNoiseData))
         # print (NoiseScanNo*len(tmpData))
         
-        tmpData = tmpData+TmpNoiseData
+        #tmpData = tmpData+TmpNoiseData
+        tmpData = TmpNoiseData
         Data = np.asarray(tmpData)
         Data = Data.reshape(-1,FrameNo,FeatureNo)
         Label = [label for i in range(Data.shape[0])]

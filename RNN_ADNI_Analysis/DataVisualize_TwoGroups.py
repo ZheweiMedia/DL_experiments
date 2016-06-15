@@ -30,9 +30,9 @@ from sklearn.feature_selection import chi2
 import matplotlib.pyplot as pyplot
 
 
-totalNo = 95
-Group1_No = 50
-Group2_No = 45
+totalNo = 89
+Group1_No = 34
+Group2_No = 55
 
 index = [i for i in range(totalNo)]
 
@@ -78,7 +78,7 @@ def work(fnames):
             tmp = tmp.reshape(timeStep, featureNo)
             color = ((iGroup1+Group1_No)/(Group1_No+Group1_No),0,0)
             
-            plotORI, = pyplot.plot(range(featureNo), tmp[t,:], 'o-', color = color, label = 'LMCI', alpha = 0.7)
+            plotORI, = pyplot.plot(range(featureNo), tmp[t,:], 'o-', color = color, label = 'AD', alpha = 0.7)
         iGroup1 += 1
     
     for iG in range(Group2_No):
@@ -86,7 +86,7 @@ def work(fnames):
             tmp = wholeData[iG+Group1_No, ]
             tmp = tmp.reshape(timeStep, featureNo)
             color = (0, (iGroup2+(Group2_No))/(Group2_No+(Group2_No)), 0)
-            plotNOI, = pyplot.plot(range(featureNo), tmp[t,:], 'o-', color = color, label = 'NC', alpha = 0.7)
+            plotNOI, = pyplot.plot(range(featureNo), tmp[t,:], 'o-', color = color, label = 'EMCI', alpha = 0.7)
         iGroup2 += 1
     
     pyplot.legend(handles=[plotORI, plotNOI], loc = 4)
