@@ -57,7 +57,7 @@ validationPercent = 10#19
 testpercent = 10#19
 MagicNumber = 17
 
-hd_notes = 2
+hd_notes = 5
 learning_rate = 1e-4
 nb_epoch = 500
 
