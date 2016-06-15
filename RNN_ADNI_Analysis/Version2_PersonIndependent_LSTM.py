@@ -49,17 +49,17 @@ from keras.initializations import normal, identity
 iterationNo = 1
 Groups = 2
 
-BATCH_SIZE = 10
+BATCH_SIZE = 30
 
-totalNo = 34#190
-trainPercent = 30#152
-validationPercent = 2#19
-testpercent = 2#19
+totalNo = 92#190
+trainPercent = 72#152
+validationPercent = 10#19
+testpercent = 10#19
 MagicNumber = 17
 
-hd_notes = 15
-learning_rate = 1e-6
-nb_epoch = 1000
+hd_notes = 2
+learning_rate = 1e-4
+nb_epoch = 500
 
 
 def main(args):

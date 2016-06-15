@@ -2,10 +2,7 @@
 
 For data augment.
 
-Read all pickle.gz, and plot original image and the noise one.
-
-According to my code about GenerateSubjPickle.py, for a pickle, the first one is 
-the original one.
+Read all pickle.gz, then compare two subjects.
 
 
 Label of NC:    0
@@ -15,7 +12,7 @@ Label of LMCI:  3
 Label of SMC:   4
 
 
-Or it can be used to compare to subjects. At this time, NoiseNo = 0
+
 
 @Zhewei
 6/15/2016 
@@ -33,8 +30,7 @@ from sklearn.feature_selection import chi2
 import matplotlib.pyplot as pyplot
 
 
-totalNo = 55
-NoiseNo = 5
+totalNo = 34
 
 index = [i for i in range(totalNo)]
 shuffle(index)
@@ -56,20 +52,17 @@ def usage (programm):
 def work(fnames):
     #after shuffle we can just choose the first subject. 
 
-    f = gzip.open(fnames[DataIndex[0]],'rb')
-    wholeData,wholeLabel = Pickle.load(f)
+    wholeData, wholeLabel = stackData(fnames, DataIndex)
     
     print (wholeData.shape)
     sampleNo = wholeData.shape[0]
     timeStep = wholeData.shape[1]
     featureNo = wholeData.shape[2]
     
-    
-    cycle = sampleNo/(NoiseNo+1)
-    print (cycle)
+    print (DataIndex[0:2])
     # find original one and noise one
     originIndex = 0
-    noiseIndex = originIndex+cycle
+    noiseIndex = originIndex+1
     
     '''
     Draw
@@ -80,13 +73,13 @@ def work(fnames):
         tmp = wholeData[originIndex, ]
         tmp = tmp.reshape(timeStep, featureNo)
         color = 'm'
-        plotORI, = pyplot.plot(range(featureNo), tmp[t,:], 'o-', color = color, label = 'Original', alpha = 0.7)
+        plotORI, = pyplot.plot(range(featureNo), tmp[t,:], 'o-', color = color, label = 'Subject1', alpha = 0.7)
     
     for t in range(timeStep):
         tmp = wholeData[noiseIndex, ]
         tmp = tmp.reshape(timeStep, featureNo)
         color = '#bc82bd'
-        plotNOI, = pyplot.plot(range(featureNo), tmp[t,:], 'o-', color = color, label = 'Noise', alpha = 0.7)
+        plotNOI, = pyplot.plot(range(featureNo), tmp[t,:], 'o-', color = color, label = 'Subject2', alpha = 0.7)
     
     pyplot.legend(handles=[plotORI, plotNOI], loc = 4)
     pyplot.show()
