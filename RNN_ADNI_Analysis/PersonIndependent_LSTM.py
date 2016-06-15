@@ -30,11 +30,11 @@ from keras.optimizers import RMSprop
 from keras.initializations import normal, identity
 
 iterationNo = 1
-Groups = 4
-totalNo = 190
-trainPercent = 152
-validationPercent = 19
-testpercent = 19
+Groups = 2
+totalNo = 92
+trainPercent = 72
+validationPercent = 10
+testpercent = 10
 
 BATCH_SIZE = 30
 

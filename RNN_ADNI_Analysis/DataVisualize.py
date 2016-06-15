@@ -86,20 +86,20 @@ def work(fnames):
         plotAD, = pyplot.plot(range(featureNo), tmp[t,:], 'o-', color = color, label = 'AD', alpha = 0.7)
     
     for t in range(timeStep):
-        tmp = wholeData[NC_index, :, :]
+        tmp = wholeData[EMCI_index, :, :]
         tmp = tmp.reshape(timeStep, featureNo)
-        color = 'b'
-        plotNC, = pyplot.plot(range(featureNo), tmp[t,:], 'o-', color = color, label = 'NC', alpha = 0.7)
+        color = 'g'
+        plotNC, = pyplot.plot(range(featureNo), tmp[t,:], 'o-', color = color, label = 'EMCI', alpha = 0.7)
     
     pyplot.legend(handles=[plotNC, plotAD], loc = 4)
 
     pyplot.figure(2)
     
     for t in range(timeStep):
-        tmp = wholeData[EMCI_index, :, :]
+        tmp = wholeData[NC_index, :, :]
         tmp = tmp.reshape(timeStep, featureNo)
-        color = 'g'
-        plotEM, = pyplot.plot(range(featureNo), tmp[t,:], 'o-', color = color, label = 'EMCI', alpha = 0.7)
+        color = 'b'
+        plotEM, = pyplot.plot(range(featureNo), tmp[t,:], 'o-', color = color, label = 'NC', alpha = 0.7)
     
     for t in range(timeStep):
         tmp = wholeData[LMCI_index, :, :]
