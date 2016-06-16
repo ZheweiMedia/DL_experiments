@@ -1,6 +1,6 @@
 """
 
-For data augment.
+Visualize two groups baseline.
 
 Read all pickle.gz, then compare two groups.
 
@@ -30,9 +30,9 @@ from sklearn.feature_selection import chi2
 import matplotlib.pyplot as pyplot
 
 
-totalNo = 89
-Group1_No = 34
-Group2_No = 55
+totalNo = 76
+Group1_No = 33
+Group2_No = 43
 
 index = [i for i in range(totalNo)]
 
@@ -49,13 +49,13 @@ def main(args):
     pass
 
 def usage (programm):
-    print ("usage: %s ..data/*Subj*.pickle.gz"%(programm))
+    print ("usage: %s ..data/Group1.pickle.gz ../data/Group2.pickle.gz"%(programm))
     
 def work(fnames):
     #after shuffle we can just choose the first subject. 
 
     wholeData, wholeLabel = stackData(fnames, DataIndex)
-    
+    print (fnames[33+26])
     print (wholeData.shape)
     sampleNo = wholeData.shape[0]
     timeStep = wholeData.shape[1]
@@ -77,16 +77,15 @@ def work(fnames):
             tmp = wholeData[iG, ]
             tmp = tmp.reshape(timeStep, featureNo)
             color = ((iGroup1+Group1_No)/(Group1_No+Group1_No),0,0)
-            
             plotORI, = pyplot.plot(range(featureNo), tmp[t,:], 'o-', color = color, label = 'AD', alpha = 0.7)
         iGroup1 += 1
     
-    for iG in range(Group2_No):
+    for iG in range(27):
         for t in range(timeStep):
             tmp = wholeData[iG+Group1_No, ]
             tmp = tmp.reshape(timeStep, featureNo)
             color = (0, (iGroup2+(Group2_No))/(Group2_No+(Group2_No)), 0)
-            plotNOI, = pyplot.plot(range(featureNo), tmp[t,:], 'o-', color = color, label = 'EMCI', alpha = 0.7)
+            plotNOI, = pyplot.plot(range(featureNo), tmp[t,:], 'o-', color = color, label = 'NC', alpha = 0.7)
         iGroup2 += 1
     
     pyplot.legend(handles=[plotORI, plotNOI], loc = 4)

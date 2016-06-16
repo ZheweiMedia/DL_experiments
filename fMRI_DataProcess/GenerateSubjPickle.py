@@ -40,14 +40,19 @@ import math
 
 #******************************
 #******************************
-label = 0
-NoiseScanNo = 1
-postfix = '_noise.pickle.gz'
+label = 1
+NoiseScanNo = 0
+postfix = '.pickle.gz'
 #******************************
 #******************************
 
 FrameNo = 130
 FeatureNo = 120
+
+'''local_max = 4950
+local_min = -1074
+global_max = 6611
+global_min = -1993'''
 
 
 def main(args):
@@ -71,6 +76,8 @@ def work(files):
         for line in content:
             try:
                 tmp = float(line)
+                # tmp = tmp*(local_max-local_min)+local_min
+                # tmp = (tmp-global_min)/(global_max-global_min)
                 tmpData.append(tmp)
                 if math.isnan(tmp):
                     print (fi)
@@ -83,13 +90,12 @@ def work(files):
             TmpNoiseData += tmpData
         
         # now generate noise (0-1) , add to scans
-        TmpNoiseData = [d+0.05 for d in TmpNoiseData]
+        TmpNoiseData = [d+random.uniform(-0.01,0.01) for d in TmpNoiseData]
         
         # print (len(TmpNoiseData))
         # print (NoiseScanNo*len(tmpData))
         
-        #tmpData = tmpData+TmpNoiseData
-        tmpData = TmpNoiseData
+        tmpData = tmpData+TmpNoiseData
         Data = np.asarray(tmpData)
         Data = Data.reshape(-1,FrameNo,FeatureNo)
         Label = [label for i in range(Data.shape[0])]

@@ -8,16 +8,17 @@
 
 cd /home/medialab/data/ADNI/ADNI
 # list the samples we want to process
-IIDarray=(  251176 274147 227595 249536 256148 \
-257477 258528 285812 296366 306889 \
-266129 269256 283267 303733 339123 \
-247209 243880 220070 261166 278367 \
-300057 339635 323221 261984 286477 \
-229511 235238 255284 255309 290644 \
-304675 354654 341823 343366 259691 \
-267894 287650 293629 314327 337131 \
-332647 330141 281024 330233 342476 \
-375500  )
+IIDarray=(  238623 240811 243902 223896 233437 \
+254581 257271 259654 259806 260580 \
+395980 268914 279472 281887 \
+283913 238542 \
+296769 296863 300088 308182 262078 \
+268925 266634  273503 269279 \
+315850 234917 255986 280365 \
+282646 290815 289559 289656 387091 \
+334140 322060 316542 350735 317121 \
+266208 267713 365086 264214 279084 \
+308403 308418   )
 
 XMLS=`find ./ -name "*Resting_State_fMRI*.xml"`
 
@@ -27,6 +28,6 @@ do
     subj=`xmllint --xpath '//project/subject/subjectIdentifier/text()' $X`
     case "${IIDarray[@]}" in  *$iid*)
         echo $iid
-        cat /home/medialab/Zhewei/data/LMCI_Results/LM_Result${iid}.txt >> /home/medialab/Zhewei/data/LMCI_Results/LM_Subj${subj}_Baseline
+        cat /home/medialab/Zhewei/data/NC_Results/NC_Result${iid}.txt >> /home/medialab/Zhewei/data/NC_Results/NC_Subj${subj}_Baseline
     esac
 done

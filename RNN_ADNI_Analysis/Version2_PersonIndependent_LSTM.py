@@ -51,15 +51,15 @@ Groups = 2
 
 BATCH_SIZE = 30
 
-totalNo = 92#190
-trainPercent = 75#152
-validationPercent = 9#19
-testpercent = 8#19
+totalNo = 84#190
+trainPercent = 60#152
+validationPercent = 14#19
+testpercent = 10#19
 MagicNumber = 17
 
 hd_notes = 10
 learning_rate = 1e-5
-nb_epoch = 500
+nb_epoch = 1000
 
 
 def main(args):
