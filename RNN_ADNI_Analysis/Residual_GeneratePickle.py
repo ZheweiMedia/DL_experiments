@@ -39,7 +39,7 @@ import math
 
 #******************************
 #******************************
-label = 0
+label = 1
 postfix = 'Residual.pickle.gz'
 #******************************
 #******************************
@@ -47,10 +47,10 @@ postfix = 'Residual.pickle.gz'
 FrameNo = 130
 FeatureNo = 120
 
-'''local_max = 4950
+local_max = 4950
 local_min = -1074
 global_max = 6611
-global_min = -1993'''
+global_min = -1993
 
 
 def main(args):
@@ -74,8 +74,8 @@ def work(files):
         for line in content:
             try:
                 tmp = float(line)
-                # tmp = tmp*(local_max-local_min)+local_min
-                # tmp = (tmp-global_min)/(global_max-global_min)
+                tmp = tmp*(local_max-local_min)+local_min
+                tmp = (tmp-global_min)/(global_max-global_min)
                 tmpData.append(tmp)
                 if math.isnan(tmp):
                     print (fi)
@@ -89,10 +89,10 @@ def work(files):
         DataResidual = Data
         for iSample in range(Data.shape[0]):
             for iFrame in range(Data.shape[1]-1):
-                DataResidual[iSample, iFrame,:] = Data[iSample, iFrame+1,:]-Data[iSample, iFrame,:]
+                DataResidual[iSample, iFrame,:] = (Data[iSample, iFrame+1,:]-Data[iSample, iFrame,:])*1
         
         print (DataResidual.shape)
-        # print (DataResidual[0,128,:])
+        print (DataResidual[0,128,:])
         # print (DataResidual[0,129,:])
         
         DataResidual = DataResidual[:,0:-1,:]

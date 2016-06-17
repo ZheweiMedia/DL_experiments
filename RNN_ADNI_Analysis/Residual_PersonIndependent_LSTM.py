@@ -63,8 +63,8 @@ testpercent = 10#19
 MagicNumber = 17
 
 hd_notes = 5
-learning_rate = 1e-5
-nb_epoch = 1000
+learning_rate = 1e-4
+nb_epoch = 5000
 
 
 def main(args):
@@ -151,14 +151,14 @@ def work(fnames, comment):
         print ("Building model...")
         model = Sequential()
         model.add(LSTM(hd_notes, input_shape=(timesteps, featureNo),\
-                            init='normal',\
-                            inner_init='identity',\
+                            init='glorot_uniform',\
+                            inner_init='orthogonal',\
                             activation='tanh', return_sequences=False,\
                             dropout_W=0, dropout_U=0))
         model.add(Dense(nb_classes))
         model.add(Activation('softmax'))
         rmsprop = RMSprop(lr=learning_rate, rho=0.9, epsilon=1e-06)
-        model.compile(loss='categorical_crossentropy', optimizer=rmsprop, \
+        model.compile(loss='binary_crossentropy', optimizer=rmsprop, \
                         metrics=["accuracy"])
 
         print ("Training model...")

@@ -72,7 +72,7 @@ def work(fnames):
     
     iGroup1 = 0
     iGroup2 = 0
-    for iG in range(Group1_No):
+    for iG in range(1):
         for t in range(timeStep):
             tmp = wholeData[iG, ]
             tmp = tmp.reshape(timeStep, featureNo)
@@ -80,7 +80,7 @@ def work(fnames):
             plotORI, = pyplot.plot(range(featureNo), tmp[t,:], 'o-', color = color, label = 'AD', alpha = 0.7)
         iGroup1 += 1
     
-    for iG in range(27):
+    '''for iG in range(27):
         for t in range(timeStep):
             tmp = wholeData[iG+Group1_No, ]
             tmp = tmp.reshape(timeStep, featureNo)
@@ -88,7 +88,7 @@ def work(fnames):
             plotNOI, = pyplot.plot(range(featureNo), tmp[t,:], 'o-', color = color, label = 'NC', alpha = 0.7)
         iGroup2 += 1
     
-    pyplot.legend(handles=[plotORI, plotNOI], loc = 4)
+    pyplot.legend(handles=[plotORI, plotNOI], loc = 4)'''
     pyplot.show()
     
     
