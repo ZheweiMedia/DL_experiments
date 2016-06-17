@@ -57,8 +57,8 @@ validationPercent = 14#19
 testpercent = 10#19
 MagicNumber = 17
 
-hd_notes = 10
-learning_rate = 1e-5
+hd_notes = 30
+learning_rate = 1e-4
 nb_epoch = 1000
 
 
@@ -149,7 +149,7 @@ def work(fnames, comment):
                             init='normal',\
                             inner_init='identity',\
                             activation='tanh', return_sequences=False,\
-                            dropout_W=0, dropout_U=0))
+                            dropout_W=0.4, dropout_U=0.4))
         model.add(Dense(nb_classes))
         model.add(Activation('softmax'))
         rmsprop = RMSprop(lr=learning_rate, rho=0.9, epsilon=1e-06)
