@@ -56,15 +56,15 @@ Groups = 2
 
 BATCH_SIZE = 30
 
-totalNo = 84#190
-trainPercent = 60#152
-validationPercent = 14#19
+totalNo = 92#190
+trainPercent = 70#152
+validationPercent = 12#19
 testpercent = 10#19
 MagicNumber = 17
 
 hd_notes = 30
 learning_rate = 1e-4
-nb_epoch = 5000
+nb_epoch = 1000
 
 
 def main(args):
@@ -153,6 +153,8 @@ def work(fnames, comment):
         model.add(LSTM(hd_notes, input_shape=(timesteps, featureNo),\
                             init='glorot_uniform',\
                             inner_init='orthogonal',\
+                            forget_bias_init='one',\
+                            inner_activation='hard_sigmoid',\
                             activation='tanh', return_sequences=False,\
                             dropout_W=0, dropout_U=0))
         model.add(Dense(nb_classes))

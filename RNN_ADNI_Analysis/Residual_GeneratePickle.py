@@ -39,7 +39,7 @@ import math
 
 #******************************
 #******************************
-label = 0
+label = 1
 NoiseScanNo = 5
 postfix = 'Residual.pickle.gz'
 #******************************
@@ -48,10 +48,10 @@ postfix = 'Residual.pickle.gz'
 FrameNo = 130
 FeatureNo = 120
 
-'''local_max = 4950
-local_min = -1074
+local_max = 5253
+local_min = -1021
 global_max = 6611
-global_min = -1993'''
+global_min = -1993
 
 
 def main(args):
@@ -75,8 +75,8 @@ def work(files):
         for line in content:
             try:
                 tmp = float(line)
-                # tmp = tmp*(local_max-local_min)+local_min
-                # tmp = (tmp-global_min)/(global_max-global_min)
+                tmp = tmp*(local_max-local_min)+local_min
+                tmp = (tmp-global_min)/(global_max-global_min)
                 tmpData.append(tmp)
                 if math.isnan(tmp):
                     print (fi)
