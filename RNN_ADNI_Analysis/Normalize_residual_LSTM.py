@@ -35,6 +35,10 @@ Calculate the different between two time frame, and sent it as input.
 @Zhewei
 6/16/2016
 
+Normalize the data for each feature.
+@Zhewei
+6/18/2016
+
 """
 
 import sys,os
@@ -48,22 +52,22 @@ from keras.utils import np_utils
 from keras.models import Sequential
 from keras.layers.core import Dense, Activation
 from keras.layers import LSTM
-from keras.optimizers import RMSprop, SGD
+from keras.optimizers import RMSprop
 from keras.initializations import normal, identity
 
 iterationNo = 1
 Groups = 2
 
-timeLength = 129
+BATCH_SIZE = 30
 
-totalNo = 84#190
-trainPercent = 60#152
-validationPercent = 14#19
+totalNo = 92#190
+trainPercent = 70#152
+validationPercent = 12#19
 testpercent = 10#19
 MagicNumber = 17
 
 hd_notes = 30
-learning_rate = 1e-3
+learning_rate = 1e-4
 nb_epoch = 1000
 
 
@@ -125,11 +129,6 @@ def work(fnames, comment):
                 
         testData, testLabel = stackData(BaselineFile, testBaselineIndex)
         
-        trainData = trainData[:,0:timeLength,:]
-        validationData = validationData[:,0:timeLength,:]
-        testData = testData[:,0:timeLength,:]
-        
-        
         print ('*'*30)
         print ('Iteration:', iNo)
         print ('Training subjects:', trainPercent)
@@ -165,9 +164,8 @@ def work(fnames, comment):
         model.add(Dense(nb_classes))
         model.add(Activation('softmax'))
         rmsprop = RMSprop(lr=learning_rate, rho=0.9, epsilon=1e-06)
-        # model.compile(loss='binary_crossentropy', optimizer=rmsprop, metrics=["accuracy"])
-        sgd = SGD(lr=0.01, momentum=0.0, decay=0.0, nesterov=False)
-        model.compile(loss='mean_squared_error', optimizer=sgd, metrics=["accuracy"])
+        model.compile(loss='binary_crossentropy', optimizer=rmsprop, \
+                        metrics=["accuracy"])
 
         print ("Training model...")
 

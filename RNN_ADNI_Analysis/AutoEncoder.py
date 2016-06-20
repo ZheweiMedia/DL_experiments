@@ -25,7 +25,7 @@ from keras.layers import Dense, Input
 from keras.models import Model
 
 
-totalNo = 76*2
+totalNo = 76+84
 
 index = [i for i in range(totalNo)]
 
@@ -75,13 +75,19 @@ def work(fnames):
 
     AutoEncoder = Model(input = input_data, output = decode)
     encoder = Model(input = input_data, output = encode)
-    AutoEncoder.compile(optimizer = 'adadelta', loss = 'binary_crossentropy')
+    AutoEncoder.compile(optimizer = 'adadelta', loss = 'mean_squared_error')
 
     AutoEncoder.fit(wholeData, wholeData,\
                         nb_epoch = 100, \
                         batch_size = 100, \
                         shuffle = True)
     CompressedResult = encoder.predict(wholeData)
+    print (CompressedResult.shape)
+    CompressedResult = CompressedResult.reshape(sampleNo, timeStep, -1)
+    print (CompressedResult.shape)
+    
+    with gzip.open('../data/AutoEncoder_Result.pickle.gz', "wb") as output_file:
+            Pickle.dump((CompressedResult, wholeLabel), output_file)
 
 
 

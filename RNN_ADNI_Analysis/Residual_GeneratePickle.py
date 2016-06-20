@@ -28,6 +28,16 @@ Output: an array with the 3D shape SampleNo*FrameNo*FeatureNo and label for each
 @Zhewei
 6/16/2016
 
+AD:
+Max,min: 4950, -1074
+NC:
+Max, min: 6611, -1993
+EMCI:
+Max, min: 5514, -1158
+LMCI: 
+max, min: 5253, -1021
+
+
 """
 
 import sys,os
@@ -39,8 +49,8 @@ import math
 
 #******************************
 #******************************
-label = 1
-NoiseScanNo = 5
+label = 0
+NoiseScanNo = 0
 postfix = 'Residual.pickle.gz'
 #******************************
 #******************************
@@ -48,8 +58,8 @@ postfix = 'Residual.pickle.gz'
 FrameNo = 130
 FeatureNo = 120
 
-local_max = 5253
-local_min = -1021
+local_max = 6611
+local_min = -1993
 global_max = 6611
 global_min = -1993
 
@@ -83,6 +93,7 @@ def work(files):
             except ValueError:
                 pass
         
+
         # now generate noise data
         TmpNoiseData = list()
         for noiseNo in range(NoiseScanNo):
@@ -98,14 +109,39 @@ def work(files):
         DataResidual = Data
         for iSample in range(Data.shape[0]):
             for iFrame in range(Data.shape[1]-1):
-                DataResidual[iSample, iFrame,:] = (Data[iSample, iFrame+1,:]-Data[iSample, iFrame,:])*1000
+                DataResidual[iSample, iFrame,:] = (Data[iSample, iFrame+1,:]-Data[iSample, iFrame,:])*1
         
         print (DataResidual.shape)
-        print (DataResidual[0,128,:])
+        # print (DataResidual[0,128,:])
         # print (DataResidual[0,129,:])
         
         DataResidual = DataResidual[:,0:-1,:]
         print (DataResidual.shape)
+        
+        '''# Now reshape it and normalize it
+        Data = DataResidual.reshape(DataResidual.shape[0]*DataResidual.shape[1], DataResidual.shape[2])
+        # Find out the maximum and minimum
+        for ifeature in range(DataResidual.shape[2]):
+            featureMax = max(Data[:,ifeature])
+            featureMin = min(Data[:,ifeature])
+            # normalize
+            Data[:,ifeature] = (Data[:,ifeature]-featureMin)#/(featureMax-featureMin)
+        
+        DataResidual = Data.reshape(DataResidual.shape[0], DataResidual.shape[1], DataResidual.shape[2])
+        print (DataResidual[0,128,:])'''
+        
+        # Normalize each sample
+        Data = DataResidual.reshape(DataResidual.shape[0],DataResidual.shape[1]*DataResidual.shape[2])
+        # Find out the maximum and minimum
+        for iSample in range(DataResidual.shape[0]):
+            sampleMax = np.amax(Data[iSample,:])
+            sampleMin = np.amin(Data[iSample,:])
+            Data[iSample,:] = (Data[iSample,:]-sampleMin)/(sampleMax-sampleMin)
+
+        Data = Data.reshape(-1,FrameNo-1,FeatureNo)
+        DataResidual = Data
+        
+
         Label = [label for i in range(DataResidual.shape[0])]
         Label = np.asarray(Label)
         

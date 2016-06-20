@@ -26,14 +26,10 @@ totalNo = 84
 trainPercent = 60
 validationPercent = 14
 testPercent = 10
-Group1_No = 167
-Group2_No = 219
+Group1_No = 300
+Group2_No = 300
 
-'''
-trainIndex = [47, 28, 38, 54, 6, 9, 36, 17, 58, 65, 22, 11, 59, 16, 50, 76, 55, 63, 46, 10, 4, 2, 70, 12, 27, 14, 49, 78, 52, 53, 45, 81, 56, 69, 79, 73, 72, 33, 18, 34, 20, 7, 71, 80, 8, 39, 77, 44, 83, 74, 61, 13, 51, 19, 67, 21, 35, 82, 75, 1, 68, 26, 31, 37, 84, 48, 30, 57, 29, 41]
-validationIndex = [25, 60, 24, 62, 42, 40, 23, 5]
-testIndex = [0, 32, 43, 3, 64, 15, 66]
-'''
+
 
 index = [i for i in range(totalNo)]
 # shuffle(index)
@@ -54,20 +50,16 @@ def usage (programm):
     print ("usage: %s ..data/*Subj*.pickle.gz"%(programm))
     
 def work(fnames):
-    trainData, trainLabel = stackData(fnames, trainIndex)
-    validationData, validationLabel = stackData(fnames, validationIndex)
-    testData, testLabel = stackData(fnames, testIndex)
-    wholeData = np.vstack((trainData, validationData,testData))
+
+    f = gzip.open(fnames[0],'rb')
+    wholeData,wholeLabel = Pickle.load(f)
     print (wholeData.shape)
+    print (wholeLabel.shape)
     print (wholeData[212,0,:])
     sampleNo = wholeData.shape[0]
     timeStep = wholeData.shape[1]
     featureNo = wholeData.shape[2]
     wholeData = wholeData.reshape(-1, featureNo)
-    print (wholeData.shape)
-    wholeLabel = np.append(trainLabel,validationLabel)
-    wholeLabel = np.append(wholeLabel, testLabel)
-    print (wholeLabel.shape)
     
     labelFor_eachFrame = list()
     for i in wholeLabel:
@@ -80,7 +72,8 @@ def work(fnames):
     Feature selection
     '''
     
-    SelectedData = SelectKBest(chi2, k=2).fit_transform(wholeData, labelFor_eachFrame)
+    # SelectedData = SelectKBest(chi2, k=2).fit_transform(wholeData, labelFor_eachFrame)
+    SelectedData = wholeData
     print(SelectedData.shape)
     
     '''
@@ -94,11 +87,11 @@ def work(fnames):
         if i < sampleNo:
             if wholeLabel[i] == 1: #AD
                 color = (0, (iAD+(Group1_No))/(Group1_No+(Group1_No)), 0)
-                plotNC, = pyplot.plot(SelectedData[i*timeStep:(i+1)*timeStep,0], SelectedData[i*timeStep:(i+1)*timeStep,1], 'o-', color = color, label = 'LMCI', alpha = 0.7)
+                plotNC, = pyplot.plot(SelectedData[i*timeStep:(i+1)*timeStep,0], SelectedData[i*timeStep:(i+1)*timeStep,1], 'o-', color = color, label = 'AD', alpha = 0.7)
                 iAD += 1
             if wholeLabel[i] == 0: #NC
                 color = ((iNC+Group2_No)/(Group2_No+Group2_No),0,0)
-                plotAD, = pyplot.plot(SelectedData[i*timeStep:(i+1)*timeStep,0], SelectedData[i*timeStep:(i+1)*timeStep,1], 'o-', color = color, label = 'EMCI', alpha = 0.7)
+                plotAD, = pyplot.plot(SelectedData[i*timeStep:(i+1)*timeStep,0], SelectedData[i*timeStep:(i+1)*timeStep,1], 'o-', color = color, label = 'NC', alpha = 0.7)
                 iNC += 1
     
     print (iNC, iAD)
