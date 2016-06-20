@@ -26,6 +26,7 @@ from keras.models import Model
 
 
 totalNo = 76+84
+compressedFeatureNo = 2
 
 index = [i for i in range(totalNo)]
 
@@ -50,7 +51,9 @@ def work(fnames):
     sampleNo = wholeData.shape[0]
     timeStep = wholeData.shape[1]
     featureNo = wholeData.shape[2]
-
+    
+    print (np.amax(wholeData))
+    print (np.amin(wholeData))
     print ('We have', wholeData.shape[0], 'samples.')
     # just realized the wholeData now is SampleNo*timesteps*FeatureNo, need
     # to reshape to (SampleNo*timesteps)*FeatureNo
@@ -66,7 +69,7 @@ def work(fnames):
     encode = Dense(200, activation = 'relu')(input_data)
     encode = Dense(100, activation = 'relu')(encode)
     encode = Dense(50, activation = 'relu')(encode)
-    encode = Dense(2, activation = 'relu')(encode)
+    encode = Dense(compressedFeatureNo, activation = 'relu')(encode)
 
     decode = Dense(50, activation = 'relu')(encode)
     decode = Dense(100, activation = 'relu')(decode)
@@ -78,16 +81,26 @@ def work(fnames):
     AutoEncoder.compile(optimizer = 'adadelta', loss = 'mean_squared_error')
 
     AutoEncoder.fit(wholeData, wholeData,\
-                        nb_epoch = 100, \
+                        nb_epoch = 10, \
                         batch_size = 100, \
                         shuffle = True)
-    CompressedResult = encoder.predict(wholeData)
-    print (CompressedResult.shape)
-    CompressedResult = CompressedResult.reshape(sampleNo, timeStep, -1)
-    print (CompressedResult.shape)
     
-    with gzip.open('../data/AutoEncoder_Result.pickle.gz', "wb") as output_file:
-            Pickle.dump((CompressedResult, wholeLabel), output_file)
+    fnames = list(fnames)
+    for iNo in DataIndex:
+        f = gzip.open(fnames[iNo],'rb')
+        tmpdata,tmplabel = Pickle.load(f)
+        tmpdata = tmpdata.reshape((tmpdata.shape[0]*tmpdata.shape[1],\
+                                            tmpdata.shape[2]))
+        fName = os.path.basename(fnames[iNo])
+        fileName = '../data/'+'AutoEncoder_'+fName
+        print (fileName)
+        CompressedResult = encoder.predict(tmpdata)
+        print (CompressedResult.shape)
+        CompressedResult = CompressedResult.reshape(-1, timeStep, compressedFeatureNo)
+        print (CompressedResult.shape)
+    
+        '''with gzip.open(fileName, "wb") as output_file:
+                Pickle.dump((CompressedResult, tmplabel), output_file)'''
 
 
 
