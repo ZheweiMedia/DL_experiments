@@ -55,7 +55,6 @@ def work(fnames):
     wholeData,wholeLabel = Pickle.load(f)
     print (wholeData.shape)
     print (wholeLabel.shape)
-    print (wholeData[212,0,:])
     sampleNo = wholeData.shape[0]
     timeStep = wholeData.shape[1]
     featureNo = wholeData.shape[2]

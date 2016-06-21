@@ -10,9 +10,13 @@ AutoEncoder: 120-200-100-50-2-50-100-200-120
 @Zhewei
 5/23/2016
 
-Data need to be normalized.
+Data don't need to be normalized.
 @Zhewei
 6/18/2016
+
+We need validation data to monitor the system.
+@Zhewei
+6/21/2016
 
 """
 
@@ -25,12 +29,17 @@ from keras.layers import Dense, Input
 from keras.models import Model
 
 
+compressedFeatureNo = 20
+AlltimeScanNo = 84
+trainNo = 70
+validationNo = AlltimeScanNo-trainNo
+
 totalNo = 76+84
-compressedFeatureNo = 2
 
-index = [i for i in range(totalNo)]
 
-DataIndex = index
+TrainIndex = [i for i in range(trainNo)]
+validationIndex = [i for i in range(trainNo,AlltimeScanNo)]
+DataIndex = [i for i in range(totalNo)]
 
 
 def main(args):
@@ -46,20 +55,24 @@ def usage (programm):
     print ("usage: %s data/AD.Pickle.gz data/NC.Pickle.gz ..."%(programm))
 
 def work(fnames):
-    wholeData, wholeLabel = stackData(fnames, DataIndex)
-    print (wholeData.shape)
-    sampleNo = wholeData.shape[0]
-    timeStep = wholeData.shape[1]
-    featureNo = wholeData.shape[2]
+    trainData, trainLabel = stackData(fnames, TrainIndex)
+    validationData, validationLabel = stackData(fnames, validationIndex)
+    print (trainData.shape)
+    print (validationData.shape)
+    sampleNo = trainData.shape[0]
+    timeStep = trainData.shape[1]
+    featureNo = trainData.shape[2]
     
-    print (np.amax(wholeData))
-    print (np.amin(wholeData))
-    print ('We have', wholeData.shape[0], 'samples.')
-    # just realized the wholeData now is SampleNo*timesteps*FeatureNo, need
+    print (np.amax(trainData))
+    print (np.amin(trainData))
+    print ('We have', trainData.shape[0], 'training samples.')
+    print ('We have', validationData.shape[0], 'validation samples.')
+    # just realized the trainData now is SampleNo*timesteps*FeatureNo, need
     # to reshape to (SampleNo*timesteps)*FeatureNo
-    wholeData = wholeData.reshape((wholeData.shape[0]*wholeData.shape[1],\
-                                            wholeData.shape[2]))
-    print ('Each sample has', wholeData.shape[1], 'features.')
+    trainData = trainData.reshape((trainData.shape[0]*trainData.shape[1],\
+                                            trainData.shape[2]))
+    validationData = validationData.reshape((-1, validationData.shape[2]))
+    print ('Each sample has', trainData.shape[1], 'features.')
 
     '''
     AutoEncoder
@@ -80,12 +93,14 @@ def work(fnames):
     encoder = Model(input = input_data, output = encode)
     AutoEncoder.compile(optimizer = 'adadelta', loss = 'mean_squared_error')
 
-    AutoEncoder.fit(wholeData, wholeData,\
+    AutoEncoder.fit(trainData, trainData,\
                         nb_epoch = 10, \
                         batch_size = 100, \
-                        shuffle = True)
+                        shuffle = True, \
+                        validation_data = (validationData, validationData                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ))
     
     fnames = list(fnames)
+    print (len(fnames))
     for iNo in DataIndex:
         f = gzip.open(fnames[iNo],'rb')
         tmpdata,tmplabel = Pickle.load(f)
@@ -98,6 +113,7 @@ def work(fnames):
         print (CompressedResult.shape)
         CompressedResult = CompressedResult.reshape(-1, timeStep, compressedFeatureNo)
         print (CompressedResult.shape)
+        print (tmplabel)
     
         '''with gzip.open(fileName, "wb") as output_file:
                 Pickle.dump((CompressedResult, tmplabel), output_file)'''
