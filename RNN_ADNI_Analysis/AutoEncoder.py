@@ -107,7 +107,7 @@ def work(fnames):
         tmpdata = tmpdata.reshape((tmpdata.shape[0]*tmpdata.shape[1],\
                                             tmpdata.shape[2]))
         fName = os.path.basename(fnames[iNo])
-        fileName = '../data/'+'AutoEncoder_'+fName
+        fileName = '../data/'+fName
         print (fileName)
         CompressedResult = encoder.predict(tmpdata)
         print (CompressedResult.shape)
