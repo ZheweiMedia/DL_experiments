@@ -29,7 +29,7 @@ from keras.layers import Dense, Input
 from keras.models import Model
 
 
-compressedFeatureNo = 20
+compressedFeatureNo = 2
 AlltimeScanNo = 84
 trainNo = 70
 validationNo = AlltimeScanNo-trainNo

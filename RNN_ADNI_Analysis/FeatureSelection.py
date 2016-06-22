@@ -18,14 +18,12 @@ import numpy as np
 from random import shuffle, randint
 from PersonIndependent_LSTM import stackData
 from sklearn.feature_selection import SelectKBest
-from sklearn.feature_selection import chi2
+from sklearn.feature_selection import chi2, f_classif
 import matplotlib.pyplot as pyplot
 
 
-totalNo = 84
-trainPercent = 60
-validationPercent = 14
-testPercent = 10
+totalNo = 84+76
+
 Group1_No = 167
 Group2_No = 219
 
@@ -37,9 +35,7 @@ testIndex = [0, 32, 43, 3, 64, 15, 66]
 
 index = [i for i in range(totalNo)]
 # shuffle(index)
-trainIndex = index[0:trainPercent]
-validationIndex = index[trainPercent:trainPercent+validationPercent]
-testIndex = index[trainPercent+validationPercent:]
+
 
 def main(args):
     if len(args) < 2:
@@ -54,19 +50,13 @@ def usage (programm):
     print ("usage: %s ..data/*Subj*.pickle.gz"%(programm))
     
 def work(fnames):
-    trainData, trainLabel = stackData(fnames, trainIndex)
-    validationData, validationLabel = stackData(fnames, validationIndex)
-    testData, testLabel = stackData(fnames, testIndex)
-    wholeData = np.vstack((trainData, validationData,testData))
+    wholeData, wholeLabel = stackData(fnames, index)
     print (wholeData.shape)
-    print (wholeData[212,0,:])
     sampleNo = wholeData.shape[0]
     timeStep = wholeData.shape[1]
     featureNo = wholeData.shape[2]
     wholeData = wholeData.reshape(-1, featureNo)
     print (wholeData.shape)
-    wholeLabel = np.append(trainLabel,validationLabel)
-    wholeLabel = np.append(wholeLabel, testLabel)
     print (wholeLabel.shape)
     
     labelFor_eachFrame = list()
@@ -80,11 +70,27 @@ def work(fnames):
     Feature selection
     '''
     
-    SelectedData = SelectKBest(chi2, k=2).fit_transform(wholeData, labelFor_eachFrame)
+    SelectedData = SelectKBest(f_classif, k=2).fit_transform(wholeData, labelFor_eachFrame)
     print(SelectedData.shape)
     
+    point = 0
+    for iIndex in index:
+        tmpdata, tmplabel = stackData(fnames, [iIndex])
+        compressed_data = SelectedData[point:point+tmpdata.shape[0]*tmpdata.shape[1],:]
+        point += tmpdata.shape[0]*tmpdata.shape[1]
+        print (tmpdata.shape)
+        print (compressed_data.shape)
+        tmpdata = compressed_data.reshape(tmpdata.shape[0],tmpdata.shape[1], -1)
+        print (tmpdata.shape)
+        print (fnames[iIndex])
+        fName = os.path.basename(fnames[iIndex])
+        fileName = '../data/'+fName
+        with gzip.open(fileName, "wb") as output_file:
+            Pickle.dump((tmpdata, tmplabel), output_file)
     '''
     Draw
+    '''
+    
     '''
     iAD = 0
     iNC = 0
@@ -103,7 +109,7 @@ def work(fnames):
     
     print (iNC, iAD)
     pyplot.legend(handles=[plotNC, plotAD], loc = 4)
-    pyplot.show()
+    pyplot.show()'''
     
     
     

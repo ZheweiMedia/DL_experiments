@@ -95,7 +95,7 @@ def work(fnames):
     
     iGroup1 = 0
     iGroup2 = 0
-    for iG in range(1):
+    for iG in range(5):
         for t in range(featureNo):
             tmp = wholeData[iG, ]
             tmp = tmp.reshape(timeStep, featureNo)
@@ -103,7 +103,7 @@ def work(fnames):
             plotORI, = pyplot.plot(range(timeStep), tmp[:,t], 'o-', color = color, label = 'AD', alpha = 0.7)
         iGroup1 += 1
     
-    for iG in range(1):
+    for iG in range(5):
         for t in range(featureNo):
             tmp = wholeData[iG+Group1_No, ]
             tmp = tmp.reshape(timeStep, featureNo)

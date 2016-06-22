@@ -62,9 +62,9 @@ validationPercent = 14#19
 testpercent = 10#19
 MagicNumber = 17
 
-hd_notes = 5
+hd_notes = 10
 learning_rate = 1e-4
-nb_epoch = 500
+nb_epoch = 1000
 
 
 def main(args):
@@ -167,7 +167,7 @@ def work(fnames, comment):
         rmsprop = RMSprop(lr=learning_rate, rho=0.9, epsilon=1e-06)
         # model.compile(loss='binary_crossentropy', optimizer=rmsprop, metrics=["accuracy"])
         sgd = SGD(lr=learning_rate, momentum=0.0, decay=0.0, nesterov=False)
-        model.compile(loss='binary_crossentropy', optimizer=rmsprop, metrics=["accuracy"])
+        model.compile(loss='binary_crossentropy', optimizer='adam', metrics=["accuracy"])
 
         print ("Training model...")
 
