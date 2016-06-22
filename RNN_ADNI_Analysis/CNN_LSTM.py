@@ -47,6 +47,7 @@ from random import shuffle, randint
 from keras.utils import np_utils
 from keras.models import Sequential
 from keras.layers.core import Dense, Activation
+from keras.layers import Convolution1D, MaxPooling1D
 from keras.layers import LSTM
 from keras.optimizers import RMSprop, SGD
 from keras.initializations import normal, identity
@@ -64,9 +65,14 @@ validationPercent = 14#19
 testpercent = 10#19
 MagicNumber = 17
 
-hd_notes = 2
-learning_rate = 1e-5
-nb_epoch = 1000
+hd_notes = 4
+learning_rate = 1e-3
+nb_epoch = 2
+
+# Convolution
+filter_length = 3
+nb_filter = 64
+pool_length = 2
 
 
 def main(args):
@@ -157,19 +163,26 @@ def work(fnames, comment):
         
         print ("Building model...")
         model = Sequential()
-        model.add(LSTM(hd_notes, input_shape=(timesteps, featureNo),\
+        model.add(Convolution1D(input_shape=(timesteps, featureNo),\
+                        nb_filter=nb_filter,\
+                        filter_length=filter_length,\
+                        border_mode='valid',\
+                        activation='relu',\
+                        subsample_length=1))
+        model.add(MaxPooling1D(pool_length=pool_length))
+        model.add(LSTM(hd_notes, \
                             init='glorot_uniform',\
                             inner_init='orthogonal',\
                             forget_bias_init='one',\
                             inner_activation='hard_sigmoid',\
                             activation='tanh', return_sequences=False,\
-                            dropout_W=0.4, dropout_U=0.4))
+                            dropout_W=0, dropout_U=0))
         model.add(Dense(nb_classes))
         model.add(Activation('softmax'))
         rmsprop = RMSprop(lr=learning_rate, rho=0.9, epsilon=1e-06)
         # model.compile(loss='binary_crossentropy', optimizer=rmsprop, metrics=["accuracy"])
         sgd = SGD(lr=learning_rate, momentum=0.0, decay=0.0, nesterov=False)
-        model.compile(loss='binary_crossentropy', optimizer=rmsprop, metrics=["accuracy"])
+        model.compile(loss='binary_crossentropy', optimizer=sgd, metrics=["accuracy"])
 
         print ("Training model...")
 

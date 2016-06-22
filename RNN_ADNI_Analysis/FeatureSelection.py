@@ -70,7 +70,7 @@ def work(fnames):
     Feature selection
     '''
     
-    SelectedData = SelectKBest(f_classif, k=2).fit_transform(wholeData, labelFor_eachFrame)
+    SelectedData = SelectKBest(f_classif, k=20).fit_transform(wholeData, labelFor_eachFrame)
     print(SelectedData.shape)
     
     point = 0
