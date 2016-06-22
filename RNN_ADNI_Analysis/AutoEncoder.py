@@ -94,7 +94,7 @@ def work(fnames):
     AutoEncoder.compile(optimizer = 'adadelta', loss = 'mean_squared_error')
 
     AutoEncoder.fit(trainData, trainData,\
-                        nb_epoch = 10, \
+                        nb_epoch = 100, \
                         batch_size = 100, \
                         shuffle = True, \
                         validation_data = (validationData, validationData                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ))
@@ -115,8 +115,8 @@ def work(fnames):
         print (CompressedResult.shape)
         print (tmplabel)
     
-        '''with gzip.open(fileName, "wb") as output_file:
-                Pickle.dump((CompressedResult, tmplabel), output_file)'''
+        with gzip.open(fileName, "wb") as output_file:
+                Pickle.dump((CompressedResult, tmplabel), output_file)
 
 
 
