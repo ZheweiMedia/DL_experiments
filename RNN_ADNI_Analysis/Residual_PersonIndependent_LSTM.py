@@ -62,7 +62,7 @@ validationPercent = 14#19
 testpercent = 10#19
 MagicNumber = 17
 
-hd_notes = 30
+hd_notes = 2
 learning_rate = 1e-3
 nb_epoch = 1000
 
@@ -166,8 +166,8 @@ def work(fnames, comment):
         model.add(Activation('softmax'))
         rmsprop = RMSprop(lr=learning_rate, rho=0.9, epsilon=1e-06)
         # model.compile(loss='binary_crossentropy', optimizer=rmsprop, metrics=["accuracy"])
-        sgd = SGD(lr=0.01, momentum=0.0, decay=0.0, nesterov=False)
-        model.compile(loss='mean_squared_error', optimizer=sgd, metrics=["accuracy"])
+        sgd = SGD(lr=learning_rate, momentum=0.0, decay=0.0, nesterov=False)
+        model.compile(loss='binary_crossentropy', optimizer=sgd, metrics=["accuracy"])
 
         print ("Training model...")
 
