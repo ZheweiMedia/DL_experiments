@@ -1,0 +1,24 @@
+Here a short list of commands to install required libs on win64..
+
+* MxNet *
+Win 8.1 64 bit
+nvidia cuda 7.5
+anaconda python 2.7 python 64 bit
+
+Download mxnet  windows binary build 20151228 (old build)
+Extract to c:\mxnet so that there is a folder cudnn in de folder c:\mxnet
+
+Copy cudnn (v3) into. I can provide these files but they are somehow personally licensed by NVIDIA 
+C:\mxnet\nocudnn\3rdparty\cudnn
+NOTE!!! I have a cudnn-less dll to get reproducible results..
+
+Run:
+C:\mxnet\nocudnn\setupenv.bat
+
+Run cmd (c:)
+cd \mxnet\nocudnn\python
+python setup.py install
+
+* Dicom and opencv *
+pip install pydicom
+conda install -c https://conda.anaconda.org/menpo opencv3
