@@ -101,7 +101,7 @@ def get_net_180():
     net = convolution_module(net, kernel_size, pad_size, filter_count=filter_count * 4, up_pool=True)
     
     # EdgeNet part, how many layers we need? 3?
-    # That means from pool2, pool3, pool4 we add some layers, deconv to make the layers as the same size as 
+    # That means from pool3, pool4, pool5 we add some layers, deconv to make the layers as the same size as 
     # original image. Then add one conv layer on it.
     edge_layer1 = convolution_module()
 
