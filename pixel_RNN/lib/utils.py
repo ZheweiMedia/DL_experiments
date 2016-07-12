@@ -17,12 +17,12 @@ def print_params_info(params):
     params = sorted(params, key=lambda p: p.name)
     values = [p.get_value(borrow=True) for p in params]
     shapes = [p.shape for p in values]
-    print "Params for cost:"
+    print ("Params for cost:")
     for param, value, shape in zip(params, values, shapes):
-        print "\t{0} ({1})".format(
+        print ("\t{0} ({1})".format(
             param.name,
             ",".join([str(x) for x in shape])
-        )
+        ))
 
     total_param_count = 0
     for shape in shapes:
@@ -30,13 +30,13 @@ def print_params_info(params):
         for dim in shape:
             param_count *= dim
         total_param_count += param_count
-    print "Total parameter count: {0}".format(
+    print ("Total parameter count: {0}".format(
         locale.format("%d", total_param_count, grouping=True)
-    )
+    ))
 
 def print_model_settings(locals_):
-    print "Model settings:"
+    print ("Model settings:")
     all_vars = [(k,v) for (k,v) in locals_.items() if (k.isupper() and k != 'T')]
     all_vars = sorted(all_vars, key=lambda x: x[0])
     for var_name, var_value in all_vars:
-        print "\t{}: {}".format(var_name, var_value)
+        print ("\t{}: {}".format(var_name, var_value))

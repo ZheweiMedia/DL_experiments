@@ -1,11 +1,11 @@
-import utils
-import mnist
+from lib import utils
+from lib import mnist
 
 import numpy
 import theano
 import theano.tensor as T
 
-import cPickle as pickle
+import pickle as pickle
 
 _params = {}
 def param(name, *args, **kwargs):
@@ -91,5 +91,5 @@ def floatX(x):
     elif theano.config.floatX == 'float32':
         return numpy.float32(x)
     else: # Theano's default float type is float64
-        print "Warning: lib.floatX using float64"
+        print ("Warning: lib.floatX using float64")
         return numpy.float64(x)

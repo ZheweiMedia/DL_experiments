@@ -45,7 +45,7 @@ TEST_BATCH_SIZE = 100 # batch size to use when evaluating on dev/test sets. This
 EVAL_DEV_COST = True # whether to evaluate dev cost during training
 GEN_SAMPLES = True # whether to generate samples during training (generating samples takes WIDTH*HEIGHT*N_CHANNELS full passes through the net)
 TRAIN_MODE = 'iters' # 'iters' to use PRINT_ITERS and STOP_ITERS, 'time' to use PRINT_TIME and STOP_TIME
-PRINT_ITERS = 5000 # Print cost, generate samples, save model checkpoint every N iterations.
+PRINT_ITERS = 1 # Print cost, generate samples, save model checkpoint every N iterations.
 STOP_ITERS = 100000 # Stop after this many iterations
 PRINT_TIME = 60*60 # Print cost, generate samples, save model checkpoint every N seconds.
 STOP_TIME = 60*60*2 # Stop after this many seconds of actual training (not including time req'd to generate samples etc.)
@@ -93,12 +93,12 @@ def Conv2D(name, input_dim, output_dim, filter_size, inputs, mask_type=None, he_
             dtype=theano.config.floatX
         )
         center = filter_size//2
-        for i in xrange(filter_size):
-            for j in xrange(filter_size):
+        for i in range(filter_size):
+            for j in range(filter_size):
                     if (j > center) or (j==center and i > center):
                         mask[:, :, j, i] = 0.
-        for i in xrange(N_CHANNELS):
-            for j in xrange(N_CHANNELS):
+        for i in range(N_CHANNELS):
+            for j in range(N_CHANNELS):
                 if (mask_type=='a' and i >= j) or (mask_type=='b' and i > j):
                     mask[
                         j::N_CHANNELS,
@@ -168,7 +168,7 @@ def Skew(inputs):
         theano.config.floatX
     )
 
-    for i in xrange(HEIGHT):
+    for i in range(HEIGHT):
         buffer = T.inc_subtensor(buffer[:, i, i:i+WIDTH, :], inputs[:,i,:,:])
 
     return buffer
@@ -177,7 +177,7 @@ def Unskew(padded):
     """
     input.shape: (batch size, HEIGHT, 2*WIDTH - 1, dim)
     """
-    return T.stack([padded[:, i, i:i+WIDTH, :] for i in xrange(HEIGHT)], axis=1)
+    return T.stack([padded[:, i, i:i+WIDTH, :] for i in range(HEIGHT)], axis=1)
 
 def DiagonalLSTM(name, input_dim, inputs):
     """
@@ -263,7 +263,7 @@ if MODEL=='pixel_rnn':
 elif MODEL=='pixel_cnn':
     # The paper doesn't specify how many convs to use, so I picked 4 pretty
     # arbitrarily.
-    for i in xrange(4):
+    for i in range(4):
         output = Conv2D('PixelCNNConv'+str(i), DIM, DIM, 3, output, mask_type='b', he_init=True)
         output = relu(output)
 
@@ -330,15 +330,15 @@ def generate_and_save_samples(tag):
 
     samples = numpy.zeros((100, HEIGHT, WIDTH, 1), dtype='float32')
 
-    for i in xrange(HEIGHT):
-        for j in xrange(WIDTH):
-            for k in xrange(N_CHANNELS):
+    for i in range(HEIGHT):
+        for j in range(WIDTH):
+            for k in range(N_CHANNELS):
                 next_sample = binarize(sample_fn(samples))
                 samples[:, i, j, k] = next_sample[:, i, j, k]
 
     save_images(samples, 'samples')
 
-print "Training!"
+print ("Training!")
 total_iters = 0
 total_time = 0.
 last_print_time = 0.
@@ -372,14 +372,14 @@ for epoch in itertools.count():
             else:
                 dev_costs.append(0.)
 
-            print "epoch:{}\ttotal iters:{}\ttrain cost:{}\tdev cost:{}\ttotal time:{}\ttime per iter:{}".format(
+            print ("epoch:{}\ttotal iters:{}\ttrain cost:{}\tdev cost:{}\ttotal time:{}\ttime per iter:{}".format(
                 epoch,
                 total_iters,
                 numpy.mean(costs),
                 numpy.mean(dev_costs),
                 total_time,
                 total_time / total_iters
-            )
+            ))
 
             tag = "iters{}_time{}".format(total_iters, total_time)
             if GEN_SAMPLES:
@@ -393,7 +393,7 @@ for epoch in itertools.count():
         if (TRAIN_MODE=='iters' and total_iters == STOP_ITERS) or \
             (TRAIN_MODE=='time' and total_time >= STOP_TIME):
 
-            print "Done!"
+            print ("Done!")
 
             try: # This only matters on Ishaan's computer
                 import experiment_tools
