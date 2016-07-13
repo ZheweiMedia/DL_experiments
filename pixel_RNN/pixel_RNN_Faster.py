@@ -331,6 +331,7 @@ def generate_and_save_samples(tag):
     samples = numpy.zeros((100, HEIGHT, WIDTH, 1), dtype='float32')
 
     for i in range(HEIGHT):
+        print (i)
         for j in range(WIDTH):
             for k in range(N_CHANNELS):
                 next_sample = binarize(sample_fn(samples))
@@ -343,37 +344,41 @@ total_iters = 0
 total_time = 0.
 last_print_time = 0.
 last_print_iters = 0
+
+
 for epoch in itertools.count():
 
-    print (epoch)
+    print ("epoch:", epoch)
     costs = []
     data_feeder = train_data()
-
     for images, targets in data_feeder:
-
+        print (images.shape)
         images = binarize(images.reshape((BATCH_SIZE, HEIGHT, WIDTH, 1)))
-
+        print (images.shape)
         start_time = time.time()
         cost = train_fn(images)
         total_time += time.time() - start_time
         total_iters += 1
         print (total_iters)
+        print (total_time)
         costs.append(cost)
 
-        if (TRAIN_MODE=='iters' and total_iters-last_print_iters == PRINT_ITERS) or \
-            (TRAIN_MODE=='time' and total_time-last_print_time >= PRINT_TIME):
+        #if (TRAIN_MODE=='iters' and total_iters-last_print_iters == PRINT_ITERS) or \
+         #   (TRAIN_MODE=='time' and total_time-last_print_time >= PRINT_TIME):
 
-            dev_costs = []
-            if EVAL_DEV_COST:
-                for images, targets in dev_data():
-                    images = images.reshape((-1, HEIGHT, WIDTH, 1))
-                    binarized = binarize(images)
-                    dev_cost = eval_fn(binarized)
-                    dev_costs.append(dev_cost)
-            else:
-                dev_costs.append(0.)
+        dev_costs = []
+        if EVAL_DEV_COST:
+            for images, targets in dev_data():
+                print ('dev:', images.shape)
+                images = images.reshape((-1, HEIGHT, WIDTH, 1))
+                binarized = binarize(images)
+                dev_cost = eval_fn(binarized)
+                dev_costs.append(dev_cost)
+                print ('Done dev.')
+        else:
+            dev_costs.append(0.)
 
-            print ("epoch:{}\ttotal iters:{}\ttrain cost:{}\tdev cost:{}\ttotal time:{}\ttime per iter:{}".format(
+        print ("epoch:{}\ttotal iters:{}\ttrain cost:{}\tdev cost:{}\ttotal time:{}\ttime per iter:{}".format(
                 epoch,
                 total_iters,
                 numpy.mean(costs),
@@ -382,14 +387,15 @@ for epoch in itertools.count():
                 total_time / total_iters
             ))
 
-            tag = "iters{}_time{}".format(total_iters, total_time)
-            if GEN_SAMPLES:
-                generate_and_save_samples(tag)
-            lib.save_params('params_{}.pkl'.format(tag))
+        tag = "iters{}_time{}".format(total_iters, total_time)
+        if GEN_SAMPLES:
+            print ("GEN_SAMPLES")
+            generate_and_save_samples(tag)
+        lib.save_params('params_{}.pkl'.format(tag))
 
-            costs = []
-            last_print_time += PRINT_TIME
-            last_print_iters += PRINT_ITERS
+        costs = []
+        last_print_time += PRINT_TIME
+        last_print_iters += PRINT_ITERS
 
         if (TRAIN_MODE=='iters' and total_iters == STOP_ITERS) or \
             (TRAIN_MODE=='time' and total_time >= STOP_TIME):
