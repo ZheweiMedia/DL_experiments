@@ -392,11 +392,6 @@ for epoch in range(2):
     shuffle(trainIndex)
     trainData = trainData[trainIndex]
     trainTarget = trainTarget[trainIndex]
-    
-    # for debug, use less train data
-    trainData = trainData[0:10]
-    trainTarget = trainTarget[0:10]
-    
     train = zip(trainData, trainTarget)
     pairNo = 0
     for images, targets in train:
@@ -416,10 +411,13 @@ for epoch in range(2):
         print (cost)
         costs.append(cost)
    # train all images, and then validation
-    '''dev_costs = []
+    dev_costs = []
     if EVAL_DEV_COST:
         valid = zip(validData, validTarget)
+        validDataNo = 0
         for images, targets in valid:
+            progressbar((validDataNo+1)/len(validData))
+            validDataNo += 1
             images = images.reshape((-1, HEIGHT, WIDTH, 1))
             targets = targets.reshape((-1, HEIGHT, WIDTH, 1))
             dev_cost = eval_fn(images, targets)
@@ -435,7 +433,7 @@ for epoch in range(2):
             numpy.mean(dev_costs),
             total_time,
             total_time / total_iters
-         ))'''
+         ))
     
     # save about 10 images of validation
     saveImage = validData[0:10]
@@ -455,13 +453,4 @@ for epoch in range(2):
         nameGT = 'GroundTruth_'+tag+'.jpg'
         mpimg.imsave(nameSeg, segmentation)
         mpimg.imsave(nameGT, targets)
-        
-        pyplot.imshow(segmentation)
-        pyplot.savefig(nameSeg)
-        
-        pyplot.imshow(targets)
-        pyplotsavefig(nameGT)
-        scipy.misc.toimage(segmentation, cmin=0.0, cmax=1.0).save('{}_{}.jpg'.format('Segmentation', tag))
-        scipy.misc.toimage(targets, cmin=0.0, cmax=1.0).save('{}_{}.jpg'.format('GroundTruth', tag))
-        
         saveDataNo += 1
