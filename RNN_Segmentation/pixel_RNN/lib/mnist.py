@@ -36,6 +36,7 @@ def load(batch_size, test_batch_size):
     with gzip.open('/tmp/mnist.pkl.gz', 'rb') as f:
         train_data, dev_data, test_data = pickle.load(f, encoding='latin1')
         print ('We have train_data:', len(train_data[0]))
+        print ((train_data[0].shape))
         print ('We have dev_data:', len(dev_data[0]))
         print ('We have test_data:', len(test_data[0]))
     return (
@@ -44,4 +45,4 @@ def load(batch_size, test_batch_size):
         mnist_generator(test_data, test_batch_size)
     )
     
-load(100, 100)
+load(100,100)
