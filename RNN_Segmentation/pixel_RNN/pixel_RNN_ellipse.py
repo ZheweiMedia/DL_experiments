@@ -18,6 +18,8 @@ import scipy.misc
 import time
 import functools
 import itertools
+import matplotlib.image as mpimg
+import matplotlib.pyplot as pyplot
 
 MODEL = 'pixel_rnn' # either pixel_rnn or pixel_cnn
 
@@ -308,7 +310,7 @@ def DiagonalBiLSTM(name, input_dim, inputs):
 data = T.tensor4('inputs')
 targets = T.tensor4('targets')
 
-output = Conv2D('InputConv', N_CHANNELS, DIM, 7, data, mask_type='a')
+output = Conv2D('InputConv', N_CHANNELS, DIM, 7, data, mask_type='None')
 
 if MODEL=='pixel_rnn':
 
@@ -319,18 +321,18 @@ elif MODEL=='pixel_cnn':
     # The paper doesn't specify how many convs to use, so I picked 4 pretty
     # arbitrarily.
     for i in range(4):
-        output = Conv2D('PixelCNNConv'+str(i), DIM, DIM, 3, output, mask_type='b', he_init=True)
+        output = Conv2D('PixelCNNConv'+str(i), DIM, DIM, 3, output, mask_type='None', he_init=True)
         output = relu(output)
 
-output = Conv2D('OutputConv1', DIM, DIM, 1, output, mask_type='b', he_init=True)
+output = Conv2D('OutputConv1', DIM, DIM, 1, output, mask_type='None', he_init=True)
 output = relu(output)
 
-output = Conv2D('OutputConv2', DIM, DIM, 1, output, mask_type='b', he_init=True)
+output = Conv2D('OutputConv2', DIM, DIM, 1, output, mask_type='None', he_init=True)
 output = relu(output)
 
 # TODO: for color images, implement a 256-way softmax for each RGB channel here
 # we don't need it....
-output = Conv2D('OutputConv3', DIM, 1, 1, output, mask_type='b')
+output = Conv2D('OutputConv3', DIM, 1, 1, output, mask_type='None')
 output = T.nnet.sigmoid(output)
 
 cost = T.mean(T.nnet.binary_crossentropy(output, targets))
@@ -362,29 +364,8 @@ sample_fn = theano.function(
     on_unused_input='ignore'
 )
 
-# save processed image 
-def generate_and_save_samples(tag):
 
-    def save_images(images, filename):
-        """
-        images.shape: (batch, height, width, channels)
-        """
-        images = images.reshape((10,10,28,28))
-        # rowx, rowy, height, width -> rowy, height, rowx, width
-        images = images.transpose(1,2,0,3)
-        images = images.reshape((10*28, 10*28))
 
-        scipy.misc.toimage(images, cmin=0.0, cmax=1.0).save('{}_{}.jpg'.format(filename, tag))
-
-    samples = numpy.zeros((100, HEIGHT, WIDTH, 1), dtype='float32')
-
-    for i in range(HEIGHT):
-        for j in range(WIDTH):
-            for k in range(N_CHANNELS):
-                next_sample = binarize(sample_fn(samples))
-                samples[:, i, j, k] = next_sample[:, i, j, k]
-
-    save_images(samples, 'samples')
 # main program
 
 print ("Training!")
@@ -396,8 +377,9 @@ last_print_iters = 0
 trainData, validData, testData, \
     trainTarget, validTarget, testTarget, trainIndex = prepareData()
 
-valid = zip(validData, validTarget)
+
 test = zip(testData, testTarget)
+trainIndex = [i for i in range(len(trainIndex))]
 # for epoch in itertools.count():
 for epoch in range(2):
 
@@ -410,10 +392,17 @@ for epoch in range(2):
     shuffle(trainIndex)
     trainData = trainData[trainIndex]
     trainTarget = trainTarget[trainIndex]
+    
+    # for debug, use less train data
+    trainData = trainData[0:10]
+    trainTarget = trainTarget[0:10]
+    
     train = zip(trainData, trainTarget)
+    pairNo = 0
     for images, targets in train:
         # add a process bar at here
-        progressbar((pairNo+1)/len(train))
+        progressbar((pairNo+1)/len(trainData))
+        pairNo += 1
         # print (images.shape)
         images = images.reshape((BATCH_SIZE, HEIGHT, WIDTH, 1))
         targets = targets.reshape((BATCH_SIZE, HEIGHT, WIDTH, 1))
@@ -427,18 +416,18 @@ for epoch in range(2):
         print (cost)
         costs.append(cost)
    # train all images, and then validation
-    dev_costs = []
+    '''dev_costs = []
     if EVAL_DEV_COST:
+        valid = zip(validData, validTarget)
         for images, targets in valid:
-            print ('dev:', images.shape)
             images = images.reshape((-1, HEIGHT, WIDTH, 1))
+            targets = targets.reshape((-1, HEIGHT, WIDTH, 1))
             dev_cost = eval_fn(images, targets)
+            print (dev_cost)
             dev_costs.append(dev_cost)
-            print ('Done dev.')
     else:
         dev_costs.append(0.)
-    print (dev_costs)
-
+        
     print ("epoch:{}\ttotal iters:{}\ttrain cost:{}\tdev cost:{}\ttotal time:{}\ttime per iter:{}".format(
             epoch,
             total_iters,
@@ -446,5 +435,33 @@ for epoch in range(2):
             numpy.mean(dev_costs),
             total_time,
             total_time / total_iters
-         ))
-
+         ))'''
+    
+    # save about 10 images of validation
+    saveImage = validData[0:10]
+    saveTarget = validTarget[0:10]
+    saveData = zip(saveImage, saveTarget)
+    saveDataNo = 0
+    for images, targets in saveData:
+        images = images.reshape((-1, HEIGHT, WIDTH, 1))
+        targets = targets.reshape((-1, HEIGHT, WIDTH, 1))
+        segmentation = sample_fn(images, targets)
+        # segmentation as an array in a list, 
+        segmentation = segmentation[0]
+        segmentation = segmentation.reshape(HEIGHT, WIDTH)
+        targets = targets.reshape(HEIGHT, WIDTH)
+        tag = "epoch{}_No{}".format(epoch, saveDataNo)
+        nameSeg = 'Segmentation_'+tag+'.jpg'
+        nameGT = 'GroundTruth_'+tag+'.jpg'
+        mpimg.imsave(nameSeg, segmentation)
+        mpimg.imsave(nameGT, targets)
+        
+        pyplot.imshow(segmentation)
+        pyplot.savefig(nameSeg)
+        
+        pyplot.imshow(targets)
+        pyplotsavefig(nameGT)
+        scipy.misc.toimage(segmentation, cmin=0.0, cmax=1.0).save('{}_{}.jpg'.format('Segmentation', tag))
+        scipy.misc.toimage(targets, cmin=0.0, cmax=1.0).save('{}_{}.jpg'.format('GroundTruth', tag))
+        
+        saveDataNo += 1
