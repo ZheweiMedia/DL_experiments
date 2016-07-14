@@ -19,7 +19,6 @@ import time
 import functools
 import itertools
 import matplotlib.image as mpimg
-import matplotlib.pyplot as pyplot
 
 MODEL = 'pixel_rnn' # either pixel_rnn or pixel_cnn
 
