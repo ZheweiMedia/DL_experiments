@@ -74,28 +74,19 @@ def prepareData():
     train = zip(trainData, trainTarget)
     valid = zip(validData, validTarget)
     test = zip(testData, testTarget)
-    return train, valid, test
+    return trainData, validData, testData, \
+                trainTarget, validTarget, testTarget, dataOrder[0:trainNo]
 
 
 
 
 
+trainData, validData, testData, \
+    trainTarget, validTarget, testTarget, trainIndex = prepareData()
 
-print ("Training!")
-total_iters = 0
-total_time = 0.
-last_print_time = 0.
-last_print_iters = 0
 
-train, valid, test = prepareData()
-# for epoch in itertools.count():
-for epoch in range(2):
+print (trainIndex)
+shuffle(trainIndex)
+print (trainIndex)
 
-    print ("epoch:", epoch)
-    costs = []
-    for images, targets in train:
-        print (images.shape)
-        batchImage = list()
-        
-        #images = binarize(images.reshape((BATCH_SIZE, HEIGHT, WIDTH, 1)))
 

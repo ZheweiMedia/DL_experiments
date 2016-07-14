@@ -1,6 +1,6 @@
 
 
-
+import sys
 import scipy.io
 import numpy
 import math
@@ -94,12 +94,15 @@ def prepareData():
     validTarget = wholeTarget[dataOrder[trainNo:trainNo+validNo], :]
     testTarget = wholeTarget[dataOrder[trainNo+validNo:], :]
 
-    train = zip(trainData, trainTarget)
-    valid = zip(validData, validTarget)
-    test = zip(testData, testTarget)
-    return train, valid, test
+    return trainData, validData, testData, \
+                trainTarget, validTarget, testTarget, dataOrder[0:trainNo]
 
-
+def progressbar(percentage):
+    bar_length=20
+    hashes = '#' * int(percentage * bar_length)
+    spaces = ' ' * (bar_length - len(hashes))
+    sys.stdout.write("\rPercent: [%s] %f%%"%(hashes + spaces, percentage))
+    sys.stdout.flush()
 
 
 def relu(x):
@@ -359,7 +362,29 @@ sample_fn = theano.function(
     on_unused_input='ignore'
 )
 
+# save processed image 
+def generate_and_save_samples(tag):
 
+    def save_images(images, filename):
+        """
+        images.shape: (batch, height, width, channels)
+        """
+        images = images.reshape((10,10,28,28))
+        # rowx, rowy, height, width -> rowy, height, rowx, width
+        images = images.transpose(1,2,0,3)
+        images = images.reshape((10*28, 10*28))
+
+        scipy.misc.toimage(images, cmin=0.0, cmax=1.0).save('{}_{}.jpg'.format(filename, tag))
+
+    samples = numpy.zeros((100, HEIGHT, WIDTH, 1), dtype='float32')
+
+    for i in range(HEIGHT):
+        for j in range(WIDTH):
+            for k in range(N_CHANNELS):
+                next_sample = binarize(sample_fn(samples))
+                samples[:, i, j, k] = next_sample[:, i, j, k]
+
+    save_images(samples, 'samples')
 # main program
 
 print ("Training!")
@@ -368,15 +393,27 @@ total_time = 0.
 last_print_time = 0.
 last_print_iters = 0
 
-train, valid, test = prepareData()
+trainData, validData, testData, \
+    trainTarget, validTarget, testTarget, trainIndex = prepareData()
+
+valid = zip(validData, validTarget)
+test = zip(testData, testTarget)
 # for epoch in itertools.count():
 for epoch in range(2):
 
     print ("epoch:", epoch)
     costs = []
-    # important: shuffle inputs
-    shuffle(train)
+    
+    # important: shuffle inputs. cannot shuffle zip. 
+    # so...change prepareData()
+    
+    shuffle(trainIndex)
+    trainData = trainData[trainIndex]
+    trainTarget = trainTarget[trainIndex]
+    train = zip(trainData, trainTarget)
     for images, targets in train:
+        # add a process bar at here
+        progressbar((pairNo+1)/len(train))
         # print (images.shape)
         images = images.reshape((BATCH_SIZE, HEIGHT, WIDTH, 1))
         targets = targets.reshape((BATCH_SIZE, HEIGHT, WIDTH, 1))
@@ -389,4 +426,25 @@ for epoch in range(2):
         # print (total_time)
         print (cost)
         costs.append(cost)
+   # train all images, and then validation
+    dev_costs = []
+    if EVAL_DEV_COST:
+        for images, targets in valid:
+            print ('dev:', images.shape)
+            images = images.reshape((-1, HEIGHT, WIDTH, 1))
+            dev_cost = eval_fn(images, targets)
+            dev_costs.append(dev_cost)
+            print ('Done dev.')
+    else:
+        dev_costs.append(0.)
+    print (dev_costs)
+
+    print ("epoch:{}\ttotal iters:{}\ttrain cost:{}\tdev cost:{}\ttotal time:{}\ttime per iter:{}".format(
+            epoch,
+            total_iters,
+            numpy.mean(costs),
+            numpy.mean(dev_costs),
+            total_time,
+            total_time / total_iters
+         ))
 
