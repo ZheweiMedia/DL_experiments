@@ -356,7 +356,7 @@ eval_fn = theano.function(
 sample_fn = theano.function(
     inputs=[data,targets],
     outputs =[output],
-    on_unused_input='warn'
+    on_unused_input='ignore'
 )
 
 
@@ -374,16 +374,19 @@ for epoch in range(2):
 
     print ("epoch:", epoch)
     costs = []
+    # important: shuffle inputs
+    shuffle(train)
     for images, targets in train:
-        print (images.shape)
+        # print (images.shape)
         images = images.reshape((BATCH_SIZE, HEIGHT, WIDTH, 1))
         targets = targets.reshape((BATCH_SIZE, HEIGHT, WIDTH, 1))
-        print (images.shape)
+        # print (images.shape)
         start_time = time.time()
         cost = train_fn(images, targets)
         total_time += time.time() - start_time
         total_iters += 1
-        print (total_iters)
-        print (total_time)
+        # print (total_iters)
+        # print (total_time)
+        print (cost)
         costs.append(cost)
 
