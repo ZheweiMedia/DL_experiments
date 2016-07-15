@@ -5,7 +5,7 @@
 3. 4 corners Done.
 4. Before they ony add the hidden layer together. Now I use concatenate to crop the 4 
     hidden layers together, and by doing CNN to mix all 4 layers information. 
-
+5. with random.seed(123), it's not real random now...
 
 @Zhewei
 7/15/2016
@@ -17,8 +17,8 @@ import scipy.io
 import numpy
 import math
 from random import shuffle
-numpy.random.seed(123)
 import random
+numpy.random.seed(123)
 random.seed(123)
 
 import theano
@@ -318,8 +318,9 @@ def DiagonalBiLSTM(name, input_dim, inputs):
     # TODO: just plus? not concatenate?
     # return forward + backward + corner3 +corner4
     hiddenLayer = T.concatenate([
-        forward, backward, corner3, corner4
-    ], axis=3) # along the DIM direction. Now we have deepth*4
+                    forward, backward, corner3, corner4
+                        ], axis=3) # along the DIM direction. Now we have deepth*4
+    return hiddenLayer
 
 # build the structure
 # inputs.shape: (batch size, height, width, channels)
