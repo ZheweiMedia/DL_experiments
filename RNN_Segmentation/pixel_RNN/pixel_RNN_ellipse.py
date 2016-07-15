@@ -1,4 +1,16 @@
+"""
+1. read ellipse file in, and separate as train, validation, test.
+2. validation is not use for update parameter, just use to check lost function, and 
+    compare with train lost function, to see over-fitting or under-fitting.
+3. 4 corners Done.
+4. Before they ony add the hidden layer together. Now I use concatenate to crop the 4 
+    hidden layers together, and by doing CNN to mix all 4 layers information. 
 
+
+@Zhewei
+7/15/2016
+
+"""
 
 import sys
 import scipy.io
@@ -38,7 +50,9 @@ EVAL_DEV_COST = True # whether to evaluate dev cost during training
 GEN_SAMPLES = True # whether to generate samples during training (generating samples takes WIDTH*HEIGHT*N_CHANNELS full passes through the net)
 TRAIN_MODE = 'iters' # 'iters' to use PRINT_ITERS and STOP_ITERS, 'time' to use PRINT_TIME and STOP_TIME
 PRINT_ITERS = 1 # Print cost, generate samples, save model checkpoint every N iterations.
-STOP_ITERS = 2 # Stop after this many iterations
+                  #PRINT_ITERS is useless now.
+STOP_ITERS = 1 # Stop after this many iterations
+                  # This one now use for how many times experiments you want to run.
 PRINT_TIME = 60*60 # Print cost, generate samples, save model checkpoint every N seconds.
 STOP_TIME = 60*60*2 # Stop after this many seconds of actual training (not including time req'd to generate samples etc.)
 
@@ -57,20 +71,19 @@ def prepareData():
     mat = scipy.io.loadmat('../data/ellipse_dataset_boundary_enhanced.mat')
     # print (len(mat.keys()))
     # print (len(mat.values()))
-    keys = list(mat.keys())
-    print (keys)
-    print (mat['ellipse_dataset'].shape)
+    # print (mat.keys())
+    # print (mat['ellipse_dataset'].shape)
 
-    #target
+    # target
     target = scipy.io.loadmat('../data/ellipse_labels_boundary_enhanced.mat')
-    print (target.keys())
+    # print (target.keys())
 
     # data shape now is data_content*data_sample, we need to transfer it to
     # (data_sample, data_content). Here cannot use reshape.
 
     wholeData = mat['ellipse_dataset'].transpose()
     wholeTarget = target['ellipse_labels'].transpose()
-    print (wholeData.shape)
+    # print (wholeData.shape)
 
     # test if it's really transfer other than reshape
     '''for i in range(2304):
@@ -294,11 +307,19 @@ def DiagonalBiLSTM(name, input_dim, inputs):
     inputs.shape: (batch size, height, width, input_dim)
     inputs.shape: (batch size, height, width, DIM)
     """
+    # corner 1
     forward = DiagonalLSTM(name+'.Forward', input_dim, inputs)
+    # corner 2
     backward = DiagonalLSTM(name+'.Backward', input_dim, inputs[:,:,::-1,:])[:,:,::-1,:]
-    # TODO: another two corners
-
-    return forward + backward
+    # corner 3, 4
+    corner3 = DiagonalLSTM(name+'.corner3', input_dim, inputs[:,::-1,:,:])[:,::-1,:,:]
+    corner4 = DiagonalLSTM(name+'.corner4', input_dim, inputs[:,::-1,::-1,:])[:,::-1,::-1,:]
+    
+    # TODO: just plus? not concatenate?
+    # return forward + backward + corner3 +corner4
+    hiddenLayer = T.concatenate([
+        forward, backward, corner3, corner4
+    ], axis=3) # along the DIM direction. Now we have deepth*4
 
 # build the structure
 # inputs.shape: (batch size, height, width, channels)
@@ -319,10 +340,11 @@ elif MODEL=='pixel_cnn':
         output = Conv2D('PixelCNNConv'+str(i), DIM, DIM, 3, output, mask_type='None', he_init=True)
         output = relu(output)
 
-output = Conv2D('OutputConv1', DIM, DIM, 1, output, mask_type='None', he_init=True)
+# DIM*4 to DIM*2, to DIM, to 1
+output = Conv2D('OutputConv1', DIM*4, DIM*2, 1, output, mask_type='None', he_init=True)
 output = relu(output)
 
-output = Conv2D('OutputConv2', DIM, DIM, 1, output, mask_type='None', he_init=True)
+output = Conv2D('OutputConv2', DIM*2, DIM, 1, output, mask_type='None', he_init=True)
 output = relu(output)
 
 # TODO: for color images, implement a 256-way softmax for each RGB channel here
@@ -370,18 +392,16 @@ last_print_time = 0.
 last_print_iters = 0
 
 # for epoch in itertools.count():
-for epoch in range(2):
-
+for epoch in range(STOP_ITERS):
+    
+    costs = []
+    start_time = time.time()
+    
     trainData, validData, testData, \
         trainTarget, validTarget, testTarget, trainIndex = prepareData()
 
-
     test = zip(testData, testTarget)
     trainIndex = [i for i in range(len(trainIndex))]
-
-
-    print ("epoch:", epoch)
-    costs = []
     
     # important: shuffle inputs. cannot shuffle zip. 
     # so...change prepareData()
@@ -399,7 +419,7 @@ for epoch in range(2):
         images = images.reshape((BATCH_SIZE, HEIGHT, WIDTH, 1))
         targets = targets.reshape((BATCH_SIZE, HEIGHT, WIDTH, 1))
         # print (images.shape)
-        start_time = time.time()
+        
         cost = train_fn(images, targets)
         total_iters += 1
         # print (total_iters)
@@ -445,7 +465,7 @@ for epoch in range(2):
         segmentation = segmentation[0]
         segmentation = segmentation.reshape(HEIGHT, WIDTH)
         targets = targets.reshape(HEIGHT, WIDTH)
-        tag = "epoch{}_No{}".format(epoch, saveDataNo)
+        tag = "epoch{}_No{}_time{}".format(epoch, saveDataNo, time.time())
         nameSeg = 'Segmentation_'+tag+'.jpg'
         nameGT = 'GroundTruth_'+tag+'.jpg'
         mpimg.imsave(nameSeg, segmentation)
