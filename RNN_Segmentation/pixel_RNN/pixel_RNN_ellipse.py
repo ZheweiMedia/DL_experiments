@@ -296,11 +296,7 @@ def DiagonalBiLSTM(name, input_dim, inputs):
     """
     forward = DiagonalLSTM(name+'.Forward', input_dim, inputs)
     backward = DiagonalLSTM(name+'.Backward', input_dim, inputs[:,:,::-1,:])[:,:,::-1,:]
-    batch_size = inputs.shape[0]
-    backward = T.concatenate([
-        T.zeros([batch_size, 1, WIDTH, DIM], dtype=theano.config.floatX),
-        backward[:, :-1, :, :]
-    ], axis=1)
+    # TODO: another two corners
 
     return forward + backward
 
@@ -373,14 +369,16 @@ total_time = 0.
 last_print_time = 0.
 last_print_iters = 0
 
-trainData, validData, testData, \
-    trainTarget, validTarget, testTarget, trainIndex = prepareData()
-
-
-test = zip(testData, testTarget)
-trainIndex = [i for i in range(len(trainIndex))]
 # for epoch in itertools.count():
 for epoch in range(2):
+
+    trainData, validData, testData, \
+        trainTarget, validTarget, testTarget, trainIndex = prepareData()
+
+
+    test = zip(testData, testTarget)
+    trainIndex = [i for i in range(len(trainIndex))]
+
 
     print ("epoch:", epoch)
     costs = []
@@ -403,7 +401,6 @@ for epoch in range(2):
         # print (images.shape)
         start_time = time.time()
         cost = train_fn(images, targets)
-        total_time += time.time() - start_time
         total_iters += 1
         # print (total_iters)
         # print (total_time)
@@ -424,7 +421,8 @@ for epoch in range(2):
             dev_costs.append(dev_cost)
     else:
         dev_costs.append(0.)
-        
+    
+    total_time = time.time() - start_time
     print ("epoch:{}\ttotal iters:{}\ttrain cost:{}\tdev cost:{}\ttotal time:{}\ttime per iter:{}".format(
             epoch,
             total_iters,
