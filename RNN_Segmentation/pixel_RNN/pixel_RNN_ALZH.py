@@ -1,21 +1,26 @@
 """
-Pixel RNN on MNIST
-Ishaan Gulrajani
+1. read ellipse file in, and separate as train, validation, test.
+2. validation is not use for update parameter, just use to check lost function, and 
+    compare with train lost function, to see over-fitting or under-fitting.
+3. Four corners Done.
+4. Before they ony add the hidden layer together. Now I use concatenate to crop the 4 
+    hidden layers together, and by doing CNN to mix all 4 layers information. 
+5. with random.seed(123), it's not real random now...
+6. Two corners, 2s for one image (48*48). Four coners, 4s. 
+
+@Zhewei
+7/15/2016
+
 """
 
-import os, sys
-sys.path.append(os.getcwd())
-
-try: # This only matters on Ishaan's computer
-    import experiment_tools
-    experiment_tools.register_crash_notifier()
-    experiment_tools.wait_for_gpu(high_priority=False)
-except ImportError:
-    pass
-
+import sys
+import scipy.io
 import numpy
-numpy.random.seed(123)
+import math
+from PIL import Image
+from random import shuffle
 import random
+numpy.random.seed(123)
 random.seed(123)
 
 import theano
@@ -27,30 +32,89 @@ import scipy.misc
 import time
 import functools
 import itertools
+import matplotlib.image as mpimg
 
 MODEL = 'pixel_rnn' # either pixel_rnn or pixel_cnn
 
 # Hyperparams
-BATCH_SIZE = 100
+BATCH_SIZE = 1
 DIM = 64 # Model dimensionality.
 GRAD_CLIP = 1 # Elementwise grad clip threshold
 
 # Dataset
 N_CHANNELS = 1
-WIDTH = 28
-HEIGHT = 28
+WIDTH = 48
+HEIGHT = 48
 
 # Other constants
-TEST_BATCH_SIZE = 100 # batch size to use when evaluating on dev/test sets. This should be the max that can fit into GPU memory.
+TEST_BATCH_SIZE = 1 # batch size to use when evaluating on dev/test sets. This should be the max that can fit into GPU memory.
 EVAL_DEV_COST = True # whether to evaluate dev cost during training
 GEN_SAMPLES = True # whether to generate samples during training (generating samples takes WIDTH*HEIGHT*N_CHANNELS full passes through the net)
 TRAIN_MODE = 'iters' # 'iters' to use PRINT_ITERS and STOP_ITERS, 'time' to use PRINT_TIME and STOP_TIME
 PRINT_ITERS = 1 # Print cost, generate samples, save model checkpoint every N iterations.
-STOP_ITERS = 2 # Stop after this many iterations
+                  #PRINT_ITERS is useless now.
+STOP_ITERS = 1 # Stop after this many iterations
+                  # This one now use for how many times experiments you want to run.
 PRINT_TIME = 60*60 # Print cost, generate samples, save model checkpoint every N seconds.
 STOP_TIME = 60*60*2 # Stop after this many seconds of actual training (not including time req'd to generate samples etc.)
 
 lib.utils.print_model_settings(locals().copy())
+
+
+def prepareData():
+
+    data = numpy.zeros((dataNo, height*width))
+    for i in range(1, dataNo+1):
+        tag_data = "data/hippo_center_patches/hippo"+str(i)+'.png'
+        pngfile = Image.open(tag_data)
+        pix = pngfile.load()
+        pixelValue = numpy.zeros((height, width))
+        for h in range(height):
+            for w in range(width):
+                pixelValue[h,w] = pix[h,w]/256
+        pixelValue = pixelValue.reshape(height*width)
+        data[i-1,:] = pixelValue
+    
+    target = numpy.zeros((dataNo, height*width))
+    for i in range(1, dataNo+1):
+        tag_target = "data/hippo_center_patches/label"+str(i)+'.png'
+        pngfile = Image.open(tag_target)
+        pix = pngfile.load()
+        pixelValue = numpy.zeros((height, width))
+        for h in range(height):
+            for w in range(width):
+                pixelValue[h,w] = pix[h,w]/256
+        pixelValue = pixelValue.reshape(height*width)
+        target[i-1,:] = pixelValue
+
+    print (data.shape,target.shape)
+
+
+    dataOrder = [i for i in range(data.shape[0])]
+    shuffle(dataOrder)
+
+    # train:validation:test = 8:1:1
+    trainNo = math.floor(0.8*data.shape[0])
+    validNo = math.floor(0.1*data.shape[0])
+
+    trainData = data[dataOrder[0:trainNo], :]
+    validData = data[dataOrder[trainNo:trainNo+validNo], :]
+    testData = data[dataOrder[trainNo+validNo:], :]
+
+    trainTarget = target[dataOrder[0:trainNo], :]
+    validTarget = target[dataOrder[trainNo:trainNo+validNo], :]
+    testTarget = target[dataOrder[trainNo+validNo:], :]
+
+    return trainData, validData, testData, \
+                trainTarget, validTarget, testTarget, dataOrder[0:trainNo]
+
+def progressbar(percentage):
+    bar_length=20
+    hashes = '#' * int(percentage * bar_length)
+    spaces = ' ' * (bar_length - len(hashes))
+    sys.stdout.write("\rPercent: [%s] %f%%"%(hashes + spaces, percentage))
+    sys.stdout.flush()
+
 
 def relu(x):
     # Using T.nnet.relu gives me NaNs. No idea why.
@@ -206,6 +270,7 @@ def DiagonalLSTM(name, input_dim, inputs):
         # all args have shape (batch size, height, DIM)
 
         # TODO consider learning this padding
+        # TODO why here need to concatenate with a row of zeros?
         prev_h = T.concatenate([
             T.zeros((batch_size, 1, DIM), theano.config.floatX), 
             prev_h
@@ -240,20 +305,29 @@ def DiagonalBiLSTM(name, input_dim, inputs):
     inputs.shape: (batch size, height, width, input_dim)
     inputs.shape: (batch size, height, width, DIM)
     """
+    # corner 1
     forward = DiagonalLSTM(name+'.Forward', input_dim, inputs)
+    # corner 2
     backward = DiagonalLSTM(name+'.Backward', input_dim, inputs[:,:,::-1,:])[:,:,::-1,:]
-    batch_size = inputs.shape[0]
-    backward = T.concatenate([
-        T.zeros([batch_size, 1, WIDTH, DIM], dtype=theano.config.floatX),
-        backward[:, :-1, :, :]
-    ], axis=1)
+    # corner 3, 4
+    corner3 = DiagonalLSTM(name+'.corner3', input_dim, inputs[:,::-1,:,:])[:,::-1,:,:]
+    corner4 = DiagonalLSTM(name+'.corner4', input_dim, inputs[:,::-1,::-1,:])[:,::-1,::-1,:]
+    
+    # TODO: just plus? not concatenate?
+    '''hiddenLayer = T.concatenate([
+                    forward, backward, corner3, corner4
+                        ], axis=3) # along the DIM direction. Now we have deepth*4
+    # return hiddenLayer'''
+    # print (hiddenLayer.shape)
+    return forward + backward + corner3 +corner4
+    
 
-    return forward + backward
-
+# build the structure
 # inputs.shape: (batch size, height, width, channels)
-inputs = T.tensor4('inputs')
+data = T.tensor4('inputs')
+targets = T.tensor4('targets')
 
-output = Conv2D('InputConv', N_CHANNELS, DIM, 7, inputs, mask_type='a')
+output = Conv2D('InputConv', N_CHANNELS, DIM, 7, data, mask_type='None')
 
 if MODEL=='pixel_rnn':
 
@@ -264,20 +338,22 @@ elif MODEL=='pixel_cnn':
     # The paper doesn't specify how many convs to use, so I picked 4 pretty
     # arbitrarily.
     for i in range(4):
-        output = Conv2D('PixelCNNConv'+str(i), DIM, DIM, 3, output, mask_type='b', he_init=True)
+        output = Conv2D('PixelCNNConv'+str(i), DIM, DIM, 3, output, mask_type='None', he_init=True)
         output = relu(output)
 
-output = Conv2D('OutputConv1', DIM, DIM, 1, output, mask_type='b', he_init=True)
+# DIM*16 to DIM*4, to DIM, to 1
+output = Conv2D('OutputConv1', DIM, DIM, 1, output, mask_type='None', he_init=True)
 output = relu(output)
 
-output = Conv2D('OutputConv2', DIM, DIM, 1, output, mask_type='b', he_init=True)
+output = Conv2D('OutputConv2', DIM, DIM, 1, output, mask_type='None', he_init=True)
 output = relu(output)
 
 # TODO: for color images, implement a 256-way softmax for each RGB channel here
-output = Conv2D('OutputConv3', DIM, 1, 1, output, mask_type='b')
+# we don't need it....
+output = Conv2D('OutputConv3', DIM, 1, 1, output, mask_type='None')
 output = T.nnet.sigmoid(output)
 
-cost = T.mean(T.nnet.binary_crossentropy(output, inputs))
+cost = T.mean(T.nnet.binary_crossentropy(output, targets))
 
 params = lib.search(cost, lambda x: hasattr(x, 'param'))
 lib.utils.print_params_info(params)
@@ -288,118 +364,111 @@ grads = [T.clip(g, lib.floatX(-GRAD_CLIP), lib.floatX(GRAD_CLIP)) for g in grads
 updates = lasagne.updates.adam(grads, params, learning_rate=1e-3)
 
 train_fn = theano.function(
-    [inputs],
-    cost,
+    inputs=[data,targets],
+    outputs =[cost],
     updates=updates,
     on_unused_input='warn'
 )
 
 eval_fn = theano.function(
-    [inputs],
-    cost,
+    inputs=[data,targets],
+    outputs =[cost],
     on_unused_input='warn'
 )
 
 sample_fn = theano.function(
-    [inputs],
-    output,
-    on_unused_input='warn'
+    inputs=[data,targets],
+    outputs =[output],
+    on_unused_input='ignore'
 )
 
-train_data, dev_data, test_data = lib.mnist.load(BATCH_SIZE, TEST_BATCH_SIZE)
 
-def binarize(images):
-    """
-    Stochastically binarize values in [0, 1] by treating them as p-values of
-    a Bernoulli distribution.
-    """
-    return (numpy.random.uniform(size=images.shape) < images).astype('float32')
 
-def generate_and_save_samples(tag):
-
-    def save_images(images, filename):
-        """
-        images.shape: (batch, height, width, channels)
-        """
-        images = images.reshape((10,10,28,28))
-        # rowx, rowy, height, width -> rowy, height, rowx, width
-        images = images.transpose(1,2,0,3)
-        images = images.reshape((10*28, 10*28))
-
-        scipy.misc.toimage(images, cmin=0.0, cmax=1.0).save('{}_{}.jpg'.format(filename, tag))
-
-    samples = numpy.zeros((100, HEIGHT, WIDTH, 1), dtype='float32')
-
-    for i in range(HEIGHT):
-        for j in range(WIDTH):
-            for k in range(N_CHANNELS):
-                next_sample = binarize(sample_fn(samples))
-                samples[:, i, j, k] = next_sample[:, i, j, k]
-
-    save_images(samples, 'samples')
+# main program
 
 print ("Training!")
 total_iters = 0
 total_time = 0.
 last_print_time = 0.
 last_print_iters = 0
-for epoch in itertools.count():
 
-    print (epoch)
+# for epoch in itertools.count():
+for epoch in range(STOP_ITERS):
+    
     costs = []
-    data_feeder = train_data()
+    start_time = time.time()
+    
+    trainData, validData, testData, \
+        trainTarget, validTarget, testTarget, trainIndex = prepareData()
 
-    for images, targets in data_feeder:
-
-        images = binarize(images.reshape((BATCH_SIZE, HEIGHT, WIDTH, 1)))
-
-        start_time = time.time()
-        cost = train_fn(images)
-        total_time += time.time() - start_time
+    test = zip(testData, testTarget)
+    trainIndex = [i for i in range(len(trainIndex))]
+    
+    # important: shuffle inputs. cannot shuffle zip. 
+    # so...change prepareData()
+    
+    shuffle(trainIndex)
+    trainData = trainData[trainIndex]
+    trainTarget = trainTarget[trainIndex]
+    train = zip(trainData, trainTarget)
+    pairNo = 0
+    for images, targets in train:
+        # add a process bar at here
+        progressbar((pairNo+1)/len(trainData))
+        pairNo += 1
+        # print (images.shape)
+        images = images.reshape((BATCH_SIZE, HEIGHT, WIDTH, 1))
+        targets = targets.reshape((BATCH_SIZE, HEIGHT, WIDTH, 1))
+        # print (images.shape)
+        
+        cost = train_fn(images, targets)
         total_iters += 1
-        print (total_iters)
+        # print (total_iters)
+        # print (total_time)
+        print (cost)
         costs.append(cost)
-
-        if (TRAIN_MODE=='iters' and total_iters-last_print_iters == PRINT_ITERS) or \
-            (TRAIN_MODE=='time' and total_time-last_print_time >= PRINT_TIME):
-
-            dev_costs = []
-            if EVAL_DEV_COST:
-                for images, targets in dev_data():
-                    images = images.reshape((-1, HEIGHT, WIDTH, 1))
-                    binarized = binarize(images)
-                    dev_cost = eval_fn(binarized)
-                    dev_costs.append(dev_cost)
-            else:
-                dev_costs.append(0.)
-
-            print ("epoch:{}\ttotal iters:{}\ttrain cost:{}\tdev cost:{}\ttotal time:{}\ttime per iter:{}".format(
-                epoch,
-                total_iters,
-                numpy.mean(costs),
-                numpy.mean(dev_costs),
-                total_time,
-                total_time / total_iters
-            ))
-
-            tag = "iters{}_time{}".format(total_iters, total_time)
-            if GEN_SAMPLES:
-                generate_and_save_samples(tag)
-            lib.save_params('params_{}.pkl'.format(tag))
-
-            costs = []
-            last_print_time += PRINT_TIME
-            last_print_iters += PRINT_ITERS
-
-        if (TRAIN_MODE=='iters' and total_iters == STOP_ITERS) or \
-            (TRAIN_MODE=='time' and total_time >= STOP_TIME):
-
-            print ("Done!")
-
-            try: # This only matters on Ishaan's computer
-                import experiment_tools
-                experiment_tools.send_sms("done!")
-            except ImportError:
-                pass
-
-            sys.exit()
+   # train all images, and then validation
+    dev_costs = []
+    if EVAL_DEV_COST:
+        valid = zip(validData, validTarget)
+        validDataNo = 0
+        for images, targets in valid:
+            progressbar((validDataNo+1)/len(validData))
+            validDataNo += 1
+            images = images.reshape((-1, HEIGHT, WIDTH, 1))
+            targets = targets.reshape((-1, HEIGHT, WIDTH, 1))
+            dev_cost = eval_fn(images, targets)
+            print (dev_cost)
+            dev_costs.append(dev_cost)
+    else:
+        dev_costs.append(0.)
+    
+    total_time = time.time() - start_time
+    print ("epoch:{}\ttotal iters:{}\ttrain cost:{}\tdev cost:{}\ttotal time:{}\ttime per iter:{}".format(
+            epoch,
+            total_iters,
+            numpy.mean(costs),
+            numpy.mean(dev_costs),
+            total_time,
+            total_time / total_iters
+         ))
+    
+    # save about 10 images of validation
+    saveImage = validData[0:10]
+    saveTarget = validTarget[0:10]
+    saveData = zip(saveImage, saveTarget)
+    saveDataNo = 0
+    for images, targets in saveData:
+        images = images.reshape((-1, HEIGHT, WIDTH, 1))
+        targets = targets.reshape((-1, HEIGHT, WIDTH, 1))
+        segmentation = sample_fn(images, targets)
+        # segmentation as an array in a list, 
+        segmentation = segmentation[0]
+        segmentation = segmentation.reshape(HEIGHT, WIDTH)
+        targets = targets.reshape(HEIGHT, WIDTH)
+        tag = "epoch{}_No{}_time{}".format(epoch, saveDataNo, time.time())
+        nameSeg = 'Segmentation_'+tag+'.jpg'
+        nameGT = 'GroundTruth_'+tag+'.jpg'
+        mpimg.imsave(nameSeg, segmentation)
+        mpimg.imsave(nameGT, targets)
+        saveDataNo += 1

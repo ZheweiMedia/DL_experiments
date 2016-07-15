@@ -2,10 +2,11 @@
 1. read ellipse file in, and separate as train, validation, test.
 2. validation is not use for update parameter, just use to check lost function, and 
     compare with train lost function, to see over-fitting or under-fitting.
-3. 4 corners Done.
+3. Four corners Done.
 4. Before they ony add the hidden layer together. Now I use concatenate to crop the 4 
     hidden layers together, and by doing CNN to mix all 4 layers information. 
 5. with random.seed(123), it's not real random now...
+6. Two corners, 2s for one image (48*48). Four coners, 4s. 
 
 @Zhewei
 7/15/2016
@@ -273,6 +274,7 @@ def DiagonalLSTM(name, input_dim, inputs):
         # all args have shape (batch size, height, DIM)
 
         # TODO consider learning this padding
+        # TODO why here need to concatenate with a row of zeros?
         prev_h = T.concatenate([
             T.zeros((batch_size, 1, DIM), theano.config.floatX), 
             prev_h
@@ -316,11 +318,13 @@ def DiagonalBiLSTM(name, input_dim, inputs):
     corner4 = DiagonalLSTM(name+'.corner4', input_dim, inputs[:,::-1,::-1,:])[:,::-1,::-1,:]
     
     # TODO: just plus? not concatenate?
-    # return forward + backward + corner3 +corner4
-    hiddenLayer = T.concatenate([
+    '''hiddenLayer = T.concatenate([
                     forward, backward, corner3, corner4
                         ], axis=3) # along the DIM direction. Now we have deepth*4
-    return hiddenLayer
+    # return hiddenLayer'''
+    # print (hiddenLayer.shape)
+    return forward + backward + corner3 +corner4
+    
 
 # build the structure
 # inputs.shape: (batch size, height, width, channels)
@@ -341,11 +345,11 @@ elif MODEL=='pixel_cnn':
         output = Conv2D('PixelCNNConv'+str(i), DIM, DIM, 3, output, mask_type='None', he_init=True)
         output = relu(output)
 
-# DIM*4 to DIM*2, to DIM, to 1
-output = Conv2D('OutputConv1', DIM*4, DIM*2, 1, output, mask_type='None', he_init=True)
+# DIM*16 to DIM*4, to DIM, to 1
+output = Conv2D('OutputConv1', DIM, DIM, 1, output, mask_type='None', he_init=True)
 output = relu(output)
 
-output = Conv2D('OutputConv2', DIM*2, DIM, 1, output, mask_type='None', he_init=True)
+output = Conv2D('OutputConv2', DIM, DIM, 1, output, mask_type='None', he_init=True)
 output = relu(output)
 
 # TODO: for color images, implement a 256-way softmax for each RGB channel here

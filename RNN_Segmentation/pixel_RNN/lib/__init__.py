@@ -1,5 +1,5 @@
 from lib import utils
-from lib import mnist
+# from lib import mnist
 
 import numpy
 import theano
