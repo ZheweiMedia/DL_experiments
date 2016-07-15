@@ -43,6 +43,7 @@ GRAD_CLIP = 1 # Elementwise grad clip threshold
 
 # Dataset
 N_CHANNELS = 1
+dataNo = 112
 WIDTH = 48
 HEIGHT = 48
 
@@ -63,28 +64,28 @@ lib.utils.print_model_settings(locals().copy())
 
 def prepareData():
 
-    data = numpy.zeros((dataNo, height*width))
+    data = numpy.zeros((dataNo, HEIGHT*WIDTH))
     for i in range(1, dataNo+1):
         tag_data = "data/hippo_center_patches/hippo"+str(i)+'.png'
         pngfile = Image.open(tag_data)
         pix = pngfile.load()
-        pixelValue = numpy.zeros((height, width))
-        for h in range(height):
-            for w in range(width):
+        pixelValue = numpy.zeros((HEIGHT, WIDTH))
+        for h in range(HEIGHT):
+            for w in range(WIDTH):
                 pixelValue[h,w] = pix[h,w]/256
-        pixelValue = pixelValue.reshape(height*width)
+        pixelValue = pixelValue.reshape(HEIGHT*WIDTH)
         data[i-1,:] = pixelValue
     
-    target = numpy.zeros((dataNo, height*width))
+    target = numpy.zeros((dataNo, HEIGHT*WIDTH))
     for i in range(1, dataNo+1):
         tag_target = "data/hippo_center_patches/label"+str(i)+'.png'
         pngfile = Image.open(tag_target)
         pix = pngfile.load()
-        pixelValue = numpy.zeros((height, width))
-        for h in range(height):
-            for w in range(width):
+        pixelValue = numpy.zeros((HEIGHT, WIDTH))
+        for h in range(HEIGHT):
+            for w in range(WIDTH):
                 pixelValue[h,w] = pix[h,w]/256
-        pixelValue = pixelValue.reshape(height*width)
+        pixelValue = pixelValue.reshape(HEIGHT*WIDTH)
         target[i-1,:] = pixelValue
 
     print (data.shape,target.shape)
@@ -361,7 +362,7 @@ lib.utils.print_params_info(params)
 grads = T.grad(cost, wrt=params, disconnected_inputs='warn')
 grads = [T.clip(g, lib.floatX(-GRAD_CLIP), lib.floatX(GRAD_CLIP)) for g in grads]
 
-updates = lasagne.updates.adam(grads, params, learning_rate=1e-3)
+updates = lasagne.updates.adam(grads, params, learning_rate=1e-4)
 
 train_fn = theano.function(
     inputs=[data,targets],
