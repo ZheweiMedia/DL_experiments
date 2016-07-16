@@ -18,6 +18,7 @@ import scipy.io
 import numpy
 import math
 from random import shuffle
+from PIL import Image
 import random
 numpy.random.seed(123)
 random.seed(123)
@@ -32,6 +33,7 @@ import time
 import functools
 import itertools
 import matplotlib.image as mpimg
+import datetime
 
 MODEL = 'pixel_rnn' # either pixel_rnn or pixel_cnn
 
@@ -470,9 +472,10 @@ for epoch in range(STOP_ITERS):
         segmentation = segmentation[0]
         segmentation = segmentation.reshape(HEIGHT, WIDTH)
         targets = targets.reshape(HEIGHT, WIDTH)
-        tag = "epoch{}_No{}_time{}".format(epoch, saveDataNo, time.time())
-        nameSeg = 'Segmentation_'+tag+'.jpg'
-        nameGT = 'GroundTruth_'+tag+'.jpg'
-        mpimg.imsave(nameSeg, segmentation)
-        mpimg.imsave(nameGT, targets)
+        logTime = datetime.datetime.strftime(datetime.datetime.now(), '%Y-%m-%d %H:%M:%S')
+        tag = "epoch{}_No{}_time{}".format(epoch, saveDataNo, logTime)
+        nameSeg = 'Segmentation_'+tag+'.png'
+        nameGT = 'GroundTruth_'+tag+'.png'
+        mpimg.imsave(nameSeg, segmentation, cmap='Greys_r')
+        mpimg.imsave(nameGT, targets, cmap='Greys_r')
         saveDataNo += 1
