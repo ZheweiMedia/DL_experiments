@@ -256,7 +256,7 @@ def DiagonalLSTM(name, input_dim, inputs):
     """
     inputs = Skew(inputs)
 
-    input_to_state = Conv2D(name+'.InputToState', input_dim, 4*DIM, 1, inputs, mask_type='b')
+    input_to_state = Conv2D(name+'.InputToState', input_dim, 4*DIM, 1, inputs, mask_type='none')
 
     batch_size = inputs.shape[0]
 
@@ -319,13 +319,12 @@ def DiagonalBiLSTM(name, input_dim, inputs):
     corner3 = DiagonalLSTM(name+'.corner3', input_dim, inputs[:,::-1,:,:])[:,::-1,:,:]
     corner4 = DiagonalLSTM(name+'.corner4', input_dim, inputs[:,::-1,::-1,:])[:,::-1,::-1,:]
     
-    # TODO: just plus? not concatenate?
-    '''hiddenLayer = T.concatenate([
+    hiddenLayer = T.concatenate([
                     forward, backward, corner3, corner4
                         ], axis=3) # along the DIM direction. Now we have deepth*4
-    # return hiddenLayer'''
-    # print (hiddenLayer.shape)
-    return forward + backward + corner3 +corner4
+    return hiddenLayer
+
+    # return forward + backward + corner3 +corner4
     
 
 # build the structure
@@ -338,6 +337,9 @@ output = Conv2D('InputConv', N_CHANNELS, DIM, 7, data, mask_type='None')
 if MODEL=='pixel_rnn':
 
     output = DiagonalBiLSTM('LSTM1', DIM, output)
+    output = Conv2D('OutputConv0', DIM*4, DIM, 1, output, mask_type='None', he_init=True)
+    output = relu(output)
+    output = DiagonalBiLSTM('LSTM2', DIM, output)
     output = DiagonalBiLSTM('LSTM2', DIM, output)
 
 elif MODEL=='pixel_cnn':

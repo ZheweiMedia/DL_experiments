@@ -468,9 +468,18 @@ for epoch in range(STOP_ITERS):
         images = images.reshape((-1, HEIGHT, WIDTH, 1))
         targets = targets.reshape((-1, HEIGHT, WIDTH, 1))
         segmentation = sample_fn(images, targets)
-        # segmentation as an array in a list, 
+        # segmentation as only one array (batch size is 1)in a list, so read it out.
         segmentation = segmentation[0]
         segmentation = segmentation.reshape(HEIGHT, WIDTH)
+        
+        # binary
+        for ih in range(HEIGHT):
+            for iw in range(WIDTH):
+                if segmentation[ih,iw] < 0.5:
+                    segmentation[ih,iw] = 0
+                else:
+                    segmentation[ih,iw] = 1
+        
         targets = targets.reshape(HEIGHT, WIDTH)
         logTime = datetime.datetime.strftime(datetime.datetime.now(), '%Y-%m-%d %H:%M:%S')
         tag = "epoch{}_No{}_time{}".format(epoch, saveDataNo, logTime)
