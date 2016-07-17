@@ -56,8 +56,8 @@ GEN_SAMPLES = True # whether to generate samples during training (generating sam
 TRAIN_MODE = 'iters' # 'iters' to use PRINT_ITERS and STOP_ITERS, 'time' to use PRINT_TIME and STOP_TIME
 PRINT_ITERS = 1 # Print cost, generate samples, save model checkpoint every N iterations.
                   #PRINT_ITERS is useless now.
-STOP_ITERS = 1 # Stop after this many iterations
-                  # This one now use for how many times experiments you want to run.
+STOP_ITERS = 5 # Stop after this many iterations
+                  # Each means shuffle training data and continue to train
 PRINT_TIME = 60*60 # Print cost, generate samples, save model checkpoint every N seconds.
 STOP_TIME = 60*60*2 # Stop after this many seconds of actual training (not including time req'd to generate samples etc.)
 
@@ -245,6 +245,13 @@ def Unskew(padded):
     input.shape: (batch size, HEIGHT, 2*WIDTH - 1, dim)
     """
     return T.stack([padded[:, i, i:i+WIDTH, :] for i in range(HEIGHT)], axis=1)
+    
+def binarize(images):
+    """
+    Stochastically binarize values in [0, 1] by treating them as p-values of
+    a Bernoulli distribution.
+    """
+    return (numpy.random.uniform(size=images.shape) < images).astype('float32')
 
 def DiagonalLSTM(name, input_dim, inputs):
     """
@@ -399,19 +406,19 @@ last_print_time = 0.
 last_print_iters = 0
 
 # for epoch in itertools.count():
-for epoch in range(STOP_ITERS):
-    
-    costs = []
-    start_time = time.time()
-    
-    trainData, validData, testData, \
-        trainTarget, validTarget, testTarget, trainIndex = prepareData()
 
-    test = zip(testData, testTarget)
-    trainIndex = [i for i in range(len(trainIndex))]
     
+costs = []
+start_time = time.time()
+    
+trainData, validData, testData, \
+    trainTarget, validTarget, testTarget, trainIndex = prepareData()
+
+test = zip(testData, testTarget)
+    
+for epoch in range(STOP_ITERS):
+    trainIndex = [i for i in range(len(trainIndex))]
     # important: shuffle inputs. cannot shuffle zip. 
-    # so...change prepareData()
     
     shuffle(trainIndex)
     trainData = trainData[trainIndex]
@@ -459,32 +466,31 @@ for epoch in range(STOP_ITERS):
             total_time / total_iters
          ))
     
-    # save about 10 images of validation
-    saveImage = validData[0:10]
-    saveTarget = validTarget[0:10]
-    saveData = zip(saveImage, saveTarget)
-    saveDataNo = 0
-    for images, targets in saveData:
-        images = images.reshape((-1, HEIGHT, WIDTH, 1))
-        targets = targets.reshape((-1, HEIGHT, WIDTH, 1))
-        segmentation = sample_fn(images, targets)
-        # segmentation as only one array (batch size is 1)in a list, so read it out.
-        segmentation = segmentation[0]
-        segmentation = segmentation.reshape(HEIGHT, WIDTH)
+# save about 10 images of validation
+saveImage = validData[0:10]
+saveTarget = validTarget[0:10]
+saveData = zip(saveImage, saveTarget)
+saveDataNo = 0
+for images, targets in saveData:
+    images = images.reshape((-1, HEIGHT, WIDTH, 1))
+    targets = targets.reshape((-1, HEIGHT, WIDTH, 1))
+    segmentation = sample_fn(images, targets)
+    # segmentation as only one array (batch size is 1)in a list, so read it out.
+    segmentation = segmentation[0]
+    segmentation = segmentation.reshape((HEIGHT, WIDTH))
+    images = images.reshape((HEIGHT, WIDTH))    
+    # binary
+    segmentationBI = binarize(segmentation)
         
-        # binary
-        for ih in range(HEIGHT):
-            for iw in range(WIDTH):
-                if segmentation[ih,iw] < 0.5:
-                    segmentation[ih,iw] = 0
-                else:
-                    segmentation[ih,iw] = 1
-        
-        targets = targets.reshape(HEIGHT, WIDTH)
-        logTime = datetime.datetime.strftime(datetime.datetime.now(), '%Y-%m-%d %H:%M:%S')
-        tag = "epoch{}_No{}_time{}".format(epoch, saveDataNo, logTime)
-        nameSeg = 'Segmentation_'+tag+'.png'
-        nameGT = 'GroundTruth_'+tag+'.png'
-        mpimg.imsave(nameSeg, segmentation, cmap='Greys_r')
-        mpimg.imsave(nameGT, targets, cmap='Greys_r')
-        saveDataNo += 1
+    targets = targets.reshape((HEIGHT, WIDTH))
+    logTime = datetime.datetime.strftime(datetime.datetime.now(), '%Y-%m-%d %H:%M:%S')
+    tag = "epoch{}_No{}_time{}".format(epoch, saveDataNo, logTime)
+    nameSeg = 'Segmentation_'+tag+'.png'
+    nameGT = 'GroundTruth_'+tag+'.png'
+    nameBI = 'BiS_'+tag+'.png'
+    nameOrigin = 'ORI'+tag+'.png'
+    mpimg.imsave(nameSeg, segmentation, cmap='Greys_r')
+    mpimg.imsave(nameBI, segmentationBI, cmap='Greys_r')
+    mpimg.imsave(nameGT, targets, cmap='Greys_r')
+    mpimg.imsave(nameOrigin, images, cmap='Greys_r')
+    saveDataNo += 1
