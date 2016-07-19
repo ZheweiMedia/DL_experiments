@@ -374,7 +374,7 @@ lib.utils.print_params_info(params)
 grads = T.grad(cost, wrt=params, disconnected_inputs='warn')
 grads = [T.clip(g, lib.floatX(-GRAD_CLIP), lib.floatX(GRAD_CLIP)) for g in grads]
 
-updates = lasagne.updates.adam(grads, params, learning_rate=1e-4)
+updates = lasagne.updates.adam(grads, params, learning_rate=1e-3)
 
 train_fn = theano.function(
     inputs=[data,targets],
