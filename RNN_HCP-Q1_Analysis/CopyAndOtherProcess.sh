@@ -1,6 +1,8 @@
 #!/bin/bash
 
-# copy the data from HCP-Q1 disk to PC disk.
+# 1. copy the data from HCP-Q1 disk to PC disk.
+# 2. gzip -d, and dcm2nii
+
 
 IIDarray=(100307 103515 103818 111312 114924 \
 117122 118932 119833 120212 125525 128632 130013 \
@@ -26,6 +28,10 @@ do
         echo $class
         mkdir /home/medialab/data/HCP-Q1/tfMRI/$ID/$class
         fileName=/media/medialab/HCP-Q1/$ID/unprocessed/3T/tfMRI_$class\_LR/$ID\_3T_tfMRI_$class\_LR.nii.gz
-        cp $fileName /home/medialab/data/HCP-Q1/tfMRI/$ID/$class
+        # cp $fileName /home/medialab/data/HCP-Q1/tfMRI/$ID/$class
+        cd /home/medialab/data/HCP-Q1/tfMRI/$ID/$class
+        gzip -d *.nii.gz
+        dcm2nii *.nii < /home/medialab/tmp/tmp.txt
+        
     done
 done
