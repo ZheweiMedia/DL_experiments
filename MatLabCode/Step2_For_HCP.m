@@ -10,22 +10,23 @@
 %%
 IID = [ 100307 103515 103818 111312 114924 ...\
 117122 118932 119833 120212 125525 128632 130013 ...\
-131621 137128 138231 142828 143325 144226 149337 ...\
+137128 138231 142828 143325 149337 ...\
 150423 153429 156637 159239 161731 162329 167743 ...\
-172332 182739 191437 192439 192540 194140 197550 ...\
+182739 191437 192439 192540 194140 197550 ...\
 199150 199251 200614 201111 210617 217429 249947 ...\
-250427 255639 304020 307127 329440 355542 499566 ...\
-530635 559053 585862 611231 638049 665254 672756 ...\
+250427 304020 307127 329440 499566 ...\
+530635 559053 585862 638049 665254 672756 ...\
 685058 729557 732243 792564 826353 856766 859671 ...\
 861456 865363 877168 889579 894673 896778 896879 ...\
 901139 917255 937160 ];
 
+class = ['EMOTION'];
 
-path_ToFile = './data/AD_data/fMRI_%d.txt';
+
 path_ToResult = '/home/medialab/Zhewei/MatLabCode/data/LMCI_data/LM_Result%d.txt';
 
 
-lenthOfFMRI = 130;
+lenthOfFMRI = 176;
 
 
 %% index of AAL2
@@ -43,11 +44,11 @@ data = cell(1, numfiles);
 
 for iifile = 1:numfiles
     fileID = IID(iifile);
-    IIDfilename = sprintf(path_ToFile, fileID);
-
+    Path = strcat('/home/medialab/data/HCP-Q1/tfMRI/',sprintf('%d',fileID),'/',class,'/',strcat(sprintf('%d',fileID),'_',class,'.txt'));
+    IIDfilename = Path;
     IID_data = importdata(IIDfilename);
     IID_data = sort(IID_data);
-    IID_data = IID_data(11:140);
+    IID_data = IID_data;
 
     data{iifile} = IID_data;
 end
@@ -81,7 +82,10 @@ global_max = max(max(global_max));
 
 parfor ifile = 1:numfiles
     
-    IIDfilename = sprintf(path_ToResult, IID(ifile));
+    fileID = IID(ifile);
+    Path = strcat('/home/medialab/data/HCP-Q1/tfMRI/',sprintf('%d',fileID),'/',class,'/',strcat(sprintf('%d',fileID),'_',class,'_','results','.txt'));
+    IIDfilename = Path;
+    
     fileWrite = fopen(IIDfilename,'w');
 
 
@@ -95,7 +99,7 @@ parfor ifile = 1:numfiles
         frame = data{1,ifile}{ii,1};
         % # Should sort at here
         fid = fopen(frame);
-        fprintf(fileWrite,'========================%d===============\n',ii+10);
+        fprintf(fileWrite,'========================%d===============\n',ii);
         display(ii)
 
 

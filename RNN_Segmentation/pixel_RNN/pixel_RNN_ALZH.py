@@ -363,7 +363,9 @@ output = relu(output)
 # we don't need it....
 output = Conv2D('OutputConv3', DIM, 1, 1, output, mask_type='None')
 
-# Here should be softmax? 
+# Here should be softmax?
+# The answer is NO. Softmax and sigmoid are similiar. 
+# softmax will let the addition of probability to 1. So it use to classification.
 output = T.nnet.sigmoid(output)
 
 cost = T.mean(T.nnet.binary_crossentropy(output, targets))

@@ -92,5 +92,5 @@ def floatX(x):
         return numpy.float32(x)
     else: # Theano's default float type is float64
         # why warning at here?
-        # print ("Warning: lib.floatX using float64")
+        print ("Warning: lib.floatX using float64")
         return numpy.float64(x)
