@@ -2,6 +2,7 @@
 
 # 1. copy the data from HCP-Q1 disk to PC disk.
 # 2. gzip -d, and dcm2nii
+# 3. get the list of 3D nii
 
 
 IIDarray=(100307 103515 103818 111312 114924 \
@@ -30,8 +31,15 @@ do
         fileName=/media/medialab/HCP-Q1/$ID/unprocessed/3T/tfMRI_$class\_LR/$ID\_3T_tfMRI_$class\_LR.nii.gz
         # cp $fileName /home/medialab/data/HCP-Q1/tfMRI/$ID/$class
         cd /home/medialab/data/HCP-Q1/tfMRI/$ID/$class
-        gzip -d *.nii.gz
-        dcm2nii *.nii < /home/medialab/tmp/tmp.txt
+        fileAddress=/home/medialab/data/HCP-Q1/tfMRI/$ID/$class
+        # gzip -d *.nii.gz
+        # dcm2nii *.nii < /home/medialab/tmp/tmp.txt
+        for niifile in $(ls f*.nii)
+        do
+            echo $fileAddress'/'$niifile
+            echo $fileAddress'/'$niifile >> $ID\_$class.txt
+            # rm $ID\_$class.txt
+        done
         
     done
 done

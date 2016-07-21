@@ -340,7 +340,6 @@ if MODEL=='pixel_rnn':
     output = Conv2D('OutputConv0', DIM*4, DIM, 1, output, mask_type='None', he_init=True)
     output = relu(output)
     output = DiagonalBiLSTM('LSTM2', DIM, output)
-    output = DiagonalBiLSTM('LSTM2', DIM, output)
 
 elif MODEL=='pixel_cnn':
     # The paper doesn't specify how many convs to use, so I picked 4 pretty
@@ -478,6 +477,10 @@ for epoch in range(STOP_ITERS):
         tag = "epoch{}_No{}_time{}".format(epoch, saveDataNo, logTime)
         nameSeg = 'Segmentation_'+tag+'.png'
         nameGT = 'GroundTruth_'+tag+'.png'
+        nameBI = 'BiS_'+tag+'.png'
+        nameOrigin = 'ORI'+tag+'.png'
         mpimg.imsave(nameSeg, segmentation, cmap='Greys_r')
+        mpimg.imsave(nameBI, segmentationBI, cmap='Greys_r')
         mpimg.imsave(nameGT, targets, cmap='Greys_r')
+        mpimg.imsave(nameOrigin, images, cmap='Greys_r')
         saveDataNo += 1
