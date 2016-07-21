@@ -99,7 +99,8 @@ def prepareData():
     # train:validation:test = 8:1:1
     trainNo = math.floor(0.8*data.shape[0])
     validNo = math.floor(0.1*data.shape[0])
-
+    trainNo = int(trainNo)
+    validNo = int(validNo)
     trainData = data[dataOrder[0:trainNo], :]
     validData = data[dataOrder[trainNo:trainNo+validNo], :]
     testData = data[dataOrder[trainNo+validNo:], :]
