@@ -8,6 +8,8 @@
 5. with random.seed(123), it's not real random now...
 6. Two corners, 2s for one image (48*48). Four coners, 4s. 
 7. Now not just add hidden information together. It's concatenate.
+8. Use GPU, then should store in float32, sometimes the input need restore, so should
+    "allow_input_downcast=True"
 
 @Zhewei
 7/15/2016
@@ -383,19 +385,22 @@ train_fn = theano.function(
     inputs=[data,targets],
     outputs =[cost],
     updates=updates,
-    on_unused_input='warn'
+    on_unused_input='warn',
+    allow_input_downcast=True
 )
 
 eval_fn = theano.function(
     inputs=[data,targets],
     outputs =[cost],
-    on_unused_input='warn'
+    on_unused_input='warn',
+    allow_input_downcast=True
 )
 
 sample_fn = theano.function(
     inputs=[data,targets],
     outputs =[output],
-    on_unused_input='ignore'
+    on_unused_input='ignore',
+    allow_input_downcast=True
 )
 
 

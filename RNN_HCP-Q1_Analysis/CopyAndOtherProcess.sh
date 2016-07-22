@@ -17,8 +17,9 @@ IIDarray=(100307 103515 103818 111312 114924 \
 861456 865363 877168 889579 894673 896778 896879 \
 901139 917255 937160  )
 
-Classarray=('EMOTION' 'GAMBLING' 'LANGUAGE' 'MOTOR' \
-              'RELATIONAL' 'SOCIAL' 'WM')
+# Classarray=('EMOTION' 'GAMBLING' 'LANGUAGE' 'MOTOR' \
+              # 'RELATIONAL' 'SOCIAL' 'WM')
+Classarray=('RELATIONAL')
 
 for ID in ${IIDarray[@]}
 do
@@ -34,6 +35,7 @@ do
         fileAddress=/home/medialab/data/HCP-Q1/tfMRI/$ID/$class
         # gzip -d *.nii.gz
         # dcm2nii *.nii < /home/medialab/tmp/tmp.txt
+        rm $ID\_$class\_results.txt
         for niifile in $(ls f*.nii)
         do
             echo $fileAddress'/'$niifile
