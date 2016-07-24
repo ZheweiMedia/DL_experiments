@@ -1,0 +1,6 @@
+1. All python code word under python 2.7 enviroment.
+2. The data used for word embedding should download online as described in the report.
+3. DataAnalysis.py used to generate the final projects data we need. (1993 projects.)
+4. LeaningModel.py used to train the machine learning model.
+5. Innovation.py used to generate the data and the feature (document distance one vs. rest).
+6. DataVisualize used to visualize the data about innovation, to see if outlying means more paper will be published.
