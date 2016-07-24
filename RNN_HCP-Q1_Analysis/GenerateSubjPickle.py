@@ -58,10 +58,14 @@ IID_List = (100307,103515,103818,111312,114924, \
 685058, 729557, 732243, 792564, 826353, 856766, 859671, \
 861456, 865363, 877168, 889579, 894673, 896778, 896879, \
 901139, 917255, 937160 )
+
 WholeData = dict((elem,'') for elem in IID_List)
 
 postfix = '.pickle.gz'
 #******************************
+MagicNoSub = 6 # for subject
+MagicNoClassBegin = 7
+MagicNoClassEnd = 9
 #******************************
 
 
@@ -78,14 +82,29 @@ def usage (programm):
     print ("usage: %s data/HCP_data/*.txt"%(programm))
     
 def work(files):
+    invalidSubj = list()
     for fNo, fi in enumerate(files):
         #print (fi)
         tmpFile = os.path.basename(fi)
-        print (tmpFile[0:6])
+        Subj = tmpFile[0:MagicNoSub]
+        Class = tmpFile[MagicNoClassBegin:MagicNoClassEnd]
         with open(fi) as f:
             content = f.readlines()
+            
+        tmpData = list()
 
-
+        for line in content:
+            try:
+                tmp = float(line)
+                # tmp = tmp*(local_max-local_min)+local_min
+                # tmp = (tmp-global_min)/(global_max-global_min)
+                tmpData.append(tmp)
+                if math.isnan(tmp):
+                    invalidSubj.append(Subj+Class)
+            except ValueError:
+                pass
+       
+    print (set(invalidSubj))
 
 
 
