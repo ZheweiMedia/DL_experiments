@@ -20,7 +20,9 @@ Classes and frames and Label:
 
 all data read or write in ./data/HCP_data/
 
-data structure: keys are subjects, values are classes, each class results are in a array, 120(zones)*timeframes.
+data structure: the whole data is a dict.
+
+keys are subjects, values are a dict, keys are classes, each class results are in a array, 120(zones)*timeframes.
 
 ******************************************
 
@@ -57,8 +59,7 @@ IID_List = (100307,103515,103818,111312,114924, \
 861456, 865363, 877168, 889579, 894673, 896778, 896879, \
 901139, 917255, 937160 )
 WholeData = dict((elem,'') for elem in IID_List)
-print (WholeData.keys())
-label = 0
+
 postfix = '.pickle.gz'
 #******************************
 #******************************
@@ -78,9 +79,9 @@ def usage (programm):
     
 def work(files):
     for fNo, fi in enumerate(files):
-        print (fi)
+        #print (fi)
         tmpFile = os.path.basename(fi)
-        print (tmpFile)
+        print (tmpFile[0:6])
         with open(fi) as f:
             content = f.readlines()
 
