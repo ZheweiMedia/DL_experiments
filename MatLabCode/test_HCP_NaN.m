@@ -108,8 +108,10 @@ for ifile = 1:numfiles
         for i = 1:x
             for j = 1:y
                 for k = 1:z
-                    index_intensity = find(nii_atlas.img(i,j,k)==dictionary(:,2));
+                    index_intensity = find(nii_atlas.img(i,j,k)==5402);
                     if ~isempty(index_intensity)
+                        display(i);display(j);display(k);
+                        display(double(nii_fMRI.img(i,j,k)));
                         statist_table(index_intensity,3) = statist_table(index_intensity,3)+1;
                         pixel = (double(nii_fMRI.img(i,j,k))-global_min)/(global_max-global_min);
                         statist_table(index_intensity,2) = statist_table(index_intensity,2)+pixel;

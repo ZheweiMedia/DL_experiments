@@ -8,9 +8,9 @@
 %
 %% input image IDs
 % clear all
-IID = [ 901139 917255 937160 ];
+IID = [ 861456 ];
 
-class = ['RELATIONAL'];
+class = ['EMOTION'];
 
 
 Path2 = './data/LMCI_data/DifferentSample.txt';
