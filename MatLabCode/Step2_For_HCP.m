@@ -8,7 +8,17 @@
 %%
 
 %%
-IID = [ 861456 ];
+IID = [ 100307 103515 103818 111312 114924 ...\
+117122 118932 119833 120212 125525 128632 130013 ...\
+137128 138231 142828 143325 149337 ...\
+150423 153429 156637 159239 161731 162329 167743 ...\
+182739 191437 192439 192540 194140 197550 ...\
+199150 199251 200614 201111 210617 217429 249947 ...\
+250427 304020 307127 329440 499566 ...\
+530635 559053 585862 638049 665254 672756 ...\
+685058 729557 732243 792564 826353 856766 859671 ...\
+861456 865363 877168 889579 894673 896778 896879 ...\
+901139 917255 937160 ];
 
 class = ['EMOTION'];
 lenthOfFMRI = 176;
@@ -71,7 +81,7 @@ global_max = max(max(global_max));
 % open a file, write data in it
 
 
-for ifile = 1:numfiles
+parfor ifile = 1:numfiles
     
     fileID = IID(ifile);
     Path = strcat('/home/medialab/data/HCP-Q1/tfMRI/',sprintf('%d',fileID),'/',class,'/',strcat(sprintf('%d',fileID),'_',class,'_','results','.txt'));
@@ -110,9 +120,11 @@ for ifile = 1:numfiles
                 for k = 1:z
                     index_intensity = find(nii_atlas.img(i,j,k)==dictionary(:,2));
                     if ~isempty(index_intensity)
-                        statist_table(index_intensity,3) = statist_table(index_intensity,3)+1;
-                        pixel = (double(nii_fMRI.img(i,j,k))-global_min)/(global_max-global_min);
-                        statist_table(index_intensity,2) = statist_table(index_intensity,2)+pixel;
+                        if ~isnan(double(nii_fMRI.img(i,j,k)))
+                            statist_table(index_intensity,3) = statist_table(index_intensity,3)+1;
+                            pixel = (double(nii_fMRI.img(i,j,k))-global_min)/(global_max-global_min);
+                            statist_table(index_intensity,2) = statist_table(index_intensity,2)+pixel;
+                        end
                     end
                 end
             end
