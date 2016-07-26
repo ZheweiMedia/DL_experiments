@@ -23,7 +23,7 @@ Classes and frames and Label:
 2. data structure: the whole data is a dict.
 
         keys are subjects, values are a dict, keys are classes, each class results are in a array, 120(zones)*timeframes.
-3. TODO: We'd better use the residual values. 
+3. We'd better use the residual values. 
 4. length. What should we do about different length? Now just simply choose the shortest one.
 
 ******************************************
@@ -46,6 +46,7 @@ import numpy as np
 import random
 import math
 from collections import defaultdict
+import matplotlib.pyplot as pyplot
 
 
 #******************************
@@ -83,7 +84,7 @@ def main(args):
         usage( args[0] )
         pass
     else:
-        RNN_Fuction( args[1:] )
+        dataAnalysis( args[1:] )
         pass
     pass
     
@@ -108,8 +109,8 @@ def origin_Or_res(datalist, option=None):
     data = np.array(datalist)
     data = data.reshape(ZoneNo,-1)
     if option == 'res':
-        timeStep = shape(data)[-1]
-        tmpData = np.zeros(ZoneNo, timeStep-1)
+        timeStep = np.shape(data)[-1]
+        tmpData = np.zeros((ZoneNo, timeStep-1))
         for time in range(1, timeStep):
             tmpData[:,time-1] = data[:,time]-data[:,time-1]
         data = tmpData
@@ -117,6 +118,7 @@ def origin_Or_res(datalist, option=None):
             
     
 def work(files):
+    # can return wholedata or whole residual data
     invalidSubj = list()
     for fNo, fi in enumerate(files):
         #print (fi)
@@ -143,13 +145,43 @@ def work(files):
         WholeRes[Subj][Class] = origin_Or_res(tmpData,option='res')
         
     print ('The subjects that contain NaN valuse are :',set(invalidSubj))
+    # print(len(WholeRes['100307']['RE']))
     return WholeRes
     
-    
 
-def RNN_Fuction(files):
+def visualize(data):
+
+    # a lot of dirty work at here.
+    Data = data
+    timeStep1 = np.shape(Data['100307']['EM'])[-1]
+    timeStep2 = np.shape(Data['100307']['RE'])[-1]
+    sampleNo = len(list(Data.keys()))
+    No1 = 0
+    No2 = 0
+    pyplot.figure(1)
+    for IID in list(Data.keys()):
+
+        # print (IID)
+        if 'EM' in list(Data[IID].keys()):
+            for time1 in range(ZoneNo):
+                color = (No1/(2*sampleNo)+0.5,0,0)
+                plot1, = pyplot.plot(range(timeStep1), Data[IID]['EM'][time1,:], 'o-', color = color, label = 'EM', alpha = 0.7)
+            No1 += 1
+        if 'RE' in list(Data[IID].keys()):
+            for time1 in range(ZoneNo):
+                color = (0,No2/(2*sampleNo)+0.5,0)
+                plot2, = pyplot.plot(range(timeStep2), Data[IID]['RE'][time1,:], 'o-', color = color, label = 'RE', alpha = 0.7)
+            No2 += 1
+            
+    pyplot.legend(handles=[plot1, plot2], loc = 4)   
+    pyplot.show()
+
+def dataAnalysis(files):
     Data = work(files)
     # visualize
+    # visualize(Data)
+    
+    # Now lets's do RNN
     
 
 
