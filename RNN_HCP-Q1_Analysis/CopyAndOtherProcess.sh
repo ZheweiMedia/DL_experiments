@@ -22,7 +22,7 @@ IIDarray=(100307 103515 103818 111312 114924 \
 # Classarray=('EMOTION' 'GAMBLING' 'LANGUAGE' 'MOTOR' \
               # 'RELATIONAL' 'SOCIAL' 'WM')
               
-Classarray=('RELATIONAL')
+Classarray=('EMOTION' 'RELATIONAL')
 
 for ID in ${IIDarray[@]}
 do
@@ -38,8 +38,8 @@ do
         fileAddress=/home/medialab/data/HCP-Q1/tfMRI/$ID/$class
         # gzip -d *.nii.gz
         # dcm2nii *.nii < /home/medialab/tmp/tmp.txt
-        # cp $ID\_$class\_results.txt /home/medialab/Zhewei/data/HCP_data/
-        rm $ID\_$class\_results.txt
+        cp $ID\_$class\_results.txt /home/medialab/Zhewei/data/HCP_data/
+        # rm $ID\_$class\_results.txt
         for niifile in $(ls f*.nii)
         do
             echo $fileAddress'/'$niifile

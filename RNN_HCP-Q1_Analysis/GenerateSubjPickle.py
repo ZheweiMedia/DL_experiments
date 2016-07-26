@@ -43,6 +43,7 @@ import pickle as Pickle
 import numpy as np
 import random
 import math
+from collections import defaultdict
 
 
 #******************************
@@ -59,13 +60,17 @@ IID_List = (100307,103515,103818,111312,114924, \
 861456, 865363, 877168, 889579, 894673, 896778, 896879, \
 901139, 917255, 937160 )
 
-WholeData = dict((elem,'') for elem in IID_List)
+
+WholeData = defaultdict(dict)
 
 postfix = '.pickle.gz'
 #******************************
 MagicNoSub = 6 # for subject
 MagicNoClassBegin = 7
 MagicNoClassEnd = 9
+global_max = 48728
+global_min = -6619
+
 #******************************
 
 
@@ -79,15 +84,29 @@ def main(args):
     pass
     
 def usage (programm):
-    print ("usage: %s data/HCP_data/*.txt"%(programm))
+    print ("usage: %s ../data/HCP_data/*.txt"%(programm))
+    
+def Renormalize(className, value):
+    # className = 'EM', 'GA', 'LA', 'MO', 'RE', 'SO', 'WM'
+    if className == 'EM':
+        local_max = 47784
+        local_min = -5402
+    if className == 'RE':
+        local_max = 48728
+        local_min = -6619
+    # go back to the original value
+    value = value*(local_max-local_min)+local_min
+    # renormalize
+    value = (value-global_min)/(global_max-global_min)
+    return value
     
 def work(files):
     invalidSubj = list()
     for fNo, fi in enumerate(files):
         #print (fi)
         tmpFile = os.path.basename(fi)
-        Subj = tmpFile[0:MagicNoSub]
-        Class = tmpFile[MagicNoClassBegin:MagicNoClassEnd]
+        Subj = str(tmpFile[0:MagicNoSub])
+        Class = str(tmpFile[MagicNoClassBegin:MagicNoClassEnd])
         with open(fi) as f:
             content = f.readlines()
             
@@ -96,15 +115,20 @@ def work(files):
         for line in content:
             try:
                 tmp = float(line)
-                # tmp = tmp*(local_max-local_min)+local_min
-                # tmp = (tmp-global_min)/(global_max-global_min)
+                # renormalize
+                tmp = Renormalize(Class, tmp)
                 tmpData.append(tmp)
                 if math.isnan(tmp):
                     invalidSubj.append(Subj+Class)
             except ValueError:
                 pass
-       
+        # save the class value in a dict
+        WholeData[Subj][Class] = tmpData
+        
+            
     print (set(invalidSubj))
+    print (WholeData['100307'].keys())
+    
 
 
 
