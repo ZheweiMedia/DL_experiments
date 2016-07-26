@@ -18,11 +18,12 @@ Classes and frames and Label:
 'WM'            405
 
 
-all data read or write in ./data/HCP_data/
+1. all data read or write in ./data/HCP_data/
 
-data structure: the whole data is a dict.
+2. data structure: the whole data is a dict.
 
-keys are subjects, values are a dict, keys are classes, each class results are in a array, 120(zones)*timeframes.
+        keys are subjects, values are a dict, keys are classes, each class results are in a array, 120(zones)*timeframes.
+3. We'd better use the residual values.
 
 ******************************************
 
@@ -62,6 +63,7 @@ IID_List = (100307,103515,103818,111312,114924, \
 
 
 WholeData = defaultdict(dict)
+WholeRes = defaultdict(dict)
 
 postfix = '.pickle.gz'
 #******************************
@@ -125,9 +127,16 @@ def work(files):
         # save the class value in a dict
         WholeData[Subj][Class] = tmpData
         
+        # compute the residual values
+        resData = list()
+        for lineNo in range(1, len(tmpData)):
+            res = tmpData[lineNo]-tmpData[lineNo-1]
+            resData.append(res)
+        WholeRes[Subj][Class] = resData
+        
             
-    print (set(invalidSubj))
-    print (WholeData['100307'].keys())
+    print ('The subjects that contain NaN valuse are :',set(invalidSubj))
+    print (len(WholeRes['100307']['EM']))
     
 
 
