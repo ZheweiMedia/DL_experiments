@@ -23,7 +23,8 @@ Classes and frames and Label:
 2. data structure: the whole data is a dict.
 
         keys are subjects, values are a dict, keys are classes, each class results are in a array, 120(zones)*timeframes.
-3. We'd better use the residual values.
+3. TODO: We'd better use the residual values. 
+4. length. What should we do about different length? Now just simply choose the shortest one.
 
 ******************************************
 
@@ -67,6 +68,7 @@ WholeRes = defaultdict(dict)
 
 postfix = '.pickle.gz'
 #******************************
+ZoneNo = 120
 MagicNoSub = 6 # for subject
 MagicNoClassBegin = 7
 MagicNoClassEnd = 9
@@ -81,7 +83,7 @@ def main(args):
         usage( args[0] )
         pass
     else:
-        work( args[1:] )
+        RNN_Fuction( args[1:] )
         pass
     pass
     
@@ -101,6 +103,18 @@ def Renormalize(className, value):
     # renormalize
     value = (value-global_min)/(global_max-global_min)
     return value
+
+def origin_Or_res(datalist, option=None):
+    data = np.array(datalist)
+    data = data.reshape(ZoneNo,-1)
+    if option == 'res':
+        timeStep = shape(data)[-1]
+        tmpData = np.zeros(ZoneNo, timeStep-1)
+        for time in range(1, timeStep):
+            tmpData[:,time-1] = data[:,time]-data[:,time-1]
+        data = tmpData
+    return data
+            
     
 def work(files):
     invalidSubj = list()
@@ -125,18 +139,17 @@ def work(files):
             except ValueError:
                 pass
         # save the class value in a dict
-        WholeData[Subj][Class] = tmpData
+        WholeData[Subj][Class] = origin_Or_res(tmpData)
+        WholeRes[Subj][Class] = origin_Or_res(tmpData,option='res')
         
-        # compute the residual values
-        resData = list()
-        for lineNo in range(1, len(tmpData)):
-            res = tmpData[lineNo]-tmpData[lineNo-1]
-            resData.append(res)
-        WholeRes[Subj][Class] = resData
-        
-            
     print ('The subjects that contain NaN valuse are :',set(invalidSubj))
-    print (len(WholeRes['100307']['EM']))
+    return WholeRes
+    
+    
+
+def RNN_Fuction(files):
+    Data = work(files)
+    # visualize
     
 
 
