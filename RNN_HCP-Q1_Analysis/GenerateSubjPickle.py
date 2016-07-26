@@ -48,6 +48,17 @@ import math
 from collections import defaultdict
 import matplotlib.pyplot as pyplot
 
+from random import shuffle, randint
+from keras.utils import np_utils
+from keras.models import Sequential
+from keras.layers.core import Dense, Activation
+from keras.layers import LSTM
+from keras.optimizers import RMSprop, SGD
+from keras.initializations import normal, identity
+
+from sklearn.feature_selection import SelectKBest
+from sklearn.feature_selection import chi2, f_classif
+
 
 #******************************
 #******************************
@@ -69,12 +80,20 @@ WholeRes = defaultdict(dict)
 
 postfix = '.pickle.gz'
 #******************************
+
 ZoneNo = 120
+Length = 175
 MagicNoSub = 6 # for subject
 MagicNoClassBegin = 7
 MagicNoClassEnd = 9
 global_max = 48728
 global_min = -6619
+
+select_feature = 60
+nb_classes = 2
+hd_notes = 20
+learning_rate = 1e-4
+nb_epoch = 1000
 
 #******************************
 
@@ -107,12 +126,12 @@ def Renormalize(className, value):
 
 def origin_Or_res(datalist, option=None):
     data = np.array(datalist)
-    data = data.reshape(ZoneNo,-1)
+    data = data.reshape(-1, ZoneNo)
     if option == 'res':
-        timeStep = np.shape(data)[-1]
-        tmpData = np.zeros((ZoneNo, timeStep-1))
+        timeStep = np.shape(data)[0]
+        tmpData = np.zeros((timeStep-1, ZoneNo))
         for time in range(1, timeStep):
-            tmpData[:,time-1] = data[:,time]-data[:,time-1]
+            tmpData[time-1, :] = data[time, :]-data[time-1, :]
         data = tmpData
     return data
             
@@ -151,7 +170,7 @@ def work(files):
 
 def visualize(data):
 
-    # a lot of dirty work at here.
+    # a lot of dirty code at here.
     Data = data
     timeStep1 = np.shape(Data['100307']['EM'])[-1]
     timeStep2 = np.shape(Data['100307']['RE'])[-1]
@@ -165,25 +184,132 @@ def visualize(data):
         if 'EM' in list(Data[IID].keys()):
             for time1 in range(ZoneNo):
                 color = (No1/(2*sampleNo)+0.5,0,0)
-                plot1, = pyplot.plot(range(timeStep1), Data[IID]['EM'][time1,:], 'o-', color = color, label = 'EM', alpha = 0.7)
+                plot1, = pyplot.plot(range(timeStep1), Data[IID]['EM'][:, time1], 'o-', color = color, label = 'EM', alpha = 0.7)
             No1 += 1
         if 'RE' in list(Data[IID].keys()):
             for time1 in range(ZoneNo):
                 color = (0,No2/(2*sampleNo)+0.5,0)
-                plot2, = pyplot.plot(range(timeStep2), Data[IID]['RE'][time1,:], 'o-', color = color, label = 'RE', alpha = 0.7)
+                plot2, = pyplot.plot(range(timeStep2), Data[IID]['RE'][:, time1], 'o-', color = color, label = 'RE', alpha = 0.7)
             No2 += 1
             
     pyplot.legend(handles=[plot1, plot2], loc = 4)   
     pyplot.show()
+    
+def stackData(WholeData, Subj):
+    # input whole data and subject ID
+    # output stacked subject data, and labels. 
+    # now we only consider about two classes, and I wrote very dirty code again...
+    # and keep the t
+    Data = np.zeros([1,1])
+    Label = np.zeros([1,1])
+    flag = False
+    for iNo, i in enumerate(Subj):
+        if 'EM' in list(WholeData[i].keys()) and flag == False:
+            Data = WholeData[i]['EM']
+            Label = 0
+            flag = True
+        if 'RE' in list(WholeData[i].keys()) and flag == False:
+            Data = WholeData[i]['RE'][0:Length,:]
+            Label = 1
+            flag = True
+        if 'EM' in list(WholeData[i].keys()) and flag == True:
+            Data = np.vstack((Data, WholeData[i]['EM']))
+            Label = np.append(Label, 0)
+        if 'RE' in list(WholeData[i].keys()) and flag == True:
+            Data = np.vstack((Data, WholeData[i]['RE'][0:Length,:]))
+            Label = np.append(Label, 1)
+            
+    return Data, Label
+
+
+def featureSelection(data1, data2, data3, label1, label2, label3, timeLength):
+    all_data = np.vstack((data1, data2))
+    all_data = np.vstack((all_data, data3))
+    all_label = np.hstack((label1, label2), )
+    all_label = np.hstack((all_label, label3))
+    
+    all_label = list(all_label)
+    tmp_wholeList = list()
+    for i in all_label:
+        tmpList = [i for j in range(timeLength)]
+        tmp_wholeList = tmp_wholeList+tmpList
+    
+    SelectedData = SelectKBest(f_classif, k=select_feature).fit_transform(all_data, tmp_wholeList)
+    
+    data1 = SelectedData[0:timeLength*len(label1),:]
+    data2 = SelectedData[timeLength*len(label1):timeLength*len(label1)+timeLength*len(label2),:]
+    data3 = SelectedData[timeLength*len(label1)+timeLength*len(label2):timeLength*len(label1) \
+                            +timeLength*len(label2)+timeLength*len(label3),:]
+    
+    return data1, data2, data3
+    
 
 def dataAnalysis(files):
-    Data = work(files)
+    ALLData = work(files)
     # visualize
-    # visualize(Data)
+    # visualize(ALLData)
     
     # Now lets's do RNN
+    print (ALLData['100307']['EM'].shape)
+    print (ALLData['100307']['RE'].shape)
+    # separate as train, test, validation first...
+    sampleNo = len(list(ALLData.keys()))
+    trainNo = math.floor(0.8*sampleNo)
+    validationNo = math.floor(0.1*sampleNo)
     
+    trainSubj = list(ALLData.keys())[0:trainNo]
+    validationSubj = list(ALLData.keys())[trainNo:trainNo+validationNo]
+    testSubj = list(ALLData.keys())[trainNo+validationNo:]
+    
+    trainData, trainLabel = stackData(ALLData, trainSubj)
+    validationData, validationLabel = stackData(ALLData, validationSubj)
+    testData, testLabel = stackData(ALLData, testSubj)
+    
+    trainData, validationData, testData = featureSelection(trainData, \
+                    validationData, testData, trainLabel, validationLabel, testLabel, Length)
+    
+    trainData = trainData.reshape((-1, Length, select_feature))
+    validationData = validationData.reshape((-1, Length, select_feature))
+    testData = testData.reshape((-1, Length, select_feature))
+        
+    print (trainData.shape)
+    print (trainLabel.shape)
+        
+    Y_train = np_utils.to_categorical(trainLabel, nb_classes)
+    Y_test = np_utils.to_categorical(testLabel, nb_classes)
+    Y_valid = np_utils.to_categorical(validationLabel, nb_classes)
+        
+    print ("Building model...")
+    model = Sequential()
+    model.add(LSTM(hd_notes, input_shape=(Length, select_feature),\
+                        init='glorot_uniform',\
+                        inner_init='orthogonal',\
+                        forget_bias_init='one',\
+                        inner_activation='sigmoid',\
+                        activation='tanh', return_sequences=False,\
+                        dropout_W=0, dropout_U=0))
+    model.add(Dense(nb_classes))
+    model.add(Activation('softmax'))
+    rmsprop = RMSprop(lr=learning_rate, rho=0.9, epsilon=1e-06)
+    model.compile(loss='binary_crossentropy', optimizer='adam', metrics=["accuracy"])
+    # sgd = SGD(lr=learning_rate, momentum=0.0, decay=0.0, nesterov=False)
+    # model.compile(loss='binary_crossentropy', optimizer=sgd, metrics=["accuracy"])
+        
+    print ("Training model...")
 
+    model.fit(trainData, Y_train, \
+                nb_epoch=nb_epoch, verbose=1, validation_data=(validationData, Y_valid))
+
+    scores = model.evaluate(testData, Y_test, verbose=1)
+    print('RNN test score:', scores[0])
+    print('RNN test accuracy:', scores[1])
+    print (testLabel)
+    print (model.predict_classes(testData))
+        
+        
+    
+    
+    
 
 
 
