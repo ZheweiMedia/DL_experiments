@@ -22,7 +22,7 @@ IIDarray=(100307 103515 103818 111312 114924 \
 # Classarray=('EMOTION' 'GAMBLING' 'LANGUAGE' 'MOTOR' \
               # 'RELATIONAL' 'SOCIAL' 'WM')
               
-Classarray=('EMOTION' 'RELATIONAL')
+Classarray=('RELATIONAL')
 
 for ID in ${IIDarray[@]}
 do
