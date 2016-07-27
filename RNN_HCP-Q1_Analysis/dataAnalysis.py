@@ -47,6 +47,8 @@ import random
 import math
 from collections import defaultdict
 import matplotlib.pyplot as pyplot
+np.random.seed(123)
+random.seed(123)
 
 from random import shuffle, randint
 from keras.utils import np_utils
@@ -91,9 +93,9 @@ MagicNoClassEnd = 9
 global_max = 48728
 global_min = -6619
 
-select_feature = 2
+select_feature = 60
 nb_classes = 2
-hd_notes = 20
+hd_notes = 10
 learning_rate = 1e-4
 nb_epoch = 1000
 
@@ -131,9 +133,9 @@ def origin_Or_res(datalist, option=None):
     data = data.reshape(-1, ZoneNo)
     if option == 'res':
         timeStep = np.shape(data)[0]
-        tmpData = np.zeros((timeStep-1, ZoneNo))
+        tmpData = np.zeros(( timeStep-1, ZoneNo))
         for time in range(1, timeStep):
-            tmpData[time-1, :] = data[time, :]-data[time-1, :]
+            tmpData[time-1, :,] = data[time, :]-data[time-1, :]
         data = tmpData
     return data
             
@@ -142,7 +144,6 @@ def data_clean(files):
     # can return wholedata or whole residual data
     invalidSubj = list()
     for fNo, fi in enumerate(files):
-        #print (fi)
         tmpFile = os.path.basename(fi)
         Subj = str(tmpFile[0:MagicNoSub])
         Class = str(tmpFile[MagicNoClassBegin:MagicNoClassEnd])
@@ -166,33 +167,34 @@ def data_clean(files):
         WholeRes[Subj][Class] = origin_Or_res(tmpData,option='res')
         
     print ('The subjects that contain NaN valuse are :',set(invalidSubj))
-    # print(len(WholeRes['100307']['RE']))
     # return WholeRes
     return WholeData
     
 
-def visualize1(wholeData):
+def visualize(wholeData, orderList):
 
     # a lot of dirty code at here.
     # the same size length, all data
-    
+    # wht the order is randomly?
 
-    sampleNo = len(list(wholeData.keys()))
+    sampNo = len(list(wholeData.keys()))
     No1 = 0
     No2 = 0
     pyplot.figure(1)
-    for IID in list(wholeData.keys()):
-        if 'EM'in list(wholeData[IID].keys()):
-            color = (No1/(2*sampleNo)+0.5,0,0)
-            plot1, = pyplot.plot(wholeData[IID]['EM'][:,0], \
-                                wholeData[IID]['EM'][:,1], 'o-', color = color, label = 'EM', alpha = 0.7)
-        No1 += 1
-        if 'RE'in list(wholeData[IID].keys()):
-            color = (0,No2/(2*sampleNo)+0.5,0)
-            plot2, = pyplot.plot(wholeData[IID]['RE'][:,0], \
-                                wholeData[IID]['RE'][:,1], 'o-', color = color, label = 'RE', alpha = 0.7)
-        No2 += 1
-            
+    VisuIID = orderList[0:22]
+    print (wholeData[str(156637)]['EM'])
+    for IID in VisuIID:
+        print (IID)
+        if 'EM' in list(wholeData[str(IID)].keys()):
+            color = (No1/(2*sampNo)+0.5,0,0)
+            plot1, = pyplot.plot(wholeData[str(IID)]['EM'][:,0], \
+                                wholeData[str(IID)]['EM'][:,1], 'o-', color = color, label = 'EM', alpha = 0.7)
+            No1 += 1
+        if 'RE' in list(wholeData[str(IID)].keys()):
+            color = (0,No2/(2*sampNo)+0.5,0)
+            plot2, = pyplot.plot(wholeData[str(IID)]['RE'][:,0], \
+                                wholeData[str(IID)]['RE'][:,1], 'o-', color = color, label = 'RE', alpha = 0.7)
+            No2 += 1
     pyplot.legend(handles=[plot1, plot2], loc = 4)   
     pyplot.show()
     
@@ -235,21 +237,16 @@ def stackData(WholeData, Subj):
 
 def featureSelection(dataDict):
     all_data, all_label, orderSubj, orderClass = stackData(dataDict, list(dataDict.keys()))
-    print (all_data.shape)
     all_label = list(all_label)
     tmp_wholeList = list()
     for i in all_label:
         timeLength = Length
         tmpList = [i for j in range(timeLength)]
         tmp_wholeList = tmp_wholeList+tmpList
-    print (len(tmp_wholeList))
+    
     SelectedData = SelectKBest(f_classif, k=select_feature).fit_transform(all_data, tmp_wholeList)
-    print (SelectedData.shape)
-    print (len(orderSubj))
-    print (len(orderClass))
     for orderNo in range(len(orderSubj)):
         dataDict[orderSubj[orderNo]][orderClass[orderNo]] = SelectedData[orderNo*Length:(orderNo+1)*Length,:]
-        print (SelectedData[orderNo*Length:(orderNo+1)*Length,:].shape)
     
     return dataDict
     
@@ -259,7 +256,7 @@ def dataAnalysis(files):
 
     # featureSelection
     ALLData = featureSelection(ALLData)
-    visualize1(ALLData)
+    # visualize(ALLData, list(IID_List))
     
     # Now lets's do RNN
     print (ALLData['100307']['EM'].shape)
@@ -273,9 +270,9 @@ def dataAnalysis(files):
     validationSubj = list(ALLData.keys())[trainNo:trainNo+validationNo]
     testSubj = list(ALLData.keys())[trainNo+validationNo:]
     
-    trainData, trainLabel,  = stackData(ALLData, trainSubj)
-    validationData, validationLabel,  = stackData(ALLData, validationSubj)
-    testData, testLabel,  = stackData(ALLData, testSubj)
+    trainData, trainLabel, order1, order2 = stackData(ALLData, trainSubj)
+    validationData, validationLabel, order1, order2 = stackData(ALLData, validationSubj)
+    testData, testLabel, order1, order2 = stackData(ALLData, testSubj)
     
     
     
@@ -285,7 +282,7 @@ def dataAnalysis(files):
     
     
     
-    '''trainData = trainData.reshape((-1, Length, select_feature))
+    trainData = trainData.reshape((-1, Length, select_feature))
     validationData = validationData.reshape((-1, Length, select_feature))
     testData = testData.reshape((-1, Length, select_feature))
         
@@ -321,7 +318,7 @@ def dataAnalysis(files):
     print('RNN test score:', scores[0])
     print('RNN test accuracy:', scores[1])
     print (testLabel)
-    print (model.predict_classes(testData))'''
+    print (model.predict_classes(testData))
         
         
     
