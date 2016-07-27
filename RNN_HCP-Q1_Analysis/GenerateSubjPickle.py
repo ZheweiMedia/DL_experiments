@@ -136,7 +136,7 @@ def origin_Or_res(datalist, option=None):
     return data
             
     
-def work(files):
+def data_clean(files):
     # can return wholedata or whole residual data
     invalidSubj = list()
     for fNo, fi in enumerate(files):
@@ -245,7 +245,7 @@ def featureSelection(data1, data2, data3, label1, label2, label3, timeLength):
     
 
 def dataAnalysis(files):
-    ALLData = work(files)
+    ALLData = data_clean(files)
     # visualize
     # visualize(ALLData)
     
