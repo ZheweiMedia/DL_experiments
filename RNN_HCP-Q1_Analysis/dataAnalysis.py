@@ -83,13 +83,15 @@ postfix = '.pickle.gz'
 
 ZoneNo = 120
 Length = 175
+EM_Length = 176
+RE_Length = 232
 MagicNoSub = 6 # for subject
 MagicNoClassBegin = 7
 MagicNoClassEnd = 9
 global_max = 48728
 global_min = -6619
 
-select_feature = 60
+select_feature = 2
 nb_classes = 2
 hd_notes = 20
 learning_rate = 1e-4
@@ -165,32 +167,31 @@ def data_clean(files):
         
     print ('The subjects that contain NaN valuse are :',set(invalidSubj))
     # print(len(WholeRes['100307']['RE']))
-    return WholeRes
+    # return WholeRes
+    return WholeData
     
 
-def visualize(data):
+def visualize1(wholeData):
 
     # a lot of dirty code at here.
-    Data = data
-    timeStep1 = np.shape(Data['100307']['EM'])[-1]
-    timeStep2 = np.shape(Data['100307']['RE'])[-1]
-    sampleNo = len(list(Data.keys()))
+    # the same size length, all data
+    
+
+    sampleNo = len(list(wholeData.keys()))
     No1 = 0
     No2 = 0
     pyplot.figure(1)
-    for IID in list(Data.keys()):
-
-        # print (IID)
-        if 'EM' in list(Data[IID].keys()):
-            for time1 in range(ZoneNo):
-                color = (No1/(2*sampleNo)+0.5,0,0)
-                plot1, = pyplot.plot(range(timeStep1), Data[IID]['EM'][:, time1], 'o-', color = color, label = 'EM', alpha = 0.7)
-            No1 += 1
-        if 'RE' in list(Data[IID].keys()):
-            for time1 in range(ZoneNo):
-                color = (0,No2/(2*sampleNo)+0.5,0)
-                plot2, = pyplot.plot(range(timeStep2), Data[IID]['RE'][:, time1], 'o-', color = color, label = 'RE', alpha = 0.7)
-            No2 += 1
+    for IID in list(wholeData.keys()):
+        if 'EM'in list(wholeData[IID].keys()):
+            color = (No1/(2*sampleNo)+0.5,0,0)
+            plot1, = pyplot.plot(wholeData[IID]['EM'][:,0], \
+                                wholeData[IID]['EM'][:,1], 'o-', color = color, label = 'EM', alpha = 0.7)
+        No1 += 1
+        if 'RE'in list(wholeData[IID].keys()):
+            color = (0,No2/(2*sampleNo)+0.5,0)
+            plot2, = pyplot.plot(wholeData[IID]['RE'][:,0], \
+                                wholeData[IID]['RE'][:,1], 'o-', color = color, label = 'RE', alpha = 0.7)
+        No2 += 1
             
     pyplot.legend(handles=[plot1, plot2], loc = 4)   
     pyplot.show()
@@ -202,52 +203,63 @@ def stackData(WholeData, Subj):
     # and keep the t
     Data = np.zeros([1,1])
     Label = np.zeros([1,1])
+    orderSubj = list() # use for go back the dist
+    orderClass = list()
     flag = False
     for iNo, i in enumerate(Subj):
         if 'EM' in list(WholeData[i].keys()) and flag == False:
-            Data = WholeData[i]['EM']
+            Data = WholeData[i]['EM'][0:Length,:]
             Label = 0
+            orderSubj += [i]
+            orderClass += ['EM']
             flag = True
         if 'RE' in list(WholeData[i].keys()) and flag == False:
             Data = WholeData[i]['RE'][0:Length,:]
             Label = 1
+            orderSubj += [i]
+            orderClass += ['RE']
             flag = True
         if 'EM' in list(WholeData[i].keys()) and flag == True:
-            Data = np.vstack((Data, WholeData[i]['EM']))
+            Data = np.vstack((Data, WholeData[i]['EM'][0:Length,:]))
             Label = np.append(Label, 0)
+            orderSubj += [i]
+            orderClass += ['EM']
         if 'RE' in list(WholeData[i].keys()) and flag == True:
             Data = np.vstack((Data, WholeData[i]['RE'][0:Length,:]))
             Label = np.append(Label, 1)
+            orderSubj += [i]
+            orderClass += ['RE']
             
-    return Data, Label
+    return Data, Label, orderSubj, orderClass
 
 
-def featureSelection(data1, data2, data3, label1, label2, label3, timeLength):
-    all_data = np.vstack((data1, data2))
-    all_data = np.vstack((all_data, data3))
-    all_label = np.hstack((label1, label2), )
-    all_label = np.hstack((all_label, label3))
-    
+def featureSelection(dataDict):
+    all_data, all_label, orderSubj, orderClass = stackData(dataDict, list(dataDict.keys()))
+    print (all_data.shape)
     all_label = list(all_label)
     tmp_wholeList = list()
     for i in all_label:
+        timeLength = Length
         tmpList = [i for j in range(timeLength)]
         tmp_wholeList = tmp_wholeList+tmpList
-    
+    print (len(tmp_wholeList))
     SelectedData = SelectKBest(f_classif, k=select_feature).fit_transform(all_data, tmp_wholeList)
+    print (SelectedData.shape)
+    print (len(orderSubj))
+    print (len(orderClass))
+    for orderNo in range(len(orderSubj)):
+        dataDict[orderSubj[orderNo]][orderClass[orderNo]] = SelectedData[orderNo*Length:(orderNo+1)*Length,:]
+        print (SelectedData[orderNo*Length:(orderNo+1)*Length,:].shape)
     
-    data1 = SelectedData[0:timeLength*len(label1),:]
-    data2 = SelectedData[timeLength*len(label1):timeLength*len(label1)+timeLength*len(label2),:]
-    data3 = SelectedData[timeLength*len(label1)+timeLength*len(label2):timeLength*len(label1) \
-                            +timeLength*len(label2)+timeLength*len(label3),:]
-    
-    return data1, data2, data3
+    return dataDict
     
 
 def dataAnalysis(files):
     ALLData = data_clean(files)
-    # visualize
-    # visualize(ALLData)
+
+    # featureSelection
+    ALLData = featureSelection(ALLData)
+    visualize1(ALLData)
     
     # Now lets's do RNN
     print (ALLData['100307']['EM'].shape)
@@ -261,14 +273,19 @@ def dataAnalysis(files):
     validationSubj = list(ALLData.keys())[trainNo:trainNo+validationNo]
     testSubj = list(ALLData.keys())[trainNo+validationNo:]
     
-    trainData, trainLabel = stackData(ALLData, trainSubj)
-    validationData, validationLabel = stackData(ALLData, validationSubj)
-    testData, testLabel = stackData(ALLData, testSubj)
+    trainData, trainLabel,  = stackData(ALLData, trainSubj)
+    validationData, validationLabel,  = stackData(ALLData, validationSubj)
+    testData, testLabel,  = stackData(ALLData, testSubj)
     
-    trainData, validationData, testData = featureSelection(trainData, \
-                    validationData, testData, trainLabel, validationLabel, testLabel, Length)
     
-    trainData = trainData.reshape((-1, Length, select_feature))
+    
+    
+    
+    
+    
+    
+    
+    '''trainData = trainData.reshape((-1, Length, select_feature))
     validationData = validationData.reshape((-1, Length, select_feature))
     testData = testData.reshape((-1, Length, select_feature))
         
@@ -304,7 +321,7 @@ def dataAnalysis(files):
     print('RNN test score:', scores[0])
     print('RNN test accuracy:', scores[1])
     print (testLabel)
-    print (model.predict_classes(testData))
+    print (model.predict_classes(testData))'''
         
         
     
