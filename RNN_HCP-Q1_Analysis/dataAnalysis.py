@@ -95,8 +95,8 @@ global_min = -6619
 
 select_feature = 60
 nb_classes = 2
-hd_notes = 10
-learning_rate = 1e-4
+hd_notes = 50
+learning_rate = 1e-5
 nb_epoch = 1000
 
 #******************************
@@ -181,7 +181,7 @@ def visualize(wholeData, orderList):
     No1 = 0
     No2 = 0
     pyplot.figure(1)
-    VisuIID = orderList[0:22]
+    VisuIID = orderList[0:]
     print (wholeData[str(156637)]['EM'])
     for IID in VisuIID:
         print (IID)
@@ -249,14 +249,28 @@ def featureSelection(dataDict):
         dataDict[orderSubj[orderNo]][orderClass[orderNo]] = SelectedData[orderNo*Length:(orderNo+1)*Length,:]
     
     return dataDict
+
+def Normalize_eachFeature(dataDict):
+    all_data, all_label, orderSubj, orderClass = stackData(dataDict, list(dataDict.keys()))
+    print (all_data.shape)
+    for col in range(all_data.shape[1]):
+        local_max = np.amax(all_data[:,col])
+        local_min = np.amin(all_data[:,col])
+        all_data[:,col] = (all_data[:,col]-local_min)/(local_max-local_min)
+    for orderNo in range(len(orderSubj)):
+        dataDict[orderSubj[orderNo]][orderClass[orderNo]] = all_data[orderNo*Length:(orderNo+1)*Length,:]
     
+    return dataDict
 
 def dataAnalysis(files):
     ALLData = data_clean(files)
-
+    
+    ALLData = Normalize_eachFeature(ALLData)
     # featureSelection
     ALLData = featureSelection(ALLData)
     # visualize(ALLData, list(IID_List))
+    
+    
     
     # Now lets's do RNN
     print (ALLData['100307']['EM'].shape)
@@ -275,13 +289,6 @@ def dataAnalysis(files):
     testData, testLabel, order1, order2 = stackData(ALLData, testSubj)
     
     
-    
-    
-    
-    
-    
-    
-    
     trainData = trainData.reshape((-1, Length, select_feature))
     validationData = validationData.reshape((-1, Length, select_feature))
     testData = testData.reshape((-1, Length, select_feature))
@@ -295,17 +302,22 @@ def dataAnalysis(files):
         
     print ("Building model...")
     model = Sequential()
-    model.add(LSTM(hd_notes, input_shape=(Length, select_feature),\
+    '''model.add(LSTM(hd_notes, input_shape=(Length, select_feature),\
                         init='glorot_uniform',\
                         inner_init='orthogonal',\
                         forget_bias_init='one',\
                         inner_activation='sigmoid',\
                         activation='tanh', return_sequences=False,\
-                        dropout_W=0, dropout_U=0))
+                        dropout_W=0, dropout_U=0))'''
+    model.add(LSTM(hd_notes, input_shape=(Length, select_feature),\
+                            init='normal',\
+                            inner_init='identity',\
+                            activation='tanh', return_sequences=False,\
+                            dropout_W=0, dropout_U=0))
     model.add(Dense(nb_classes))
     model.add(Activation('softmax'))
     rmsprop = RMSprop(lr=learning_rate, rho=0.9, epsilon=1e-06)
-    model.compile(loss='binary_crossentropy', optimizer='adam', metrics=["accuracy"])
+    model.compile(loss='binary_crossentropy', optimizer=rmsprop, metrics=["accuracy"])
     # sgd = SGD(lr=learning_rate, momentum=0.0, decay=0.0, nesterov=False)
     # model.compile(loss='binary_crossentropy', optimizer=sgd, metrics=["accuracy"])
         
