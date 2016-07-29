@@ -330,7 +330,7 @@ def Normalize_eachFeature(dataDict):
 def dataAnalysis(files):
     ALLData = data_clean(files)
 
-    ALLData = Normalize_eachFeature(ALLData)
+    # ALLData = Normalize_eachFeature(ALLData)
     # featureSelection
     ALLData = featureSelection(ALLData)
     # visualize(ALLData)
