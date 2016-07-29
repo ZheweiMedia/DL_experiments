@@ -95,7 +95,7 @@ global_min = -6619
 
 select_feature = 60
 nb_classes = 2
-hd_notes = 50
+hd_notes = 30
 learning_rate = 1e-5
 nb_epoch = 1000
 
@@ -312,7 +312,7 @@ def dataAnalysis(files):
     model.add(LSTM(hd_notes, input_shape=(Length, select_feature),\
                             init='normal',\
                             inner_init='identity',\
-                            activation='tanh', return_sequences=False,\
+                            activation='sigmoid', return_sequences=False,\
                             dropout_W=0, dropout_U=0))
     model.add(Dense(nb_classes))
     model.add(Activation('softmax'))

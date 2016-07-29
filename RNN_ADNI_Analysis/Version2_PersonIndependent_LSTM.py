@@ -88,10 +88,10 @@ def work(fnames, comment):
         shuffle(index)
         AlltimeFile = fnames[0:totalNo]
         BaselineFile = fnames[totalNo:]
+        
         trainIndex = index[0:trainPercent]
         trainData, trainLabel = stackData(AlltimeFile, trainIndex)
         
-
         # validation
         validationIndex = index[trainPercent:trainPercent+validationPercent]
         validationFile = BaselineFile
@@ -103,9 +103,9 @@ def work(fnames, comment):
             if validationBaseline:
                 validationBaseline = validationBaseline[0]
                 validationBaselineIndex.append(validationBaseline)
-                
-        validationData, validationLabel = stackData(BaselineFile, validationBaselineIndex)   
         
+        validationData, validationLabel = stackData(BaselineFile, validationBaselineIndex)   
+
         # test   
         testIndex = index[trainPercent+validationPercent:]
         testFile = BaselineFile
@@ -148,12 +148,12 @@ def work(fnames, comment):
         model.add(LSTM(hd_notes, input_shape=(timesteps, featureNo),\
                             init='normal',\
                             inner_init='identity',\
-                            activation='tanh', return_sequences=False,\
-                            dropout_W=0.4, dropout_U=0.4))
+                            activation='sigmoid', return_sequences=False,\
+                            dropout_W=0, dropout_U=0))
         model.add(Dense(nb_classes))
         model.add(Activation('softmax'))
         rmsprop = RMSprop(lr=learning_rate, rho=0.9, epsilon=1e-06)
-        model.compile(loss='categorical_crossentropy', optimizer=rmsprop, \
+        model.compile(loss='categorical_crossentropy', optimizer='adam', \
                         metrics=["accuracy"])
 
         print ("Training model...")

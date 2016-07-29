@@ -81,9 +81,9 @@ global_min = -1993
 
 select_feature = 120
 nb_classes = 2
-hd_notes = 30
-learning_rate = 1e-5
-nb_epoch = 1000
+hd_notes = 20
+learning_rate = 1e-6
+nb_epoch = 300
 
 #******************************
 
@@ -251,7 +251,7 @@ def SeparateData(WholeData, Subj, option):
                 if option == 'train':
                     kkey = 'Allt'
                 else:
-                    kkey = 'Base'
+                    kkey = 'Allt'
                 tmpData = np.array([])
                 if Data.size == 0:
                     try:
@@ -330,11 +330,10 @@ def Normalize_eachFeature(dataDict):
 def dataAnalysis(files):
     ALLData = data_clean(files)
 
-    # ALLData = Normalize_eachFeature(ALLData)
+    ALLData = Normalize_eachFeature(ALLData)
     # featureSelection
     ALLData = featureSelection(ALLData)
     # visualize(ALLData)
-    
     
     
     # Now lets's do RNN
@@ -372,22 +371,22 @@ def dataAnalysis(files):
         
     print ("Building model...")
     model = Sequential()
-    '''model.add(LSTM(hd_notes, input_shape=(Length, select_feature),\
+    model.add(LSTM(hd_notes, input_shape=(Length, select_feature),\
                         init='glorot_uniform',\
                         inner_init='orthogonal',\
                         forget_bias_init='one',\
                         inner_activation='sigmoid',\
                         activation='tanh', return_sequences=False,\
-                        dropout_W=0, dropout_U=0))'''
-    model.add(LSTM(hd_notes, input_shape=(Length, select_feature),\
+                        dropout_W=0, dropout_U=0))
+    '''model.add(LSTM(hd_notes, input_shape=(Length, select_feature),\
                             init='normal',\
                             inner_init='identity',\
-                            activation='tanh', return_sequences=False,\
-                            dropout_W=0.4, dropout_U=0.4))
+                            activation='sigmoid', return_sequences=False,\
+                            dropout_W=0.1, dropout_U=0.1))'''
     model.add(Dense(nb_classes))
     model.add(Activation('softmax'))
     rmsprop = RMSprop(lr=learning_rate, rho=0.9, epsilon=1e-06)
-    model.compile(loss='binary_crossentropy', optimizer=rmsprop, metrics=["accuracy"])
+    model.compile(loss='binary_crossentropy', optimizer='adam', metrics=["accuracy"])
     # sgd = SGD(lr=learning_rate, momentum=0.0, decay=0.0, nesterov=False)
     # model.compile(loss='binary_crossentropy', optimizer=sgd, metrics=["accuracy"])
         

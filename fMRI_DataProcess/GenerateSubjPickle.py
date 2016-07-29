@@ -40,7 +40,13 @@ import math
 
 #******************************
 #******************************
-label = 0
+label = 1
+
+local_max =  4950
+local_min =  -1074
+global_max = 6611
+global_min = -1993
+
 NoiseScanNo = 0
 postfix = '.pickle.gz'
 #******************************
@@ -49,10 +55,7 @@ postfix = '.pickle.gz'
 FrameNo = 130
 FeatureNo = 120
 
-local_max = 4950
-local_min = -1074
-global_max = 6611
-global_min = -1993
+
 
 
 def main(args):
