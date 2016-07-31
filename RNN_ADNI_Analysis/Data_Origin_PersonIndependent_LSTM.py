@@ -118,15 +118,7 @@ def origin_Or_res(datalist, option=None):
     data = np.array(datalist)
     data = data.reshape(-1, ZoneNo)
     if option == 'res':
-        timeStep = 130
-        print (data.shape)
-        data = data.reshape(-1, timeStep, ZoneNo)
-        print (data.shape)
-        tmpData = np.zeros((data.shape[0], data.shape[1]-1, data.shape[2]))
-        for sampleNo in range(tmpData.shape[0]):
-            for time in range(1, timeStep):
-                tmpData[sampleNo, time-1, :,] = data[sampleNo, time, :]-data[sampleNo, time-1, :]
-        data = tmpData.reshape(-1, ZoneNo)
+        pass
     return data
             
     
@@ -158,8 +150,8 @@ def data_clean(files):
         WholeRes[Class][Subj][Containt] = origin_Or_res(tmpData,option='res')
         
     print ('The subjects that contain NaN valuse are :',set(invalidSubj))
-    return WholeRes
-    # return WholeData
+    # return WholeRes
+    return WholeData
     
 
 def visualize(wholeData):
@@ -334,7 +326,7 @@ def Normalize_eachFeature(dataDict):
 
 def dataAnalysis(files):
     ALLData = data_clean(files)
-    
+
     ALLData = Normalize_eachFeature(ALLData)
     # featureSelection
     ALLData = featureSelection(ALLData)

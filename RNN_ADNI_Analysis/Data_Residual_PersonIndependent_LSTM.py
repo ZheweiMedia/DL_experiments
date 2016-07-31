@@ -81,7 +81,7 @@ global_min = -1993
 
 select_feature = 120
 nb_classes = 2
-hd_notes = 20
+hd_notes = 40
 learning_rate = 1e-6
 nb_epoch = 300
 
@@ -156,7 +156,7 @@ def data_clean(files):
         # save the class value in a dict
         WholeData[Class][Subj][Containt] = origin_Or_res(tmpData)
         WholeRes[Class][Subj][Containt] = origin_Or_res(tmpData,option='res')
-        
+    
     print ('The subjects that contain NaN valuse are :',set(invalidSubj))
     return WholeRes
     # return WholeData
@@ -254,9 +254,9 @@ def SeparateData(WholeData, Subj, option):
         for jkey in list(WholeData[ikey].keys()):
             if jkey in Subj:
                 if option == 'train':
-                    kkey = 'Allt'
+                    kkey = 'Base'
                 else:
-                    kkey = 'Allt'
+                    kkey = 'Base'
                 tmpData = np.array([])
                 if Data.size == 0:
                     try:
@@ -334,6 +334,7 @@ def Normalize_eachFeature(dataDict):
 
 def dataAnalysis(files):
     ALLData = data_clean(files)
+    
     
     ALLData = Normalize_eachFeature(ALLData)
     # featureSelection
