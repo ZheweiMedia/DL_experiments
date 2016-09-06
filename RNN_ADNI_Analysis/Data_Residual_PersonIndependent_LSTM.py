@@ -81,9 +81,9 @@ global_min = -1993
 
 select_feature = 120
 nb_classes = 2
-hd_notes = 40
+hd_notes = 60
 learning_rate = 1e-6
-nb_epoch = 300
+nb_epoch = 500
 
 #******************************
 
