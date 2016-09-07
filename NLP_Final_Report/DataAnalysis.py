@@ -25,6 +25,7 @@ valid_proj --->
 
 @Author: Zhewei
 
+
 """
 
 from __future__ import division
@@ -43,6 +44,7 @@ from sklearn.metrics import euclidean_distances
 from pyemd import emd
 
 class _project:
+
 	def __init__(self, name, starttime, endtime, obj):
 	    self.id = name
 	    self.start_date = starttime
