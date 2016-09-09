@@ -1,0 +1,23 @@
+[
+    [
+        "in_file",
+        [
+            "/usr/local/freesurfer/subjects/fsaverage/mri/aseg.mgz",
+            "0e651827c12b063aba5f16616c6f6cde"
+        ]
+    ],
+    [
+        "out_type",
+        "nii"
+    ],
+    [
+        "subjects_dir",
+        "/usr/local/freesurfer/subjects"
+    ],
+    [
+        "needed_outputs",
+        [
+            "out_file"
+        ]
+    ]
+]

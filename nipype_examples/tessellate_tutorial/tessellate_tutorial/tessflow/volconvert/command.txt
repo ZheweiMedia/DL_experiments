@@ -1,0 +1,1 @@
+mri_convert --out_type nii --input_volume /usr/local/freesurfer/subjects/fsaverage/mri/aseg.mgz --output_volume /home/medialab/Zhewei/nipype_examples/tessellate_tutorial/tessellate_tutorial/tessflow/volconvert/aseg_out.nii

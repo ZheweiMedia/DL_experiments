@@ -1,0 +1,19 @@
+[
+    [
+        "function_str",
+        "def region_list_from_volume(in_file):\n    import nibabel as nb\n    import numpy as np\n    segmentation = nb.load(in_file)\n    segmentationdata = segmentation.get_data()\n    rois = np.unique(segmentationdata)\n    region_list = list(rois)\n    region_list.sort()\n    region_list.remove(0)\n    region_list = list(map(int, region_list))\n    return region_list\n"
+    ],
+    [
+        "in_file",
+        [
+            "/home/medialab/Zhewei/nipype_examples/tessellate_tutorial/tessellate_tutorial/tessflow/volconvert/aseg_out.nii",
+            "47cbae2527fc4b28eaae48f90daad2c5"
+        ]
+    ],
+    [
+        "needed_outputs",
+        [
+            "region_list"
+        ]
+    ]
+]

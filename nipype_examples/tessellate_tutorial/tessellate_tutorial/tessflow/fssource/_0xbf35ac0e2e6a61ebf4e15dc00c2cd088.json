@@ -1,0 +1,20 @@
+[
+    [
+        "hemi",
+        "both"
+    ],
+    [
+        "subject_id",
+        "fsaverage"
+    ],
+    [
+        "subjects_dir",
+        "/usr/local/freesurfer/subjects/"
+    ],
+    [
+        "needed_outputs",
+        [
+            "aseg"
+        ]
+    ]
+]
