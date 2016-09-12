@@ -4,15 +4,15 @@
 # Then read this file to this bash script.
 # This bash script do dcm2nii, then copy one time frame to a fold fMRI_Check.
 
-Scan_all_folder () {
+
 # go to the fold which contain the files
 
 cd /home/medialab/data/ADNI/ADNI
 # list the samples we want to process
 # IIDarray is the parameter passed by command line,
-# $0 is the name of command, $1is the parameter
-IIDarray=$(</home/medialab/Zhewei/fMRI_SubjectAnalysis/AD.txt)
-echo $0
+# $0 is the name of command, $1 is the parameter
+
+IIDarray=`cat ~/Zhewei/fMRI_SubjectAnalysis/$1`
 echo $IIDarray
 # read all samples
 XMLS=`find ./ -name "*Resting_State_fMRI*.xml"`
@@ -66,5 +66,3 @@ do
     fi
     # echo $No # check how many files
 done
-}
-Scan_all_folder

@@ -1,10 +1,13 @@
 """
-Analysis ADNI2 data in .csv file.
+1. Analysis ADNI2 data in .csv file.
+2. DCM2NII by run a shell script in this python progamme.
+
+
 
 Zhewei@ 9/7/2016
 """
-
-
+import os
+from subprocess import call
 from collections import defaultdict
 import csv
 
@@ -91,16 +94,12 @@ def main():
     print ('*'*40)
     print('Totally we have', len(ValidData), 'subjects.')
     # print(ValidData[-2].SubjectID)
-    
     printAnalysis(ValidData)
     print ('*'*40)
     print ('\n')
 
     outputImageId(ValidData, 'AD')
-
-
-
-
+    os.system("bash Step1_DCM2NII.sh AD")    
 
 
 
