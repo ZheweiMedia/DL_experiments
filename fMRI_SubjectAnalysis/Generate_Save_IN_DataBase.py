@@ -98,8 +98,8 @@ def main():
     print ('*'*40)
     print ('\n')
 
-    outputImageId(ValidData, 'AD')
-    os.system("bash Step1_DCM2NII.sh AD")    
+    outputImageId(ValidData, 'Normal')
+    os.system("bash Step1_DCM2NII.sh Normal")    
 
 
 
