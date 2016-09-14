@@ -117,27 +117,27 @@ os.chdir(curdir)
 ###
 
 def zscore_image(infile, mask, outfile):
-    import os, commands
+    import os, subprocess
     
     cmd     = "fslstats %s -k %s -m" % (infile, mask)
-    print cmd
-    mean    = commands.getstatusoutput(cmd)
+    print(cmd)
+    mean    = subprocess.getstatusoutput(cmd)
     mean    = float(mean[1])
     
     cmd     = "fslstats %s -k %s -s" % (infile, mask)
-    print cmd
-    sd      = commands.getstatusoutput(cmd)
+    print(cmd)
+    sd      = subprocess.getstatusoutput(cmd)
     sd      = float(sd[1])
     
     cmd = "3dcalc -a %s -b %s -expr '((a-%f)/%f)*step(b)' -prefix %s" % (infile, mask, mean, sd, outfile)
-    print cmd
+    print(cmd)
     os.system(cmd)
     
     return
 
-print ''
+print('')
 for centfile in out_list:
-    print "Z-score: %s" % os.path.basename(centfile)
+    print("Z-score: %s" % os.path.basename(centfile))
     
     # New output filename
     prefix,ext  = os.path.splitext(centfile)

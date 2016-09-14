@@ -178,12 +178,12 @@ class DataConfig(wx.Frame):
                 out_location = os.path.join(\
                                os.path.realpath(config_map.get('outputSubjectListLocation')),\
                                'CPAC_subject_list_%s.yml' % config_map.get('subjectListName')[0])
-            except Exception, e:
-                print "Error loading data config file", e
+            except Exception as e:
+                print("Error loading data config file", e)
                 raise 
             
             
-            print "executing extract data"
+            print("executing extract data")
             multiscan = self.multiscan.IsChecked()
             
             import CPAC
@@ -216,13 +216,13 @@ class DataConfig(wx.Frame):
 
 
         
-        except ImportError, e:
+        except ImportError as e:
             wx.MessageBox("Error importing CPAC. Unable to run extract data tool.", "Error") 
-            print "Error importing CPAC"
-            print e
+            print("Error importing CPAC")
+            print(e)
             return -1
         
-        except Exception, e:
+        except Exception as e:
             dlg2 = wx.MessageDialog(self, "Error Creating CPAC Subject List.\n%s"%e,
                                'Error!',
                            wx.OK | wx.ICON_ERROR)
@@ -273,7 +273,7 @@ class DataConfig(wx.Frame):
          
                 config_list.append((name, value, dtype))
                 
-        except Exception, e:
+        except Exception as e:
 
             errdlg = wx.MessageDialog(self, "Could not save your subject " \
                                "list information.\n\n%s" % e,
@@ -282,7 +282,7 @@ class DataConfig(wx.Frame):
             errdlg.ShowModal()
             errdlg.Destroy()
 
-            print e
+            print(e)
             return
             
         else:
@@ -305,11 +305,11 @@ class DataConfig(wx.Frame):
                     else:
                         value =[val.strip() for val in ctrl[1].split(',')]
                     
-                    print name, ":", value, "\n"
-                    print >>f, ctrl[0], " : ", value, "\n"
+                    print(name, ":", value, "\n")
+                    print(ctrl[0], " : ", value, "\n", file=f)
                 
                 f.close()
-                print "saving %s"%path
+                print("saving %s"%path)
                 
                 if flag == 'run':
                     if self.run(path) >0:
@@ -336,12 +336,12 @@ class DataConfig(wx.Frame):
                         try:
                             config_map = yaml.load(open(path, 'r'))
                         except Exception as e:
-                            print 'Unable to load in the specified file: %s' \
-                                  % path
-                            print 'Error:\n%s' % e
+                            print('Unable to load in the specified file: %s' \
+                                  % path)
+                            print('Error:\n%s' % e)
                         # If it's a dictionary, check it has anat template key
                         if type(config_map) == dict:
-                            if not config_map.has_key('anatomicalTemplate'):
+                            if 'anatomicalTemplate' not in config_map:
                                 err_msg = 'File is not a data configuration '\
                                           'file. It might be a pipeline '\
                                           'configuration file.'

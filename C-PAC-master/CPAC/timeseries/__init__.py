@@ -1,4 +1,4 @@
-from timeseries_analysis import create_surface_registration, \
+from .timeseries_analysis import create_surface_registration, \
                                 get_voxel_timeseries, \
                                 get_roi_timeseries, \
                                 get_vertices_timeseries, \

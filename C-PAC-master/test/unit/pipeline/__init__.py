@@ -9,7 +9,7 @@ CPAC/pipeline package
 '''
 
 # Import module TestCases
-from cpac_pipeline_test import CPACPipelineRunTestCase
+from .cpac_pipeline_test import CPACPipelineRunTestCase
 
 # Setup module environment
 __all__ = ['CPACPipelineRunTestCase']

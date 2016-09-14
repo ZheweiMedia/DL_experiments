@@ -115,9 +115,9 @@ def calc_blocksize(timeseries, memory_allocated=None,
         memory_usage = (needed_memory + block_size*nvoxs*nbytes)/1024.0**3
 
     # Print information
-    print 'block_size -> %i voxels' % block_size
-    print '# of blocks -> %i' % np.ceil(float(nvoxs)/block_size)
-    print 'expected usage -> %.2fGB' % memory_usage
+    print('block_size -> %i voxels' % block_size)
+    print('# of blocks -> %i' % np.ceil(float(nvoxs)/block_size))
+    print('expected usage -> %.2fGB' % memory_usage)
 
     return block_size
 
@@ -214,7 +214,7 @@ def convert_pvalue_to_r(scans, threshold):
     import scipy.stats as s
     import math
 
-    print "p_value ->", threshold
+    print("p_value ->", threshold)
     x = 1-threshold/2
     dof = scans-2
     #Inverse Survival Function (Inverse of SF)
@@ -333,7 +333,7 @@ def map_centrality_matrix(centrality_matrix, aff, mask, template_type):
         out_file = os.path.join(os.getcwd(), out_file + '.nii.gz')
         sparse_m = np.zeros((mask.shape), dtype=float)
 
-        print 'mapping centrality matrix to nifti image...', out_file
+        print('mapping centrality matrix to nifti image...', out_file)
 
         if int(template_type) == 0:
             cords = np.argwhere(mask)
@@ -363,7 +363,7 @@ def map_centrality_matrix(centrality_matrix, aff, mask, template_type):
 
         return out_file
     except:
-        print 'Error in mapping centrality matrix to nifti image'
+        print('Error in mapping centrality matrix to nifti image')
         raise
 
 

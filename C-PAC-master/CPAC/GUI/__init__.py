@@ -1,3 +1,3 @@
-from mainUI import run
+from .mainUI import run
 
 __all__ =['run']

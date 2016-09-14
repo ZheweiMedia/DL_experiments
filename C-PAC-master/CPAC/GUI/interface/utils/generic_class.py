@@ -125,7 +125,7 @@ class GenericClass(wx.ScrolledWindow):
 
     def EvtChoice(self, event, ctrl):
         
-        if type(event.GetString()) == unicode:
+        if type(event.GetString()) == str:
             value = event.GetString().encode('ascii', 'ignore')
         
         ctrl.set_selection(value)

@@ -39,13 +39,13 @@ def step(context, sdir):
 @when('we calculate distances for {nseeds} seeds with cpac')
 def step(context, nseeds):
     context.nseeds  = int(nseeds)
-    context.seeds   = range(context.nseeds)
+    context.seeds   = list(range(context.nseeds))
     context.dmats   = calc_subdists(context.sdata, (0,context.nseeds))
 
 @when('we calculate distances for {nseeds} seeds with numpy')
 def step(context, nseeds):
     context.nseeds      = int(nseeds)
-    context.seeds       = range(context.nseeds)
+    context.seeds       = list(range(context.nseeds))
     context.ref_dmats   = np.zeros((context.nseeds, context.nsubs, context.nsubs))
     Smaps = np.zeros((context.nsubs, context.nseeds, context.nvoxs))
     for i in range(context.nsubs):

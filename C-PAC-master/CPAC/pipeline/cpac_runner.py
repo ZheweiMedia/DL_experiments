@@ -15,12 +15,12 @@ def validate(config_obj):
     
     try:
         if len(working_dir) > 70:
-            print "\n\n" + "WARNING: Path to working directory should NOT be more than 70 characters."
-            print "Please update your configuration. Working directory: ", working_dir, "\n\n"
+            print("\n\n" + "WARNING: Path to working directory should NOT be more than 70 characters.")
+            print("Please update your configuration. Working directory: ", working_dir, "\n\n")
             raise Exception
     except:
-        print "\n\n" + "ERROR: Your directories in Output Settings are empty." + "\n" + \
-        "Error name: cpac_runner_0002" + "\n\n"
+        print("\n\n" + "ERROR: Your directories in Output Settings are empty." + "\n" + \
+        "Error name: cpac_runner_0002" + "\n\n")
         raise Exception
 
 
@@ -93,9 +93,9 @@ def make_entries(paths, path_iterables):
             indx += 1
 
         ### remove single quote in the paths
-        sub_entries = map(lambda x: x.replace("'", ""), sub_entries)
-        print "sub entries: "
-        print sub_entries
+        sub_entries = [x.replace("'", "") for x in sub_entries]
+        print("sub entries: ")
+        print(sub_entries)
       
         entries.append(sub_entries)
 
@@ -143,8 +143,8 @@ def build_strategies(configuration):
     corrections_dict_list = config_iterables['_compcor']
 
 
-    print "corrections dictionary list: "
-    print corrections_dict_list
+    print("corrections dictionary list: ")
+    print(corrections_dict_list)
 
     main_all_options = []
 
@@ -177,13 +177,13 @@ def build_strategies(configuration):
     try:
         paths = get_vectors(config_iterables)
     except:
-        print "\n\n" + "ERROR: There are no strategies to build." + "\n" + \
-        "Error name: cpac_runner_0003" + "\n\n"
+        print("\n\n" + "ERROR: There are no strategies to build." + "\n" + \
+        "Error name: cpac_runner_0003" + "\n\n")
         raise Exception
 
     strategy_entries = make_entries(paths, sorted(path_iterables))
 
-    print 'strategy_entries: ', strategy_entries, '\n\n'
+    print('strategy_entries: ', strategy_entries, '\n\n')
 
 
     return strategy_entries
@@ -193,7 +193,7 @@ def build_strategies(configuration):
 
 def run_sge_jobs(c, config_file, strategies_file, subject_list_file, p_name):
 
-    import commands
+    import subprocess
     from time import strftime
 
     try:
@@ -201,49 +201,48 @@ def run_sge_jobs(c, config_file, strategies_file, subject_list_file, p_name):
     except:
         raise Exception ("Subject list is not in proper YAML format. Please check your file")
 
-    shell = commands.getoutput('echo $SHELL')
+    shell = subprocess.getoutput('echo $SHELL')
 
     temp_files_dir = os.path.join(os.getcwd(), 'cluster_temp_files')
     subject_bash_file = os.path.join(temp_files_dir, 'submit_%s.sge' % str(strftime("%Y_%m_%d_%H_%M_%S")))
     f = open(subject_bash_file, 'w')
-    print >>f, '#! %s' % shell
-    print >>f, '#$ -cwd'
-    print >>f, '#$ -S %s' % shell
-    print >>f, '#$ -V'
-    print >>f, '#$ -t 1-%d' % len(sublist)
-    print >>f, '#$ -q %s' % c.queue
-    print >>f, '#$ -pe %s %d' % (c.parallelEnvironment, c.numCoresPerSubject)
-    print >>f, '#$ -e %s' % os.path.join(temp_files_dir, 'c-pac_%s.err' % str(strftime("%Y_%m_%d_%H_%M_%S")))
-    print >>f, '#$ -o %s' % os.path.join(temp_files_dir, 'c-pac_%s.out' % str(strftime("%Y_%m_%d_%H_%M_%S")))
-    print >>f, 'source ~/.bashrc'
+    print('#! %s' % shell, file=f)
+    print('#$ -cwd', file=f)
+    print('#$ -S %s' % shell, file=f)
+    print('#$ -V', file=f)
+    print('#$ -t 1-%d' % len(sublist), file=f)
+    print('#$ -q %s' % c.queue, file=f)
+    print('#$ -pe %s %d' % (c.parallelEnvironment, c.numCoresPerSubject), file=f)
+    print('#$ -e %s' % os.path.join(temp_files_dir, 'c-pac_%s.err' % str(strftime("%Y_%m_%d_%H_%M_%S"))), file=f)
+    print('#$ -o %s' % os.path.join(temp_files_dir, 'c-pac_%s.out' % str(strftime("%Y_%m_%d_%H_%M_%S"))), file=f)
+    print('source ~/.bashrc', file=f)
 
 #    print >>f, "python CPAC.pipeline.cpac_pipeline.py -c ", str(config_file), " -s ", subject_list_file, " -indx $SGE_TASK_ID  -strategies ", strategies_file
-    print >>f, "python -c \"import CPAC; CPAC.pipeline.cpac_pipeline.run(\\\"%s\\\" , \\\"%s\\\", \\\"$SGE_TASK_ID\\\" , \\\"%s\\\", \\\"%s\\\" , \\\"%s\\\", \\\"%s\\\", \\\"%s\\\") \" " % (str(config_file), \
-        subject_list_file, strategies_file, c.maskSpecificationFile, c.roiSpecificationFile, c.templateSpecificationFile, p_name)
+    print("python -c \"import CPAC; CPAC.pipeline.cpac_pipeline.run(\\\"%s\\\" , \\\"%s\\\", \\\"$SGE_TASK_ID\\\" , \\\"%s\\\", \\\"%s\\\" , \\\"%s\\\", \\\"%s\\\", \\\"%s\\\") \" " % (str(config_file), \
+        subject_list_file, strategies_file, c.maskSpecificationFile, c.roiSpecificationFile, c.templateSpecificationFile, p_name), file=f)
 
     f.close()
 
-    commands.getoutput('chmod +x %s' % subject_bash_file )
+    subprocess.getoutput('chmod +x %s' % subject_bash_file )
     p = open(os.path.join(c.outputDirectory, 'pid.txt'), 'w') 
 
-    out = commands.getoutput('qsub  %s ' % (subject_bash_file))
+    out = subprocess.getoutput('qsub  %s ' % (subject_bash_file))
 
     import re
     if re.search("(?<=Your job-array )\d+", out) == None:
-
-        print "Error: Running of 'qsub' command in terminal failed. Please troubleshoot your SGE configuration with your system administrator and then try again."
-	print "The command run was: qsub %s" % subject_bash_file
+        print("Error: Running of 'qsub' command in terminal failed. Please troubleshoot your SGE configuration with your system administrator and then try again.")
+        print("The command run was: qsub %s" % subject_bash_file)
         raise Exception
 
     pid = re.search("(?<=Your job-array )\d+", out).group(0)
-    print >> p, pid
+    print(pid, file=p)
     
     p.close()
 
 def run_condor_jobs(c, config_file, strategies_file, subject_list_file, p_name):
 
 
-    import commands
+    import subprocess
     from time import strftime
 
     try:
@@ -255,24 +254,24 @@ def run_condor_jobs(c, config_file, strategies_file, subject_list_file, p_name):
     subject_bash_file = os.path.join(temp_files_dir, 'submit_%s.condor' % str(strftime("%Y_%m_%d_%H_%M_%S")))
     f = open(subject_bash_file, 'w')
 
-    print >>f, "Executable = /usr/bin/python"
-    print >>f, "Universe = vanilla"
-    print >>f, "transfer_executable = False"
-    print >>f, "getenv = True"
-    print >>f, "log = %s" % os.path.join(temp_files_dir, 'c-pac_%s.log' % str(strftime("%Y_%m_%d_%H_%M_%S")))
+    print("Executable = /usr/bin/python", file=f)
+    print("Universe = vanilla", file=f)
+    print("transfer_executable = False", file=f)
+    print("getenv = True", file=f)
+    print("log = %s" % os.path.join(temp_files_dir, 'c-pac_%s.log' % str(strftime("%Y_%m_%d_%H_%M_%S"))), file=f)
 
     sublist = yaml.load(open(os.path.realpath(subject_list_file), 'r'))
     for sidx in range(1,len(sublist)+1):
-        print >>f, "error = %s" % os.path.join(temp_files_dir, 'c-pac_%s.%s.err' % (str(strftime("%Y_%m_%d_%H_%M_%S")), str(sidx)))
-        print >>f, "output = %s" % os.path.join(temp_files_dir, 'c-pac_%s.%s.out' % (str(strftime("%Y_%m_%d_%H_%M_%S")), str(sidx)))
+        print("error = %s" % os.path.join(temp_files_dir, 'c-pac_%s.%s.err' % (str(strftime("%Y_%m_%d_%H_%M_%S")), str(sidx))), file=f)
+        print("output = %s" % os.path.join(temp_files_dir, 'c-pac_%s.%s.out' % (str(strftime("%Y_%m_%d_%H_%M_%S")), str(sidx))), file=f)
 
-        print >>f, "arguments = \"-c 'import CPAC; CPAC.pipeline.cpac_pipeline.run( ''%s'',''%s'',''%s'',''%s'', ''%s'',''%s'',''%s'',''%s'')\'\"" % (str(config_file), subject_list_file, str(sidx), strategies_file, c.maskSpecificationFile, c.roiSpecificationFile, c.templateSpecificationFile, p_name)
-        print >>f, "queue"
+        print("arguments = \"-c 'import CPAC; CPAC.pipeline.cpac_pipeline.run( ''%s'',''%s'',''%s'',''%s'', ''%s'',''%s'',''%s'',''%s'')\'\"" % (str(config_file), subject_list_file, str(sidx), strategies_file, c.maskSpecificationFile, c.roiSpecificationFile, c.templateSpecificationFile, p_name), file=f)
+        print("queue", file=f)
 
     f.close()
 
     #commands.getoutput('chmod +x %s' % subject_bash_file )
-    print commands.getoutput("condor_submit %s " % (subject_bash_file))
+    print(subprocess.getoutput("condor_submit %s " % (subject_bash_file)))
 
 
 
@@ -282,7 +281,7 @@ def run_pbs_jobs(c, config_file, strategies_file, subject_list_file, p_name):
 
 
 
-    import commands
+    import subprocess
     from time import strftime
 
 
@@ -292,26 +291,26 @@ def run_pbs_jobs(c, config_file, strategies_file, subject_list_file, p_name):
         raise Exception ("Subject list is not in proper YAML format. Please check your file")
     
     temp_files_dir = os.path.join(os.getcwd(), 'cluster_temp_files')
-    shell = commands.getoutput('echo $SHELL')
+    shell = subprocess.getoutput('echo $SHELL')
     subject_bash_file = os.path.join(temp_files_dir, 'submit_%s.pbs' % str(strftime("%Y_%m_%d_%H_%M_%S")))
     f = open(subject_bash_file, 'w')
-    print >>f, '#! %s' % shell
-    print >>f, '#PBS -S %s' % shell
-    print >>f, '#PBS -V'
-    print >>f, '#PBS -t 1-%d' % len(sublist)
-    print >>f, '#PBS -q %s' % c.queue
-    print >>f, '#PBS -l nodes=1:ppn=%d' % c.numCoresPerSubject
-    print >>f, '#PBS -e %s' % os.path.join(temp_files_dir, 'c-pac_%s.err' % str(strftime("%Y_%m_%d_%H_%M_%S")))
-    print >>f, '#PBS -o %s' % os.path.join(temp_files_dir, 'c-pac_%s.out' % str(strftime("%Y_%m_%d_%H_%M_%S")))
-    print >>f, 'source ~/.bashrc'
+    print('#! %s' % shell, file=f)
+    print('#PBS -S %s' % shell, file=f)
+    print('#PBS -V', file=f)
+    print('#PBS -t 1-%d' % len(sublist), file=f)
+    print('#PBS -q %s' % c.queue, file=f)
+    print('#PBS -l nodes=1:ppn=%d' % c.numCoresPerSubject, file=f)
+    print('#PBS -e %s' % os.path.join(temp_files_dir, 'c-pac_%s.err' % str(strftime("%Y_%m_%d_%H_%M_%S"))), file=f)
+    print('#PBS -o %s' % os.path.join(temp_files_dir, 'c-pac_%s.out' % str(strftime("%Y_%m_%d_%H_%M_%S"))), file=f)
+    print('source ~/.bashrc', file=f)
 
-    print >>f, "python -c \"import CPAC; CPAC.pipeline.cpac_pipeline.run(\\\"%s\\\",\\\"%s\\\",\\\"${PBS_ARRAYID}\\\",\\\"%s\\\", \\\"%s\\\" , \\\"%s\\\", \\\"%s\\\", \\\"%s\\\") \" " % (str(config_file), \
-        subject_list_file, strategies_file, c.maskSpecificationFile, c.roiSpecificationFile, c.templateSpecificationFile, p_name)
+    print("python -c \"import CPAC; CPAC.pipeline.cpac_pipeline.run(\\\"%s\\\",\\\"%s\\\",\\\"${PBS_ARRAYID}\\\",\\\"%s\\\", \\\"%s\\\" , \\\"%s\\\", \\\"%s\\\", \\\"%s\\\") \" " % (str(config_file), \
+        subject_list_file, strategies_file, c.maskSpecificationFile, c.roiSpecificationFile, c.templateSpecificationFile, p_name), file=f)
 #    print >>f, "python -c \"import CPAC; CPAC.pipeline.cpac_pipeline.py -c %s -s %s -indx ${PBS_ARRAYID} -strategies %s \" " %(str(config_file), subject_list_file, strategies_file)
     #print >>f, "python CPAC.pipeline.cpac_pipeline.py -c ", str(config_file), "-s ", subject_list_file, " -indx ${PBS_ARRAYID} -strategies ", strategies_file
     f.close()
 
-    commands.getoutput('chmod +x %s' % subject_bash_file )
+    subprocess.getoutput('chmod +x %s' % subject_bash_file )
     #logger.info(commands.getoutput('qsub  %s ' % (subject_bash_file)))
 
 
@@ -348,9 +347,9 @@ def append_seeds_to_file(working_dir, seed_list, seed_file):
             if not os.path.exists(working_dir):
                 os.makedirs(working_dir)
 
-        except Exception, e:
+        except Exception as e:
 
-            print 'error encountered : ', e
+            print('error encountered : ', e)
             raise
 
         some_number, f_name = tempfile.mkstemp(suffix='.txt', prefix='temp_roi_seeds', dir=working_dir, text=True)
@@ -381,10 +380,10 @@ def run(config_file, subject_list_file, p_name = None):
             c = Configuration(yaml.load(open(os.path.realpath(config_file), 'r')))
     
     except IOError:
-        print "config file %s doesn't exist" % config_file
+        print("config file %s doesn't exist" % config_file)
         raise
     except Exception:
-        print "Error reading config file - %s" % config_file
+        print("Error reading config file - %s" % config_file)
         raise Exception
 
     #do some validation
@@ -397,7 +396,7 @@ def run(config_file, subject_list_file, p_name = None):
     try:
         sublist = yaml.load(open(os.path.realpath(subject_list_file), 'r'))
     except:
-        print "Subject list is not in proper YAML format. Please check your file"
+        print("Subject list is not in proper YAML format. Please check your file")
         raise Exception
 
 
@@ -406,13 +405,13 @@ def run(config_file, subject_list_file, p_name = None):
     strategies = sorted(build_strategies(c))
 
     
-    print "strategies ---> "
-    print strategies
+    print("strategies ---> ")
+    print(strategies)
     
     sub_scan_map ={}
 
-    print "subject list: "
-    print sublist
+    print("subject list: ")
+    print(sublist)
     
     try:
     
@@ -429,8 +428,8 @@ def run(config_file, subject_list_file, p_name = None):
             
     except:
         
-        print "\n\n" + "ERROR: Subject list file not in proper format - check if you loaded the correct file?" + "\n" + \
-              "Error name: cpac_runner_0001" + "\n\n"
+        print("\n\n" + "ERROR: Subject list file not in proper format - check if you loaded the correct file?" + "\n" + \
+              "Error name: cpac_runner_0001" + "\n\n")
         raise Exception
 
         
@@ -444,7 +443,7 @@ def run(config_file, subject_list_file, p_name = None):
         try:
             if os.path.exists(c.seedSpecificationFile):
                 seeds_created = create_seeds_(c.seedOutputLocation, c.seedSpecificationFile, c.FSLDIR)
-                print 'seeds created %s -> ' % seeds_created
+                print('seeds created %s -> ' % seeds_created)
         except:
             raise IOError('Problem in seedSpecificationFile')
 
@@ -502,7 +501,7 @@ def run(config_file, subject_list_file, p_name = None):
             """
             for p in procss:
                 p.start()
-                print >>pid,p.pid
+                print(p.pid, file=pid)
         # Otherwise manage resources to run processes incrementally
         else:
             """
@@ -520,7 +519,7 @@ def run(config_file, subject_list_file, p_name = None):
                     # Launch processes (one for each subject)
                     for p in procss[idc: idc + c.numSubjectsAtOnce]:
                         p.start()
-                        print >>pid,p.pid
+                        print(p.pid, file=pid)
                         jobQueue.append(p)
                         idx += 1
                 # Otherwise, jobs are running - check them
@@ -530,7 +529,7 @@ def run(config_file, subject_list_file, p_name = None):
                         # If the job is not alive
                         if not job.is_alive():
                             # Find job and delete it from queue
-                            print 'found dead job ', job
+                            print('found dead job ', job)
                             loc = jobQueue.index(job)
                             del jobQueue[loc]
                             # ...and start the next available process (subject)
@@ -546,11 +545,11 @@ def run(config_file, subject_list_file, p_name = None):
         
     else:
 
-        import commands
+        import subprocess
         import pickle
 
         temp_files_dir = os.path.join(os.getcwd(), 'cluster_temp_files')
-        print commands.getoutput("mkdir -p %s" % temp_files_dir)
+        print(subprocess.getoutput("mkdir -p %s" % temp_files_dir))
 
 
         strategies_file = os.path.join(temp_files_dir, 'strategies.obj')

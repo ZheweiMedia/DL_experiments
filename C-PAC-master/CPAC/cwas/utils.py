@@ -1,6 +1,6 @@
 import numpy as np
-from mdmr import *
-from subdist import *
+from .mdmr import *
+from .subdist import *
 
 def calc_cwas(subjects_data, regressor, cols, iter, voxel_range, strata=None):
     """
@@ -47,7 +47,7 @@ def calc_cwas(subjects_data, regressor, cols, iter, voxel_range, strata=None):
 
 def calc_subdists(subjects_data, voxel_range):
     nSubjects   = len(subjects_data)
-    vox_inds    = range(*voxel_range)
+    vox_inds    = list(range(*voxel_range))
     nVoxels     = len(vox_inds)
     #Number of timepoints may be consistent between subjects
     

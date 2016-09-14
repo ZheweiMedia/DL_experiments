@@ -18,29 +18,31 @@ class _NoseTester(nosetester.NoseTester):
 
 test = _NoseTester().test
 
-import anat_preproc, \
-       func_preproc, \
-       reho, \
-       seg_preproc, \
-       registration, \
-       sca, \
-       basc, \
-       nuisance, \
-       generate_motion_statistics, \
-       alff, \
-       qc, \
-       seg_preproc, \
-       vmhc, \
-       median_angle, \
-       timeseries, \
-       network_centrality, \
-       scrubbing, \
-       group_analysis, \
-       easy_thresh,\
-       utils, \
-       pipeline, \
-       cwas, \
-       GUI
+from CPAC.reho import reho
+from CPAC.func_preproc import func_preproc
+from CPAC.seg_preproc import seg_preproc
+from CPAC.registration import registration
+from CPAC.sca import sca
+from CPAC.basc import basc
+from CPAC.nuisance import nuisance
+from CPAC.generate_motion_statistics import generate_motion_statistics
+from CPAC.alff import alff
+from CPAC.qc import qc
+from CPAC.seg_preproc import seg_preproc
+from CPAC.vmhc import vmhc
+from CPAC.median_angle import median_angle
+from CPAC.timeseries import timeseries_analysis
+from CPAC.network_centrality import core
+from CPAC.network_centrality import resting_state_centrality
+from CPAC.network_centrality import utils
+from CPAC.scrubbing import scrubbing
+from CPAC.group_analysis import group_analysis
+from CPAC.easy_thresh import easy_thresh
+from CPAC.utils import utils
+from CPAC.pipeline import *
+from CPAC.cwas import cwas
+from CPAC.GUI import *
+from CPAC.anat_preproc import anat_preproc
 
 __all__ = ['GUI', 'pipeline', 'anat_preproc', 'func_preproc', 'registration', 'seg_preproc', 'reho', 'sca', 'basc', 'nuisance', 'alff', 'vmhc', 'median_angle', 'generate_motion_statistics', 'timeseries', 'network_centrality', 'scrubbing', 'utils', 'group_analysis', 'easy_thresh', 'qc', 'cwas']
 

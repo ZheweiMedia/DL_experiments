@@ -27,13 +27,13 @@ class TestDegreeCentrality:
         r_value     = 0.2
         method      = "binarize"
         
-        print "testing centrality binarize - float"
+        print("testing centrality binarize - float")
         corr_matrix = np.random.random((nvoxblocks, nvoxs)).astype('float32')
         ref  = np.sum(corr_matrix>r_value, axis=1)
         comp = degree_centrality(corr_matrix, r_value, method)
         assert_equal(ref, comp)
         
-        print "testing centrality binarize - double"
+        print("testing centrality binarize - double")
         corr_matrix = np.random.random((nvoxblocks, nvoxs)).astype('float64')
         ref  = np.sum(corr_matrix>r_value, axis=1)
         comp = degree_centrality(corr_matrix, r_value, method)
@@ -51,13 +51,13 @@ class TestDegreeCentrality:
         r_value     = 0.2
         method      = "weighted"
         
-        print "testing centrality binarize - float"
+        print("testing centrality binarize - float")
         corr_matrix = np.random.random((nvoxblocks, nvoxs)).astype('float32')
         ref  = np.sum(corr_matrix>r_value, axis=1)
         comp = degree_centrality(corr_matrix, r_value, method)
         assert_equal(ref, comp)
         
-        print "testing centrality binarize - double"
+        print("testing centrality binarize - double")
         corr_matrix = np.random.random((nvoxblocks, nvoxs)).astype('float64')
         ref  = np.sum(corr_matrix>r_value, axis=1)
         comp = degree_centrality(corr_matrix, r_value, method)
@@ -94,7 +94,7 @@ class TestDegreeCentrality:
 
 
 def test_fast_eigenvector_centrality(ntpts=100, nvoxs=1000):
-    print "testing fast_eigenvector_centrality"
+    print("testing fast_eigenvector_centrality")
     
     # Simulate Data
     import numpy as np

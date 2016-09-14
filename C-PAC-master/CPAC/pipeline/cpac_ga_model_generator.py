@@ -21,7 +21,7 @@ def prep_group_analysis_workflow(c, group_config_file, resource, subject_infos, 
     #
 
     import yaml
-    import commands
+    import subprocess
 
     # p_id = a list of pipeline IDs, i.e. the name of the output folder for
     #        the strat
@@ -101,8 +101,8 @@ def prep_group_analysis_workflow(c, group_config_file, resource, subject_infos, 
 
     ''' begin iteration through group subject list for processing '''
 
-    print "Sorting through subject list to check for missing outputs " \
-          "for %s..\n" % resource
+    print("Sorting through subject list to check for missing outputs " \
+          "for %s..\n" % resource)
 
     for ga_sub in group_sublist:
         # Strip out carriage-return character if it is there
@@ -116,32 +116,32 @@ def prep_group_analysis_workflow(c, group_config_file, resource, subject_infos, 
         # repeated measures properly if repeated measures is enabled
         # and vice versa
         if (group_conf.repeated_measures == True) and (',' not in ga_sub):
-            print '\n\n'
-            print '[!] CPAC says: The group analysis subject list ' \
+            print('\n\n')
+            print('[!] CPAC says: The group analysis subject list ' \
                   'is not in the appropriate format for repeated ' \
-                  'measures.\n'
-            print 'Please use the appropriate format as described in ' \
+                  'measures.\n')
+            print('Please use the appropriate format as described in ' \
                   'the CPAC User Guide or turn off Repeated Measures ' \
                   'in the CPAC pipeline configuration editor, found ' \
                   'in the \'Group Analysis Settings\' tab of the ' \
-                  'pipeline configuration editor.\n'
-            print 'NOTE: CPAC generates a properly-formatted group ' \
+                  'pipeline configuration editor.\n')
+            print('NOTE: CPAC generates a properly-formatted group ' \
                   'analysis subject list meant for running repeated ' \
                   'measures when you create your original subject ' \
                   'list. Look for \'subject_list_group_analysis_' \
                   'repeated_measures.txt\' in the directory where ' \
-                  'you created your subject list.\n\n'
+                  'you created your subject list.\n\n')
             raise Exception
 
         elif (group_conf.repeated_measures == False) and (',' in ga_sub):
-            print '\n\n'
-            print '[!] CPAC says: It looks like your group analysis ' \
+            print('\n\n')
+            print('[!] CPAC says: It looks like your group analysis ' \
                   'subject list is formatted for running repeated ' \
                   'measures, but \'Run Repeated Measures\' is not ' \
                   'enabled in the pipeline configuration, found in ' \
                   'the \'Group Analysis Settings\' tab of the ' \
-                  'pipeline configuration editor.\n'
-            print 'Double-check your pipeline configuration?\n\n'
+                  'pipeline configuration editor.\n')
+            print('Double-check your pipeline configuration?\n\n')
             raise Exception
 
 
@@ -203,13 +203,13 @@ def prep_group_analysis_workflow(c, group_config_file, resource, subject_infos, 
         # END subject-dropping!
 
         if len(derivative_paths) == 0:
-            print '\n\n\n[!] CPAC says: None of the subjects listed in the ' \
+            print('\n\n\n[!] CPAC says: None of the subjects listed in the ' \
                   'group analysis subject list were found to have outputs ' \
                   'produced by individual-level analysis.\n\nEnsure that ' \
                   'the subjects listed in your group analysis subject list ' \
                   'are the same as the ones included in the individual-' \
                   'level analysis you are running group-level analysis for.' \
-                  '\n\n\n'
+                  '\n\n\n')
             raise Exception
 
     ''' END subject list iteration '''
@@ -217,12 +217,12 @@ def prep_group_analysis_workflow(c, group_config_file, resource, subject_infos, 
 
     # check to see if any derivatives of subjects are missing
     if len(list(set(group_sublist) - set(exist_paths))) >0:
-        print "List of outputs missing for subjects:"
-        print list(set(group_sublist) - set(exist_paths))
-        print "..for derivatives:"
-        print resource
-        print "..at paths:"
-        print os.path.dirname(s_paths[0]).replace(s_ids[0], '*')
+        print("List of outputs missing for subjects:")
+        print(list(set(group_sublist) - set(exist_paths)))
+        print("..for derivatives:")
+        print(resource)
+        print("..at paths:")
+        print(os.path.dirname(s_paths[0]).replace(s_ids[0], '*'))
 
         
 
@@ -248,13 +248,13 @@ def prep_group_analysis_workflow(c, group_config_file, resource, subject_infos, 
         f = open(new_sub_file, 'w')
          
         for sub in exist_paths:
-            print >>f, sub
+            print(sub, file=f)
         
         f.close()
 
     except:
 
-        print "Error: Could not open subject list file: ", new_sub_file
+        print("Error: Could not open subject list file: ", new_sub_file)
         raise Exception
 
 
@@ -281,30 +281,30 @@ def prep_group_analysis_workflow(c, group_config_file, resource, subject_infos, 
             if 1 in c.runGenerateMotionStatistics:
 
                 if not os.path.exists(parameter_file):
-                    print '\n\n[!] CPAC says: Could not find or open the motion ' \
+                    print('\n\n[!] CPAC says: Could not find or open the motion ' \
                           'parameter file. This is necessary if you have included ' \
                           'any of the MeanFD measures in your group model.\n\n' \
                           'If Generate Motion Statistics is enabled, this file can ' \
                           'usually be found in the output directory of your ' \
                           'individual-level analysis runs. If it is not there, ' \
                           'double-check to see if individual-level analysis had ' \
-                          'completed successfully.\n'
-                    print 'Path not found: ', parameter_file, '\n\n'
+                          'completed successfully.\n')
+                    print('Path not found: ', parameter_file, '\n\n')
                     raise Exception
 
             else:
 
                 def no_measures_error(measure):
-                    print '\n\n[!] CPAC says: The measure %s was included in ' \
+                    print('\n\n[!] CPAC says: The measure %s was included in ' \
                           'your group analysis design matrix formula, but ' \
                           'Generate Motion Statistics was not run during ' \
-                          'individual-level analysis.\n' % measure
-                    print 'Please run Generate Motion Statistics if you wish ' \
-                          'to include this measure in your model.\n'
-                    print 'If you HAVE completed a run with this option ' \
+                          'individual-level analysis.\n' % measure)
+                    print('Please run Generate Motion Statistics if you wish ' \
+                          'to include this measure in your model.\n')
+                    print('If you HAVE completed a run with this option ' \
                           'enabled, then you are seeing this error because ' \
                           'the motion parameter file normally created by this ' \
-                          'option is missing.\n\n'
+                          'option is missing.\n\n')
                     raise Exception
 
                 for measure in measure_list:
@@ -377,20 +377,20 @@ def prep_group_analysis_workflow(c, group_config_file, resource, subject_infos, 
 
     # MERGE the remaining outputs
     try:
-        commands.getoutput(merge_string)
+        subprocess.getoutput(merge_string)
     except Exception as e:
-        print "[!] CPAC says: FSL Merge failed for output: %s" % current_output
-        print "Error details: %s\n\n" % e
+        print("[!] CPAC says: FSL Merge failed for output: %s" % current_output)
+        print("Error details: %s\n\n" % e)
         raise
 
     merge_mask_string = "fslmaths %s -abs -Tmin -bin %s" % (merge_output, merge_mask_output)
 
     # CREATE A MASK of the merged file
     try:
-        commands.getoutput(merge_mask_string)
+        subprocess.getoutput(merge_mask_string)
     except Exception as e:
-        print "[!] CPAC says: FSL Mask failed for output: %s" % current_output
-        print "Error details: %s\n\n" % e
+        print("[!] CPAC says: FSL Mask failed for output: %s" % current_output)
+        print("Error details: %s\n\n" % e)
         raise
 
 
@@ -403,13 +403,13 @@ def prep_group_analysis_workflow(c, group_config_file, resource, subject_infos, 
 
         try:
             if "Group Mask" in group_conf.mean_mask:
-                maskave_output = commands.getoutput("3dmaskave -mask %s %s" % (merge_mask_output, derivative_path))
+                maskave_output = subprocess.getoutput("3dmaskave -mask %s %s" % (merge_mask_output, derivative_path))
             elif "Individual Mask" in group_conf.mean_mask:
-                maskave_output = commands.getoutput("3dmaskave -mask %s %s" % (derivative_path, derivative_path))
+                maskave_output = subprocess.getoutput("3dmaskave -mask %s %s" % (derivative_path, derivative_path))
         except Exception as e:
-            print "[!] CPAC says: AFNI 3dmaskave failed for output: %s\n" \
-                  "(Measure Mean calculation)" % current_output
-            print "Error details: %s\n\n" % e
+            print("[!] CPAC says: AFNI 3dmaskave failed for output: %s\n" \
+                  "(Measure Mean calculation)" % current_output)
+            print("Error details: %s\n\n" % e)
             raise
 
         # get the subject ID of the current derivative path reliably
@@ -433,18 +433,18 @@ def prep_group_analysis_workflow(c, group_config_file, resource, subject_infos, 
                     # resample custom roi mask to 3mm, then use that
                     resampled_roi_mask = merge_output_dir + "/" + current_output + "_resampled_roi_mask.nii.gz"
                     
-                    commands.getoutput("flirt -in %s -ref %s -o %s -applyxfm -init %s -interp nearestneighbour" % (group_conf.custom_roi_mask, derivative_path, resampled_roi_mask, c.identityMatrix))
+                    subprocess.getoutput("flirt -in %s -ref %s -o %s -applyxfm -init %s -interp nearestneighbour" % (group_conf.custom_roi_mask, derivative_path, resampled_roi_mask, c.identityMatrix))
                     
-                    ROIstats_output = commands.getoutput("3dROIstats -mask %s %s" % (resampled_roi_mask, derivative_path))       
+                    ROIstats_output = subprocess.getoutput("3dROIstats -mask %s %s" % (resampled_roi_mask, derivative_path))       
                     
                 else:    
                         
-                    ROIstats_output = commands.getoutput("3dROIstats -mask %s %s" % (group_conf.custom_roi_mask, derivative_path))
+                    ROIstats_output = subprocess.getoutput("3dROIstats -mask %s %s" % (group_conf.custom_roi_mask, derivative_path))
                     
             except Exception as e:
-                print "[!] CPAC says: AFNI 3dROIstats failed for output: %s" \
-                      "\n(Custom ROI Mean calculation)" % current_output
-                print "Error details: %s\n\n" % e
+                print("[!] CPAC says: AFNI 3dROIstats failed for output: %s" \
+                      "\n(Custom ROI Mean calculation)" % current_output)
+                print("Error details: %s\n\n" % e)
                 raise
 
             ROIstats_list = ROIstats_output.split("\t")
@@ -471,7 +471,7 @@ def prep_group_analysis_workflow(c, group_config_file, resource, subject_infos, 
 
 
 
-    if len(derivative_means_dict.keys()) == 0:
+    if len(list(derivative_means_dict.keys())) == 0:
         err_string = "[!] CPAC says: Something went wrong with the " \
                      "calculation of the output means via the group mask.\n\n"
         raise Exception(err_string)
@@ -659,7 +659,7 @@ def prep_group_analysis_workflow(c, group_config_file, resource, subject_infos, 
         raise Exception
     '''
     
-    print "**Workflow finished for model %s and resource %s"%(os.path.basename(group_conf.output_dir), resource)
+    print("**Workflow finished for model %s and resource %s"%(os.path.basename(group_conf.output_dir), resource))
         
     #diag.close()
 
@@ -667,8 +667,8 @@ def prep_group_analysis_workflow(c, group_config_file, resource, subject_infos, 
 
 def run(config, subject_infos, resource):
     import re
-    import commands
-    commands.getoutput('source ~/.bashrc')
+    import subprocess
+    subprocess.getoutput('source ~/.bashrc')
     import os
     import sys
     import pickle

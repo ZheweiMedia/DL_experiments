@@ -230,7 +230,7 @@ def load(datafile, template=None):
             mask    = nib.load(template).get_data().astype(np.float32)
         
     except:
-        print "Error in loading images for graphs"
+        print("Error in loading images for graphs")
         raise
     
     
@@ -244,7 +244,7 @@ def load(datafile, template=None):
     #extract timeseries
     if len(nodes)>2:
         nodes.sort()
-        print "sorted nodes", nodes
+        print("sorted nodes", nodes)
         
         flag=1
         for n in nodes:
@@ -370,7 +370,7 @@ def get_centrality_by_rvalue(ts_normd,
     # Run as long as our last row index is <= nvoxs
     while m <= nvoxs:
         # First, compute block of correlation matrix
-        print 'running block %d: rows %d thru %d' % (block_no, n, m)
+        print('running block %d: rows %d thru %d' % (block_no, n, m))
         rmat_block = np.dot(ts_normd[:,n:m].T, ts_normd)
         
         # Degree centrality calculation
@@ -390,7 +390,7 @@ def get_centrality_by_rvalue(ts_normd,
         if calc_lfcd:
             xyz_a = np.argwhere(template)
             krange = rmat_block.shape[0]
-            print '...iterating through seeds in block - lfcd'
+            print('...iterating through seeds in block - lfcd')
             for k in range (0,krange):
                 corr_seed = rmat_block[k,:]
                 labels = cluster_data(corr_seed,r_value,xyz_a)
@@ -438,19 +438,19 @@ def get_centrality_by_rvalue(ts_normd,
     try:
         if calc_eigen:
             if out_binarize:
-                print '...calculating binarize eigenvector'
+                print('...calculating binarize eigenvector')
                 eigen_binarize[:] = eigenvector_centrality(r_matrix, 
                                                            r_value, 
                                                            method='binarize').squeeze()
             if out_weighted:
-                print '...calculating weighted eigenvector'
+                print('...calculating weighted eigenvector')
                 eigen_weighted[:] = eigenvector_centrality(r_matrix, 
                                                            r_value, 
                                                            method='weighted').squeeze()
             del r_matrix
         
     except Exception:
-        print 'Error in calcuating eigen vector centrality'
+        print('Error in calcuating eigen vector centrality')
         raise
     
     # Return list of outputs
@@ -557,7 +557,7 @@ def get_centrality_by_sparsity(ts_normd,
     # Calculate correlations step - prune connections for degree
     while n <= nvoxs:
         # First, compute block of correlation matrix
-        print 'running block %d: rows %d thru %d' % (block_no, n, m-1)
+        print('running block %d: rows %d thru %d' % (block_no, n, m-1))
         # Calculate wij over entire matrix by block
         # Do this for both deg and eig, more efficient way to compute r_value
         rmat_block = np.dot(ts_normd[:,n:m].T, 
@@ -569,7 +569,7 @@ def get_centrality_by_sparsity(ts_normd,
         rmat_block = rmat_block[block_mask]
         thr_idx = np.where(rmat_block >= r_value)   
         rmat_block = rmat_block[thr_idx]
-        print 'number of passing correlations is %d' % len(rmat_block)
+        print('number of passing correlations is %d' % len(rmat_block))
         # Add global offset
         idx = np.where(block_mask)
         i = idx[0][thr_idx].astype('int32') + n
@@ -586,7 +586,7 @@ def get_centrality_by_sparsity(ts_normd,
         # Free some memory
         del w_global, i_global, j_global
         # Pass these into the global set and sort (ascending) by correlation
-        print 'sorting list...'
+        print('sorting list...')
         wij_global.sort()
         # And trim list if it's greater than the number of connections we want
         if len(wij_global) > sparse_num:
@@ -615,7 +615,7 @@ def get_centrality_by_sparsity(ts_normd,
     # Degree - use ijw list to create a sparse matrix
     if calc_degree:
         # Create sparse (symmetric) matrix of all correlations that survived
-        print 'creating sparse matrix'
+        print('creating sparse matrix')
         # Extract the weights and indices from the global list
         w = wij_global.f0
         i = wij_global.f1
@@ -645,11 +645,11 @@ def get_centrality_by_sparsity(ts_normd,
         del wij_global
         # Finally compute centrality using full matrix and r_value
         if out_binarize:
-            print '...calculating binarize eigenvector'
+            print('...calculating binarize eigenvector')
             eigen_binarize[:] = eigenvector_centrality(r_matrix, r_value, 
                                                        method='binarize').squeeze()
         if out_weighted:
-            print '...calculating weighted eigenvector'
+            print('...calculating weighted eigenvector')
             eigen_weighted[:] = eigenvector_centrality(r_matrix, r_value, 
                                                        method='weighted').squeeze()
         del r_matrix
@@ -709,25 +709,25 @@ def get_centrality_fast(timeseries,
         calc_degree  = method_options[0]
         calc_eigen   = method_options[1]
         
-        print "Normalize Time-series"
+        print("Normalize Time-series")
         timeseries = norm_cols(timeseries.T)
         
-        print "Computing centrality across %i voxels" % nvoxs
+        print("Computing centrality across %i voxels" % nvoxs)
         
         if calc_degree:
-            print "...calculating degree"
+            print("...calculating degree")
             degree_weighted = fast_degree_centrality(timeseries)
             out_list.append(('degree_centrality_weighted', degree_weighted))
         
         if calc_eigen:
-            print "...calculating eigen"
+            print("...calculating eigen")
             eigen_weighted = fast_eigenvector_centrality(timeseries)
             out_list.append(('eigenvector_centrality_weighted', eigen_weighted))
         
         return out_list   
     
     except Exception: 
-        print "Error in calcuating centrality"
+        print("Error in calcuating centrality")
         raise
 
 
@@ -844,7 +844,7 @@ def calc_centrality(datafile,
                         'pipeline config file' % str(threshold_option))
     
     # Print timing info
-    print 'Timing:', time.clock() - start
+    print('Timing:', time.clock() - start)
  
     # Map the arrays back to images
     for mat in centrality_matrix:

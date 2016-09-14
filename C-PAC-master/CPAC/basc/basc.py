@@ -26,17 +26,17 @@ def group_stability_matrix(indiv_stability_list, n_bootstraps, k_clusters, strat
     cluster_voxel_scores : array_like
         `K` by `V` matrix of within-cluster average values for each cluster of each voxel
     """
-    print 'Calculating group stability matrix for', len(indiv_stability_list), 'subjects.'
+    print('Calculating group stability matrix for', len(indiv_stability_list), 'subjects.')
 
     if stratification is not None:
-        print 'Applying stratification to group dataset'
+        print('Applying stratification to group dataset')
                 
     from CPAC.basc import standard_bootstrap, adjacency_matrix, cluster_timeseries, cluster_matrix_average
     import numpy as np
 
     indiv_stability_set = np.asarray([np.load(ism_file) for ism_file in indiv_stability_list])
 #    indiv_stability_set = indiv_stability_list
-    print 'Individual stability list dimensions:', indiv_stability_set.shape
+    print('Individual stability list dimensions:', indiv_stability_set.shape)
     
     V = indiv_stability_set.shape[2]
     
@@ -130,7 +130,7 @@ def nifti_individual_stability(subject_file, roi_mask_file, n_bootstraps, k_clus
     ism : array_like
         Individual stability matrix of shape (`V`, `V`), `V` voxels
     """
-    print 'Calculating individual stability matrix of:', subject_file
+    print('Calculating individual stability matrix of:', subject_file)
 
     from CPAC.basc import individual_stability_matrix
     from CPAC.utils import safe_shape
@@ -147,13 +147,13 @@ def nifti_individual_stability(subject_file, roi_mask_file, n_bootstraps, k_clus
                                                                                            str(roi_mask_file.shape)) )
     
     Y = data[roi_mask_file].T
-    print '(%i timepoints, %i voxels) and %i bootstraps' % (Y.shape[0], Y.shape[1], n_bootstraps)
+    print('(%i timepoints, %i voxels) and %i bootstraps' % (Y.shape[0], Y.shape[1], n_bootstraps))
     
     ism = individual_stability_matrix(Y, n_bootstraps, k_clusters, cbb_block_size=cbb_block_size, affinity_threshold=affinity_threshold)
     ism_file = os.path.join(os.getcwd(), 'individual_stability_matrix.npy')
     np.save(ism_file, ism)
     
-    print 'Saving individual stability matrix %s for %s' % (ism_file, subject_file)
+    print('Saving individual stability matrix %s for %s' % (ism_file, subject_file))
     
     return ism_file
 

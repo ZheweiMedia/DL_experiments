@@ -13,7 +13,7 @@ import nipype.pipeline.engine as pe
 import nipype.interfaces.fsl as fsl
 import nipype.interfaces.io as nio
 from nipype.interfaces.afni import preprocess
-from   nipype.pipeline.utils import format_dot
+from nipype.pipeline.engine.utils import format_dot
 import nipype.interfaces.ants as ants
 import nipype.interfaces.c3 as c3
 from nipype import config
@@ -102,7 +102,7 @@ class strategy:
             raise
 
     def update_resource_pool(self, resources):
-        for key, value in resources.items():
+        for key, value in list(resources.items()):
             if key in self.resource_pool:
                 logger.info('Warning key %s already exists in resource' \
                         ' pool, replacing with %s ' % (key, value))
@@ -234,13 +234,13 @@ def prep_workflow(sub_dict, c, strategies, run, pipeline_timing_info=None, p_nam
 
     if len(wrong_filepath_list) > 0:
 
-        print '\n\n'
-        print 'Whoops! - Filepaths provided do not exist:\n'
+        print('\n\n')
+        print('Whoops! - Filepaths provided do not exist:\n')
 
         for file_tuple in wrong_filepath_list:
-            print file_tuple[0], ' - ', file_tuple[1]
+            print(file_tuple[0], ' - ', file_tuple[1])
 
-        print '\nPlease double-check your pipeline configuration file.\n\n'
+        print('\nPlease double-check your pipeline configuration file.\n\n')
 
         # VERY TEMPORARY
         if (len(wrong_filepath_list) == 1) and (wrong_filepath_list[0][0] == "dilated_symmetric_brain_mask"):
@@ -299,16 +299,16 @@ def prep_workflow(sub_dict, c, strategies, run, pipeline_timing_info=None, p_nam
 
     if c.reGenerateOutputs is True:
 
-        import commands
+        import subprocess
         cmd = "find %s -name \'*sink*\' -exec rm -rf {} \\;" % os.path.join(c.workingDirectory, wfname)
         logger.info(cmd)
-        commands.getoutput(cmd)
+        subprocess.getoutput(cmd)
         cmd = "find %s -name \'*link*\' -exec rm -rf {} \\;" % os.path.join(c.workingDirectory, wfname)
         logger.info(cmd)
-        commands.getoutput(cmd)
+        subprocess.getoutput(cmd)
         cmd = "find %s -name \'*log*\' -exec rm -rf {} \\;" % os.path.join(c.workingDirectory, wfname)
         logger.info(cmd)
-        commands.getoutput(cmd)
+        subprocess.getoutput(cmd)
 
 
     def create_log_node(wflow, output, indx, scan_id = None):
@@ -1150,7 +1150,7 @@ def prep_workflow(sub_dict, c, strategies, run, pipeline_timing_info=None, p_nam
             except Exception as xxx:
                 logger.info( "Error connecting input 'func' to trunc_wf."+\
                       " (%s:%d)" % dbg_file_lineno() )
-                print xxx
+                print(xxx)
                 raise
 
             # connect the other input parameters
@@ -1227,7 +1227,7 @@ def prep_workflow(sub_dict, c, strategies, run, pipeline_timing_info=None, p_nam
                     except Exception as xxx:
                         logger.info( "Error connecting input 'tr' to func_slice_timing_correction afni node."+\
                              " (%s:%d)" % dbg_file_lineno() )
-                        print xxx
+                        print(xxx)
                         raise
                     logger.info("connected TR")
 
@@ -1244,13 +1244,13 @@ def prep_workflow(sub_dict, c, strategies, run, pipeline_timing_info=None, p_nam
                         except Exception as xxx:
                             logger.info( "Error connecting input 'acquisition' to func_slice_timing_correction afni node."+\
                                  " (%s:%d)" % dbg_file_lineno() )
-                            print xxx
+                            print(xxx)
                             raise
                         logger.info( "connected slice timing pattern %s"%c.slice_timing_pattern[0])
                 except Exception as xxx:
                     logger.info( "Error connecting input 'acquisition' to func_slice_timing_correction afni node."+\
                                  " (%s:%d)" % dbg_file_lineno() )
-                    print xxx
+                    print(xxx)
                     raise
 
                 if (0 in c.runFunctionalPreprocessing):
@@ -1314,7 +1314,7 @@ def prep_workflow(sub_dict, c, strategies, run, pipeline_timing_info=None, p_nam
                         except Exception as xxx:
                             logger.info( "Error connecting leafnode to func, func_preproc."+\
                                  " (%s:%d)" % (dbg_file_lineno()) )
-                            print xxx
+                            print(xxx)
                             raise
                         logger.info("infile rest connected") 
                     except Exception as xxx:
@@ -4630,8 +4630,8 @@ def prep_workflow(sub_dict, c, strategies, run, pipeline_timing_info=None, p_nam
                         qc_hist_id[idx] = '%s_hist' % measure
 
                 except Exception as e:
-                    print "[!] Creation of QA montages for %s has failed.\n" % measure
-                    print "Error: %s" % e
+                    print("[!] Creation of QA montages for %s has failed.\n" % measure)
+                    print("Error: %s" % e)
                     pass                    
 
 
@@ -5747,7 +5747,7 @@ def prep_workflow(sub_dict, c, strategies, run, pipeline_timing_info=None, p_nam
                 if workflow_bit_id.get(name) != None:
                         strat_tag += name + '_'
                         
-                        print name, ' --- ', 2 ** workflow_bit_id[name]
+                        print(name, ' --- ', 2 ** workflow_bit_id[name])
                         hash_val += 2 ** workflow_bit_id[name]
 
     
@@ -6109,10 +6109,10 @@ def run(config, subject_list_file, indx, strategies,
     '''
 
     # Import packages
-    import commands
+    import subprocess
     from CPAC.AWS import fetch_creds
     from CPAC.AWS import aws_utils
-    commands.getoutput('source ~/.bashrc')
+    subprocess.getoutput('source ~/.bashrc')
     import pickle
     import yaml
 
@@ -6140,7 +6140,7 @@ def run(config, subject_list_file, indx, strategies,
     # If we're using AWS
     if creds_path:
         bucket = fetch_creds.return_bucket(creds_path, bucket_name)
-        print 'Using data from S3 bucket: %s' % bucket_name
+        print('Using data from S3 bucket: %s' % bucket_name)
         # Check to see if outputs are already uploaded
         upl_files = [str(k.name) for k in bucket.list(prefix=bucket_upload_prefix)]
 
@@ -6149,7 +6149,7 @@ def run(config, subject_list_file, indx, strategies,
                                          local_prefix, [sub_dict])
     # Otherwise, state use of local disk and move on
     else:
-        print 'Using local disk for input/output'
+        print('Using local disk for input/output')
 
     # Load in the different spec files to Configuration object
     c.maskSpecificationFile = maskSpecificationFile
@@ -6160,8 +6160,8 @@ def run(config, subject_list_file, indx, strategies,
         # Build and run the pipeline
         prep_workflow(sub_dict, c, pickle.load(open(strategies, 'r')), 1, p_name)
     except Exception as e:
-        print 'Could not complete cpac run for subject: %s!' % sub_id
-        print 'Error: %s' % e
+        print('Could not complete cpac run for subject: %s!' % sub_id)
+        print('Error: %s' % e)
 
     # Now upload results to S3
     if creds_path:

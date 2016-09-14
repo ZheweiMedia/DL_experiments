@@ -46,7 +46,7 @@ def degree_centrality(corr_matrix, r_value, method, out=None):
     
     if out is None:
         out = np.zeros(corr_matrix.shape[0], dtype=corr_matrix.dtype)
-    print 'about to call thresh_and_sum'
+    print('about to call thresh_and_sum')
     func_name   = "centrality_%s_%s" % (method, dtype)
     func        = globals()[func_name]
     func(corr_matrix, out, r_value)
@@ -183,10 +183,10 @@ def fast_eigenvector_centrality(m, maxiter=99, verbose=True):
         dnorm = LA.norm(vcurr-vprev, 2)
         cnorm = LA.norm(vcurr,2) * np.spacing(1)
         if verbose:
-            print "iteration %02d, || v_i - v_(i-1) || / || v_i * epsilon || = %0.16f / %0.16f" % (i, dnorm, cnorm) #  some stats for the users
+            print("iteration %02d, || v_i - v_(i-1) || / || v_i * epsilon || = %0.16f / %0.16f" % (i, dnorm, cnorm)) #  some stats for the users
     
     if (i >= maxiter) & (dnorm > cnorm):
-        print "Error: algorithm did not converge"   # TODO: convert to an exception?
+        print("Error: algorithm did not converge")   # TODO: convert to an exception?
     
     # now the vcurr value will be the ECM
     return vcurr

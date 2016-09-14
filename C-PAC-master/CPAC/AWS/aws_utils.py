@@ -38,7 +38,7 @@ def build_download_sublist(bucket, bucket_prefix, local_prefix, sub_list):
     local_list = []
     for sub_dict in sub_list:
         local_list.append(sub_dict['anat'])
-        local_list.extend([v for v in sub_dict['rest'].values()])
+        local_list.extend([v for v in list(sub_dict['rest'].values())])
 
     # Substitute the prefixes to build S3 list to download from
     s3_list = [l.replace(local_prefix, bucket_prefix) for l in local_list]
@@ -144,8 +144,8 @@ def md5_sum(bucket, prefix='', filt_str=''):
         if filt_str in filename:
             md5_sum = str(fkey.etag).strip('"')
             md5_dict[filename] = md5_sum
-            print 'filename: %s' % filename
-            print 'md5_sum: %s' % md5_sum
+            print('filename: %s' % filename)
+            print('md5_sum: %s' % md5_sum)
 
     # Return the dictionary
     return md5_dict
@@ -193,25 +193,25 @@ def s3_rename(bucket, src_list, dst_list,
     for f in src_list:
         src_key = bucket.get_key(f)
         if not src_key:
-            print 'source file %s doesnt exist, skipping...' % f
+            print('source file %s doesnt exist, skipping...' % f)
             continue
         dst_key = dst_list[i]
         dst_exists = bucket.get_key(dst_key)
         if not dst_exists or overwrite:
-            print 'copying source: ', str(src_key.key)
-            print 'to destination: ', dst_key
+            print('copying source: ', str(src_key.key))
+            print('to destination: ', dst_key)
             src_key.copy(bucket.name, dst_key)
             if make_public:
-                print 'making public...'
+                print('making public...')
                 dk = bucket.get_key(dst_key)
                 dk.make_public()
             if not keep_old:
                 src_key.delete()
         else:
-            print '%s exists and not overwriting' % dst_key
+            print('%s exists and not overwriting' % dst_key)
         i += 1
         per = 100*(float(i)/no_files)
-        print 'Done renaming %d/%d\n%f%% complete' % (i, no_files, per)
+        print('Done renaming %d/%d\n%f%% complete' % (i, no_files, per))
 
 
 # Delete s3 keys based on input list
@@ -241,16 +241,16 @@ def s3_delete(bucket, in_list):
     for f in in_list:
         i += 1
         try:
-            print 'attempting to delete %s from %s...' % (f, bucket.name)
+            print('attempting to delete %s from %s...' % (f, bucket.name))
             k = bucket.get_key(f)
             k.delete()
             per = 100*(float(i)/no_files)
-            print 'Done deleting %d/%d\n%f%% complete' % (i, no_files, per)
+            print('Done deleting %d/%d\n%f%% complete' % (i, no_files, per))
         except AttributeError:
-            print 'No key found for %s on bucket %s' % (f, bucket.name)
+            print('No key found for %s on bucket %s' % (f, bucket.name))
 
         # Done iterating through list
-        print 'done!'
+        print('done!')
 
 
 # Download files from AWS S3 to local machine
@@ -301,24 +301,24 @@ def s3_download(bucket, in_list, local_prefix, bucket_prefix=''):
         # Check to see if the local folder setup exists or not
         local_folders = os.path.dirname(local_filename)
         if not os.path.isdir(local_folders):
-            print 'creating %s on local machine' % local_folders
+            print('creating %s on local machine' % local_folders)
             os.makedirs(local_folders)
         # Attempt to download the file
-        print 'attempting to download %s to %s...' % (remote_filename,
-                                                      local_filename)
+        print('attempting to download %s to %s...' % (remote_filename,
+                                                      local_filename))
         try:
             if not os.path.exists(local_filename):
                 k = bucket.get_key(f)
                 k.get_contents_to_filename(local_filename)
                 per = 100*(float(i)/no_files)
-                print 'Done downloading %d/%d\n%f%% complete' % (i, no_files, per)
+                print('Done downloading %d/%d\n%f%% complete' % (i, no_files, per))
             else:
-                print 'File %s already exists, skipping...' % local_filename
+                print('File %s already exists, skipping...' % local_filename)
         except AttributeError:
-            print 'No key found for %s on bucket %s' % (f, bucket.name)
+            print('No key found for %s on bucket %s' % (f, bucket.name))
 
     # Done iterating through list
-    print 'done!'
+    print('done!')
 
 
 # Upload files to AWS S3
@@ -368,30 +368,30 @@ def s3_upload(bucket, src_list, dst_list, make_public=False, overwrite=False):
 
     # Check if the list lengths match 
     if no_files != len(dst_list):
-        raise RuntimeError, 'src_list and dst_list must be the same length!'
+        raise RuntimeError('src_list and dst_list must be the same length!')
 
     # For each source file, upload
     for src_file in src_list:
         # Get destination path
         dst_file = dst_list[i]
         # Print status
-        print 'Uploading %s to S3 bucket %s as %s' % \
-        (src_file, bucket.name, dst_file)
+        print('Uploading %s to S3 bucket %s as %s' % \
+        (src_file, bucket.name, dst_file))
 
         # Create a new key from the bucket and set its contents
         k = bucket.new_key(dst_file)
         if k.exists() and not overwrite:
-            print 'key %s already exists, skipping...' % dst_file
+            print('key %s already exists, skipping...' % dst_file)
         else:
             k.set_contents_from_filename(src_file, cb=callback, replace=True)
         # Make file public if set to True
         if make_public:
-            print 'make public()'
+            print('make public()')
             k.make_public()
         i += 1
         per = 100*(float(i)/no_files)
-        print 'finished file %d/%d\n%f%% complete\n' % \
-        (i, no_files, per)
+        print('finished file %d/%d\n%f%% complete\n' % \
+        (i, no_files, per))
 
     # Print when finished
-    print 'Done!'
+    print('Done!')

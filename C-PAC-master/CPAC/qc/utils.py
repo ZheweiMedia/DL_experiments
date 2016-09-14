@@ -1,4 +1,4 @@
-import commands
+import subprocess
 import numpy as np
 import matplotlib
 import pkg_resources as p
@@ -66,7 +66,7 @@ def append_to_files_in_dict_way(list_files, file_):
 
         for key in two_dict:
 
-            print >> f_2, key
+            print(key, file=f_2)
 
         f_2.close
 
@@ -134,16 +134,16 @@ def first_pass_organizing_files(qc_path):
 
             str_ = str_ + fwhm_val + hp_lp_
 
-        if strat_dict.keys() == []:
+        if list(strat_dict.keys()) == []:
 
             strat_dict[str_] = [file_]
 
         else:
 
             flag_ = 0
-            for key_ in strat_dict.keys():
+            for key_ in list(strat_dict.keys()):
 
-                print str_, ' ~~ ', key_
+                print(str_, ' ~~ ', key_)
                 if str_ in key_:
                     append_to_files_in_dict_way(strat_dict[key_], file_)
                     flag_ = 1
@@ -203,7 +203,7 @@ def second_pass_organizing_files(qc_path):
         str_ = str_.replace('____', '_')
         str_ = str_.replace('___', '_')
         str_ = str_.replace('__', '_')
-        print '~~>', str_
+        print('~~>', str_)
         fwhm_val_ = ''
 
         #organize all derivatives excluding alff falff
@@ -212,10 +212,10 @@ def second_pass_organizing_files(qc_path):
             if not str_ in strat_dict:
                 strat_dict[str_] = [file_]
             else:
-                print 'Error: duplicate keys for files in QC 2nd file_org pass: %s %s' % (strat_dict[str_], file_)
+                print('Error: duplicate keys for files in QC 2nd file_org pass: %s %s' % (strat_dict[str_], file_))
                 raise
 
-            print strat_dict
+            print(strat_dict)
         #organize alff falff
         elif ('_hp_' in str_) and ('_lp_' in str_):
 
@@ -235,16 +235,16 @@ def second_pass_organizing_files(qc_path):
 
 
             flag_ = 0
-            for key in strat_dict.keys():
+            for key in list(strat_dict.keys()):
 
-                print key, '~~', key_, '~~', key_1
+                print(key, '~~', key_, '~~', key_1)
                 if (key_ in key) and (key_1 in key):
 
                     append_to_files_in_dict_way(strat_dict[key], file_)
                     str_ = strat_dict[key][0].replace('.txt', '')
                     new_fname = str_ + hp_lp_ + '.txt'
 
-                    print '~~>', new_fname
+                    print('~~>', new_fname)
                     os.system('mv %s %s' %(strat_dict[key][0], new_fname))
                     del strat_dict[key]
                     flag_ = 1
@@ -257,7 +257,7 @@ def second_pass_organizing_files(qc_path):
             if not str_ in strat_dict:
                 strat_dict[str_] = [file_]
             else:
-                print 'Error: duplicate keys for files in QC 2nd file_org pass: %s %s' % (strat_dict[str_], file_)
+                print('Error: duplicate keys for files in QC 2nd file_org pass: %s %s' % (strat_dict[str_], file_))
                 raise
 
 
@@ -290,10 +290,10 @@ def organize(dict_, all_ids, png_, new_dict):
         list of png id nos
     """
 
-    for id_no, png_type in dict_.items():
+    for id_no, png_type in list(dict_.items()):
 
         if png_type in png_:
-            if not id_no in new_dict.keys():
+            if not id_no in list(new_dict.keys()):
                 new_dict[id_no] = [png_]
             else:
                 list_ = new_dict[id_no]
@@ -401,37 +401,37 @@ def add_head(f_html_, f_html_0, f_html_1):
     None
 
     """
-    print >>f_html_, "<html>"
-    print >>f_html_, "<head>"
-    print >>f_html_, "<title>QC</title>"
-    print >>f_html_, "</head>"
-    print >>f_html_, ""
-    print >>f_html_, "<frameset cols=\"20%,80%\">"
-    print >>f_html_, ""
-    print >>f_html_, "    <frame src=\"%s\" name=\"menu\"><frame src=\"%s\" name=\"content\"></frameset>" %(f_html_0.name, f_html_1.name)
-    print >>f_html_, ""
-    print >>f_html_, "</html>"
+    print("<html>", file=f_html_)
+    print("<head>", file=f_html_)
+    print("<title>QC</title>", file=f_html_)
+    print("</head>", file=f_html_)
+    print("", file=f_html_)
+    print("<frameset cols=\"20%,80%\">", file=f_html_)
+    print("", file=f_html_)
+    print("    <frame src=\"%s\" name=\"menu\"><frame src=\"%s\" name=\"content\"></frameset>" %(f_html_0.name, f_html_1.name), file=f_html_)
+    print("", file=f_html_)
+    print("</html>", file=f_html_)
 
-    print >>f_html_0, "<html>"
-    print >>f_html_0, "<link href=\"%s\" rel=\"stylesheet\" media=\"screen\">"%(p.resource_filename('CPAC',"GUI/resources/html/_static/nature.css"))
-    print >>f_html_0, "<link href=\"%s\" rel=\"stylesheet\" media=\"screen\">"%(p.resource_filename('CPAC',"GUI/resources/html/_static/pygments.css"))
-    print >>f_html_0, "<head>"
-    print >>f_html_0, "<base target=\"content\">"
-    print >>f_html_0, "</head>"
-    print >>f_html_0, "<body>"
-    print >>f_html_0, "<div>"
-    print >>f_html_0, "<div class=\"sphinxsidebarwrapper\">"
-    print >>f_html_0, "<p class=\"logo\"><a href=\"#\">"
-    print >>f_html_0, "<img class=\"logo\" src=\"%s\" alt=\"Logo\"/>"%(p.resource_filename('CPAC',"GUI/resources/html/_static/cpac_logo.jpg"))
-    print >>f_html_0, "</a></p>"
-    print >>f_html_0, "<h3><a href=\"#\">Table Of Contents</a></h3>"
-    print >>f_html_0, "<ul>"
+    print("<html>", file=f_html_0)
+    print("<link href=\"%s\" rel=\"stylesheet\" media=\"screen\">"%(p.resource_filename('CPAC',"GUI/resources/html/_static/nature.css")), file=f_html_0)
+    print("<link href=\"%s\" rel=\"stylesheet\" media=\"screen\">"%(p.resource_filename('CPAC',"GUI/resources/html/_static/pygments.css")), file=f_html_0)
+    print("<head>", file=f_html_0)
+    print("<base target=\"content\">", file=f_html_0)
+    print("</head>", file=f_html_0)
+    print("<body>", file=f_html_0)
+    print("<div>", file=f_html_0)
+    print("<div class=\"sphinxsidebarwrapper\">", file=f_html_0)
+    print("<p class=\"logo\"><a href=\"#\">", file=f_html_0)
+    print("<img class=\"logo\" src=\"%s\" alt=\"Logo\"/>"%(p.resource_filename('CPAC',"GUI/resources/html/_static/cpac_logo.jpg")), file=f_html_0)
+    print("</a></p>", file=f_html_0)
+    print("<h3><a href=\"#\">Table Of Contents</a></h3>", file=f_html_0)
+    print("<ul>", file=f_html_0)
 
-    print >>f_html_1, '<link href="default.css" rel="stylesheet" type="text/css" />'
-    print >>f_html_1, "<html>"
-    print >>f_html_1, "</style>"
-    print >>f_html_1, "<body>"
-    print >>f_html_1, "<a name='reverse'>"
+    print('<link href="default.css" rel="stylesheet" type="text/css" />', file=f_html_1)
+    print("<html>", file=f_html_1)
+    print("</style>", file=f_html_1)
+    print("<body>", file=f_html_1)
+    print("<a name='reverse'>", file=f_html_1)
 
 
 
@@ -482,13 +482,13 @@ def add_tail(f_html_, f_html_0, f_html_1):
 # <br> \
 # <br> \
 # </form>"
-    print >>f_html_0, "</ul>"
-    print >>f_html_0, "</div>"
-    print >>f_html_0, "</div>"
-    print >>f_html_0, "</body>"
-    print >>f_html_0, "</html>"
-    print >>f_html_1, "</body>"
-    print >>f_html_1, "</html>"
+    print("</ul>", file=f_html_0)
+    print("</div>", file=f_html_0)
+    print("</div>", file=f_html_0)
+    print("</body>", file=f_html_0)
+    print("</html>", file=f_html_0)
+    print("</body>", file=f_html_1)
+    print("</html>", file=f_html_1)
 
 
 
@@ -578,8 +578,8 @@ def feed_line_nav(id_,
     if image_name == 'falff_smooth_hist':
         image_readable = 'Histogram of fractional Amplitude of Low-Frequency Fluctuation' 
 
-    print >>f_html_0, "<li><a href='%s#%s'> %s </a></li>" % (f_html_1.name, \
-        anchor, image_readable)   ###
+    print("<li><a href='%s#%s'> %s </a></li>" % (f_html_1.name, \
+        anchor, image_readable), file=f_html_0)   ###
 
 
 
@@ -662,13 +662,13 @@ def feed_line_body(image_name, anchor, image, f_html_1):
         image_readable = 'Histogram of fractional Amplitude of Low-Frequency Fluctuation' 
 
 
-    print >>f_html_1, "<h3><a name='%s'>%s</a> <a href='#reverse'>TOP</a></h3>" %(anchor, image_readable)   ###
+    print("<h3><a name='%s'>%s</a> <a href='#reverse'>TOP</a></h3>" %(anchor, image_readable), file=f_html_1)   ###
 
     ###data_uri = open(image, 'rb').read().encode('base64').replace('\n', '')
     ###img_tag = '<br><img src="data:image/png;base64,{0}">'.format(data_uri)
     
     img_tag = "<br><img src='%s', alt='%s'>" %(image, image_readable)   ###
-    print >>f_html_1, img_tag
+    print(img_tag, file=f_html_1)
 
 
 def get_map_id(str_, id_):
@@ -966,7 +966,7 @@ def feed_lines_html(id_,
                         f_html_1)
 
 
-            if id_ in dict_hist.keys():
+            if id_ in list(dict_hist.keys()):
 
                 if idx == 0:
                     feed_line_nav(id_, \
@@ -985,7 +985,7 @@ def feed_lines_html(id_,
         id_a = str(id_)
         image_name = qc_plot_id[id_]
         png_a = dict_plot[id_][0]
-        print 'png_: ', png_a
+        print('png_: ', png_a)
         feed_line_nav(id_, \
                     image_name, \
                     id_a, \
@@ -1089,10 +1089,10 @@ def make_page(file_, qc_montage_id_a, qc_montage_id_s, qc_plot_id, qc_hist_id):
 
     except:
 
-        print '\n\nWarning: QC HTML pages could not be generated because' \
+        print('\n\nWarning: QC HTML pages could not be generated because' \
               ' the file names have become too long. Clear out the .html' \
               ' files present in the output directory and in the' \
-              ' qc_files_here folders within the subject directories.\n\n'
+              ' qc_files_here folders within the subject directories.\n\n')
         raise Exception
 
     
@@ -1237,7 +1237,7 @@ def make_edge(file_):
 
     """
 
-    import commands
+    import subprocess
     import os
 
     remainder, ext_ = os.path.splitext(file_)
@@ -1250,8 +1250,8 @@ def make_edge(file_):
     new_fname = os.path.join(os.getcwd(), os.path.basename(new_fname))
 
     cmd = "3dedge3 -input %s -prefix %s" % (file_, new_fname)
-    print cmd
-    print commands.getoutput(cmd)
+    print(cmd)
+    print(subprocess.getoutput(cmd))
 
     return new_fname
 
@@ -1284,14 +1284,14 @@ def gen_func_anat_xfm(func_, ref_, xfm_, interp_):
     """
 
     import os
-    import commands
+    import subprocess
 
     new_fname = os.path.join(os.getcwd(), 'std_dev_anat.nii.gz')
 
     cmd = 'applywarp --ref=%s --in=%s --out=%s --premat=%s --interp=%s' % (ref_, func_, new_fname, xfm_, interp_)
-    print cmd
+    print(cmd)
 
-    print commands.getoutput(cmd)
+    print(subprocess.getoutput(cmd))
 
     return new_fname
 
@@ -1318,14 +1318,14 @@ def gen_snr(std_dev, mean_func_anat):
         path to the snr file
     """
     import os
-    import commands
+    import subprocess
 
     new_fname = os.path.join(os.getcwd(), 'snr.nii.gz')
 
     cmd = '3dcalc -a %s -b %s -expr \"b/a\" -prefix %s' % (std_dev, mean_func_anat, new_fname)
 
-    print cmd
-    print commands.getoutput(cmd)
+    print(cmd)
+    print(subprocess.getoutput(cmd))
 
     return new_fname
 
@@ -1399,14 +1399,14 @@ def gen_std_dev(mask_, func_):
     """
 
     import os
-    import commands
+    import subprocess
 
     new_fname = os.path.join(os.getcwd(), 'std_dev.nii.gz')
 
 
     cmd = "3dTstat -stdev -mask %s -prefix %s %s" % (mask_, new_fname, func_)
 
-    print commands.getoutput(cmd)
+    print(subprocess.getoutput(cmd))
 
     return new_fname
 
@@ -1471,7 +1471,7 @@ def gen_plot_png(arr, ex_vol, measure):
 
 
     import matplotlib
-    import commands
+    import subprocess
 #    matplotlib.use('Agg')
     from matplotlib import pyplot
     matplotlib.rcParams.update({'font.size': 8})
@@ -1493,7 +1493,7 @@ def gen_plot_png(arr, ex_vol, measure):
 
 
     fig = pyplot.figure(figsize=(10, 6))
-    pyplot.plot([i for i in xrange(len(arr))], arr, '-')
+    pyplot.plot([i for i in range(len(arr))], arr, '-')
     fig.suptitle('%s plot with Mean %s = %0.4f' % (measure, measure, arr.mean()))
     if measure == 'FD' and len(ex_vol) > 0:
 
@@ -1535,7 +1535,7 @@ def gen_motion_plt(motion_parameters):
     """
 
     import matplotlib
-    import commands
+    import subprocess
 #    matplotlib.use('Agg')
     import matplotlib.cm as cm
     import numpy as np
@@ -1662,8 +1662,8 @@ def gen_histogram(measure_file, measure):
 
     else:
 
-        print "measure_file: ", measure_file
-        print "measure: ", measure
+        print("measure_file: ", measure_file)
+        print("measure: ", measure)
 
         hist_path = make_histogram(measure_file, measure)
 
@@ -1699,7 +1699,7 @@ def make_histogram(measure_file, measure):
     """
 
     import matplotlib
-    import commands
+    import subprocess
 #    matplotlib.use('Agg')
     from matplotlib import pyplot
     import matplotlib.cm as cm
@@ -1764,7 +1764,7 @@ def drop_percent_(measure_file, percent_):
     import nibabel as nb
     import numpy as np
     import os
-    import commands
+    import subprocess
 
     img = nb.load(measure_file)
 
@@ -1773,7 +1773,7 @@ def drop_percent_(measure_file, percent_):
     x, y, z = data.shape
 
 
-    max_val= float(commands.getoutput('fslstats %s -P %f' %(measure_file, percent_)))
+    max_val= float(subprocess.getoutput('fslstats %s -P %f' %(measure_file, percent_)))
 
     for i in range(x):
 
@@ -1801,7 +1801,7 @@ def drop_percent_(measure_file, percent_):
     saved_name_correct_header = '%s_%d%s' % (f_name, percent_, ext)
     save_img.to_filename(saved_name)
 
-    commands.getoutput("3dcalc -a %s -expr 'a' -prefix %s" % (saved_name, saved_name_correct_header))
+    subprocess.getoutput("3dcalc -a %s -expr 'a' -prefix %s" % (saved_name, saved_name_correct_header))
 
     modified_measure_file = os.path.join(os.getcwd(), saved_name_correct_header)
     return modified_measure_file
@@ -2010,7 +2010,7 @@ def make_montage_axial(overlay, underlay, png_name, cbar_name):
 
     """
     import matplotlib
-    import commands
+    import subprocess
 #    matplotlib.use('Agg')
     import os
     matplotlib.rcParams.update({'font.size': 5})
@@ -2036,7 +2036,7 @@ def make_montage_axial(overlay, underlay, png_name, cbar_name):
     if 'skull_vis' in png_name or 't1_edge_on_mean_func_in_t1' in png_name or 'MNI_edge_on_mean_func_mni' in png_name:
         max_ = np.nanmax(np.abs(X.flatten()))
         X[X != 0.0] = max_
-        print '^^', np.unique(X)
+        print('^^', np.unique(X))
     z1, z2 = determine_start_and_end(Y, 'axial', 0.0001)
     spacing = get_spacing(6, 3, z2 - z1)
     x, y, z = Y.shape
@@ -2060,12 +2060,12 @@ def make_montage_axial(overlay, underlay, png_name, cbar_name):
     x, y, z = X.shape
     X[X == 0.0] = np.nan
     max_ = np.nanmax(np.abs(X.flatten()))
-    print '~~', max_
+    print('~~', max_)
 
 
     zz = z1
     im = None
-    print '~~~', z1, ' ', z2
+    print('~~~', z1, ' ', z2)
     for i in range(6*3):
 
 
@@ -2178,7 +2178,7 @@ def make_montage_sagittal(overlay, underlay, png_name, cbar_name):
     """
     from CPAC.qc.utils import determine_start_and_end, get_spacing
     import matplotlib
-    import commands
+    import subprocess
 #    matplotlib.use('Agg')
     import os
     import numpy as np
@@ -2204,7 +2204,7 @@ def make_montage_sagittal(overlay, underlay, png_name, cbar_name):
     if 'skull_vis' in png_name or 't1_edge_on_mean_func_in_t1' in png_name or 'MNI_edge_on_mean_func_mni' in png_name:
         max_ = np.nanmax(np.abs(X.flatten()))
         X[X != 0.0] = max_
-        print '^^', np.unique(X)
+        print('^^', np.unique(X))
 
     x1, x2 = determine_start_and_end(Y, 'sagittal', 0.0001)
     spacing = get_spacing(6, 3, x2 - x1)
@@ -2231,7 +2231,7 @@ def make_montage_sagittal(overlay, underlay, png_name, cbar_name):
     x, y, z = X.shape
     X[X == 0.0] = np.nan
     max_ = np.nanmax(np.abs(X.flatten()))
-    print '~~', max_
+    print('~~', max_)
     xx = x1
     for i in range(6*3):
 
@@ -2298,7 +2298,7 @@ def montage_gm_wm_csf_axial(overlay_csf, overlay_wm, overlay_gm, underlay, png_n
 
     import os
     import matplotlib
-    import commands
+    import subprocess
 #    matplotlib.use('Agg')
     from CPAC.qc.utils import determine_start_and_end, get_spacing
     import numpy as np
@@ -2347,7 +2347,7 @@ def montage_gm_wm_csf_axial(overlay_csf, overlay_wm, overlay_gm, underlay, png_n
     X_csf[X_csf == 0.0] = np.nan
     X_wm[X_wm == 0.0] = np.nan
     X_gm[X_gm == 0.0] = np.nan
-    print '~~', max_
+    print('~~', max_)
 
 
     zz = z1
@@ -2409,7 +2409,7 @@ def montage_gm_wm_csf_sagittal(overlay_csf, overlay_wm, overlay_gm, underlay, pn
 
     import os
     import matplotlib
-    import commands
+    import subprocess
 #    matplotlib.use('Agg')
     from CPAC.qc.utils import determine_start_and_end, get_spacing
     import numpy as np
@@ -2458,7 +2458,7 @@ def montage_gm_wm_csf_sagittal(overlay_csf, overlay_wm, overlay_gm, underlay, pn
     X_csf[X_csf == 0.0] = np.nan
     X_wm[X_wm == 0.0] = np.nan
     X_gm[X_gm == 0.0] = np.nan
-    print '~~', max_
+    print('~~', max_)
 
 
     zz = x1
@@ -2511,7 +2511,7 @@ def register_pallete(file_, cbar_name):
     """
 
     import matplotlib
-    import commands
+    import subprocess
 #    matplotlib.use('Agg')
     import matplotlib.colors as col
     import matplotlib.cm as cm
@@ -2583,7 +2583,7 @@ def make_resample_1mm(file_):
     """
 
     import os
-    import commands
+    import subprocess
 
     remainder, ext_ = os.path.splitext(file_)
 
@@ -2594,7 +2594,7 @@ def make_resample_1mm(file_):
     new_fname = ''.join([remainder, '_1mm', ext])
     new_fname = os.path.join(os.getcwd(), os.path.basename(new_fname))
     cmd = " 3dresample -dxyz 1.0 1.0 1.0 -prefix %s -inset %s " % (new_fname, file_)
-    print cmd
-    commands.getoutput(cmd)
+    print(cmd)
+    subprocess.getoutput(cmd)
 
     return new_fname

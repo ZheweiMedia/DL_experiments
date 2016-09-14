@@ -132,7 +132,7 @@ def cluster_timeseries(X, n_clusters, similarity_metric = 'k_neighbors', affinit
 #    algorithm.fit(C_X)
 #    y_pred = algorithm.labels_.astype(np.int)
 
-    from python_ncut_lib import ncut, discretisation
+    from .python_ncut_lib import ncut, discretisation
     eigen_val, eigen_vec = ncut(C_X, n_clusters)
     eigen_discrete = discretisation(eigen_vec)
 

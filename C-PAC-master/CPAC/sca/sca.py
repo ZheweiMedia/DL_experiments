@@ -2,7 +2,7 @@ import sys
 #from CPAC.interfaces.afni import preprocess
 from nipype.interfaces.afni import preprocess
 import os
-import commands
+import subprocess
 import nipype.pipeline.engine as pe
 import nipype.algorithms.rapidart as ra
 import nipype.interfaces.afni as afni

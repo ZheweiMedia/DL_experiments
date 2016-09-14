@@ -14,7 +14,7 @@ def create_func_datasource(rest_dict, wf_name='func_datasource'):
                                 fields=['subject', 'scan'],
                                 mandatory_inputs=True),
                         name='inputnode')
-    inputnode.iterables = [('scan', rest_dict.keys())]
+    inputnode.iterables = [('scan', list(rest_dict.keys()))]
 
     selectrest = pe.Node(util.Function(input_names=['scan', 'rest_dict'],
                                        output_names=['rest'],
@@ -90,11 +90,11 @@ def create_roi_mask_dataflow(dir_path, mask_type, wf_name='datasource_roi_mask')
 
     else:
 
-        print '\n\n[!] CPAC says: Your ROI/mask specification file (under ' \
+        print('\n\n[!] CPAC says: Your ROI/mask specification file (under ' \
               '%s options) either needs to be a NIFTI file (.nii or ' \
               '.nii.gz) of an ROI/mask or a text file (.txt) containing a ' \
               'list of NIFTI files of ROI/mask files.\nPlease change this ' \
-              'in your pipeline configuration file and try again.\n\n' % tab
+              'in your pipeline configuration file and try again.\n\n' % tab)
         raise Exception
 
 
@@ -144,7 +144,7 @@ def create_roi_mask_dataflow(dir_path, mask_type, wf_name='datasource_roi_mask')
                             mandatory_inputs=True),
                     name='inputspec')
 
-    inputnode.iterables = [('mask', mask_dict.keys())]
+    inputnode.iterables = [('mask', list(mask_dict.keys()))]
 
     selectmask = pe.Node(util.Function(input_names=['scan', 'rest_dict'],
                                        output_names=['out_file'],
@@ -181,11 +181,11 @@ def create_spatial_map_dataflow(dirPath, wf_name='datasource_maps'):
         spatial_map_file = spatial_map_file.rstrip('\r\n')
 
         if not os.path.exists(spatial_map_file):
-            print "\n\n" + "ERROR: One of your spatial map files (under Spatial" + \
+            print("\n\n" + "ERROR: One of your spatial map files (under Spatial" + \
             " Regression options) does not have a correct path or does not exist." + \
             "\n" + "Tip: If all the paths are okay, then ensure there are no" + \
             " whitespaces or blank lines in your spatial map specification file." + \
-            "\n\n" + "Error name: datasource_0001" + "\n\n"
+            "\n\n" + "Error name: datasource_0001" + "\n\n")
             raise Exception
 
         base_file = os.path.basename(spatial_map_file)
@@ -197,8 +197,8 @@ def create_spatial_map_dataflow(dirPath, wf_name='datasource_maps'):
                 base_name = os.path.splitext(os.path.splitext(base_file)[0])[0]
             else:
                 raise Exception("File extension not in  .nii and .nii.gz File: %s" % spatial_map_file)
-        except Exception, e:
-            print('error in spatial_map_dataflow: ', e)
+        except Exception as e:
+            print(('error in spatial_map_dataflow: ', e))
 
         if not (base_name in spatial_map_dict):
             spatial_map_dict[base_name] = spatial_map_file
@@ -210,7 +210,7 @@ def create_spatial_map_dataflow(dirPath, wf_name='datasource_maps'):
                             mandatory_inputs=True),
                     name='inputspec')
 
-    inputnode.iterables = [('spatial_map', spatial_map_dict.keys())]
+    inputnode.iterables = [('spatial_map', list(spatial_map_dict.keys()))]
 
     select_spatial_map = pe.Node(util.Function(input_names=['scan', 'rest_dict'],
                                        output_names=['out_file'],

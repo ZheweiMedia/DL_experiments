@@ -32,7 +32,7 @@ def create_pheno_dict(gpa_fsl_yml):
             # each EV for that one subject - each iteration of this loop is
             # one subject
             
-            for val in line.values():
+            for val in list(line.values()):
             
                 # if there are any blank values in the pheno row, skip this
                 # row. if not, continue on with the "else" clause
@@ -41,14 +41,14 @@ def create_pheno_dict(gpa_fsl_yml):
                     
             else:
             
-                for key in line.keys():
+                for key in list(line.keys()):
             
                     # if there are blank entries because of an empty row in
                     # the CSV (such as ",,,,,"), move on to the next entry
                     if len(line[key]) == 0:
                         continue
 
-                    if key not in pheno_data_dict.keys():
+                    if key not in list(pheno_data_dict.keys()):
                         pheno_data_dict[key] = []
 
                     # create a list within one of the dictionary values for that
@@ -56,7 +56,7 @@ def create_pheno_dict(gpa_fsl_yml):
                     # Patsy can understand regarding categoricals:
                     #     example: { ADHD: ['adhd1', 'adhd1', 'adhd0', 'adhd1'] }
                     #                instead of just [1, 1, 0, 1], etc.
-                    if 'categorical' in ev_selections.keys():
+                    if 'categorical' in list(ev_selections.keys()):
                         if key in ev_selections['categorical']:
                             pheno_data_dict[key].append(key + str(line[key]))
 
@@ -76,10 +76,10 @@ def create_pheno_dict(gpa_fsl_yml):
 
         # this needs to run after each list in each key has been fully
         # populated above
-        for key in pheno_data_dict.keys():
+        for key in list(pheno_data_dict.keys()):
 
             # demean the EVs marked for demeaning
-            if 'demean' in ev_selections.keys():
+            if 'demean' in list(ev_selections.keys()):
                 if key in ev_selections['demean']:
 
                     new_demeaned_evs = []
@@ -106,7 +106,7 @@ def create_pheno_dict(gpa_fsl_yml):
 
             # converts non-categorical EV lists into NumPy arrays
             # so that Patsy may read them in properly
-            if 'categorical' in ev_selections.keys():
+            if 'categorical' in list(ev_selections.keys()):
                 if key not in ev_selections['categorical']:
             
                     pheno_data_dict[key] = np.array(pheno_data_dict[key])
@@ -134,9 +134,9 @@ def check_multicollinearity(matrix):
     max_singular = np.max(s)
     min_singular = np.min(s)
 
-    print "Max singular: ", max_singular
-    print "Min singular: ", min_singular
-    print "Rank: ", np.linalg.matrix_rank(matrix), "\n"
+    print("Max singular: ", max_singular)
+    print("Min singular: ", min_singular)
+    print("Rank: ", np.linalg.matrix_rank(matrix), "\n")
 
     if min_singular == 0:
 
@@ -145,7 +145,7 @@ def check_multicollinearity(matrix):
     else:
 
         condition_number = float(max_singular)/float(min_singular)
-        print "Condition number: %f\n\n" % condition_number
+        print("Condition number: %f\n\n" % condition_number)
         if condition_number > 30:
 
             return 1
@@ -199,9 +199,9 @@ def create_mat_file(data, col_names, model_name, current_output, output_dir):
 
     f = open(os.path.join(output_dir, "model_files", current_output, model_name + '.mat'), 'w')
 
-    print >>f, '/NumWaves\t%d' %dimy
-    print >>f, '/NumPoints\t%d' %dimx
-    print >>f, ppstring
+    print('/NumWaves\t%d' %dimy, file=f)
+    print('/NumPoints\t%d' %dimx, file=f)
+    print(ppstring, file=f)
 
     # print labels for the columns - mainly for double-checking your model
     col_string = '\n'
@@ -209,10 +209,10 @@ def create_mat_file(data, col_names, model_name, current_output, output_dir):
     for col in col_names:
         col_string = col_string + col + '\t'
 
-    print >>f, col_string, '\n'
+    print(col_string, '\n', file=f)
 
 
-    print >>f, '/Matrix'
+    print('/Matrix', file=f)
 
     np.savetxt(f, data, fmt='%1.5e', delimiter='\t')
 
@@ -324,9 +324,9 @@ def create_grp_file(data, model_name, gp_var, current_output, output_dir):
 
     f = open(os.path.join(output_dir, "model_files", current_output, model_name + '.grp'), 'w')
 
-    print >>f, '/NumWaves\t1'
-    print >>f, '/NumPoints\t%d\n' %dimx
-    print >>f, '/Matrix'
+    print('/NumWaves\t1', file=f)
+    print('/NumPoints\t%d\n' %dimx, file=f)
+    print('/Matrix', file=f)
     np.savetxt(f, data, fmt='%d', delimiter='\t')
 
     f.close()
@@ -435,7 +435,7 @@ def create_con_ftst_file(con_file, model_name, current_output, outputModelFilesD
 
     except:
 
-        print "Error: Could not successfully read in contrast file: ", con_file
+        print("Error: Could not successfully read in contrast file: ", con_file)
         raise Exception
 
 
@@ -558,24 +558,24 @@ def create_con_ftst_file(con_file, model_name, current_output, outputModelFilesD
         re_str = '/RequiredEffect'
         for name in contrast_names:
 
-            print >>f, '/ContrastName%d' %idx, '\t', name
+            print('/ContrastName%d' %idx, '\t', name, file=f)
             pp_str += '\t%1.5e' %(1)
             re_str += '\t%1.5e' %(1)
             idx += 1
 
-        print >>f, '/NumWaves\t', (contrasts.shape)[1]
-        print >>f, '/NumContrasts\t', (contrasts.shape)[0]
-        print >>f, pp_str
-        print >>f, re_str + '\n'
+        print('/NumWaves\t', (contrasts.shape)[1], file=f)
+        print('/NumContrasts\t', (contrasts.shape)[0], file=f)
+        print(pp_str, file=f)
+        print(re_str + '\n', file=f)
 
         # print labels for the columns - mainly for double-checking your model
         col_string = '\n'
         for ev in evs:
             col_string = col_string + ev + '\t'
-        print >>f, col_string, '\n'
+        print(col_string, '\n', file=f)
 
 
-        print >>f, '/Matrix'
+        print('/Matrix', file=f)
    
         np.savetxt(f, contrasts, fmt='%1.5e', delimiter='\t')
 
@@ -597,24 +597,24 @@ def create_con_ftst_file(con_file, model_name, current_output, outputModelFilesD
 
         try:
 
-            print "\nFound f-tests in your model, writing f-tests file " \
-                  "(.fts)..\n"
+            print("\nFound f-tests in your model, writing f-tests file " \
+                  "(.fts)..\n")
 
             f = open(os.path.join(outputModelFilesDirectory, "model_files", current_output, model_name + '.fts'), 'w')
-            print >>f, '/NumWaves\t', (contrasts.shape)[0]
-            print >>f, '/NumContrasts\t', count_ftests
+            print('/NumWaves\t', (contrasts.shape)[0], file=f)
+            print('/NumContrasts\t', count_ftests, file=f)
 
             # print labels for the columns - mainly for double-checking your
             # model
             col_string = '\n'
             for con in contrast_names:
                 col_string = col_string + con + '\t'
-            print >>f, col_string, '\n'
+            print(col_string, '\n', file=f)
 
-            print >>f, '/Matrix'
+            print('/Matrix', file=f)
 
             for i in range(fts_n.shape[0]):
-                print >>f, ' '.join(fts_n[i].astype('str'))
+                print(' '.join(fts_n[i].astype('str')), file=f)
 
             #np.savetxt(f, fts_n, fmt='%1.5e', delimiter=' ')
 
@@ -693,14 +693,14 @@ def pandas_alternate_organize_data(data, c):
 
     df.to_csv('./tempfile.csv', sep=',', index=False)
 
-    print 'saved to abc.csv'
+    print('saved to abc.csv')
     sys.exit()
 
 
 
 def split_directionals(gp, directional, data, c):
 
-    for key in gp.keys():
+    for key in list(gp.keys()):
 
         indices = gp[key]
 
@@ -720,7 +720,7 @@ def split_directionals(gp, directional, data, c):
 def split_gp_var(gp, data, c):
 
 
-    for key in gp.keys():
+    for key in list(gp.keys()):
 
         indices = gp[key]
 
@@ -752,7 +752,7 @@ def group_by_gp_categorical(categorical, data, c):
 
 
 
-    for col in gp_cat_dict.keys():
+    for col in list(gp_cat_dict.keys()):
 
         indices = gp_cat_dict[col]
 
@@ -831,11 +831,11 @@ def alternate_organize_data(data, c):
         for col in categorical:
             del data[idx][col]
 
-    print '\t'.join(key for key in sorted(data[0].keys()) )
+    print('\t'.join(key for key in sorted(data[0].keys()) ))
     for idx in range(0, len(data)):
-        print '\t'.join(str(data[idx][key]) for key in sorted(data[idx].keys()))
+        print('\t'.join(str(data[idx][key]) for key in sorted(data[idx].keys())))
 
-    return data, data[0].keys(), groups_grouping_var
+    return data, list(data[0].keys()), groups_grouping_var
 
 
 
@@ -857,7 +857,7 @@ def run(config, fTest, param_file, derivative_means_dict, pipeline_path, current
     #     http://patsy.readthedocs.org/en/latest/overview.html
 
 
-    print "\nBuilding the FSL group analysis model for %s..\n" % current_output
+    print("\nBuilding the FSL group analysis model for %s..\n" % current_output)
 
 
     # open the GROUP ANALYSIS FSL .YML CONFIG FILE, not the main pipeline
@@ -918,9 +918,9 @@ def run(config, fTest, param_file, derivative_means_dict, pipeline_path, current
                 measure_dict[line['Subject']] = measure_map
            
         except:
-            print '\n\n[!] CPAC says: Could not extract required ' \
-                  'information from the parameters file.\n'
-            print 'Path: ', param_file, '\n\n'
+            print('\n\n[!] CPAC says: Could not extract required ' \
+                  'information from the parameters file.\n')
+            print('Path: ', param_file, '\n\n')
             raise Exception
 
 
@@ -935,7 +935,7 @@ def run(config, fTest, param_file, derivative_means_dict, pipeline_path, current
             for sub in pheno_data_dict[c.subject_id_label]:
                 measure_list.append(0)
 
-            for subID in measure_dict.keys():
+            for subID in list(measure_dict.keys()):
 
                 # find matching subject IDs between the measure_dict and the
                 # pheno_data_dict so we can insert measure values into the
@@ -985,7 +985,7 @@ def run(config, fTest, param_file, derivative_means_dict, pipeline_path, current
         for sub in pheno_data_dict[c.subject_id_label]:
             means_list.append(0)
 
-        for subID in output_means_dict.keys():
+        for subID in list(output_means_dict.keys()):
 
             # find matching subject IDs between the output_means_dict and
             # the pheno_data_dict so we can insert mean values into the
@@ -1057,7 +1057,7 @@ def run(config, fTest, param_file, derivative_means_dict, pipeline_path, current
             raise Exception(err_string)
 
 
-        for val in roi_means_dict.values():
+        for val in list(roi_means_dict.values()):
             roi_num = len(val)
 
         # this will be a dictionary matching ROI regressor header labels with
@@ -1072,7 +1072,7 @@ def run(config, fTest, param_file, derivative_means_dict, pipeline_path, current
             label = "Custom_ROI_Mean_%d" % int(num+1)
             temp_roi_dict = {}
 
-            for key in roi_means_dict.keys():
+            for key in list(roi_means_dict.keys()):
                 
                 temp_roi_dict[key] = roi_means_dict[key][num-1]
 
@@ -1081,7 +1081,7 @@ def run(config, fTest, param_file, derivative_means_dict, pipeline_path, current
 
         add_formula_string = ""
 
-        for roi_column in roi_dict_dict.keys():
+        for roi_column in list(roi_dict_dict.keys()):
 
             roi_means_list = insert_means_into_model(roi_dict_dict[roi_column])
 
@@ -1110,12 +1110,12 @@ def run(config, fTest, param_file, derivative_means_dict, pipeline_path, current
     if c.group_sep == True:
     
         if c.grouping_var == None or c.grouping_var not in c.design_formula:
-            print '\n\n[!] CPAC says: Model group variances separately is ' \
+            print('\n\n[!] CPAC says: Model group variances separately is ' \
                   'enabled, but the grouping variable set is either set to ' \
                   'None, or was not included in the model as one of the ' \
-                  'EVs.\n'
-            print 'Design formula: ', c.design_formula
-            print 'Grouping variable: ', c.grouping_var, '\n\n'
+                  'EVs.\n')
+            print('Design formula: ', c.design_formula)
+            print('Grouping variable: ', c.grouping_var, '\n\n')
             raise Exception
             
             
@@ -1124,7 +1124,7 @@ def run(config, fTest, param_file, derivative_means_dict, pipeline_path, current
         # do this a little early for the grouping variable so that it doesn't
         # get in the way of doing this for the other EVs once they have the
         # grouping variable in their names
-        if 'categorical' in c.ev_selections.keys():
+        if 'categorical' in list(c.ev_selections.keys()):
             for EV_name in c.ev_selections['categorical']:
             
                 if EV_name == c.grouping_var:
@@ -1166,7 +1166,7 @@ def run(config, fTest, param_file, derivative_means_dict, pipeline_path, current
             
         split_EVs = {}
             
-        for key in pheno_data_dict.keys():
+        for key in list(pheno_data_dict.keys()):
         
             # here, "key" is the name of each EV from the phenotype file, as
             # they are labeled in the phenotype file (not Patsy format)
@@ -1221,7 +1221,7 @@ def run(config, fTest, param_file, derivative_means_dict, pipeline_path, current
         #     properly when generating the design matrix (this goes into the
         #     .mat file)
 
-        if 'categorical' in c.ev_selections.keys():
+        if 'categorical' in list(c.ev_selections.keys()):
             for EV_name in c.ev_selections['categorical']:
             
                 if EV_name != c.grouping_var:
@@ -1245,7 +1245,7 @@ def run(config, fTest, param_file, derivative_means_dict, pipeline_path, current
         coding_scheme = c.coding_scheme[0]
 
 
-        if 'categorical' in c.ev_selections.keys():
+        if 'categorical' in list(c.ev_selections.keys()):
             for EV_name in c.ev_selections['categorical']:
 
                 if coding_scheme == 'Treatment':
@@ -1265,9 +1265,9 @@ def run(config, fTest, param_file, derivative_means_dict, pipeline_path, current
 
     except:
 
-        print '\n\n[!] CPAC says: Could not successfully create the group ' \
+        print('\n\n[!] CPAC says: Could not successfully create the group ' \
               'analysis output directory:\n', c.output_dir, '\n\nMake sure ' \
-              'you have write access in this file structure.\n\n\n'
+              'you have write access in this file structure.\n\n\n')
         raise Exception
 
 
@@ -1293,11 +1293,11 @@ def run(config, fTest, param_file, derivative_means_dict, pipeline_path, current
             dmatrix = patsy.dmatrix(formula, pheno_data_dict, NA_action='raise')
             
     except:
-        print '\n\n[!] CPAC says: Design matrix creation wasn\'t ' \
+        print('\n\n[!] CPAC says: Design matrix creation wasn\'t ' \
                 'successful - do the terms in your formula correctly ' \
-                'correspond to the EVs listed in your phenotype file?\n'
-        print 'Phenotype file provided: '
-        print c.pheno_file, '\n\n'
+                'correspond to the EVs listed in your phenotype file?\n')
+        print('Phenotype file provided: ')
+        print(c.pheno_file, '\n\n')
         raise Exception
 
 
@@ -1417,7 +1417,7 @@ def run(config, fTest, param_file, derivative_means_dict, pipeline_path, current
             col_string = '\n'
             for col in col_names:
                 col_string = col_string + col + '\t'
-            print >>f, col_string, '\n'
+            print(col_string, '\n', file=f)
 
             # write data
             f.write("/Matrix\n")
@@ -1431,12 +1431,12 @@ def run(config, fTest, param_file, derivative_means_dict, pipeline_path, current
 
         try:
 
-            print "\nFound f-tests in your model, writing f-tests file " \
-                  "(.fts)..\n"
+            print("\nFound f-tests in your model, writing f-tests file " \
+                  "(.fts)..\n")
 
             f = open(os.path.join(out_dir, "model_files", current_output, model_name + '.fts'), 'w')
-            print >>f, '/NumWaves\t', len(con_dict)
-            print >>f, '/NumContrasts\t', len(ftest_list)
+            print('/NumWaves\t', len(con_dict), file=f)
+            print('/NumContrasts\t', len(ftest_list), file=f)
 
             # process each f-test
             ftst = []
@@ -1447,7 +1447,7 @@ def run(config, fTest, param_file, derivative_means_dict, pipeline_path, current
                 
                 cons_in_ftest = ftest_string.split(",")
 
-                for con in con_dict.keys():
+                for con in list(con_dict.keys()):
                     if con in cons_in_ftest:
                         ftest_vector.append(1)
                     else:
@@ -1461,14 +1461,14 @@ def run(config, fTest, param_file, derivative_means_dict, pipeline_path, current
             # print labels for the columns - mainly for double-checking your
             # model
             col_string = '\n'
-            for con in con_dict.keys():
+            for con in list(con_dict.keys()):
                 col_string = col_string + con + '\t'
-            print >>f, col_string, '\n'
+            print(col_string, '\n', file=f)
 
-            print >>f, '/Matrix'
+            print('/Matrix', file=f)
 
             for i in range(fts_n.shape[0]):
-                print >>f, ' '.join(fts_n[i].astype('str'))
+                print(' '.join(fts_n[i].astype('str')), file=f)
 
             f.close()
 
@@ -1509,7 +1509,7 @@ def run(config, fTest, param_file, derivative_means_dict, pipeline_path, current
             # they need to be put back into Patsy formatted header titles
             # because the dmatrix gets passed into the function that writes
             # out the contrast matrix
-            if 'categorical' in c.ev_selections.keys():
+            if 'categorical' in list(c.ev_selections.keys()):
                 for cat_EV in c.ev_selections['categorical']:
 
                     # second half of this if clause is in case group variances
@@ -1615,7 +1615,7 @@ def run(config, fTest, param_file, derivative_means_dict, pipeline_path, current
                     # they need to be put back into Patsy formatted header titles
                     # because the dmatrix gets passed into the function that writes
                     # out the contrast matrix
-                    if 'categorical' in c.ev_selections.keys():
+                    if 'categorical' in list(c.ev_selections.keys()):
                         for cat_EV in c.ev_selections['categorical']:
 
                             if cat_EV in item:
@@ -1633,7 +1633,7 @@ def run(config, fTest, param_file, derivative_means_dict, pipeline_path, current
 
                             contrast_vector = positive(dmatrix, item)
 
-                            if parsed_contrast not in contrasts_dict.keys():
+                            if parsed_contrast not in list(contrasts_dict.keys()):
                                 contrasts_dict[parsed_contrast] = contrast_vector
                             else:
                                 contrasts_dict[parsed_contrast] += contrast_vector
@@ -1646,7 +1646,7 @@ def run(config, fTest, param_file, derivative_means_dict, pipeline_path, current
 
                                 contrast_vector = positive(dmatrix, item)
 
-                                if parsed_contrast not in contrasts_dict.keys():
+                                if parsed_contrast not in list(contrasts_dict.keys()):
                                     contrasts_dict[parsed_contrast] = contrast_vector
                                 else:
                                     contrasts_dict[parsed_contrast] += contrast_vector
@@ -1656,7 +1656,7 @@ def run(config, fTest, param_file, derivative_means_dict, pipeline_path, current
 
                                 contrast_vector = negative(dmatrix, item)
 
-                                if parsed_contrast not in contrasts_dict.keys():
+                                if parsed_contrast not in list(contrasts_dict.keys()):
                                     contrasts_dict[parsed_contrast] = contrast_vector
                                 else:
                                     contrasts_dict[parsed_contrast] += contrast_vector
@@ -1674,14 +1674,14 @@ def run(config, fTest, param_file, derivative_means_dict, pipeline_path, current
 
     ''' check the model for multicollinearity '''
 
-    print "\nChecking for multicollinearity in the model for %s.." \
-          % current_output
+    print("\nChecking for multicollinearity in the model for %s.." \
+          % current_output)
 
     if check_multicollinearity(np.array(data)) == 1:
 
-        print '[!] CPAC warns: Detected multicollinearity in the ' \
+        print('[!] CPAC warns: Detected multicollinearity in the ' \
               'computed group-level analysis model for %s. Please double-' \
-              'check your model design.\n\n' % current_output
+              'check your model design.\n\n' % current_output)
 
 
 
@@ -1912,10 +1912,10 @@ def run(config, fTest, param_file, derivative_means_dict, pipeline_path, current
     try:
         create_mat_file(data, column_names, c.model_name, current_output, model_out_dir)
     except Exception as e:
-        print '\n\n[!] CPAC says: Could not create .mat file during ' \
-                  'group-level analysis model file generation.\n'
-        print 'Attempted output directory: ', model_out_dir, '\n'
-        print "Error details: %s\n\n" % e
+        print('\n\n[!] CPAC says: Could not create .mat file during ' \
+                  'group-level analysis model file generation.\n')
+        print('Attempted output directory: ', model_out_dir, '\n')
+        print("Error details: %s\n\n" % e)
         raise Exception
 
 
@@ -1923,41 +1923,41 @@ def run(config, fTest, param_file, derivative_means_dict, pipeline_path, current
     try:
         create_grp_file(data, c.model_name, grouping_var_id_dict, current_output, model_out_dir)
     except Exception as e:
-        print '\n\n[!] CPAC says: Could not create .grp file during ' \
-                  'group-level analysis model file generation.\n'
-        print 'Attempted output directory: ', model_out_dir, '\n'
-        print "Error details: %s\n\n" % e
+        print('\n\n[!] CPAC says: Could not create .grp file during ' \
+                  'group-level analysis model file generation.\n')
+        print('Attempted output directory: ', model_out_dir, '\n')
+        print("Error details: %s\n\n" % e)
         raise Exception
 
 
     if (c.custom_contrasts == None) or (c.custom_contrasts == '') or \
         ("None" in c.custom_contrasts):
 
-        print "Writing contrasts file (.con) based on contrasts provided " \
-              "using the group analysis model builder's contrasts editor.."
+        print("Writing contrasts file (.con) based on contrasts provided " \
+              "using the group analysis model builder's contrasts editor..")
 
         try:
             create_con_file(contrasts_dict, column_names, c.model_name, current_output, model_out_dir)
         except Exception as e:
-            print '\n\n[!] CPAC says: Could not create .con file during ' \
-                  'group-level analysis model file generation.\n'
-            print 'Attempted output directory: ', model_out_dir, '\n'
-            print "Error details: %s\n\n" % e
+            print('\n\n[!] CPAC says: Could not create .con file during ' \
+                  'group-level analysis model file generation.\n')
+            print('Attempted output directory: ', model_out_dir, '\n')
+            print("Error details: %s\n\n" % e)
             raise Exception            
             
         try:    
             create_fts_file(c.f_tests, contrasts_dict, c.model_name, current_output, model_out_dir)
         except Exception as e:
-            print '\n\n[!] CPAC says: Could not create .fts file during ' \
-                  'group-level analysis model file generation.\n'
-            print 'Attempted output directory: ', model_out_dir, '\n'
-            print "Error details: %s\n\n" % e
+            print('\n\n[!] CPAC says: Could not create .fts file during ' \
+                  'group-level analysis model file generation.\n')
+            print('Attempted output directory: ', model_out_dir, '\n')
+            print("Error details: %s\n\n" % e)
             raise Exception      
 
     else:
 
-        print "\nWriting contrasts file (.con) based on contrasts provided " \
-              "with a custom contrasts matrix CSV file..\n"
+        print("\nWriting contrasts file (.con) based on contrasts provided " \
+              "with a custom contrasts matrix CSV file..\n")
 
         create_con_ftst_file(c.custom_contrasts, c.model_name, current_output, model_out_dir, depatsified_EV_names, coding_scheme, c.group_sep)
 

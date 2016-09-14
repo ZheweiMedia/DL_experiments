@@ -5,9 +5,9 @@ def configuration(parent_package='', top_path=None):
     config = Configuration('CPAC', parent_package, top_path)
     
     # This adds all the first level sub-packages
-    _,dirnames,_ = os.walk('CPAC').next()
+    _,dirnames,_ = next(os.walk('CPAC'))
     for dirname in dirnames:
-        _,_,filenames = os.walk('CPAC/%s' % dirname).next()
+        _,_,filenames = next(os.walk('CPAC/%s' % dirname))
         if '__init__.py' in filenames:
             config.add_subpackage(dirname)
     

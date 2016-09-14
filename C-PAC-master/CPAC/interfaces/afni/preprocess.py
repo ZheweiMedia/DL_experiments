@@ -4,7 +4,7 @@ import warnings
 import os
 import nibabel as nb
 import numpy as np
-import commands
+import subprocess
 from string import Template
 from nipype.utils.filemanip import split_filename
 from nipype.interfaces.matlab import MatlabCommand
@@ -1317,7 +1317,7 @@ class ThreedROIstats(AFNICommand):
             if len(stats) == 1:
                 stats = stats[0]
             of = os.path.join(os.getcwd(), 'TS.1D')
-            print 'of--->', of
+            print('of--->', of)
             f = open(of, 'w')
 
             for st in stats:
@@ -1431,7 +1431,7 @@ For complete details, see the `3dcalc Documentation.
         """Generate output file name
         """
         import tempfile
-        import commands
+        import subprocess
         if name == 'out_file':
             _, fname, ext = split_filename(self.inputs.infile_a)
             #d_name = tempfile.mkdtemp()

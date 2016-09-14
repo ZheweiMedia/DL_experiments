@@ -2,7 +2,7 @@
 import os
 import sys
 import re
-import commands
+import subprocess
 import nipype.pipeline.engine as pe
 import nipype.interfaces.utility as util
 
@@ -162,7 +162,7 @@ def map_to_roi(timeseries, maps):
                             + ' generated')
         maps = maps[:rois]
         # output = zip(labels, component_maps)
-        print "labels, maps", new_labels, maps
+        print("labels, maps", new_labels, maps)
     except Exception:
-        print "Error while mapping roi to dual regression split 3d volumes"
+        print("Error while mapping roi to dual regression split 3d volumes")
     return new_labels, maps

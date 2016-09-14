@@ -196,7 +196,7 @@ def get_indx(scrub_input, frames_in_1D_file):
     line = f.readline()
     line = line.strip(',')
     if line:
-        indx = map(int, line.split(","))
+        indx = list(map(int, line.split(",")))
     else:
         raise Exception("No time points remaining after scrubbing.")
     f.close()

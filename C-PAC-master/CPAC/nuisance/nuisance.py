@@ -88,7 +88,7 @@ def bandpass_voxels(realigned_file, bandpass_freqs, sample_period = None):
         if sample_period > 20.0:
             sample_period /= 1000.0
 
-    print 'Frequency filtering using sample period: ', sample_period, 'sec'
+    print('Frequency filtering using sample period: ', sample_period, 'sec')
 
     Y_bp = np.zeros_like(Y)
     for j in range(Y.shape[1]):
@@ -186,7 +186,7 @@ def calc_residuals(subject,
     #Calculate regressors
     regressor_map = {'constant' : np.ones((data.shape[3],1))}
     if(selector['compcor']):
-        print 'compcor_ncomponents ', compcor_ncomponents
+        print('compcor_ncomponents ', compcor_ncomponents)
         regressor_map['compcor'] = calc_compcor_components(data, compcor_ncomponents, wm_sigs, csf_sigs)
     
     if(selector['wm']):
@@ -216,11 +216,11 @@ def calc_residuals(subject,
     if(selector['quadratic']):
         regressor_map['quadratic'] = np.arange(0, data.shape[3])**2
     
-    print 'Regressors include: ', regressor_map.keys()
+    print('Regressors include: ', list(regressor_map.keys()))
     
     X = np.zeros((data.shape[3], 1))
     csv_filename = ''
-    for rname, rval in regressor_map.items():
+    for rname, rval in list(regressor_map.items()):
         X = np.hstack((X, rval.reshape(rval.shape[0],-1)))
         csv_filename += '_' + rname
     X = X[:,1:]
@@ -230,7 +230,7 @@ def calc_residuals(subject,
     csv_filename = os.path.join(os.getcwd(), csv_filename)
     np.savetxt(csv_filename, X, delimiter='\t')
     
-    print 'Regressors dim: ', X.shape, ' starting regression'
+    print('Regressors dim: ', X.shape, ' starting regression')
     
     Y = data[global_mask].T
     B = np.linalg.inv(X.T.dot(X)).dot(X.T).dot(Y)
@@ -238,7 +238,7 @@ def calc_residuals(subject,
     
     data[global_mask] = Y_res.T
     
-    print 'Writing residual and regressors'
+    print('Writing residual and regressors')
     img = nb.Nifti1Image(data, header=nii.get_header(), affine=nii.get_affine())
     residual_file = os.path.join(os.getcwd(), 'residual.nii.gz')
     img.to_filename(residual_file)
@@ -267,9 +267,9 @@ def extract_tissue_data(data_file,
     from CPAC.nuisance import erode_mask
     from CPAC.utils import safe_shape
     
-    print 'Tissues extraction thresholds wm %d, csf %d, gm %d' % (wm_threshold,
+    print('Tissues extraction thresholds wm %d, csf %d, gm %d' % (wm_threshold,
                                                                   csf_threshold,
-                                                                  gm_threshold)
+                                                                  gm_threshold))
 
     try:
         data = nb.load(data_file).get_data().astype('float64')

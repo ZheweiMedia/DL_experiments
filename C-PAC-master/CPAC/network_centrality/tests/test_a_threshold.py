@@ -33,7 +33,7 @@ from CPAC.network_centrality.thresh_and_sum import \
 class TestThresholding:
     @attr('threshold', 'binarize')
     def test_thresh_binarize():
-        print "testing threshold binarize"
+        print("testing threshold binarize")
     
         nvoxs       = 1000
         r_value     = 0.2
@@ -48,7 +48,7 @@ class TestThresholding:
 
     @attr('threshold', 'weighted')
     def test_thresh_weighted():
-        print "testing threshold weighted"
+        print("testing threshold weighted")
     
         nvoxs       = 1000
         r_value     = 0.2
@@ -63,7 +63,7 @@ class TestThresholding:
     
     @attr('threshold', 'transform', 'weighted')
     def test_thresh_transform_weighted():
-        print "testing threshold weighted"
+        print("testing threshold weighted")
     
         nvoxs       = 1000
         r_value     = 0.2

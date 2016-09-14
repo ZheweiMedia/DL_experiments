@@ -1,6 +1,6 @@
 import os
 import sys
-import commands
+import subprocess
 import nipype.pipeline.engine as pe
 import nipype.algorithms.rapidart as ra
 import nipype.interfaces.fsl as fsl

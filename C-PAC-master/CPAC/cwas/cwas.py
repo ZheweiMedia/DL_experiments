@@ -36,7 +36,7 @@ def joint_mask(subjects_file_list, mask_file):
                                                                                   str(mask.shape) ) )
         mask *= sdata.astype('bool')
 
-    print '... joint subject/roi mask loaded'
+    print('... joint subject/roi mask loaded')
 
     img = nb.Nifti1Image(mask, header=nii.get_header(), affine=nii.get_affine())
     img_file = os.path.join(os.getcwd(), 'joint_mask.nii.gz')
@@ -101,11 +101,11 @@ def nifti_cwas(subjects_file_list, mask_file, regressor, cols, f_samples,
     subjects_data = [ nb.load(subject_file).get_data().astype('float64')[mask_indices].T 
                         for subject_file in subjects_file_list ]
     #subjects_data = np.array(subjects_data)
-    print '... subject data loaded', len(subjects_data), 'batch voxel range', voxel_range
+    print('... subject data loaded', len(subjects_data), 'batch voxel range', voxel_range)
     
     F_set, p_set = calc_cwas(subjects_data, regressor, cols, f_samples, voxel_range, strata)
     
-    print '... writing cwas data to disk'
+    print('... writing cwas data to disk')
     cwd = os.getcwd()
     F_file = os.path.join(cwd, 'pseudo_F.npy')
     p_file = os.path.join(cwd, 'significance_p.npy')
@@ -125,7 +125,7 @@ def merge_cwas_batches(cwas_batches, mask_file):
         volume[np.where(mask==True)] = data
         return volume
     
-    F_files, p_files, voxel_range = zip(*cwas_batches)
+    F_files, p_files, voxel_range = list(zip(*cwas_batches))
     end_voxel = np.array(voxel_range).max()
     
     nii = nb.load(mask_file)
@@ -159,7 +159,7 @@ def create_cwas_batches(mask_file, batches):
     mask = nb.load(mask_file).get_data().astype('bool')
     nVoxels = mask.sum()
     
-    print 'voxels: ', nVoxels
+    print('voxels: ', nVoxels)
     batch_size = nVoxels/batches
     #batch_indices = np.arange(0, nVoxels, batch_size)
     

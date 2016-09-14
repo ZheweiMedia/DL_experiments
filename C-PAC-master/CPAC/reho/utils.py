@@ -119,7 +119,7 @@ def compute_reho(in_file, mask_file, cluster_size):
     res_data = res_img.get_data()
     res_mask_data = res_mask_img.get_data()
 
-    print res_data.shape
+    print(res_data.shape)
     (n_x, n_y, n_z, n_t) = res_data.shape
 
     res_data = np.reshape(res_data, (n_x*n_y*n_z, n_t), order='F').T

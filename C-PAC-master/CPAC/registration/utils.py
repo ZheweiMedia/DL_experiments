@@ -78,7 +78,7 @@ def change_itk_transform_type(input_affine_file):
 
     for line in new_file_lines:
 
-        print >>outfile, line.strip('\n')
+        print(line.strip('\n'), file=outfile)
 
     outfile.close()
 

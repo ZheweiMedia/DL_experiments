@@ -1,7 +1,7 @@
 import os
 import sys
 import re
-import commands
+import subprocess
 import nipype.pipeline.engine as pe
 import nipype.interfaces.utility as util
 
@@ -76,7 +76,7 @@ def get_img_tr(in_files, TRa):
             diff = tr - TRa
 
         if (diff > 0.001):
-            print "Warning: specified TR  %f and TR in image header  %f do not match:" % (TRa, tr)
+            print("Warning: specified TR  %f and TR in image header  %f do not match:" % (TRa, tr))
         return TRa
     else:
         return tr

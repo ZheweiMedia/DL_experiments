@@ -35,7 +35,7 @@ def split_folders(path):
 def run_sge_jobs(c, config_file, resource, subject_infos):
 
 
-    import commands
+    import subprocess
     import pickle
     from time import strftime
 
@@ -53,7 +53,7 @@ def run_sge_jobs(c, config_file, resource, subject_infos):
 
 
 
-    shell = commands.getoutput('echo $SHELL')
+    shell = subprocess.getoutput('echo $SHELL')
 
 
     subject_bash_file = ''
@@ -67,40 +67,40 @@ def run_sge_jobs(c, config_file, resource, subject_infos):
         subject_bash_file = os.path.join(temp_files_dir, 'submit_GroupAnalysis_%s.sge' % str(strftime("%Y_%m_%d_%H_%M_%S")))
 
     f = open(subject_bash_file, 'w')
-    print >>f, '#! %s' % shell
-    print >>f, '#$ -cwd'
-    print >>f, '#$ -S %s' % shell
-    print >>f, '#$ -V'
-    print >>f, '#$ -q %s' % c.queue
-    print >>f, '#$ -pe %s %d' % (c.parallelEnvironment, c.numCoresPerSubject)
-    print >>f, '#$ -e %s' % os.path.join(temp_files_dir, 'c-pac_%s.err' % str(strftime("%Y_%m_%d_%H_%M_%S")))
-    print >>f, '#$ -o %s' % os.path.join(temp_files_dir, 'c-pac_%s.out' % str(strftime("%Y_%m_%d_%H_%M_%S")))
-    print >>f, 'source ~/.bashrc'
+    print('#! %s' % shell, file=f)
+    print('#$ -cwd', file=f)
+    print('#$ -S %s' % shell, file=f)
+    print('#$ -V', file=f)
+    print('#$ -q %s' % c.queue, file=f)
+    print('#$ -pe %s %d' % (c.parallelEnvironment, c.numCoresPerSubject), file=f)
+    print('#$ -e %s' % os.path.join(temp_files_dir, 'c-pac_%s.err' % str(strftime("%Y_%m_%d_%H_%M_%S"))), file=f)
+    print('#$ -o %s' % os.path.join(temp_files_dir, 'c-pac_%s.out' % str(strftime("%Y_%m_%d_%H_%M_%S"))), file=f)
+    print('source ~/.bashrc', file=f)
 
     if c.runBASC:
 
-        print >>f, "python -c \"import CPAC; CPAC.pipeline.cpac_basc_pipeline.run(\\\"%s\\\" , \\\"%s\\\") \" " % (str(config_file), subject_infos_file)
+        print("python -c \"import CPAC; CPAC.pipeline.cpac_basc_pipeline.run(\\\"%s\\\" , \\\"%s\\\") \" " % (str(config_file), subject_infos_file), file=f)
 
     elif c.runCWAS:
 
-        print >>f, "python -c \"import CPAC; CPAC.pipeline.cpac_cwas_pipeline.run(\\\"%s\\\" , \\\"%s\\\") \" " % (str(config_file), subject_infos_file)
+        print("python -c \"import CPAC; CPAC.pipeline.cpac_cwas_pipeline.run(\\\"%s\\\" , \\\"%s\\\") \" " % (str(config_file), subject_infos_file), file=f)
 
     elif c.runGroupAnalysis:
 
-        print >>f, "python -c \"import CPAC; CPAC.pipeline.cpac_group_analysis_pipeline.run(\\\"%s\\\" , \\\"%s\\\", \\\"%s\\\") \" " % (str(config_file), subject_infos_file, resource_file)
+        print("python -c \"import CPAC; CPAC.pipeline.cpac_group_analysis_pipeline.run(\\\"%s\\\" , \\\"%s\\\", \\\"%s\\\") \" " % (str(config_file), subject_infos_file, resource_file), file=f)
 
 
     f.close()
 
-    commands.getoutput('chmod +x %s' % subject_bash_file )
+    subprocess.getoutput('chmod +x %s' % subject_bash_file )
 #    print commands.getoutput('qsub  %s ' % (subject_bash_file))
-    print 'qsub  %s ' % (subject_bash_file)
+    print('qsub  %s ' % (subject_bash_file))
 
 
 
 def run_pbs_jobs(c, config_file, resource, subject_infos):
 
-    import commands
+    import subprocess
     import pickle
     from time import strftime
 
@@ -116,7 +116,7 @@ def run_pbs_jobs(c, config_file, resource, subject_infos):
     f.close()
 
     subject_bash_file = ''
-    shell = commands.getoutput('echo $SHELL')
+    shell = subprocess.getoutput('echo $SHELL')
     if c.runBASC:
         subject_bash_file = os.path.join(temp_files_dir, 'submit_BASC_%s.sge' % str(strftime("%Y_%m_%d_%H_%M_%S")))
 
@@ -126,32 +126,32 @@ def run_pbs_jobs(c, config_file, resource, subject_infos):
     if c.runGroupAnalysis:
         subject_bash_file = os.path.join(temp_files_dir, 'submit_GroupAnalysis_%s.sge' % str(strftime("%Y_%m_%d_%H_%M_%S")))
     f = open(subject_bash_file, 'w')
-    print >>f, '#! %s' % shell
-    print >>f, '#PBS -S %s' % shell
-    print >>f, '#PBS -V'
-    print >>f, '#PBS -q %s' % c.queue
-    print >>f, '#PBS -l nodes=1:ppn=%d' % c.numCoresPerSubject
-    print >>f, '#PBS -e %s' % os.path.join(temp_files_dir, 'c-pac_%s.err' % str(strftime("%Y_%m_%d_%H_%M_%S")))
-    print >>f, '#PBS -o %s' % os.path.join(temp_files_dir, 'c-pac_%s.out' % str(strftime("%Y_%m_%d_%H_%M_%S")))
-    print >>f, 'source ~/.bashrc'
+    print('#! %s' % shell, file=f)
+    print('#PBS -S %s' % shell, file=f)
+    print('#PBS -V', file=f)
+    print('#PBS -q %s' % c.queue, file=f)
+    print('#PBS -l nodes=1:ppn=%d' % c.numCoresPerSubject, file=f)
+    print('#PBS -e %s' % os.path.join(temp_files_dir, 'c-pac_%s.err' % str(strftime("%Y_%m_%d_%H_%M_%S"))), file=f)
+    print('#PBS -o %s' % os.path.join(temp_files_dir, 'c-pac_%s.out' % str(strftime("%Y_%m_%d_%H_%M_%S"))), file=f)
+    print('source ~/.bashrc', file=f)
 
     if c.runBASC:
 
-        print >>f, "python -c \"import CPAC; CPAC.pipeline.cpac_basc_pipeline.run(\\\"%s\\\" , \\\"%s\\\") \" " % (str(config_file), subject_infos_file)
+        print("python -c \"import CPAC; CPAC.pipeline.cpac_basc_pipeline.run(\\\"%s\\\" , \\\"%s\\\") \" " % (str(config_file), subject_infos_file), file=f)
 
     elif c.runCWAS:
 
-        print >>f, "python -c \"import CPAC; CPAC.pipeline.cpac_cwas_pipeline.run(\\\"%s\\\" , \\\"%s\\\") \" " % (str(config_file), subject_infos_file)
+        print("python -c \"import CPAC; CPAC.pipeline.cpac_cwas_pipeline.run(\\\"%s\\\" , \\\"%s\\\") \" " % (str(config_file), subject_infos_file), file=f)
 
     elif c.runGroupAnalysis:
 
-        print >>f, "python -c \"import CPAC; CPAC.pipeline.cpac_group_analysis_pipeline.run(\\\"%s\\\" , \\\"%s\\\", \\\"%s\\\") \" " % (str(config_file), subject_infos_file, resource_file)
+        print("python -c \"import CPAC; CPAC.pipeline.cpac_group_analysis_pipeline.run(\\\"%s\\\" , \\\"%s\\\", \\\"%s\\\") \" " % (str(config_file), subject_infos_file, resource_file), file=f)
 
 
     f.close()
 
-    commands.getoutput('chmod +x %s' % subject_bash_file )
-    print commands.getoutput('qsub  %s ' % (subject_bash_file))
+    subprocess.getoutput('chmod +x %s' % subject_bash_file )
+    print(subprocess.getoutput('qsub  %s ' % (subject_bash_file)))
 
 
 
@@ -171,7 +171,7 @@ def run(config_file, subject_list_file, output_path_file):
     try:
         sublist = yaml.load(open(os.path.realpath(subject_list_file), 'r'))
     except:
-        print "Subject list is not in proper YAML format. Please check your file"
+        print("Subject list is not in proper YAML format. Please check your file")
         raise Exception
 
 
@@ -217,18 +217,18 @@ def run(config_file, subject_list_file, output_path_file):
 
 
     if len(subject_paths) == 0:
-        print '[!] CPAC says: No individual-level analysis outputs were ' \
+        print('[!] CPAC says: No individual-level analysis outputs were ' \
               'found given the path file you provided.\n\nPipeline Output ' \
               'Directory provided: ', output_path_file, '\n\nEither make ' \
               'sure your Output Directory path is correct, or that ' \
-              'individual-level analysis completed successfully.\n\n'
+              'individual-level analysis completed successfully.\n\n')
         raise Exception
 
 
     if len(c.modelConfigs) == 0:
-        print '[!] CPAC says: You do not have any models selected ' \
+        print('[!] CPAC says: You do not have any models selected ' \
               'to run for group-level analysis. Return to your pipeline ' \
-              'configuration file and create or select at least one.\n\n'
+              'configuration file and create or select at least one.\n\n')
         raise Exception
 
 
@@ -252,9 +252,9 @@ def run(config_file, subject_list_file, output_path_file):
     analysis_map_gp = defaultdict(list)
 
 
-    print "Parsing through output paths. This may take a little while " \
+    print("Parsing through output paths. This may take a little while " \
           "depending on how many subjects, group analysis models, or " \
-          "selected derivatives you have..\n"
+          "selected derivatives you have..\n")
 
     count = 0
 
@@ -375,10 +375,10 @@ def run(config_file, subject_list_file, output_path_file):
                 raise Exception("\n\nError in reading %s configuration file\n\n" % group_config_file)
 
             if len(ga_config.derivative_list) == 0:
-                print '[!] CPAC says: You do not have any derivatives selected ' \
+                print('[!] CPAC says: You do not have any derivatives selected ' \
                       'to run for group-level analysis. Return to your group-analysis ' \
-                      'configuration file and select at least one.'
-                print 'Group analysis configuration file: %s\n\n' % group_config_file
+                      'configuration file and select at least one.')
+                print('Group analysis configuration file: %s\n\n' % group_config_file)
                 raise Exception
 
 
@@ -395,15 +395,15 @@ def run(config_file, subject_list_file, output_path_file):
                         key = subject_path.replace(subject_id, '*')
                     except:
                         # this fires if 'subject_id' was never given a value basically
-                        print '\n\n[!] CPAC says: Either the derivative path file ' \
+                        print('\n\n[!] CPAC says: Either the derivative path file ' \
                               'you provided does not contain the output directory ' \
-                              'given in the pipeline configuration file.\n'
-                        print 'Derivative path file: ', output_path_file, '\n'
-                        print 'Output directory: ', c.outputDirectory, '\n'
-                        print '- OR -\n'
-                        print 'Your subject list does not contain all of the ' \
-                              'subjects you wish to run group-level analysis on.\n'
-                        print 'Please correct this and try again.\n\n\n'
+                              'given in the pipeline configuration file.\n')
+                        print('Derivative path file: ', output_path_file, '\n')
+                        print('Output directory: ', c.outputDirectory, '\n')
+                        print('- OR -\n')
+                        print('Your subject list does not contain all of the ' \
+                              'subjects you wish to run group-level analysis on.\n')
+                        print('Please correct this and try again.\n\n\n')
                         raise Exception
 
 
@@ -414,7 +414,7 @@ def run(config_file, subject_list_file, output_path_file):
         count += 1
 
         if count == int(len(subject_paths)*0.7):
-            print "Almost finished parsing output paths.."     
+            print("Almost finished parsing output paths..")     
 
         # with this loop, 'analysis_map_gp' is a dictionary with a key for
         # each individual output file - and each entry is a list of tuples,
@@ -423,11 +423,11 @@ def run(config_file, subject_list_file, output_path_file):
         # one particular subject
 
 
-    print "Finished parsing through output paths!\n"
+    print("Finished parsing through output paths!\n")
 
 
 
-    for resource, group_model, glob_key in analysis_map.keys():
+    for resource, group_model, glob_key in list(analysis_map.keys()):
         if resource == 'functional_mni':
 
 
@@ -463,7 +463,7 @@ def run(config_file, subject_list_file, output_path_file):
     procss = []
     
 
-    for resource, group_model, glob_key in analysis_map_gp.keys():
+    for resource, group_model, glob_key in list(analysis_map_gp.keys()):
 
         # 'resource' is each type of output
         # 'glob_key' is a path to each and every individual output file,
@@ -471,27 +471,27 @@ def run(config_file, subject_list_file, output_path_file):
                       
         #get all the motion parameters across subjects
 
-        print "Pulling motion parameters for all subjects..\n"
+        print("Pulling motion parameters for all subjects..\n")
 
         from CPAC.utils import extract_parameters
         scrub_threshold = extract_parameters.run(c.outputDirectory, c.runScrubbing)
 
         if not c.runOnGrid:
                     
-            print "Starting group analysis pipeline setup..\n"
+            print("Starting group analysis pipeline setup..\n")
 
             from CPAC.pipeline.cpac_ga_model_generator import prep_group_analysis_workflow
             procss.append(Process(target=prep_group_analysis_workflow, args=(c, group_model, resource, analysis_map_gp[(resource, group_model, glob_key)], scrub_threshold)))
             
         else:
         
-            print "\n\n[!] CPAC says: Group-level analysis has not yet " \
+            print("\n\n[!] CPAC says: Group-level analysis has not yet " \
                   "been implemented to handle runs on a cluster or grid.\n\n"\
                   "Please turn off 'Run CPAC On A Cluster/Grid' in order " \
                   "to continue with group-level analysis. This will submit " \
                   "the job to only one node, however.\n\nWe will update " \
                   "users on when this feature will be available through " \
-                  "release note announcements.\n\n"
+                  "release note announcements.\n\n")
 
     
           
@@ -506,7 +506,7 @@ def run(config_file, subject_list_file, output_path_file):
         """
         for p in procss:
             p.start()
-            print >>pid,p.pid
+            print(p.pid, file=pid)
                 
     else:
         """
@@ -525,7 +525,7 @@ def run(config_file, subject_list_file, output_path_file):
                 for p in procss[idc: idc + c.numGPAModelsAtOnce]:
                 
                     p.start()
-                    print >>pid,p.pid
+                    print(p.pid, file=pid)
                     jobQueue.append(p)
                     idx += 1
                 
@@ -534,7 +534,7 @@ def run(config_file, subject_list_file, output_path_file):
                 for job in jobQueue:
                 
                     if not job.is_alive():
-                        print 'found dead job ', job
+                        print('found dead job ', job)
                         loc = jobQueue.index(job)
                         del jobQueue[loc]
                         procss[idx].start()

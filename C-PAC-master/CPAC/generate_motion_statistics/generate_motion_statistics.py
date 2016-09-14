@@ -635,21 +635,20 @@ def calculate_FD_J(in_file):
     T_rb_prev = np.matrix(np.eye(4))
     
     for i in range(0, pm.shape[0]):
-	T_rb = np.matrix(pm[i].reshape(4,4)) # making use of the fact that the order of aff12 matrix is "row-by-row"
-        
-	if flag == 0:
+        T_rb = np.matrix(pm[i].reshape(4,4)) # making use of the fact that the order of aff12 matrix is "row-by-row"
+        if flag == 0:
             flag = 1
             # first timepoint
-            print >> f, 0 
+            print(0, file=f) 
         else:
             M = np.dot(T_rb, T_rb_prev.I) - np.eye(4)
             A = M[0:3, 0:3]
             b = M[0:3, 3]
 
             FD_J = math.sqrt((rmax*rmax/5)*np.trace(np.dot(A.T, A)) + np.dot(b.T, b))
-            print >> f, '%.8f'%FD_J
+            print('%.8f'%FD_J, file=f)
                 
-        T_rb_prev = T_rb
+            T_rb_prev = T_rb
     
     f.close()
     
@@ -761,9 +760,9 @@ def set_frames_in(in_file, threshold, exclude_list):
     line = f.readline()
     if line:
         line = line.strip(',')
-        indx = map(int, line.split(","))
+        indx = list(map(int, line.split(",")))
     f.close()
-    print indx
+    print(indx)
 
     if indx:
         indices = list(set(indices) - set(indx))
@@ -809,7 +808,7 @@ def gen_motion_parameters(subject_id, scan_id, movement_parameters, max_displace
 
     f = open(out_file, 'w')
     #f.write(str(os.getcwd()))   ### work
-    print >>f, "Subject,Scan,Mean_Relative_RMS_Displacement," \
+    print("Subject,Scan,Mean_Relative_RMS_Displacement," \
         "Max_Relative_RMS_Displacement,Movements_gt_threshold,"\
         "Mean_Relative_Mean_Rotation,Mean_Relative_Maxdisp,Max_Relative_Maxdisp," \
         "Max_Abs_Maxdisp,Max Relative_Roll,Max_Relative_Pitch," \
@@ -817,7 +816,7 @@ def gen_motion_parameters(subject_id, scan_id, movement_parameters, max_displace
         "Max_Relative_dP-A,Mean_Relative_Roll,Mean_Relative_Pitch,Mean_Relative_Yaw," \
         "Mean_Relative_dS-I,Mean_Relative_dL-R,Mean_Relative_dP-A,Max_Abs_Roll," \
         "Max_Abs_Pitch,Max_Abs_Yaw,Max_Abs_dS-I,Max_Abs_dL-R,Max_Abs_dP-A," \
-        "Mean_Abs_Roll,Mean_Abs_Pitch,Mean_Abs_Yaw,Mean_Abs_dS-I,Mean_Abs_dL-R,Mean_Abs_dP-A"
+        "Mean_Abs_Roll,Mean_Abs_Pitch,Mean_Abs_Yaw,Mean_Abs_dS-I,Mean_Abs_dL-R,Mean_Abs_dP-A", file=f)
 
 
     f.write("%s," % (subject_id))
@@ -929,9 +928,9 @@ def gen_power_parameters(subject_id, scan_id, FD_1D, FDJ_1D, DVARS, threshold = 
     out_file = os.path.join(os.getcwd(), 'pow_params.txt')
 
     f= open(out_file,'w')
-    print >>f, "Subject,Scan,MeanFD,MeanFD_Jenkinson," \
+    print("Subject,Scan,MeanFD,MeanFD_Jenkinson," \
     "NumFD_greater_than_%.2f,rootMeanSquareFD,FDquartile(top1/4thFD)," \
-    "PercentFD_greater_than_%.2f,MeanDVARS" % (threshold,threshold)
+    "PercentFD_greater_than_%.2f,MeanDVARS" % (threshold,threshold), file=f)
 
     f.write("%s," % subject_id)
     f.write("%s," % scan_id)

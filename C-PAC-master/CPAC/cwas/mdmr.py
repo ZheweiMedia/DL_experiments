@@ -1,11 +1,11 @@
 import numpy as np
-from hats import *
+from .hats import *
 
 def permuted_index(n, strata=None):
     if strata is None:
         perms = np.random.permutation(n)
     else:
-        perms = np.array(range(n))
+        perms = np.array(list(range(n)))
         elems = np.unique(strata)
         for elem in elems:
             inds = perms[strata == elem]
@@ -21,7 +21,7 @@ def gen_perms(nperms, nobs, strata=None):
 
 def add_original_index(perms):
     nobs = perms.shape[1]
-    perms = np.vstack((range(nobs), perms))
+    perms = np.vstack((list(range(nobs)), perms))
     return perms
 
 def gower_center(yDis):

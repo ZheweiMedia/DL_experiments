@@ -1,6 +1,6 @@
-from alff import create_alff
+from .alff import create_alff
 
-from utils import get_img_nvols, \
+from .utils import get_img_nvols, \
                   get_img_tr, \
                   get_N1, \
                   get_N2, \

@@ -38,14 +38,14 @@ def first_pass_organizing_files(qc_path):
 
             str_ = str_ + fwhm_val + hp_lp_
 
-        if strat_dict.keys() == []:
+        if list(strat_dict.keys()) == []:
 
             strat_dict[str_] = [file_]
 
         else:
 
             flag_ = 0
-            for key_ in strat_dict.keys():
+            for key_ in list(strat_dict.keys()):
 
                 if str_ in key_:
                     append_to_files_in_dict_way(strat_dict[key_], file_)
@@ -89,7 +89,7 @@ def second_pass_organizing_files(qc_path):
             if not str_ in strat_dict:
                 strat_dict[str_] = [file_]
             else:
-                print 'Error: duplicate keys for files in QC 2nd file_org pass: %s %s' % (strat_dict[str_], file_)
+                print('Error: duplicate keys for files in QC 2nd file_org pass: %s %s' % (strat_dict[str_], file_))
                 raise
 
         #organize alff falff
@@ -111,7 +111,7 @@ def second_pass_organizing_files(qc_path):
 
 
             flag_ = 0
-            for key in strat_dict.keys():
+            for key in list(strat_dict.keys()):
 
                 if (key_ in key) and (key_1 in key):
 
@@ -131,7 +131,7 @@ def second_pass_organizing_files(qc_path):
             if not str_ in strat_dict:
                 strat_dict[str_] = [file_]
             else:
-                print 'Error: duplicate keys for files in QC 2nd file_org pass: %s %s' % (strat_dict[str_], file_)
+                print('Error: duplicate keys for files in QC 2nd file_org pass: %s %s' % (strat_dict[str_], file_))
                 raise
 
 
@@ -152,39 +152,39 @@ def populate_htmls(gp_html, sub_html, subj,
 
         f_ = open(gp_html, 'w')
 
-        print >> f_, '<html>'
-        print >> f_, '<head>'
-        print >> f_, '<title>QC GROUP</title>'
-        print >> f_, '</head>'
-        print >> f_, '<h2><b>Group Comparison Page</b></h2>'
-        print >> f_, '<form name="QC Group Form\" method=\"POST\">'
-        print >> f_, "<table border=\"1\" cellspacing=\"1\" cellpadding=\"5\">"
-        print >> f_, "    <tr>"
-        print >> f_, "        <td>Subject</td>"
-        print >> f_, "        <td>MEAN_FD</td>"
-        print >> f_, "        <td>MEAN_DVARS</td>"
-        print >> f_, "        <td>Mean_Relative_RMS_Displacement</td>"
-        print >> f_, "        <td>Max_Relative_RMS_Displacement</td>"
-        print >> f_, "        <td>Mean Functional SNR</td>"   ###
+        print('<html>', file=f_)
+        print('<head>', file=f_)
+        print('<title>QC GROUP</title>', file=f_)
+        print('</head>', file=f_)
+        print('<h2><b>Group Comparison Page</b></h2>', file=f_)
+        print('<form name="QC Group Form\" method=\"POST\">', file=f_)
+        print("<table border=\"1\" cellspacing=\"1\" cellpadding=\"5\">", file=f_)
+        print("    <tr>", file=f_)
+        print("        <td>Subject</td>", file=f_)
+        print("        <td>MEAN_FD</td>", file=f_)
+        print("        <td>MEAN_DVARS</td>", file=f_)
+        print("        <td>Mean_Relative_RMS_Displacement</td>", file=f_)
+        print("        <td>Max_Relative_RMS_Displacement</td>", file=f_)
+        print("        <td>Mean Functional SNR</td>", file=f_)   ###
 #         print >> f_, "        <td>Include in Group Analysis</td>"
 #         print >> f_, "        <td>Comments</td>"
-        print >> f_, "    </tr>"
+        print("    </tr>", file=f_)
 
     else:
 
         f_ = open(gp_html, 'a')
 
-    print >> f_, "        <td><a href='%s'>%s</a></td>" % (sub_html, subj)
-    print >> f_, "        <td>%s</td>" % (meanFD)
-    print >> f_, "        <td>%s</td>" % (meanDVARS)
-    print >> f_, "        <td>%s</td>" % (mean_rms)
-    print >> f_, "        <td>%s</td>" % (max_rms)
-    print >> f_, "        <td>%s</td>" % (snr_val)
+    print("        <td><a href='%s'>%s</a></td>" % (sub_html, subj), file=f_)
+    print("        <td>%s</td>" % (meanFD), file=f_)
+    print("        <td>%s</td>" % (meanDVARS), file=f_)
+    print("        <td>%s</td>" % (mean_rms), file=f_)
+    print("        <td>%s</td>" % (max_rms), file=f_)
+    print("        <td>%s</td>" % (snr_val), file=f_)
 
 #     print >> f_, "        <td><input type=\"checkbox\" name=\"gp_inc\" value=\"Y\">Y<br></td>"
 # #    print >> f_, "        <td><textarea name=\"comments\" cols=\"3\" rows=\"1\"><br></td>"
 #     print >> f_, "        <td>No Comments Yet!</td>"
-    print >> f_, "    </tr>"
+    print("    </tr>", file=f_)
 
     f_.close()
 
@@ -217,7 +217,7 @@ def prep_resources(pip_path):
 
             #os.system('ls %s' %(path_copy))
 
-            print 'mv %s/*.txt %s/' % (path_copy, qc_path)
+            print('mv %s/*.txt %s/' % (path_copy, qc_path))
             os.system('mv %s/*.txt %s/' % (path_copy, qc_path))
             os.system('rm -rf %s' %(path_copy))
 
@@ -410,8 +410,8 @@ def get_power_params(qc_path, file_):
 
             params_file = os.path.join(subj_dir, os.listdir(subj_dir)[0])
             csv_file = csv.DictReader(open(params_file, 'rb'), delimiter=',')
-            print 'params_file: ', params_file
-            print csv.list_dialects()
+            print('params_file: ', params_file)
+            print(csv.list_dialects())
 
             line = None
 
@@ -419,7 +419,7 @@ def get_power_params(qc_path, file_):
 
                 meanFD = line['MeanFD']
                 meanDVARS = line['MeanDVARS']
-                print meanFD, meanDVARS
+                print(meanFD, meanDVARS)
                 
                 return meanFD, meanDVARS
 
@@ -460,11 +460,11 @@ def get_motion_params(qc_path, file_):
 def write_closing_tags(file_):
 
     f_ = open(file_, 'a')
-    print >> f_, "</table>"
-    print >> f_, "<br>"
-    print >> f_, "<br>"
+    print("</table>", file=f_)
+    print("<br>", file=f_)
+    print("<br>", file=f_)
     #print >> f_, "<input type=\"submit\" value=\"create group subject list\" />"
-    print >> f_, "</html>"
+    print("</html>", file=f_)
 
     f_.close()
 
@@ -495,7 +495,7 @@ def make_group_htmls(pip_path):
             subj_path = os.path.join(pip_path, subj)
             
 
-            print "subj_path: ", subj_path, '\n'
+            print("subj_path: ", subj_path, '\n')
             
             snr_file = ''
             sval = ''
@@ -510,7 +510,7 @@ def make_group_htmls(pip_path):
             if os.path.exists(snr_file):
                 sval = open(snr_file, 'r').readline()
                 sval = '%.2f' % float(sval)
-                print 'snr value: ', sval
+                print('snr value: ', sval)
 
 
             if os.path.isdir(subj_path):
@@ -522,7 +522,7 @@ def make_group_htmls(pip_path):
                 first_pass_organizing_files(path_copy)
                 second_pass_organizing_files(path_copy)
                 ###os.system('ls %s' %(path_copy))
-                print 'mv %s/*.txt %s/' % (path_copy, qc_path)
+                print('mv %s/*.txt %s/' % (path_copy, qc_path))
                 os.system('mv %s/*.txt %s/' % (path_copy, qc_path))
                 os.system('rm -rf %s' %(path_copy))
                 html_files = os.listdir(qc_path)
@@ -532,14 +532,14 @@ def make_group_htmls(pip_path):
 
                     html_ = os.path.join(pip_path, file_)
 
-                    print 'qc_path: ', qc_path
-                    print 'file_: ', file_
+                    print('qc_path: ', qc_path)
+                    print('file_: ', file_)
 
                     try:
                         meanFD, meanDvars = get_power_params(qc_path, file_)
 
                     except:
-                        print "Error: some power params lost."
+                        print("Error: some power params lost.")
                         meanFD = 0.0
                         meanDvars = 0.0
                         pass
@@ -547,7 +547,7 @@ def make_group_htmls(pip_path):
                     try:
                         mean_rms, max_rms = get_motion_params(qc_path, file_)
                     except:
-                        print "Error: some motion params lost."
+                        print("Error: some motion params lost.")
                         mean_rms = 0.0
                         max_rms = 0.0
                         pass                        

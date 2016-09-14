@@ -504,7 +504,7 @@ def extract_one_d(list_timeseries):
 
         else:
 
-            print "Error : ROI/Voxel TimeSeries 1D file not found"
+            print("Error : ROI/Voxel TimeSeries 1D file not found")
 
             return None
 
@@ -645,7 +645,7 @@ def get_hplpfwhmseed_(parameter, remainder_path):
 
 def create_seeds_(seedOutputLocation, seed_specification_file, FSLDIR):
 
-    import commands
+    import subprocess
     import os
     import re
 
@@ -657,7 +657,7 @@ def create_seeds_(seedOutputLocation, seed_specification_file, FSLDIR):
 
         seed_label, x, y, z, radius, resolution = re.split(r'[\t| |,]+', specification)
 
-        if resolution not in seed_resolutions.keys():
+        if resolution not in list(seed_resolutions.keys()):
             seed_resolutions[resolution] = []
         seed_resolutions[resolution].append((seed_label, x, y, z, radius, resolution))
 
@@ -674,22 +674,22 @@ def create_seeds_(seedOutputLocation, seed_specification_file, FSLDIR):
             if not os.path.exists(seedOutputLocation):
                 os.makedirs(seedOutputLocation)
 
-            print 'checking if file exists ', '%s/data/standard/MNI152_T1_%s_brain.nii.gz' % (FSLDIR, resolution)
+            print('checking if file exists ', '%s/data/standard/MNI152_T1_%s_brain.nii.gz' % (FSLDIR, resolution))
             assert(os.path.exists('%s/data/standard/MNI152_T1_%s_brain.nii.gz' % (FSLDIR, resolution)))
             cmd = "echo %s %s %s | 3dUndump -prefix %s.nii.gz -master %s/data/standard/MNI152_T1_%s_brain.nii.gz \
 -srad %s -orient LPI -xyz -" % (x, y, z, os.path.join(seedOutputLocation, str(index) + '_' + seed_label + '_' + resolution), FSLDIR, resolution, radius)
 
-            print cmd
+            print(cmd)
             try:
-                commands.getoutput(cmd)
+                subprocess.getoutput(cmd)
                 seed_files.append((os.path.join(seedOutputLocation, '%s.nii.gz' % (str(index) + '_' + seed_label + '_' + resolution)), seed_label))
-                print seed_files
+                print(seed_files)
             except:
                 raise
 
             index += 1
 
-        print index, ' ', seed_files
+        print(index, ' ', seed_files)
         seed_str = ' '
         intensities = ''
         for idx in range(0, index):
@@ -699,9 +699,9 @@ def create_seeds_(seedOutputLocation, seed_specification_file, FSLDIR):
             intensities += intensity + '_'
 
             cmd = "3dcalc -a %s -expr 'a*%s' -prefix %s" % (seed, intensity, os.path.join(seedOutputLocation, 'ic_' + os.path.basename(seed)))
-            print cmd
+            print(cmd)
             try:
-                commands.getoutput(cmd)
+                subprocess.getoutput(cmd)
 
                 seed_str += "%s " % os.path.join(seedOutputLocation, 'ic_' + os.path.basename(seed))
             except:
@@ -709,35 +709,35 @@ def create_seeds_(seedOutputLocation, seed_specification_file, FSLDIR):
 
 
         cmd = '3dMean  -prefix %s.nii.gz -sum %s' % (os.path.join(seedOutputLocation, 'rois_' + resolution), seed_str)
-        print cmd
+        print(cmd)
         try:
-            commands.getoutput(cmd)
+            subprocess.getoutput(cmd)
         except:
             raise
 
         try:
             cmd = 'rm -f %s' % seed_str
-            print cmd
-            commands.getoutput(cmd)
+            print(cmd)
+            subprocess.getoutput(cmd)
             for seed, intensity in seed_files:
                 try:
                     cmd = 'rm -f  ' + seed
-                    print cmd
-                    commands.getoutput(cmd)
+                    print(cmd)
+                    subprocess.getoutput(cmd)
                 except:
                     raise
         except:
             raise
         return_roi_files.append(os.path.join(seedOutputLocation, 'rois_' + resolution + '.nii.gz'))
 
-    print return_roi_files
+    print(return_roi_files)
     return return_roi_files
 
 
 def create_paths_and_links(pipeline_id, relevant_strategies, path, subject_id, create_sym_links):
 
     import os
-    import commands
+    import subprocess
     from CPAC.utils.utils import get_workflow, get_session, \
                      get_hplpfwhmseed_
 
@@ -814,7 +814,7 @@ def create_paths_and_links(pipeline_id, relevant_strategies, path, subject_id, c
             strategy_identifier = strategy_identifier.rsplit('_', 1)[0]
 
         except:
-            print str(strategy), " not in labels_dict"
+            print(str(strategy), " not in labels_dict")
             raise
 
 
@@ -982,13 +982,13 @@ def create_paths_and_links(pipeline_id, relevant_strategies, path, subject_id, c
                 f_n = os.path.join(new_f_path, 'paths_file_%s.txt') % (scan_info + '_' + strategy_identifier + '_' + bp_freq + '_' + hp_str + '_' + lp_str + '_' + fwhm_str)
 
             f = open(f_n, 'a')
-            print >>f, path
+            print(path, file=f)
 
             global_lock.release()
 
         except:
 
-            print 'trouble acquiring locks or opening file skipping :', os.path.join(new_f_path, 'paths_file_%s.txt') % new_path.replace('/', '_')
+            print('trouble acquiring locks or opening file skipping :', os.path.join(new_f_path, 'paths_file_%s.txt') % new_path.replace('/', '_'))
             raise
 
 
@@ -1042,8 +1042,8 @@ def create_paths_and_links(pipeline_id, relevant_strategies, path, subject_id, c
             if (file_name in dont_change_fname) or (wf == 'qc'):
 
                 cmd = 'ln -s %s %s' % (path, os.path.join(new_path, fname))
-                print cmd
-                commands.getoutput(cmd)
+                print(cmd)
+                subprocess.getoutput(cmd)
 
             else:
 
@@ -1052,8 +1052,8 @@ def create_paths_and_links(pipeline_id, relevant_strategies, path, subject_id, c
                 try:
                     f1 = open(os.path.join(new_path, file_name + ext))
                 except:
-                    print cmd
-                    commands.getoutput(cmd)
+                    print(cmd)
+                    subprocess.getoutput(cmd)
 
 
 
@@ -1251,16 +1251,16 @@ def prepare_gp_links(in_file, resource):
     try:
         os.makedirs(os.path.dirname(sink_dir))
 
-    except Exception, e:
+    except Exception as e:
 
-        print '.'
+        print('.')
 
 
-    import commands
+    import subprocess
 
     cmd = 'ln -s %s %s' % (in_file, sink_dir)
-    print cmd
-    commands.getoutput(cmd)
+    print(cmd)
+    subprocess.getoutput(cmd)
 
 
 
@@ -1280,7 +1280,7 @@ def clean_strategy(strategies, helper):
 
             key = el.rsplit('_', 1)[0]
 
-            print key, ': ', el
+            print(key, ': ', el)
             if not ('compcor' in key):
 
                 if 'pipeline' in key:
@@ -1297,7 +1297,7 @@ def clean_strategy(strategies, helper):
 
                 except:
 
-                    print 'key ', key, 'from ', el, ' not in ', helper
+                    print('key ', key, 'from ', el, ' not in ', helper)
                     raise
 
             else:
@@ -1390,17 +1390,17 @@ def modify_model(input_sublist, output_sublist, mat_file, grp_file):
         # CPAC did not run successfully
 
         f = open(out_file, 'wb')
-        print >> f, '/NumWaves\t' + model_map['/NumWaves']
+        print('/NumWaves\t' + model_map['/NumWaves'], file=f)
 
         num_points = int(model_map['/NumPoints']) - len(remove_index)
-        print >> f, '/NumPoints\t' + str(num_points)
+        print('/NumPoints\t' + str(num_points), file=f)
         if ext == ".mat":
             f.write('/PPHeights\t\t')
             for val in model_map['/PPHeights']:
                 f.write(val + '\t')
             f.write('\n')
-        print >> f, ''
-        print >> f, '/Matrix'
+        print('', file=f)
+        print('/Matrix', file=f)
         count = 0
         for values in model_map['/Matrix']:
             # remove the row form matrix for all unsuccessful subjects
@@ -1418,15 +1418,15 @@ def modify_model(input_sublist, output_sublist, mat_file, grp_file):
     remove_index = []
     for subject in input_sublist:
          if subject not in output_sublist:
-              print "Derivative output not found for subject %s " % (subject)
+              print("Derivative output not found for subject %s " % (subject))
               remove_index.append(input_sublist.index(subject))
          else:
-              print >> f, subject
+              print(subject, file=f)
 
     f.close()
 
-    print "removing subject at the indices", remove_index
-    print "modifying the mat and grp files"
+    print("removing subject at the indices", remove_index)
+    print("modifying the mat and grp files")
 
     model_map = read_model_file(mat_file)
     new_mat_file = write_model_file(model_map, mat_file, remove_index)
@@ -1545,7 +1545,7 @@ def get_scan_params(subject, scan, subject_map, start_indx, stop_indx, tr, tpatt
     first_tr=''
     last_tr=''
 
-    if 'scan_parameters' in subject_map.keys():
+    if 'scan_parameters' in list(subject_map.keys()):
         # get details from the configuration
         TR = float(check('tr', False))
         pattern = str(check('acquisition', False))
@@ -1601,7 +1601,7 @@ def get_scan_params(subject, scan, subject_map, start_indx, stop_indx, tr, tpatt
                 warnings.warn("TR is in seconds and slice timings are in milliseconds."\
                               "Converting TR into milliseconds")
                 TR = TR * 1000
-                print "New TR value %.2f ms" % TR
+                print("New TR value %.2f ms" % TR)
                 unit = 'ms'
 
     else:
@@ -1609,10 +1609,10 @@ def get_scan_params(subject, scan, subject_map, start_indx, stop_indx, tr, tpatt
         if TR and TR > 10:
             warnings.warn('TR is in milliseconds, Converting it into seconds')
             TR = TR / 1000.0
-            print "New TR value %.2f s" % TR
+            print("New TR value %.2f s" % TR)
             unit = 's'
 
-    print "scan_parameters -> ", subject, scan, str(TR) + unit, pattern, ref_slice, first_tr, last_tr
+    print("scan_parameters -> ", subject, scan, str(TR) + unit, pattern, ref_slice, first_tr, last_tr)
 
     return str(TR) + unit, pattern, ref_slice, first_tr, last_tr
 
@@ -1707,7 +1707,7 @@ def write_to_log(workflow, log_dir, index, inputs, scan_id ):
         else:
             file_path = os.path.join(log_dir, scan_id)
     except Exception:
-        print "ERROR in write log"
+        print("ERROR in write log")
         raise
 
     try:
@@ -1720,13 +1720,13 @@ def write_to_log(workflow, log_dir, index, inputs, scan_id ):
     f = open(out_file, 'w')
     
     
-    print >>f, "version : %s"%(str(version))
-    print >>f, "timestamp: %s"%(str(stamp))
-    print >>f, "pipeline_index: %d"%(index) 
-    print >>f, "subject_id: %s"%(subject_id)
-    print >>f, "scan_id: %s"%(scan_id)
-    print >>f, "strategy: %s"%(strategy)
-    print >>f, "workflow_name: %s"%(workflow)
+    print("version : %s"%(str(version)), file=f)
+    print("timestamp: %s"%(str(stamp)), file=f)
+    print("pipeline_index: %d"%(index), file=f) 
+    print("subject_id: %s"%(subject_id), file=f)
+    print("scan_id: %s"%(scan_id), file=f)
+    print("strategy: %s"%(strategy), file=f)
+    print("workflow_name: %s"%(workflow), file=f)
         
         
 
@@ -1737,7 +1737,7 @@ def write_to_log(workflow, log_dir, index, inputs, scan_id ):
         
     if os.path.exists(inputs):
 
-        print >>f,  "wf_status: DONE"
+        print("wf_status: DONE", file=f)
   
         iflogger.info(" version - %s, timestamp -%s, subject_id -%s, scan_id - %s, strategy -%s, workflow - %s, status -%s"\
                       %(str(version), str(stamp), subject_id, scan_id,strategy,workflow,'COMPLETED') )
@@ -1747,7 +1747,7 @@ def write_to_log(workflow, log_dir, index, inputs, scan_id ):
         iflogger.info(" version - %s, timestamp -%s, subject_id -%s, scan_id - %s, strategy -%s, workflow - %s, status -%s"\
                       %(str(version), str(stamp), subject_id, scan_id,strategy,workflow,'ERROR') )
     
-        print>>f, "wf_status: ERROR"
+        print("wf_status: ERROR", file=f)
     
     f.close()
     
@@ -1829,7 +1829,7 @@ def create_log_template(pip_ids, wf_list, scan_ids, subject_id, log_dir):
     tvars['pipelines']   = pip_ids
     tvars['wf_list']     = "%s" % wf_list
     tvars['wf_keys']     = "%s" % wf_keys
-    tvars['pipeline_indices'] = range(len(tvars['pipelines']))
+    tvars['pipeline_indices'] = list(range(len(tvars['pipelines'])))
     tvars['resources'] = os.path.join(CPAC.__path__[0], 'resources')
     tvars['gui_resources'] = os.path.join(CPAC.__path__[0], 'GUI', 'resources')
     
@@ -1886,7 +1886,7 @@ def create_group_log_template(subject_scan_map, log_dir):
     import CPAC
 
     tvars = {}
-    tvars['subject_ids'] = subject_scan_map.keys()
+    tvars['subject_ids'] = list(subject_scan_map.keys())
     tvars['scan_ids']    = subject_scan_map
     tvars['resources']   = op.join(CPAC.__path__[0], 'resources')
     tvars['log_dir']     = log_dir
@@ -1992,7 +1992,7 @@ def extract_output_mean(in_file, output_name):
         output_means_file = os.path.join(os.getcwd(), 'mean_%s.txt' % resource_name)
         output_means = open(output_means_file, 'wb')
 
-        print >>output_means, line
+        print(line, file=output_means)
 
         output_means.close()
 
@@ -2035,15 +2035,15 @@ def create_output_mean_csv(subject_dir):
                         val = mean_file.readline()
                         val = val.strip('\n')
                     except:
-                        print '\n\n[!] CPAC says: Could not open the output ' \
-                              'mean text file.\n'
-                        print 'Path: ', filepath, '\n\n'
+                        print('\n\n[!] CPAC says: Could not open the output ' \
+                              'mean text file.\n')
+                        print('Path: ', filepath, '\n\n')
                         raise Exception
 
                 else:
-                    print '\n\n[!] CPAC says: Could not find the output mean ' \
-                          'text file.\n'
-                    print 'Path not found: ', filepath, '\n\n'
+                    print('\n\n[!] CPAC says: Could not find the output mean ' \
+                          'text file.\n')
+                    print('Path not found: ', filepath, '\n\n')
                     raise Exception
 
                 output_vals[output] = val
@@ -2055,7 +2055,7 @@ def create_output_mean_csv(subject_dir):
     deriv_string = ''
     val_string = ''
 
-    for deriv in output_vals.keys():
+    for deriv in list(output_vals.keys()):
         if deriv_string == '':
             deriv_string = deriv
             val_string = output_vals[deriv]
@@ -2063,8 +2063,8 @@ def create_output_mean_csv(subject_dir):
             deriv_string = deriv_string + ',' + deriv
             val_string = val_string + ',' + output_vals[deriv]
 
-    print >>csv_file, deriv_string
-    print >>csv_file, val_string
+    print(deriv_string, file=csv_file)
+    print(val_string, file=csv_file)
 
 
     csv_file.close()

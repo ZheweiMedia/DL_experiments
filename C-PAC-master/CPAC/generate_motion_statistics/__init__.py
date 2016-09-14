@@ -1,4 +1,4 @@
-from generate_motion_statistics import  motion_power_statistics,\
+from .generate_motion_statistics import  motion_power_statistics,\
                                  calculate_FD_P,\
                                  calculate_FD_J,\
                                  set_frames_ex,\

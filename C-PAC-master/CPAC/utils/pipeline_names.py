@@ -95970,7 +95970,7 @@ lonesome_a_
 lonesomeness
 lone_hand
 lone_wolf
-long
+int
 long_acting
 long_ago
 long_beard
@@ -120347,7 +120347,7 @@ principle_of_superposition
 Prinia
 Prinivil
 prink
-print
+print()
 printable
 printed
 printed_circuit

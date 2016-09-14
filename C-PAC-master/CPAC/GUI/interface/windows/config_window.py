@@ -269,14 +269,14 @@ class MainFrame(wx.Frame):
                 sample_list = ctrl.get_values()
                 #print "sample_list -->", sample_list
                 s_map = dict((v, k)
-                            for k, v in substitution_map.iteritems())
+                            for k, v in substitution_map.items())
                 if val:
                     if isinstance(val, list):
                         if ctrl.get_datatype() == 8:
                             value = []
                             for item in val:
                                 data = ""
-                                for k, v in item.iteritems():
+                                for k, v in item.items():
                                     if v == 1 and k in sample_list:
                                         if data:
                                             data = data + "," + k
@@ -413,7 +413,7 @@ class MainFrame(wx.Frame):
                 err_str_suffix = 'File not found: %s\n' % anat_file
                 err_str = err_str + err_str_suffix
             # For each functional file
-            for func_file in func_files.values():
+            for func_file in list(func_files.values()):
                 # Check if functional file exists
                 if os.path.exists(func_file):
                     img = nb.load(func_file)
@@ -612,7 +612,7 @@ class MainFrame(wx.Frame):
         try:
             params_file = open(p.resource_filename('CPAC', 'GUI/resources/config_parameters.txt'), "r")
         except:
-            print "Error: Could not open configuration parameter file.", "\n"
+            print("Error: Could not open configuration parameter file.", "\n")
             raise Exception            
 
         paramInfo = params_file.read().split('\n')
@@ -686,8 +686,8 @@ class MainFrame(wx.Frame):
 
         except Exception as xxx:
 
-            print xxx
-            print "an exception occured"
+            print(xxx)
+            print("an exception occured")
             
             testDlg1.Destroy()
             
@@ -903,7 +903,7 @@ class MainFrame(wx.Frame):
 
                 for line in comment.split("\n"):
                     if line:
-                        print>>f, "#", line
+                        print("#", line, file=f)
 
 
                 # prints setting names and values (ex. " runAnatomicalProcessing: [1] ") into the
@@ -913,8 +913,8 @@ class MainFrame(wx.Frame):
                 # parameters that are strings (ex. " False " or a path)
                 if dtype == 0 or dtype == 1:
 
-                    print >>f, label, ": ", str(value)
-                    print >>f,"\n"
+                    print(label, ": ", str(value), file=f)
+                    print("\n", file=f)
 
 
                 # parameters that are integers
@@ -922,7 +922,7 @@ class MainFrame(wx.Frame):
 
                     # Add check for ReHo cluster
                     if label == 'clusterSize':
-                        print 'Using ReHo cluster size of ', value
+                        print('Using ReHo cluster size of ', value)
                     elif item_type == 0:
                         value = sample_list.index(value)
                     else:
@@ -931,8 +931,8 @@ class MainFrame(wx.Frame):
                         elif value != 'None':
                             value = ast.literal_eval(str(value))
                     
-                    print >>f, label, ": ", value
-                    print >>f,"\n"
+                    print(label, ": ", value, file=f)
+                    print("\n", file=f)
                 
 
                 # parameters that are lists (ex. " [False, False] ")
@@ -940,14 +940,14 @@ class MainFrame(wx.Frame):
 
                     map = ast.literal_eval(str(value))
                     values = []
-                    for x in range(0, len(map.keys())):
+                    for x in range(0, len(list(map.keys()))):
                         values.append(False)
-                    for k, v in map.iteritems():
+                    for k, v in map.items():
                         item, idx = k
                         values[idx] = v
 
-                    print>>f, label, ": ", values
-                    print>>f,"\n"
+                    print(label, ": ", values, file=f)
+                    print("\n", file=f)
                 
 
                 # parameters that are switches (ex. [0] or [1] )
@@ -975,8 +975,8 @@ class MainFrame(wx.Frame):
                     elif values == [12]:
                         values = ['3dAutoMask','BET']
 
-                    print>>f, label, ": ", values
-                    print>>f,"\n"
+                    print(label, ": ", values, file=f)
+                    print("\n", file=f)
                 
 
                 # parameters that are bracketed numbers (int or float)
@@ -1001,8 +1001,8 @@ class MainFrame(wx.Frame):
                         lvalue = 0
 
                     
-                    print>>f, label, ":", lvalue   ###
-                    print>>f, "\n"
+                    print(label, ":", lvalue, file=f)   ###
+                    print("\n", file=f)
 
 
 
@@ -1015,19 +1015,19 @@ class MainFrame(wx.Frame):
                         try:
                             val=ast.literal_eval(str(val))
                         except Exception as err:
-                            print "Exception trying to translate: %s, %s, %s, %s"%(label,str(value),val,err)
-                            print "value type: %s"%(type(val))
+                            print("Exception trying to translate: %s, %s, %s, %s"%(label,str(value),val,err))
+                            print("value type: %s"%(type(val)))
                         values.append(ast.literal_eval(str(val)))
 
-                    print>>f, label, ":", values
-                    print>>f, "\n"
+                    print(label, ":", values, file=f)
+                    print("\n", file=f)
 
 
                 # parameters that are whole words
                 #     ALSO: the Nuisance Corrections lists                
                 elif dtype == 8:
 
-                    print>>f, label,":"
+                    print(label,":", file=f)
 
                     value = ast.literal_eval(str(value))
 
@@ -1042,26 +1042,26 @@ class MainFrame(wx.Frame):
                             else:
                                 space = "    "
                             if sample in val:
-                                print>>f, space, sample, ": ", 1
+                                print(space, sample, ": ", 1, file=f)
                             else:
-                                print>>f, space, sample, ": ", 0
+                                print(space, sample, ": ", 0, file=f)
 
-                    print >>f, "\n"
+                    print("\n", file=f)
 
 
                 else:
 
                     value = ast.literal_eval(str(value))
 
-                    print>>f, label, ":", value
-                    print>>f, "\n"
+                    print(label, ":", value, file=f)
+                    print("\n", file=f)
 
 
             f.close()
 
-        except Exception, e:
-            print e
-            print "Error Writing the pipeline configuration file %s" % path
+        except Exception as e:
+            print(e)
+            print("Error Writing the pipeline configuration file %s" % path)
             raise
 
 

@@ -2,7 +2,7 @@ import wx
 import wx.combo
 import os
 from wx.lib.masked import NumCtrl
-import modelconfig_window, modelDesign_window
+from . import modelconfig_window, modelDesign_window
 import wx.lib.agw.balloontip as BT
 import pkg_resources as p
 
@@ -237,7 +237,7 @@ class ConfigFslFrame(wx.Frame):
 
     def onOK(self, event):
         parent = self.Parent
-        print parent
+        print(parent)
         if self.box2.GetValue():
             val = str(self.box2.GetValue())
             parent.listbox.Append(val)
@@ -793,12 +793,12 @@ class CheckBoxGrid(wx.Panel):
         self.choiceCategoricalList = []
         self.choiceDemeanList = []
 
-        for cb_id in self.cbValuesDict.keys():
+        for cb_id in list(self.cbValuesDict.keys()):
             
             cb_name = self.cbValuesDict[cb_id][0]
 
 
-            if 'categorical' in ev_selections.keys():
+            if 'categorical' in list(ev_selections.keys()):
 
                 if (cb_name in ev_selections['categorical']) and (cb_id % 2 != 0):
 
@@ -808,7 +808,7 @@ class CheckBoxGrid(wx.Panel):
                     self.choiceCategoricalList.append(cb_name)
 
 
-            if 'demean' in ev_selections.keys():
+            if 'demean' in list(ev_selections.keys()):
 
                 if (cb_name in ev_selections['demean']) and (cb_id % 2 == 0):
 
@@ -851,7 +851,7 @@ class CheckBoxGrid(wx.Panel):
                 if self.cbValuesDict[idNum][2] == True:
                     self.choiceCategoricalList.append(self.cbValuesDict[idNum][0])
                     
-                    if ('demean',idNum+1) not in self.tempChoiceDict.keys():
+                    if ('demean',idNum+1) not in list(self.tempChoiceDict.keys()):
                         self.tempChoiceDict[('demean',idNum+1)] = wx.FindWindowById(idNum+1).GetValue()
 
                     wx.FindWindowById(idNum+1).Set3StateValue(2)  # set demean to N/A
@@ -860,7 +860,7 @@ class CheckBoxGrid(wx.Panel):
                     #self.choiceCategoricalList.append('0')
                     
                     #wx.FindWindowById(idNum+1).Set3StateValue(0)  # undo demean as N/A
-                    if ('demean',idNum+1) in self.tempChoiceDict.keys():
+                    if ('demean',idNum+1) in list(self.tempChoiceDict.keys()):
                         wx.FindWindowById(idNum+1).SetValue(self.tempChoiceDict[('demean',idNum+1)])
                         del self.tempChoiceDict[('demean',idNum+1)]
                         #wx.FindWindowById(idNum+1).Set3StateValue(0)  # undo demean as N/A

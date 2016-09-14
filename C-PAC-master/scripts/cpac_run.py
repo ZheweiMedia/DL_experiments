@@ -6,18 +6,18 @@ from os import path
 def check_inputs(*pathstrs):
     for pathstr in pathstrs:
         if not path.exists(pathstr):
-            print "ERROR: input '%s' doesn't exist" % pathstr
+            print("ERROR: input '%s' doesn't exist" % pathstr)
             raise SystemExit(2)
         _,ext = path.splitext(pathstr)
         if ext != ".yml":
-            print "ERROR: input '%s' is not a YAML file (*.yml)" % pathstr
+            print("ERROR: input '%s' is not a YAML file (*.yml)" % pathstr)
             raise SystemExit(2)
     return
 
 if len(sys.argv) != 3 and len(sys.argv) != 5:
-    print "Usage: %s /path/to/pipeline_config.yml /path/to/CPAC_subject_list.yml" % path.basename(sys.argv[0])
-    print "Alternate usage: %s /path/to/pipeline_config.yml /path/to/CPAC_subject_list.yml nipype=/path/to/custom/Nipype cpac=/path/to/custom/cpac" % path.basename(sys.argv[0])
-    print "Will run C-PAC"
+    print("Usage: %s /path/to/pipeline_config.yml /path/to/CPAC_subject_list.yml" % path.basename(sys.argv[0]))
+    print("Alternate usage: %s /path/to/pipeline_config.yml /path/to/CPAC_subject_list.yml nipype=/path/to/custom/Nipype cpac=/path/to/custom/cpac" % path.basename(sys.argv[0]))
+    print("Will run C-PAC")
     raise SystemExit(1)
 
 
@@ -32,10 +32,10 @@ def check_custom_path(custom_path):
             cpac_path = custom_path.replace("cpac=","")
             sys.path.insert(0,cpac_path)
         else:
-            print "Improper format for custom paths.\n"
-            print "Usage: %s /path/to/pipeline_config.yml /path/to/CPAC_subject_list.yml" % path.basename(sys.argv[0])
-            print "Alternate usage: %s /path/to/pipeline_config.yml /path/to/CPAC_subject_list.yml nipype=/path/to/custom/Nipype cpac=/path/to/custom/cpac" % path.basename(sys.argv[0])
-            print "Will run C-PAC"
+            print("Improper format for custom paths.\n")
+            print("Usage: %s /path/to/pipeline_config.yml /path/to/CPAC_subject_list.yml" % path.basename(sys.argv[0]))
+            print("Alternate usage: %s /path/to/pipeline_config.yml /path/to/CPAC_subject_list.yml nipype=/path/to/custom/Nipype cpac=/path/to/custom/cpac" % path.basename(sys.argv[0]))
+            print("Will run C-PAC")
             raise SystemExit(1)
 
 

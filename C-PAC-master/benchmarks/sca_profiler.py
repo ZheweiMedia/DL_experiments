@@ -121,13 +121,13 @@ def main():
     cpu_before = p.get_cpu_times()
     prep_workflow(c)
 
-    print '\n\nSCA Memory CPU and IO Stats'
-    print     '---------------------------'
-    print 'Memory Usage: ', p.get_memory_info()
-    print 'CPU Times before worlflow is run: ', cpu_before, ' & after workflow is run: ', p.get_cpu_times()
-    print 'CPU Usage: ', p.get_cpu_percent(interval=1)
-    print 'IO Usage: ', p.get_io_counters()
-    print     '---------------------------\n\n'
+    print('\n\nSCA Memory CPU and IO Stats')
+    print('---------------------------')
+    print('Memory Usage: ', p.get_memory_info())
+    print('CPU Times before worlflow is run: ', cpu_before, ' & after workflow is run: ', p.get_cpu_times())
+    print('CPU Usage: ', p.get_cpu_percent(interval=1))
+    print('IO Usage: ', p.get_io_counters())
+    print('---------------------------\n\n')
 
 if __name__ == "__main__":
 

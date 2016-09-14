@@ -1,10 +1,10 @@
 import wx
-import generic_class
+from . import generic_class
 from .constants import control, dtype, substitution_map
 import os
 import yaml
 
-import modelDesign_window
+from . import modelDesign_window
 
 
 ID_RUN = 11
@@ -204,7 +204,7 @@ class ModelConfig(wx.Frame):
         self.page.set_sizer()
         
         
-        if 'group_sep' in self.gpa_settings.keys():
+        if 'group_sep' in list(self.gpa_settings.keys()):
 
             for ctrl in self.page.get_ctrl_list():
 
@@ -369,7 +369,7 @@ class ModelConfig(wx.Frame):
             path = dlg.GetPath()
 
             config_map = yaml.load(open(path, 'r'))
-            s_map = dict((v, k) for k, v in substitution_map.iteritems())
+            s_map = dict((v, k) for k, v in substitution_map.items())
 
             # load the group analysis .yml config file (in dictionary form)
             # into the self.gpa_settings dictionary which holds all settings
@@ -390,7 +390,7 @@ class ModelConfig(wx.Frame):
 
             # repopulate the model setup checkbox grid, since this has to be
             # done specially
-            if 'pheno_file' in self.gpa_settings.keys():
+            if 'pheno_file' in list(self.gpa_settings.keys()):
 
                 phenoFile = open(os.path.abspath(self.gpa_settings['pheno_file']))
 
@@ -474,9 +474,9 @@ class ModelConfig(wx.Frame):
 
         for line in p_reader:
 
-            for key in line.keys():
+            for key in list(line.keys()):
 
-                if key not in pheno_data_dict.keys():
+                if key not in list(pheno_data_dict.keys()):
                     pheno_data_dict[key] = []
 
                 # create a list within one of the dictionary values for that
@@ -484,7 +484,7 @@ class ModelConfig(wx.Frame):
                 # Patsy can understand regarding categoricals:
                 #     example: { ADHD: ['adhd1', 'adhd1', 'adhd2', 'adhd1'] }
                 #                instead of just [1, 1, 2, 1], etc.
-                if 'categorical' in ev_selections.keys():
+                if 'categorical' in list(ev_selections.keys()):
                     if key in ev_selections['categorical']:
                         pheno_data_dict[key].append(key + str(line[key]))
 
@@ -762,11 +762,11 @@ class ModelConfig(wx.Frame):
         try:
             phenoFile = open(os.path.abspath(self.gpa_settings['pheno_file']))
         except:
-            print '\n\n[!] CPAC says: The phenotype file path provided ' \
+            print('\n\n[!] CPAC says: The phenotype file path provided ' \
                     'couldn\'t be opened - either it does not exist or ' \
-                    'there are access restrictions.\n'
-            print 'Phenotype file provided: '
-            print self.gpa_settings['pheno_file'], '\n\n'
+                    'there are access restrictions.\n')
+            print('Phenotype file provided: ')
+            print(self.gpa_settings['pheno_file'], '\n\n')
             raise IOError
 
 
@@ -816,7 +816,7 @@ class ModelConfig(wx.Frame):
                     if side.isdigit():
                         int_check = 1
                     else:
-                        if (side not in self.pheno_data_dict.keys()) and \
+                        if (side not in list(self.pheno_data_dict.keys())) and \
                             side != 'MeanFD' and side != 'MeanFD_Jenkinson' \
                             and side != 'Measure_Mean' and \
                             side != 'Custom_ROI_Mean':
@@ -872,7 +872,7 @@ class ModelConfig(wx.Frame):
 
                 for interaction_EV in both_EVs_in_interaction:
 
-                    if (interaction_EV not in self.pheno_data_dict.keys()) and \
+                    if (interaction_EV not in list(self.pheno_data_dict.keys())) and \
                         interaction_EV != 'MeanFD' and \
                         interaction_EV != 'MeanFD_Jenkinson' and \
                         interaction_EV != 'Measure_Mean' and \
@@ -896,7 +896,7 @@ class ModelConfig(wx.Frame):
 
             else:
 
-                if (EV not in self.pheno_data_dict.keys()) and EV != 'MeanFD' \
+                if (EV not in list(self.pheno_data_dict.keys())) and EV != 'MeanFD' \
                     and EV != 'MeanFD_Jenkinson' and EV != 'Measure_Mean' \
                     and EV != 'Custom_ROI_Mean':
 
@@ -1009,19 +1009,19 @@ class ModelConfig(wx.Frame):
             self.gpa_settings['custom_roi_mask'] != "None" and \
             self.gpa_settings['custom_roi_mask'] != "none"):
 
-            import commands
+            import subprocess
 
             try:
-                ROIstats_output = commands.getoutput("3dROIstats -mask %s %s" \
+                ROIstats_output = subprocess.getoutput("3dROIstats -mask %s %s" \
                                   % (self.gpa_settings['custom_roi_mask'], \
                                   self.gpa_settings['custom_roi_mask']))
             except Exception as e:
-                print "[!] CPAC says: AFNI 3dROIstats failed for custom ROI" \
+                print("[!] CPAC says: AFNI 3dROIstats failed for custom ROI" \
                       "Mean Mask file validation. Please ensure you either " \
                       "have AFNI installed and that you created the mask " \
                       "file properly. Consult the User Guide for more " \
-                      "information.\n\n"
-                print "Error details: %s\n\n" % e
+                      "information.\n\n")
+                print("Error details: %s\n\n" % e)
                 raise
 
             ROIstats_list = ROIstats_output.split("\t")
@@ -1097,9 +1097,9 @@ class ModelConfig(wx.Frame):
                 # each EV for that one subject - each iteration of this loop is
                 # one subject
 
-                for key in line.keys():
+                for key in list(line.keys()):
 
-                    if key not in pheno_data_dict.keys():
+                    if key not in list(pheno_data_dict.keys()):
                         pheno_data_dict[key] = []
 
                     # create a list within one of the dictionary values for that
@@ -1107,7 +1107,7 @@ class ModelConfig(wx.Frame):
                     # Patsy can understand regarding categoricals:
                     #     example: { ADHD: ['adhd1', 'adhd1', 'adhd0', 'adhd1'] }
                     #                instead of just [1, 1, 0, 1], etc.
-                    if 'categorical' in ev_selections.keys():
+                    if 'categorical' in list(ev_selections.keys()):
                         if key in ev_selections['categorical']:
                             pheno_data_dict[key].append(key + str(line[key]))
 
@@ -1127,10 +1127,10 @@ class ModelConfig(wx.Frame):
 
             # this needs to run after each list in each key has been fully
             # populated above
-            for key in pheno_data_dict.keys():
+            for key in list(pheno_data_dict.keys()):
 
                 # demean the EVs marked for demeaning
-                if 'demean' in ev_selections.keys():
+                if 'demean' in list(ev_selections.keys()):
                     if key in ev_selections['demean']:
 
                         new_demeaned_evs = []
@@ -1157,7 +1157,7 @@ class ModelConfig(wx.Frame):
 
                 # converts non-categorical EV lists into NumPy arrays
                 # so that Patsy may read them in properly
-                if 'categorical' in ev_selections.keys():
+                if 'categorical' in list(ev_selections.keys()):
                     if key not in ev_selections['categorical']:
             
                         pheno_data_dict[key] = np.array(pheno_data_dict[key])
@@ -1181,7 +1181,7 @@ class ModelConfig(wx.Frame):
 
             regressor_list = []
 
-            for key in patsy_formatted_pheno.keys():
+            for key in list(patsy_formatted_pheno.keys()):
                for val in patsy_formatted_pheno[key]:
                    regressor_list.append(0.0)
                break
@@ -1235,11 +1235,11 @@ class ModelConfig(wx.Frame):
         try:
             dmatrix = patsy.dmatrix(formula, patsy_formatted_pheno)
         except:
-            print '\n\n[!] CPAC says: Design matrix creation wasn\'t ' \
+            print('\n\n[!] CPAC says: Design matrix creation wasn\'t ' \
                     'successful - do the terms in your formula correctly ' \
-                    'correspond to the EVs listed in your phenotype file?\n'
-            print 'Phenotype file provided: '
-            print self.gpa_settings['pheno_file'], '\n\n'
+                    'correspond to the EVs listed in your phenotype file?\n')
+            print('Phenotype file provided: ')
+            print(self.gpa_settings['pheno_file'], '\n\n')
             raise Exception
 
 

@@ -1,7 +1,7 @@
 # Import packages
 import wx
-from config_window import MainFrame
-from dataconfig_window import DataConfig
+from .config_window import MainFrame
+from .dataconfig_window import DataConfig
 from ..utils.custom_control import FileSelectorCombo
 from ..utils.constants import multiple_value_wfs
 import wx.lib.agw.aquabutton as AB
@@ -233,10 +233,10 @@ class ListBox(wx.Frame):
             import CPAC
             CPAC.pipeline.cpac_runner.run(pipeline, sublist, p)
         
-        except ImportError, e:
+        except ImportError as e:
             wx.MessageBox("Error importing CPAC. %s"%e, "Error") 
-            print "Error importing CPAC"
-            print e
+            print("Error importing CPAC")
+            print(e)
 
 
 
@@ -247,7 +247,7 @@ class ListBox(wx.Frame):
             if (self.listbox.GetChecked() or self.listbox.GetSelection()!= -1) and \
                 (self.listbox2.GetChecked() or self.listbox2.GetSelection()!= -1):
                 
-                import thread
+                import _thread
                 import CPAC
                     
                 pipelines = self.listbox.GetCheckedStrings()
@@ -257,10 +257,10 @@ class ListBox(wx.Frame):
                     sublist = self.sublist_map.get(s)
                     for p in pipelines:
                         pipeline = self.pipeline_map.get(p)
-                        print "running for configuration, subject list, pipeline_id -->", \
-                              pipeline, sublist, p
+                        print("running for configuration, subject list, pipeline_id -->", \
+                              pipeline, sublist, p)
                             
-                        thread.start_new_thread(self.runAnalysis1, (pipeline, sublist, p))
+                        _thread.start_new_thread(self.runAnalysis1, (pipeline, sublist, p))
                     
             else:
 
@@ -272,19 +272,19 @@ class ListBox(wx.Frame):
                 errSubID.ShowModal()
                 errSubID.Destroy()
 
-                print '\n\n[!] ' + errmsg + '\n\n'
+                print('\n\n[!] ' + errmsg + '\n\n')
 
 
                     
 
-        except Exception, e:
+        except Exception as e:
 
             errSubID = wx.MessageDialog(self, str(e), 'Error',
                  wx.OK | wx.ICON_ERROR)
             errSubID.ShowModal()
             errSubID.Destroy()
 
-            print e
+            print(e)
 
                 
 
@@ -293,9 +293,9 @@ class ListBox(wx.Frame):
 
         # Runs group analysis when user clicks "Run Group Level Analysis" in GUI
 
-        print ""
-        print "Running CPAC Group Analysis..."
-        print ""
+        print("")
+        print("Running CPAC Group Analysis...")
+        print("")
         
         if (self.listbox.GetChecked() or self.listbox.GetSelection()!= -1):
             
@@ -307,9 +307,9 @@ class ListBox(wx.Frame):
                 sublist = self.sublist_map.get(s)
 
                 if not os.path.exists(sublist):
-                    print '\n\nCPAC says: Please select a subject list ' \
+                    print('\n\nCPAC says: Please select a subject list ' \
                               'before running group-level analysis. ' \
-                              'Thanks!\n\n'
+                              'Thanks!\n\n')
                     raise Exception
 
 
@@ -334,11 +334,11 @@ class ListBox(wx.Frame):
                         runGLA(pipeline, sublist, derv_path, p)
 
                     else:
-                        print "pipeline doesn't exist"
+                        print("pipeline doesn't exist")
                     
                 
         else:
-            print "No pipeline selected"
+            print("No pipeline selected")
 
 
 
@@ -414,7 +414,7 @@ class ListBox(wx.Frame):
                 # open the pipeline_config editor window
                 MainFrame(self, option ="edit", path=path, pipeline_id = text)
             else:
-                print "Couldn't find the config file %s "%path
+                print("Couldn't find the config file %s "%path)
      
      
      
@@ -472,7 +472,7 @@ class ListBox(wx.Frame):
                     dlg = wx.lib.dialogs.ScrolledMessageDialog(self, msg, name, size = (800,800))
                     dlg.ShowModal()
                 except:
-                    print "Cannot open file %s"%(name)
+                    print("Cannot open file %s"%(name))
                     
                     
     def OnDisplay(self, event):
@@ -489,7 +489,7 @@ class ListBox(wx.Frame):
                     dlg = wx.lib.dialogs.ScrolledMessageDialog(self, msg, name, size = (800,1000))
                     dlg.ShowModal()
                 except:
-                    print "Cannot open file %s"%(name)
+                    print("Cannot open file %s"%(name))
     
     
     def AddItem(self, event):
@@ -510,8 +510,8 @@ class ListBox(wx.Frame):
                 try:
                     f_sl = yaml.load(open(path, 'r'))
                 except Exception as e:
-                    print 'Unable to load in the specified file: %s' % path
-                    print 'Error:\n%s' % e
+                    print('Unable to load in the specified file: %s' % path)
+                    print('Error:\n%s' % e)
                 # If it's not a list, we know it's not a subject list
                 if type(f_sl) != list:
                     err_msg = 'File is not a subject list file. It might be a '\
@@ -577,7 +577,7 @@ class ListBox(wx.Frame):
         try:
             params_file = open(p.resource_filename('CPAC', 'GUI/resources/config_parameters.txt'), "r")
         except:
-            print "Error: Could not open configuration parameter file.", "\n"
+            print("Error: Could not open configuration parameter file.", "\n")
             raise Exception
 
         paramInfo = params_file.read().split('\n')
@@ -624,7 +624,7 @@ class ListBox(wx.Frame):
             if os.path.exists(config):
                 MainFrame(self, option ="load", path=config)
             else:
-                print "Couldn't find the config file %s "%config    
+                print("Couldn't find the config file %s "%config)    
 
             ret_val = -1    
 
@@ -649,10 +649,10 @@ class ListBox(wx.Frame):
                 try:
                     f_cfg = yaml.load(open(path, 'r'))
                 except Exception as e:
-                    print 'Unable to load in the specified file: %s' % path
-                    print 'Error:\n%s' % e
+                    print('Unable to load in the specified file: %s' % path)
+                    print('Error:\n%s' % e)
                 if type(f_cfg) == dict:
-                    if not f_cfg.has_key('pipelineName'):
+                    if 'pipelineName' not in f_cfg:
                         err_msg = 'File is not a pipeline configuration '\
                                   'file. It might be a data configuration file.'
                         raise Exception(err_msg)
@@ -670,12 +670,12 @@ class ListBox(wx.Frame):
                     try:
                         c = Configuration(f_cfg)
                     except Exception as e:
-                        print '\n\nERROR: Configuration file could not be '\
+                        print('\n\nERROR: Configuration file could not be '\
                               'loaded properly - the file might be '\
                               'access-protected or you might have chosen the '\
-                              'wrong file.\n'
-                        print 'Error name: main_window_0001\n\n'
-                        print 'Exception: %s' % e
+                              'wrong file.\n')
+                        print('Error name: main_window_0001\n\n')
+                        print('Exception: %s' % e)
                     
 
                     if c.pipelineName != None:
@@ -812,9 +812,9 @@ class runCPAC(wx.Frame):
     def onButton(self, event, pid):        
         if pid:
             for id in pid:
-                print "killing process id -%s"% id
+                print("killing process id -%s"% id)
                 os.kill(id, 9)
-                print "please restart the gui"
+                print("please restart the gui")
         
             self.Close()
         else:
@@ -883,12 +883,12 @@ class runGLA(wx.Frame):
             import CPAC
             CPAC.pipeline.cpac_group_runner.run(pipeline, sublist, path)
         except AttributeError as e:
-            print "Exception while running cpac_group_runner"
+            print("Exception while running cpac_group_runner")
             #print "%d: %s" % (e.errno, e.strerror)
-            print "Error type: ", type(e)
-            print "Error args: ", e.args
-            print "e: ", e
-            print ""
+            print("Error type: ", type(e))
+            print("Error args: ", e.args)
+            print("e: ", e)
+            print("")
             raise Exception
             
         
@@ -898,10 +898,10 @@ class runGLA(wx.Frame):
         # (from runGLA function), get the filepath and run the
         # "runAnalysis" function
         
-        import thread
+        import _thread
 
         if self.box1.GetValue():
-            thread.start_new(self.runAnalysis, (pipeline, sublist, self.box1.GetValue()))
+            _thread.start_new(self.runAnalysis, (pipeline, sublist, self.box1.GetValue()))
             self.Close()
         else:
             wx.MessageBox("Please provide the path to the output directory for the pipeline you want to run group-level analysis for.")

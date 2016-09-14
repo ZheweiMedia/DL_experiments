@@ -47,9 +47,9 @@ def merge(output_dir, scan_name, threshold, motion_f, power_f, flag):
         if flag:
             f = open(outfile, 'w')
 
-            print "Combining motion and power parameters into one CSV file: " \
-                  "%s\n" % outfile
-            print >>f, "Subject,Scan,Mean_Relative_RMS_Displacement," \
+            print("Combining motion and power parameters into one CSV file: " \
+                  "%s\n" % outfile)
+            print("Subject,Scan,Mean_Relative_RMS_Displacement," \
             "Max_Relative_RMS_Displacement,Movements_gt_threshold,"\
             "Mean_Relative_Mean_Rotation,Mean_Relative_Maxdisp,Max_Relative_Maxdisp," \
             "Max_Abs_Maxdisp,Max_Relative_Roll,Max_Relative_Pitch," \
@@ -59,7 +59,7 @@ def merge(output_dir, scan_name, threshold, motion_f, power_f, flag):
             "Max_Abs_Pitch,Max_Abs_Yaw,Max_Abs_dS-I,Max_Abs_dL-R,Max_Abs_dP-A," \
             "Mean_Abs_Roll,Mean_Abs_Pitch,Mean_Abs_Yaw,Mean_Abs_dS-I,Mean_Abs_dL-R,Mean_Abs_dP-A,"\
             "MeanFD,NumFD_greater_than_%.2f,rootMeanSquareFD,FDquartile(top1/4thFD),"\
-            "PercentFD_greater_than_%.2f,MeanDVARS,MeanFD_Jenkinson" % (threshold_val, threshold_val)
+            "PercentFD_greater_than_%.2f,MeanDVARS,MeanFD_Jenkinson" % (threshold_val, threshold_val), file=f)
         else:
              f = open(outfile, 'a')
 
@@ -106,10 +106,10 @@ def grab(output_dir, scrubbing):
 
     pipelines = glob.glob(os.path.join(output_dir, 'pipeline*'))
 
-    print "number of pipelines ", len(pipelines)
+    print("number of pipelines ", len(pipelines))
 
     for p in pipelines:
-        print "inside pipeline ->", os.path.basename(p)
+        print("inside pipeline ->", os.path.basename(p))
         scan_list = []
         threshold_list = []
 
@@ -136,7 +136,7 @@ def grab(output_dir, scrubbing):
 
         for scan in scan_list:
             for threshold in threshold_list:
-                print "running for...", scan, threshold
+                print("running for...", scan, threshold)
                 Flag = 1
                 #merge files for each subject
                 for sub in os.listdir(p):
@@ -172,7 +172,7 @@ def grab(output_dir, scrubbing):
                         Flag = 0
                 
 
-    print "Motion and Power parameters extraction process finished...\n"
+    print("Motion and Power parameters extraction process finished...\n")
 
     return threshold
 
@@ -188,4 +188,4 @@ def main():
     if (len(sys.argv) == 2):
         grab(sys.argv[1])
     else:
-        print 'Usage: cpac_extract_parameters /path/to/datasink_dir'
+        print('Usage: cpac_extract_parameters /path/to/datasink_dir')

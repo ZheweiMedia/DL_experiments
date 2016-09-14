@@ -12,10 +12,10 @@ the C-PAC/test package and returns the results
 import unittest
 
 # Import submodules
-import unit.AWS as aws
-import unit.GUI.interface.windows as windows
-import unit.network_centrality as centrality
-import unit.pipeline as pipeline
+from . import unit.AWS as aws
+from . import unit.GUI.interface.windows as windows
+from . import unit.network_centrality as centrality
+from . import unit.pipeline as pipeline
 
 # Init full test suite
 full_suite = unittest.TestSuite()

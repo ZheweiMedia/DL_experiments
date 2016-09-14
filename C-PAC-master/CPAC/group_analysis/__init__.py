@@ -1,4 +1,4 @@
-from group_analysis import create_group_analysis, \
+from .group_analysis import create_group_analysis, \
                         get_operation
 
 

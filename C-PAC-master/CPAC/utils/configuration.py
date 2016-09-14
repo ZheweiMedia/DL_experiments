@@ -1,5 +1,6 @@
 import os
 import warnings
+import collections
 
 """
 Class to set dictionary keys as map attributes
@@ -20,7 +21,7 @@ class Configuration(object):
         # and its value
 
         attributes = [(attr, getattr(self, attr)) for attr in dir(self) \
-                     if not callable(attr) and not attr.startswith("__")] 
+                     if not isinstance(attr, collections.Callable) and not attr.startswith("__")] 
         return attributes
 
         
@@ -57,7 +58,7 @@ class Configuration(object):
                     warnings.warn("Invalid path- %s. Please check your configuration file"%key)
             
         attributes = [(attr, getattr(self, attr)) for attr in dir(self) \
-                      if not callable(attr) and not attr.startswith("__")]     
+                      if not isinstance(attr, collections.Callable) and not attr.startswith("__")]     
         
         for attr in attributes:
             new_key = check_pattern(attr[1])

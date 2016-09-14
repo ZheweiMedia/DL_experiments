@@ -43,7 +43,7 @@ def prep_group_analysis_workflow(c, resource, subject_infos):
         columns = {}
         order = {}
         count = 0
-        headers = reader.next()
+        headers = next(reader)
                 
         for h in headers:
             columns[h] =[]
@@ -58,13 +58,13 @@ def prep_group_analysis_workflow(c, resource, subject_infos):
         if m_dict:
             for measure in m_list:
 
-                print '\n\nMeasure: ', measure, '\n\n'
+                print('\n\nMeasure: ', measure, '\n\n')
 
                 if measure in headers:
                     #check if 'MeanFD  is present'
                     if len(columns[measure]) < 1:
 
-                        print '\n\ncolumns[sub_id]: ', columns[sub_id], '\n\n'
+                        print('\n\ncolumns[sub_id]: ', columns[sub_id], '\n\n')
 
                         for sub in columns[sub_id]:
 
@@ -77,15 +77,15 @@ def prep_group_analysis_workflow(c, resource, subject_infos):
                                 raise Exception("Couldn't find subject %s in the parameter file"%sub)
 
 
-        print '\n\ncolumns[measure]: ', columns, '\n\n'
+        print('\n\ncolumns[measure]: ', columns, '\n\n')
         
-        b = zip(*([k] + columns[k] for k in sorted(columns, key=order.get)))
+        b = list(zip(*([k] + columns[k] for k in sorted(columns, key=order.get))))
         
         
         try:
             os.makedirs(mod_path)
         except:
-            print "%s already exists"%(mod_path)
+            print("%s already exists"%(mod_path))
             
         new_phenotypic_file = os.path.join(mod_path, os.path.basename(phenotypic_file))
                 
@@ -119,14 +119,14 @@ def prep_group_analysis_workflow(c, resource, subject_infos):
             threshold_val = c.scrubbingThreshold[0]
 
         else:
-            print "Found Multiple threshold value "
+            print("Found Multiple threshold value ")
 
 
-        print "scrubbing threshold_val -->", threshold_val
+        print("scrubbing threshold_val -->", threshold_val)
 
     else:
 
-        print "No scrubbing enabled."
+        print("No scrubbing enabled.")
 
         if len(c.scrubbingThreshold) == 1:
             threshold_val = c.scrubbingThreshold[0]
@@ -138,8 +138,8 @@ def prep_group_analysis_workflow(c, resource, subject_infos):
 
     for config in c.modelConfigs:
 
-        print c.modelConfigs
-        print config
+        print(c.modelConfigs)
+        print(config)
         
         try:
             conf = Configuration(yaml.load(open(os.path.realpath(config), 'r')))
@@ -168,32 +168,32 @@ def prep_group_analysis_workflow(c, resource, subject_infos):
             # repeated measures properly if repeated measures is enabled and
             # vice versa
             if (c.repeatedMeasures == True) and (',' not in sub):
-                print '\n\n'
-                print '[!] CPAC says: The group analysis subject list is ' \
+                print('\n\n')
+                print('[!] CPAC says: The group analysis subject list is ' \
                         'not inthe appropriate format for repeated ' \
-                        'measures.\n'
-                print 'Please use the appropriate format as described in ' \
+                        'measures.\n')
+                print('Please use the appropriate format as described in ' \
                         'the CPAC User Guide or turn off Repeated Measures ' \
                         'in the CPAC pipeline configuration editor, found ' \
                         'in the \'Group Analysis Settings\' tab of the ' \
-                        'pipeline configuration editor.\n'
-                print 'NOTE: CPAC generates a properly-formatted group ' \
+                        'pipeline configuration editor.\n')
+                print('NOTE: CPAC generates a properly-formatted group ' \
                         'analysis subject list meant for running repeated ' \
                         'measures when you create your original subject ' \
                         'list. Look for \'subject_list_group_analysis_' \
                         'repeated_measures.txt\' in the directory where ' \
-                        'you created your subject list.\n\n'
+                        'you created your subject list.\n\n')
                 raise Exception
 
             elif (c.repeatedMeasures == False) and (',' in sub):
-                print '\n\n'
-                print '[!] CPAC says: It looks like your group analysis ' \
+                print('\n\n')
+                print('[!] CPAC says: It looks like your group analysis ' \
                         'subject list is formatted for running repeated ' \
                         'measures, but \'Run Repeated Measures\' is not ' \
                         'enabled in the pipeline configuration, found in ' \
                         'the \'Group Analysis Settings\' tab of the ' \
-                        'pipeline configuration editor.\n'
-                print 'Double-check your pipeline configuration?\n\n'
+                        'pipeline configuration editor.\n')
+                print('Double-check your pipeline configuration?\n\n')
                 raise Exception
 
 
@@ -249,12 +249,12 @@ def prep_group_analysis_workflow(c, resource, subject_infos):
 
         # check to see if any derivatives of subjects are missing
         if len(list(set(subject_list) - set(exist_paths))) >0:
-            print "List of outputs missing for subjects:"
-            print list(set(subject_list) - set(exist_paths))
-            print "..for derivatives:"
-            print resource
-            print "..at paths:"
-            print os.path.dirname(s_paths[0]).replace(s_ids[0], '*')
+            print("List of outputs missing for subjects:")
+            print(list(set(subject_list) - set(exist_paths)))
+            print("..for derivatives:")
+            print(resource)
+            print("..at paths:")
+            print(os.path.dirname(s_paths[0]).replace(s_ids[0], '*'))
 
         
 
@@ -280,13 +280,13 @@ def prep_group_analysis_workflow(c, resource, subject_infos):
             f = open(new_sub_file, 'w')
          
             for sub in exist_paths:
-                print >>f, sub
+                print(sub, file=f)
         
             f.close()
 
         except:
 
-            print "Error: Could not open subject list file: ", new_sub_file
+            print("Error: Could not open subject list file: ", new_sub_file)
             raise Exception
 
 
@@ -299,11 +299,11 @@ def prep_group_analysis_workflow(c, resource, subject_infos):
         if measure_dict != None:
             conf.update('pheno_file',get_phenotypic_file(conf.pheno_file, measure_dict, measure_list, mod_path, sub_id))
         
-        print 'conf updated pheno: ', conf.pheno_file, '\n\n'
+        print('conf updated pheno: ', conf.pheno_file, '\n\n')
 
             
-        print "Model config dictionary ->"
-        print conf.__dict__
+        print("Model config dictionary ->")
+        print(conf.__dict__)
 
 
 
@@ -320,36 +320,36 @@ def prep_group_analysis_workflow(c, resource, subject_infos):
         if 1 in c.runGenerateMotionStatistics:
 
             if not os.path.exists(parameter_file):
-                print '\n\n[!] CPAC says: Could not open the parameter file. ' \
+                print('\n\n[!] CPAC says: Could not open the parameter file. ' \
                       'If Generate Motion Statistics is enabled, this can ' \
                       'usually be found in the output directory of your ' \
-                      'individual-level analysis runs.\n'
-                print 'Path not found: ', parameter_file, '\n\n'
+                      'individual-level analysis runs.\n')
+                print('Path not found: ', parameter_file, '\n\n')
                 raise Exception
 
         elif (1 not in c.runGenerateMotionStatistics) and (os.path.exists(parameter_file)):
 
             if not os.path.exists(parameter_file):
-                print '\n\n[!] CPAC says: Could not open the parameter file. ' \
+                print('\n\n[!] CPAC says: Could not open the parameter file. ' \
                       'If Generate Motion Statistics is enabled, this can ' \
                       'usually be found in the output directory of your ' \
-                      'individual-level analysis runs.\n'
-                print 'Path not found: ', parameter_file, '\n\n'
+                      'individual-level analysis runs.\n')
+                print('Path not found: ', parameter_file, '\n\n')
                 raise Exception
 
         else:
 
             def no_measures_error(measure):
-                print '\n\n[!] CPAC says: The measure %s was included in ' \
+                print('\n\n[!] CPAC says: The measure %s was included in ' \
                       'your group analysis design matrix formula, but ' \
                       'Generate Motion Statistics was not run during ' \
-                      'individual-level analysis.\n' % measure
-                print 'Please run Generate Motion Statistics if you wish ' \
-                      'to include this measure in your model.\n'
-                print 'If you HAVE completed a run with this option ' \
+                      'individual-level analysis.\n' % measure)
+                print('Please run Generate Motion Statistics if you wish ' \
+                      'to include this measure in your model.\n')
+                print('If you HAVE completed a run with this option ' \
                       'enabled, then you are seeing this error because ' \
                       'the motion parameter file normally created by this ' \
-                      'option is missing.\n\n'
+                      'option is missing.\n\n')
                 raise Exception
 
             for measure in measure_list:
@@ -379,9 +379,9 @@ def prep_group_analysis_workflow(c, resource, subject_infos):
             #print >>diag, "> Runs create_fsl_model."
             #print >>diag, ""
 
-        except Exception, e:
+        except Exception as e:
 
-            print "FSL Group Analysis model not successfully created - error in create_fsl_model script"
+            print("FSL Group Analysis model not successfully created - error in create_fsl_model script")
             #print "Error ->", e
             raise
 
@@ -400,7 +400,7 @@ def prep_group_analysis_workflow(c, resource, subject_infos):
 
     ''' start group analysis '''
 
-    print '\n\nPreparing the group analysis workflow..\n\n'
+    print('\n\nPreparing the group analysis workflow..\n\n')
 
     for model_sub in model_sub_list:
 
@@ -458,7 +458,7 @@ def prep_group_analysis_workflow(c, resource, subject_infos):
         if not os.path.exists(log_dir):
             os.makedirs(log_dir)
         else:
-            print "log_dir already exist"
+            print("log_dir already exist")
         
 
 
@@ -545,23 +545,23 @@ def prep_group_analysis_workflow(c, resource, subject_infos):
 
 
 
-        print 'S_paths length: ', len(s_paths)
+        print('S_paths length: ', len(s_paths))
 
-        print "Ordered paths length (number of subjects): ", len(ordered_paths)
+        print("Ordered paths length (number of subjects): ", len(ordered_paths))
       
-        print "input_subject_list -> %s" % input_subject_list
+        print("input_subject_list -> %s" % input_subject_list)
 
-        print "strgy_path: ", strgy_path
+        print("strgy_path: ", strgy_path)
 
 
         if len(ordered_paths) == 0:
-            print '\n\n\n[!] CPAC says: None of the subjects listed in the ' \
+            print('\n\n\n[!] CPAC says: None of the subjects listed in the ' \
                   'group analysis subject list were found to have outputs ' \
                   'produced by individual-level analysis.\n\nEnsure that ' \
                   'the subjects listed in your group analysis subject list ' \
                   'are the same as the ones included in the individual-' \
                   'level analysis you are running group-level analysis for.' \
-                  '\n\n\n'
+                  '\n\n\n')
             raise Exception
 
 
@@ -586,11 +586,11 @@ def prep_group_analysis_workflow(c, resource, subject_infos):
         gpa_wf.inputs.inputspec.p_threshold = c.pThreshold
         gpa_wf.inputs.inputspec.parameters = (c.FSLDIR, 'MNI152')
     
-        print "group model: ", model
-        print "f test: ", fTest
-        print "z threshold: ", c.zThreshold
-        print "p threshold: ", c.pThreshold
-        print "parameters: ", (c.FSLDIR, 'MNI152')
+        print("group model: ", model)
+        print("f test: ", fTest)
+        print("z threshold: ", c.zThreshold)
+        print("p threshold: ", c.pThreshold)
+        print("parameters: ", (c.FSLDIR, 'MNI152'))
 
     
         wf.connect(gp_flow, 'outputspec.mat',
@@ -719,7 +719,7 @@ def prep_group_analysis_workflow(c, resource, subject_infos):
             raise Exception
         '''
     
-        print "**Workflow finished for model %s and resource %s"%(os.path.basename(model), resource)
+        print("**Workflow finished for model %s and resource %s"%(os.path.basename(model), resource))
         
     #diag.close()
 
@@ -727,8 +727,8 @@ def prep_group_analysis_workflow(c, resource, subject_infos):
 
 def run(config, subject_infos, resource):
     import re
-    import commands
-    commands.getoutput('source ~/.bashrc')
+    import subprocess
+    subprocess.getoutput('source ~/.bashrc')
     import os
     import sys
     import pickle

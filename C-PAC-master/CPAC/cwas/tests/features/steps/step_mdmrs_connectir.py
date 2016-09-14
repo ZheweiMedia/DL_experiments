@@ -41,7 +41,7 @@ def step(context, rfile, cols):
 
 @when('we compute many mdmrs in python')
 def step(context):
-    context.voxs   = range(12)    
+    context.voxs   = list(range(12))    
     context.Fs, context.ps = calc_mdmrs(context.dmats[context.voxs], context.regressors, 
                                         context.cols, context.perms)
 

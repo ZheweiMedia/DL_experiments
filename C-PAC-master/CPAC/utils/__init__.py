@@ -1,8 +1,8 @@
-import create_all_qc 
-import extract_data_multiscan
-import create_fsl_model
-import extract_parameters
-from utils import *
+from . import create_all_qc 
+from . import extract_data_multiscan
+from . import create_fsl_model
+from . import extract_parameters
+from .utils import *
 from .extract_data import run
 from .datasource import create_anat_datasource
 from .datasource import create_func_datasource

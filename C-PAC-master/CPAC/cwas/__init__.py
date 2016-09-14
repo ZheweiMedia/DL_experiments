@@ -1,7 +1,7 @@
-from utils import calc_cwas, \
+from .utils import calc_cwas, \
                   mdmr
 
-from cwas import joint_mask, \
+from .cwas import joint_mask, \
                  nifti_cwas, \
                  create_cwas
 

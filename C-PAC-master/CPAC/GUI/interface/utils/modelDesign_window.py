@@ -1,10 +1,10 @@
 import wx
-import generic_class
+from . import generic_class
 from .constants import control, dtype, substitution_map
 import os
 import ast
 
-import modelconfig_window
+from . import modelconfig_window
 
 
 ID_RUN = 11
@@ -24,19 +24,19 @@ class ModelDesign(wx.Frame):
         self.contrasts_list = varlist
 
 
-        if 'contrasts' not in self.gpa_settings.keys():
+        if 'contrasts' not in list(self.gpa_settings.keys()):
             self.gpa_settings['contrasts'] = {}
 
-        if 'custom_contrasts' not in self.gpa_settings.keys():
+        if 'custom_contrasts' not in list(self.gpa_settings.keys()):
             self.gpa_settings['custom_contrasts'] = 'None'
 
-        if 'f_tests' not in self.gpa_settings.keys():
+        if 'f_tests' not in list(self.gpa_settings.keys()):
             self.gpa_settings['f_tests'] = []
 
-        if 'model_name' not in self.gpa_settings.keys():
+        if 'model_name' not in list(self.gpa_settings.keys()):
             self.gpa_settings['model_name'] = ''
 
-        if 'output_dir' not in self.gpa_settings.keys():
+        if 'output_dir' not in list(self.gpa_settings.keys()):
             self.gpa_settings['output_dir'] = ''
 
 
@@ -205,8 +205,8 @@ class ModelDesign(wx.Frame):
         elif '-' in contrast_string:
             split_contrast = contrast_string.split('-')
         else:
-            print '[!] CPAC says: The contrast \' ', contrast_string, ' \' ' \
-                  'did not contain any valid operators ( > , < , + , - ).\n'
+            print('[!] CPAC says: The contrast \' ', contrast_string, ' \' ' \
+                  'did not contain any valid operators ( > , < , + , - ).\n')
             raise Exception
 
         # in the case of the '+' or '-' contrast operators, which result in
@@ -656,13 +656,13 @@ class ModelDesign(wx.Frame):
 
                     # print out 'help' (comments describing values)
                     for lines in item[3].split('\n'):
-                        print >> f, '#', lines
+                        print('#', lines, file=f)
 
                     # print out 'label: value'
-                    print >> f, item[0], ': ', value, '\n\n'
+                    print(item[0], ': ', value, '\n\n', file=f)
 
-                print '\n\nCPAC says: Saving the group analysis model ' \
-                          'configuration file to: ', path, '\n\n'
+                print('\n\nCPAC says: Saving the group analysis model ' \
+                          'configuration file to: ', path, '\n\n')
                 f.close()
                     
                 self.Parent.box2.GetTextCtrl().SetValue(path)

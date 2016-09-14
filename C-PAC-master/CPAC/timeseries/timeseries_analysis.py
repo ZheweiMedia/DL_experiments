@@ -631,13 +631,13 @@ def gen_roi_timeseries(data_file,
 
 
     # writing to 1Dfile
-    print "writing 1D file.."
+    print("writing 1D file..")
     f = open(oneD_file, 'w')
     writer = csv.writer(f, delimiter='\t')
 
     value_list = []
 
-    new_keys = sorted([int(float(key.split('node_')[1])) for key in node_dict.keys()])
+    new_keys = sorted([int(float(key.split('node_')[1])) for key in list(node_dict.keys())])
 
     roi_number_list = [str(n) for n in new_keys]
 
@@ -647,12 +647,12 @@ def gen_roi_timeseries(data_file,
         roi_number_str.append("#" + number)
 
 
-    print "new keys: ", new_keys
-    print "roi number str: ", roi_number_str
+    print("new keys: ", new_keys)
+    print("roi number str: ", roi_number_str)
     for key in new_keys:
         value_list.append(node_dict['node_%s' % key])
 
-    column_list = zip(*value_list)
+    column_list = list(zip(*value_list))
 
 
     writer.writerow(roi_number_str)
@@ -668,7 +668,7 @@ def gen_roi_timeseries(data_file,
 
     # if csv is required
     if output_type[0]:
-        print "writing csv file.."
+        print("writing csv file..")
         f = open(csv_file, 'wt')
         writer = csv.writer(f, delimiter=',',
                                 quoting=csv.QUOTE_MINIMAL)
@@ -680,7 +680,7 @@ def gen_roi_timeseries(data_file,
 
     # if npz file is required
     if output_type[1]:
-        print "writing npz file.."
+        print("writing npz file..")
         np.savez(numpy_file, roi_data=value_list, roi_numbers=roi_number_list)
         out_list.append(numpy_file)
 
@@ -756,7 +756,7 @@ def gen_voxel_timeseries(data_file,
     for t in range(0, time_points):
         str = 'vol %s' % (t)
         vol_dict[str] = node_array[t]
-        print >> f, np.round(np.mean(node_array[t]), 6)
+        print(np.round(np.mean(node_array[t]), 6), file=f)
         val = node_array[t].tolist()
         val.insert(0, t)
         sorted_list.append(val)

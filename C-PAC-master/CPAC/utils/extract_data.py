@@ -240,21 +240,21 @@ def extract_data(c, param_map):
         try:
 
             def print_begin_of_file(sub, session_id):
-                print >> f, "-"
-                print >> f, "    subject_id: '" + sub + "'"
-                print >> f, "    unique_id: '" + session_id + "'" 
+                print("-", file=f)
+                print("    subject_id: '" + sub + "'", file=f)
+                print("    unique_id: '" + session_id + "'", file=f) 
 
             def print_end_of_file(sub):
                 if param_map is not None:
                     try:
                         logging.debug("site for sub %s -> %s" %(sub, subject_map.get(sub)))
                         logging.debug("scan parameters for the above site %s"%param_map.get(subject_map.get(sub)))
-                        print >> f, "    scan_parameters:"
-                        print >> f, "        tr: '" + param_map.get(subject_map.get(sub))[4] + "'" 
-                        print >> f, "        acquisition: '" + param_map.get(subject_map.get(sub))[0] + "'" 
-                        print >> f, "        reference: '" + param_map.get(subject_map.get(sub))[3] + "'"
-                        print >> f, "        first_tr: '" + param_map.get(subject_map.get(sub))[1] + "'"
-                        print >> f, "        last_tr: '" + param_map.get(subject_map.get(sub))[2] + "'"
+                        print("    scan_parameters:", file=f)
+                        print("        tr: '" + param_map.get(subject_map.get(sub))[4] + "'", file=f) 
+                        print("        acquisition: '" + param_map.get(subject_map.get(sub))[0] + "'", file=f) 
+                        print("        reference: '" + param_map.get(subject_map.get(sub))[3] + "'", file=f)
+                        print("        first_tr: '" + param_map.get(subject_map.get(sub))[1] + "'", file=f)
+                        print("        last_tr: '" + param_map.get(subject_map.get(sub))[2] + "'", file=f)
                     except:
                         msg = " No Parameter values for the %s site is defined in the scan"\
                               " parameters csv file" %subject_map.get(sub)
@@ -272,8 +272,8 @@ def extract_data(c, param_map):
 
             if anat and func:
                 print_begin_of_file(anat_sub.split("/")[0], session_id)
-                print >> f, "    anat: '" + os.path.realpath(anat[0]) + "'"
-                print >> f, "    rest: "
+                print("    anat: '" + os.path.realpath(anat[0]) + "'", file=f)
+                print("    rest: ", file=f)
 
                 #iterate for each rest session
                 for iter in func:
@@ -281,7 +281,7 @@ def extract_data(c, param_map):
                     iterable = os.path.splitext(os.path.splitext(iter.replace(func_base_path, '').lstrip("/"))[0])[0]
                     iterable = iterable.replace("/", "_")
                     check_length(iterable, os.path.basename(os.path.realpath(iter)))
-                    print>>f, "      " + iterable + ": '" + os.path.realpath(iter) + "'"
+                    print("      " + iterable + ": '" + os.path.realpath(iter) + "'", file=f)
                 
                 print_end_of_file(anat_sub.split("/")[0])
                 
@@ -293,7 +293,7 @@ def extract_data(c, param_map):
             logging.exception(ValueError.message)
             raise
 
-        except Exception, e:
+        except Exception as e:
 
             err_msg = 'Exception while felching anatomical and functional ' \
                       'paths: \n' + str(e)
@@ -375,7 +375,7 @@ def extract_data(c, param_map):
 
         
         name = os.path.join(c.outputSubjectListLocation, 'CPAC_subject_list.yml')
-        print "Extraction Successfully Completed...Input Subjects_list for CPAC - %s" % name
+        print("Extraction Successfully Completed...Input Subjects_list for CPAC - %s" % name)
 
     except Exception:
 
@@ -405,9 +405,9 @@ def generate_supplementary_files(output_path, subject_list_name):
         subjects_list = yaml.load(open(os.path.join(output_path, 'CPAC_' \
                 'subject_list_%s.yml' % subject_list_name), 'r'))
     except:
-        print 'Subject list couldn\'t be read!'
-        print 'path: ', os.path.join(output_path, 'CPAC_subject_list_%s.yml' \
-                % subject_list_name)
+        print('Subject list couldn\'t be read!')
+        print('path: ', os.path.join(output_path, 'CPAC_subject_list_%s.yml' \
+                % subject_list_name))
         raise Exception
 
     subject_scan_set = Set()
@@ -425,18 +425,18 @@ def generate_supplementary_files(output_path, subject_list_name):
             else:
                 subject_id = sub['subject_id']
                 
-            for scan in sub['rest'].keys():
+            for scan in list(sub['rest'].keys()):
                 subject_scan_set.add((subject_id, scan))
                 subID_set.add(sub['subject_id'])
                 session_set.add(sub['unique_id'])
                 subject_set.add(subject_id)
                 scan_set.add(scan)
     except TypeError as e:
-        print 'Subject list could not be populated!'
-        print 'This is most likely due to a mis-formatting in your '\
+        print('Subject list could not be populated!')
+        print('This is most likely due to a mis-formatting in your '\
               'inclusion and/or exclusion subjects txt file or your '\
-              'anatomical and/or functional path templates.'
-        print 'Error: %s' % e
+              'anatomical and/or functional path templates.')
+        print('Error: %s' % e)
         err_str = 'Check formatting of your anatomical/functional path '\
                   'templates and inclusion/exclusion subjects text files'
         raise TypeError(err_str)
@@ -468,10 +468,10 @@ def generate_supplementary_files(output_path, subject_list_name):
     try:
         f = open(file_name, 'wb')
     except:
-        print '\n\nCPAC says: I couldn\'t save this file to your drive:\n'
-        print file_name, '\n\n'
-        print 'Make sure you have write access? Then come back. Don\'t ' \
-                'worry.. I\'ll wait.\n\n'
+        print('\n\nCPAC says: I couldn\'t save this file to your drive:\n')
+        print(file_name, '\n\n')
+        print('Make sure you have write access? Then come back. Don\'t ' \
+                'worry.. I\'ll wait.\n\n')
         raise IOError
 
     writer = csv.writer(f)
@@ -482,7 +482,7 @@ def generate_supplementary_files(output_path, subject_list_name):
 
     f.close()
 
-    print "Template Phenotypic file for group analysis - %s" % file_name
+    print("Template Phenotypic file for group analysis - %s" % file_name)
 
 
     # generate the phenotypic file templates for repeated measures
@@ -495,10 +495,10 @@ def generate_supplementary_files(output_path, subject_list_name):
         try:
             f = open(file_name, 'wb')
         except:
-            print '\n\nCPAC says: I couldn\'t save this file to your drive:\n'
-            print file_name, '\n\n'
-            print 'Make sure you have write access? Then come back. Don\'t ' \
-                    'worry.. I\'ll wait.\n\n'
+            print('\n\nCPAC says: I couldn\'t save this file to your drive:\n')
+            print(file_name, '\n\n')
+            print('Make sure you have write access? Then come back. Don\'t ' \
+                    'worry.. I\'ll wait.\n\n')
             raise IOError
 
         writer = csv.writer(f)
@@ -522,10 +522,10 @@ def generate_supplementary_files(output_path, subject_list_name):
         try:
             f = open(file_name, 'wb')
         except:
-            print '\n\nCPAC says: I couldn\'t save this file to your drive:\n'
-            print file_name, '\n\n'
-            print 'Make sure you have write access? Then come back. Don\'t ' \
-                    'worry.. I\'ll wait.\n\n'
+            print('\n\nCPAC says: I couldn\'t save this file to your drive:\n')
+            print(file_name, '\n\n')
+            print('Make sure you have write access? Then come back. Don\'t ' \
+                    'worry.. I\'ll wait.\n\n')
             raise IOError
 
         writer = csv.writer(f)
@@ -548,10 +548,10 @@ def generate_supplementary_files(output_path, subject_list_name):
         try:
             f = open(file_name, 'wb')
         except:
-            print '\n\nCPAC says: I couldn\'t save this file to your drive:\n'
-            print file_name, '\n\n'
-            print 'Make sure you have write access? Then come back. Don\'t ' \
-                    'worry.. I\'ll wait.\n\n'
+            print('\n\nCPAC says: I couldn\'t save this file to your drive:\n')
+            print(file_name, '\n\n')
+            print('Make sure you have write access? Then come back. Don\'t ' \
+                    'worry.. I\'ll wait.\n\n')
             raise IOError
 
         writer = csv.writer(f)
@@ -575,17 +575,17 @@ def generate_supplementary_files(output_path, subject_list_name):
     try:
         f = open(file_name, 'w')
     except:
-        print '\n\nCPAC says: I couldn\'t save this file to your drive:\n'
-        print file_name, '\n\n'
-        print 'Make sure you have write access? Then come back. Don\'t ' \
-                'worry.. I\'ll wait.\n\n'
+        print('\n\nCPAC says: I couldn\'t save this file to your drive:\n')
+        print(file_name, '\n\n')
+        print('Make sure you have write access? Then come back. Don\'t ' \
+                'worry.. I\'ll wait.\n\n')
         raise IOError
 
     for sub in sorted(subID_set):
-        print >> f, sub
+        print(sub, file=f)
 
 
-    print "Subject list required later for group analysis - %s" % file_name
+    print("Subject list required later for group analysis - %s" % file_name)
     f.close()
 
 
@@ -599,16 +599,16 @@ def generate_supplementary_files(output_path, subject_list_name):
         try:
             f = open(file_name, 'w')
         except:
-            print '\n\nCPAC says: I couldn\'t save this file to your drive:\n'
-            print file_name, '\n\n'
-            print 'Make sure you have write access? Then come back. Don\'t ' \
-                    'worry.. I\'ll wait.\n\n'
+            print('\n\nCPAC says: I couldn\'t save this file to your drive:\n')
+            print(file_name, '\n\n')
+            print('Make sure you have write access? Then come back. Don\'t ' \
+                    'worry.. I\'ll wait.\n\n')
             raise IOError
 
         for session in sorted(session_set):
             for scan in sorted(scan_set):
                 for sub in sorted(subID_set):
-                    print >> f, sub + ',' + scan + ',' + session
+                    print(sub + ',' + scan + ',' + session, file=f)
 
         f.close()
 
@@ -623,15 +623,15 @@ def generate_supplementary_files(output_path, subject_list_name):
         try:
             f = open(file_name, 'w')
         except:
-            print '\n\nCPAC says: I couldn\'t save this file to your drive:\n'
-            print file_name, '\n\n'
-            print 'Make sure you have write access? Then come back. Don\'t ' \
-                    'worry.. I\'ll wait.\n\n'
+            print('\n\nCPAC says: I couldn\'t save this file to your drive:\n')
+            print(file_name, '\n\n')
+            print('Make sure you have write access? Then come back. Don\'t ' \
+                    'worry.. I\'ll wait.\n\n')
             raise IOError
 
         for session in sorted(session_set):
             for sub in sorted(subID_set):
-                print >> f, sub + ',' + session
+                print(sub + ',' + session, file=f)
 
         f.close()
 
@@ -646,15 +646,15 @@ def generate_supplementary_files(output_path, subject_list_name):
         try:
             f = open(file_name, 'w')
         except:
-            print '\n\nCPAC says: I couldn\'t save this file to your drive:\n'
-            print file_name, '\n\n'
-            print 'Make sure you have write access? Then come back. Don\'t ' \
-                    'worry.. I\'ll wait.\n\n'
+            print('\n\nCPAC says: I couldn\'t save this file to your drive:\n')
+            print(file_name, '\n\n')
+            print('Make sure you have write access? Then come back. Don\'t ' \
+                    'worry.. I\'ll wait.\n\n')
             raise IOError
 
         for scan in sorted(scan_set):
             for sub in sorted(subID_set):
-                print >> f, sub + ',' + scan
+                print(sub + ',' + scan, file=f)
 
         f.close()
 
@@ -677,11 +677,11 @@ def read_csv(csv_input):
 
         dict_labels = defaultdict(list)
         for line in reader:
-            csv_dict = dict((k.lower(), v) for k, v in line.iteritems())
+            csv_dict = dict((k.lower(), v) for k, v in line.items())
             dict_labels[csv_dict.get('site')] = [csv_dict[key] for key in sorted(csv_dict.keys()) \
                                                  if key != 'site' and key != 'scan']
 
-        if len(dict_labels.keys()) < 1:
+        if len(list(dict_labels.keys())) < 1:
             msg ="Scan Parameters File is either empty"\
                  "or missing header"
             logging.exception(msg)
@@ -722,8 +722,8 @@ def run(data_config):
     logging.basicConfig(filename=os.path.join(os.getcwd(), 'extract_data_logs.log'), filemode='w', level=logging.DEBUG,\
                     format="%(levelname)s %(asctime)s %(lineno)d %(message)s")
 
-    print "For any errors or messages check the log file - %s"\
-           % os.path.join(os.getcwd(), 'extract_data_logs.log')
+    print("For any errors or messages check the log file - %s"\
+           % os.path.join(os.getcwd(), 'extract_data_logs.log'))
     
     c = Configuration(yaml.load(open(os.path.realpath(data_config), 'r')))
 
@@ -741,7 +741,7 @@ def run(data_config):
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print "Usage: python extract_data.py data_config.yml"
+        print("Usage: python extract_data.py data_config.yml")
         sys.exit()
     else:
         run(sys.argv[1])
