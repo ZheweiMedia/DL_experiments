@@ -11,6 +11,13 @@ from subprocess import call
 from collections import defaultdict
 import csv
 
+badDataList = [229146, 249406, 249407, 283008, 297689,
+               312870, 313953, 316542, 317121, 322060,
+               336708, 341918, 348187, 365243, 373523,
+               368889, 377213, 424849, 310441, 348166,
+               257275, 322438, 272229, 296788, 303081,
+               274420, 314141, 248516, 375331]
+
 class _EachSubject:
     # each subject is a element of a list
     def __init__(self, SubjectID, Sex, DX_Group, imageID):
@@ -52,8 +59,26 @@ def outputImageId(ValidData, DX_Group):
                     for imageID in list((idata.other.keys())):
                         f.write(str(imageID))
                         f.write(',')
-        
-        
+
+
+def ImageIDFilter(ValidData, DX_Group, badDataList):
+    #output the valid image ID
+    validList = list()
+    print ('Valid Images ID for', DX_Group, ':')
+    for idata in ValidData:
+        if idata.DX_Group == DX_Group:
+            ImageIDList_Baseline = list(idata.baseline.keys())
+            for imageID in ImageIDList_Baseline:
+                if imageID not in badDataList:
+                    validList.append(imageID)
+            if idata.other != {}:
+                ImageIDList_Other = list(idata.other.keys())
+                for imageID in ImageIDList_Other:
+                    if imageID not in badDataList:
+                        validList.append(imageID)
+    for id in validList:
+        print (id, ',')
+                        
 def main():
     with open('idaSearch_9_07_2016_ADNI2.csv','r') as csvfile:
         reader = csv.DictReader(csvfile)
@@ -98,9 +123,12 @@ def main():
     print ('*'*40)
     print ('\n')
 
-    outputImageId(ValidData, 'Normal')
+    # print ImageID and transform DCM to NII
+    # outputImageId(ValidData, 'Normal')
     os.system("bash Step1_DCM2NII.sh Normal")    
 
+    # print the valid imaeg ID
+    ImageIDFilter(ValidData, 'AD', badDataList)
 
 
 
