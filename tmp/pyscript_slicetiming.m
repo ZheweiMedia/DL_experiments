@@ -15,8 +15,7 @@ try,
            spm_get_defaults('cmdline', 1);
         end
 
-        jobs{1}.spm.temporal.st.nslices = 48;
-jobs{1}.spm.temporal.st.so(1) = 0;
+        jobs{1}.spm.temporal.st.so(1) = 0;
 jobs{1}.spm.temporal.st.so(2) = 1;
 jobs{1}.spm.temporal.st.so(3) = 2;
 jobs{1}.spm.temporal.st.so(4) = 3;
@@ -64,16 +63,17 @@ jobs{1}.spm.temporal.st.so(45) = 44;
 jobs{1}.spm.temporal.st.so(46) = 45;
 jobs{1}.spm.temporal.st.so(47) = 46;
 jobs{1}.spm.temporal.st.so(48) = 47;
-jobs{1}.spm.temporal.st.tr = 3.0;
-jobs{1}.spm.temporal.st.ta = 2.9375;
-jobs{1}.spm.temporal.st.refslice = 24;
 jobs{1}.spm.temporal.st.scans = {...
 {...
 '20120201_084246RestingStatefMRIs601a1006_010.nii,1';...
 '20120201_084246RestingStatefMRIs601a1006_015.nii,1';...
 };
 };
-jobs{1}.spm.temporal.st.prefix = 'a';
+jobs{1}.spm.temporal.st.nslices = 48;
+jobs{1}.spm.temporal.st.refslice = 24;
+jobs{1}.spm.temporal.st.prefix = 'b';
+jobs{1}.spm.temporal.st.ta = 2.9375;
+jobs{1}.spm.temporal.st.tr = 3.0;
 
         spm_jobman('run', jobs);
 

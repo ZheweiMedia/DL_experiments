@@ -12,4 +12,5 @@ st.inputs.time_repetition = 3
 st.inputs.time_acquisition = 3-3/48
 st.inputs.slice_order = list(range(0,48,1))
 st.inputs.ref_slice = 24
+st.inputs.out_prefix = 'b'
 st.run()
