@@ -76,6 +76,12 @@ def ImageIDFilter(ValidData, DX_Group, badDataList):
                 for imageID in ImageIDList_Other:
                     if int(imageID) not in badDataList:
                         validList.append(imageID)
+
+    with open(DX_Group+'_Filter','w') as f:
+        for ID in validList:
+            f.write(str(ID))
+            f.write(',')
+
     print (len(validList))
     print (validList)
                         
@@ -124,11 +130,11 @@ def main():
     print ('\n')
 
     # print ImageID and transform DCM to NII
-    outputImageId(ValidData, 'AD')
+    outputImageId(ValidData, 'Normal')
     # os.system("bash Step1_DCM2NII.sh Normal")    
 
     # print the valid imaeg ID
-    ImageIDFilter(ValidData, 'AD', badDataList)
+    ImageIDFilter(ValidData, 'Normal', badDataList)
 
 
 

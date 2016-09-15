@@ -37,6 +37,7 @@ do
     # echo $timeFilt
     No=$fileShould
     case "${IIDarray[@]}" in  *$iid*)
+	echo $iid
         # find sid to identify .dcm files
         # sid=`xmllint --xpath '//project/subject/subjectIdentifier/text()' $X`
         # find the path to .dcm
@@ -44,10 +45,10 @@ do
         # cp .dcm to new fold, then dcm2nii, then delete .dcm in the new fold
         mkdir /home/medialab/data/ADNI/fMRI_${iid}
 	
-        #cp $dcm_fMRI /home/medialab/data/ADNI/fMRI_${iid}
-        #dcm2nii  -g n -n y /home/medialab/data/ADNI/fMRI_${iid}
-        #del_dcmFile=`find /home/medialab/data/ADNI/fMRI_${iid}/ -name "*.dcm"`
-        #rm $del_dcmFile
+        cp $dcm_fMRI /home/medialab/data/ADNI/fMRI_${iid}
+        dcm2nii  -g n -n y /home/medialab/data/ADNI/fMRI_${iid}
+        del_dcmFile=`find /home/medialab/data/ADNI/fMRI_${iid}/ -name "*.dcm"`
+        rm $del_dcmFile
 	
         # find all .nii file, and output the full path to a .txt file
         # here should use some filt to remove the .nii files that not belongs to
