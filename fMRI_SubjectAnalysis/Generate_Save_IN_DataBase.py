@@ -11,12 +11,12 @@ from subprocess import call
 from collections import defaultdict
 import csv
 
-badDataList = [229146, 249406, 249407, 283008, 297689,
+badDataList = [229146, 249406, 249407, 282008, 297689,
                312870, 313953, 316542, 317121, 322060,
                336708, 341918, 348187, 365243, 373523,
                368889, 377213, 424849, 310441, 348166,
                257275, 322438, 272229, 296788, 303081,
-               274420, 314141, 248516, 375331]
+               274420, 314141, 642409, 248516, 375331]
 
 class _EachSubject:
     # each subject is a element of a list
@@ -46,7 +46,7 @@ def printAnalysis(ValidData):
 
 def outputImageId(ValidData, DX_Group):
     # output the images ID for AD
-    print ('Images ID for', DX_Group, ':')
+    print ('Images ID for', DX_Group, 'is:')
     with open(DX_Group,'w') as f:
         for idata in ValidData:
             if idata.DX_Group == DX_Group:
@@ -69,15 +69,15 @@ def ImageIDFilter(ValidData, DX_Group, badDataList):
         if idata.DX_Group == DX_Group:
             ImageIDList_Baseline = list(idata.baseline.keys())
             for imageID in ImageIDList_Baseline:
-                if imageID not in badDataList:
+                if int(imageID) not in badDataList:
                     validList.append(imageID)
             if idata.other != {}:
                 ImageIDList_Other = list(idata.other.keys())
                 for imageID in ImageIDList_Other:
-                    if imageID not in badDataList:
+                    if int(imageID) not in badDataList:
                         validList.append(imageID)
-    for id in validList:
-        print (id, ',')
+    print (len(validList))
+    print (validList)
                         
 def main():
     with open('idaSearch_9_07_2016_ADNI2.csv','r') as csvfile:
@@ -124,8 +124,8 @@ def main():
     print ('\n')
 
     # print ImageID and transform DCM to NII
-    # outputImageId(ValidData, 'Normal')
-    os.system("bash Step1_DCM2NII.sh Normal")    
+    outputImageId(ValidData, 'AD')
+    # os.system("bash Step1_DCM2NII.sh Normal")    
 
     # print the valid imaeg ID
     ImageIDFilter(ValidData, 'AD', badDataList)
