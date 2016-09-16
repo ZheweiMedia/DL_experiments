@@ -61,7 +61,7 @@ do
             readlink -f $nii >> fMRI_${iid}.txt
             No=`expr $No + 1`
         done
-	#cp /home/medialab/data/ADNI/fMRI_${iid}/*$timeFilt*_*_100.nii /home/medialab/data/ADNI/fMRI_check/fMRI_${iid}.nii
+	cp /home/medialab/data/ADNI/fMRI_${iid}/*$timeFilt*_*_100.nii /home/medialab/data/ADNI/fMRI_check/fMRI_${iid}.nii
     esac
     if [ $No -ne $fileShould ]
     then
