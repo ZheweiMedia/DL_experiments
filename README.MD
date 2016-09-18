@@ -1,3 +1,3 @@
 #### The plan of September:
-* ###### fMRI project
-* ###### CVPR project
+1. ###### fMRI project
+2. ###### CVPR project
