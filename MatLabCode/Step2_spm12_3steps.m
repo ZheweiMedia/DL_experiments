@@ -2,14 +2,19 @@
 %
 % Step1: Slice timing
 % Step2: Motion correction (realign & Unwarp)
-% Step3: Spatial normalization
-% Step4: Smoothing
+% Step3: Coregistration (meand image from step2 with its own MRI, and 
+%           At the same time all time frames with MRI.)
+% Step4: Spatial normalization (MRI with template, and at the same time
+%           all time frames with template)
+% <del> Step5: Smoothing </del>
+%
+% Zhewei @ 9/19/2016
 %
 %
 %
 %% input image IDs
 % clear all
-IID = [238623, 303069, 240811, 371994, 304790, 243902, ...
+fMRI_IID = [238623, 303069, 240811, 371994, 304790, 243902, ...
         322442, 286519, 361612, 287493, 361431, 254581, ...
         273218, 391150, 335999, 290923, 257271, 395105, ...
         340048, 274579, 297353, 259654, 299159, 346113, ...
@@ -37,6 +42,8 @@ IID = [238623, 303069, 240811, 371994, 304790, 243902, ...
         398573, 310240, 289588, 267713, 302615, 346744, ...
         285316, 399995, 365086, 264214, 285011, 401073, ...
         330165, 279084, 336199, 308403, 308418];
+
+MRI_IID = [];
 
 Path = './data/Normal_data/fMRI_%d.txt';
 Path2 = './data/Normal_data/DifferentSample.txt';
@@ -81,33 +88,14 @@ RU_wrap = [0,0,0];
 RU_mask = 1;
 RU_prefix = '';
 
-% % ====================Normalise========================
-% % normalize with the MNI space, avg152T1.nii
-% Nor_biasreg = 1.0000e-04;
-% Nor_biasfwhm = 60;
-% Nor_eoptions_tpm = {'/home/medialab/spm12/canonical/avg152T1.nii'};
-% Nor_eoptions_affreg = 'mni';
-% Nor_eoptions_reg = [0 1.0000e-03 0.5 0.05 0.2];
-% Nor_fwhm = 0;
-% Nor_samp = 3;
-% Nor_bb = [-78 -112 -70;78 76 85];
-% Nor_vox = [2 2 2];
-% Nor_interp = 4;
-% Nor_prefix = 't';
-% 
-% % ======================Smooth=========================
-% SM_fwhm = [8 8 8];
-% SM_dtype = 0;
-% SM_im = 0;
-% SM_prefix = '';
-
 % ===================coregistration====================
-CO_ref = {'/home/medialab/spm12/canonical/avg152T1.nii,1'};
+CO_ref =  11%;
+CO_source = 22%MRI nii%
+CO_other = 33%fMRI%
 CO_cost_fun = 'nmi';
 CO_sep = [4,2];
-CO_tol = [0.0200,0.0200,0.0200, 1.0000e-03, 1.0000e-03, 1.000e-03, 
+CO_tol = [0.0200,0.0200,0.0200, 1.0000e-03, 1.0000e-03, 1.000e-03, ...
         0.0100, 0.0100, 0.0100, 1.0000e-03, 1.0000e-03, 1.000e-03];
-
 
 CO_fwhm = [7,7];
 CO_interp = 4;
@@ -115,25 +103,48 @@ CO_wrap = [0,0,0];
 CO_mask = 0;
 CO_prefix = '';
 
+% ====================Normalise========================
+% normalize with the MNI space, avg152T1.nii
+Nor_biasreg = 1.0000e-04;
+Nor_biasfwhm = 60;
+Nor_eoptions_tpm = {'/home/medialab/spm12/canonical/avg152T1.nii'};
+Nor_eoptions_affreg = 'mni';
+Nor_eoptions_reg = [0 1.0000e-03 0.5 0.05 0.2];
+Nor_fwhm = 0;
+Nor_samp = 3;
+Nor_bb = [-78 -112 -70;78 76 85];
+Nor_vox = [2 2 2];
+Nor_interp = 4;
+Nor_prefix = 't';
+% 
+% % ======================Smooth=========================
+% SM_fwhm = [8 8 8];
+% SM_dtype = 0;
+% SM_im = 0;
+% SM_prefix = '';
+
 %% ===================Parameters Done========================
 
-[~,numfiles] = size(IID);
-data = cell(1, numfiles);
+% Read links files for fMRI, MRI, and mean,
+[~,numfiles] = size(fMRI_IID);
+fMRI_data = cell(1, numfiles);
+MRI_data = cell(1,numfiles);
+mean_data = cell(1,numfiles);
 
 for ifile = 1:numfiles
-    fileID = IID(ifile);
+    fileID = fMRI_IID(ifile);
     IIDfilename = sprintf(Path, fileID);
     
-    data{ifile} = importdata(IIDfilename);    
+    fMRI_data{ifile} = importdata(IIDfilename);    
 end
 
 % some modification to fit SPM12
 % ================================
 
 for ifile = 1:numfiles
-    [rows, col] = size(data{1,ifile});
+    [rows, col] = size(fMRI_data{1,ifile});
     for irow = 1:rows
-        data{1,ifile}{irow,col} = strcat(data{1,ifile}{irow,col},',1');
+        fMRI_data{1,ifile}{irow,col} = strcat(fMRI_data{1,ifile}{irow,col},',1');
     end
 end
 
@@ -143,7 +154,7 @@ fileWrite = fopen(Path2,'w');
 
 for ifile = 1:numfiles
     
-    img_data = sort([data{1,ifile}]);
+    img_data = sort([fMRI_data{1,ifile}]);
     img_data = img_data(11:140);
     %% =================Slice Timing===============================
     display('Slice Timing..........................................')
@@ -199,7 +210,20 @@ for ifile = 1:numfiles
     job.uwroptions.prefix = RU_prefix;
     spm_run_realignunwarp(job);
     clearvars job;
-    
+          %% =======================Coregistration=======================
+    display('Coregistration..........................................')
+    job.ref = CO_ref;
+    job.source = img_data(1);
+    job.other = img_data(2:end);
+    job.eoptions.cost_fun = CO_cost_fun;
+    job.eoptions.sep = CO_sep;
+    job.eoptions.tol = CO_tol;
+    job.eoptions.fwhm = CO_fwhm;
+    job.roptions.interp = CO_interp;
+    job.roptions.wrap = CO_wrap;
+    job.roptions.mask = CO_mask;
+    job.roptions.prefix = CO_prefix;
+    spm_run_coreg(job);
 
 %     %% ======================Spatial Normalization===================
 %     job.subj.vol = img_data(1);
@@ -227,20 +251,7 @@ for ifile = 1:numfiles
 %     varargin{1,1}.prefix = SM_prefix;
 %     spm_run_smooth(varargin);
 %     clearvars varargin;
-      %% =======================Coregistration=======================
-    display('Coregistration..........................................')
-    job.ref = CO_ref;
-    job.source = img_data(1);
-    job.other = img_data(2:end);
-    job.eoptions.cost_fun = CO_cost_fun;
-    job.eoptions.sep = CO_sep;
-    job.eoptions.tol = CO_tol;
-    job.eoptions.fwhm = CO_fwhm;
-    job.roptions.interp = CO_interp;
-    job.roptions.wrap = CO_wrap;
-    job.roptions.mask = CO_mask;
-    job.roptions.prefix = CO_prefix;
-    spm_run_coreg(job);
+
     
     
 end
@@ -255,7 +266,7 @@ clear all;
 
 %% input image IDs
 % clear all
-IID = [346237, 372812, 398684, 358614, 293808, 335306, ...
+fMRI_IID = [346237, 372812, 398684, 358614, 293808, 335306, ...
         293809, 264987, 390346, 264986, 335307, 258600, ...
         272411, 340024, 272407, 302042, 258605, 302039, ...
         393209, 340021, 287992, 310925, 310931, 336551, ...
@@ -355,23 +366,23 @@ CO_prefix = '';
 
 %% ===================Parameters Done========================
 
-[~,numfiles] = size(IID);
-data = cell(1, numfiles);
+[~,numfiles] = size(fMRI_IID);
+fMRI_data = cell(1, numfiles);
 
 for ifile = 1:numfiles
-    fileID = IID(ifile);
+    fileID = fMRI_IID(ifile);
     IIDfilename = sprintf(Path, fileID);
     
-    data{ifile} = importdata(IIDfilename);    
+    fMRI_data{ifile} = importdata(IIDfilename);    
 end
 
 % some modification to fit SPM12
 % ================================
 
 for ifile = 1:numfiles
-    [rows, col] = size(data{1,ifile});
+    [rows, col] = size(fMRI_data{1,ifile});
     for irow = 1:rows
-        data{1,ifile}{irow,col} = strcat(data{1,ifile}{irow,col},',1');
+        fMRI_data{1,ifile}{irow,col} = strcat(fMRI_data{1,ifile}{irow,col},',1');
     end
 end
 
@@ -381,7 +392,7 @@ fileWrite = fopen(Path2,'w');
 
 for ifile = 1:numfiles
     
-    img_data = sort([data{1,ifile}]);
+    img_data = sort([fMRI_data{1,ifile}]);
     img_data = img_data(11:140);
     %% =================Slice Timing===============================
     display('Slice Timing..........................................')
