@@ -34,35 +34,35 @@ do
     timeMonth=${timeMonthDay:0:2}
     timeDay=${timeMonthDay:3:4}
     timeFilt=$timeYear$timeMonth$timeDay
-
+    echo $iid
     No=$fileShould
     case "${IIDarray[@]}" in  *$iid*)
-	echo $iid
+	# echo $iid
         # find sid to identify .dcm files
         # find the path to .dcm
         dcm_fMRI=`find $PWD -name "*_MR_MPRAGE_*${iid}*.dcm"`
 	# cp .dcm to new fold, then dcm2nii, then delete .dcm in the new fold
         mkdir /home/medialab/data/ADNI/MRI_${iid}
 	
-        cp $dcm_fMRI /home/medialab/data/ADNI/MRI_${iid}
-        dcm2nii  -g n -n y /home/medialab/data/ADNI/MRI_${iid}
+        # cp $dcm_fMRI /home/medialab/data/ADNI/MRI_${iid}
+        # dcm2nii  -g n -n y /home/medialab/data/ADNI/MRI_${iid}
 
-	del_dcmFile=`find /home/medialab/data/ADNI/MRI_${iid}/ -name "*.dcm"`
-        rm $del_dcmFile
+	# del_dcmFile=`find /home/medialab/data/ADNI/MRI_${iid}/ -name "*.dcm"`
+        # rm $del_dcmFile
 	
         # find all .nii file, and output the full path to a .txt file
         # here should use some filt to remove the .nii files that not belongs to
         # the 140 niis.
 	
         nii_file=`find /home/medialab/data/ADNI/MRI_${iid}/  -name "$timeFilt*.nii"`
-
+	echo $timeFilt
 	No=0
         for nii in $nii_file
         do
-            readlink -f $nii >> fMRI_${iid}.txt
+            readlink -f $nii >> MRI_${iid}.txt
             No=`expr $No + 1`
         done
-	cp /home/medialab/data/ADNI/MRI_${iid}/$timeFilt*.nii /home/medialab/data/ADNI/MRI_check/MRI_${iid}.nii
+	# cp /home/medialab/data/ADNI/MRI_${iid}/$timeFilt*.nii /home/medialab/data/ADNI/MRI_check/MRI_${iid}.nii
     esac
     if [ $No -ne $fileShould ]
     then
