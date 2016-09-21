@@ -1,11 +1,14 @@
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %
-% The program used to pocess the fMRI files after SPM.
-%   In SPM, if we use B-spline Interpolation, there will be negative
-%   intensity values appear. Because the negative values very few 
-%   and almost distributed over skull (out of AAL), so we can simply re-set
-%   the values as 0.
+%   1. The program used to pocess the fMRI files after SPM.
+%       In SPM, if we use B-spline Interpolation, there will be negative
+%       intensity values appear. Because the negative values very few 
+%       and almost distributed over skull (out of AAL), so we can simply re-set
+%       the values as 0.
+%   
+%   2. How to use it? Every time set the fMRI_IID, and the path for the txt
+%       which contain the links to the fMRI.
 %
 %   Zhewei @ 9/21/2016
 %
@@ -26,7 +29,7 @@ fMRI_IID = [346237, 358614, 372812, 398684, 264986, ...
             317435, 343285, 363190, 343912, 358050, ...
             ];
 
-Path_fMRI = './data/Normal_data/fMRI_SPM_%d.txt';
+Path_fMRI = './data/AD_data/fMRI_SPM_%d.txt';
 addpath(genpath('Tools/NIfTI_Tools/'))
 files_No = 130;
 
@@ -40,11 +43,12 @@ for ifile = 1:numfiles
 end
 
 for ifile = 1:numfiles
+    display(ifile);
     for jfile = 1:files_No
         fMRI_nii = load_nii(fMRI_data{ifile}{jfile});
-        fileName = strcat(fileprefix,'.nii');
-        %fMRI_nii.img(fMRI_nii.img<0) = 0;
-        %save_nii(fMRI_nii, fileName);
+        fileName = strcat(fMRI_nii.fileprefix,'.nii');
+        fMRI_nii.img(fMRI_nii.img<0) = 0;
+        save_nii(fMRI_nii, fileName);
     end
 end
 
