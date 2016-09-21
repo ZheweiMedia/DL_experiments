@@ -1,0 +1,47 @@
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+% The program used to pocess the fMRI files after SPM.
+%   In SPM, if we use B-spline Interpolation, there will be negative
+%   intensity values appear. Because the negative values very few 
+%   and almost distributed over skull (out of AAL), so we can simply re-set
+%   the values as 0.
+%
+%   Zhewei @ 9/21/2016
+%
+
+
+
+fMRI_IID = [238623, 303069, 240811, 304790, 371994, ...
+            243902, 322442, 286519, 361612, 287493, ...
+            361431, 254581, 273218, 290923, 335999, ...
+            391150, 257271, 274579, 297353, 340048, ...
+            395105, 259654, 274825, 299159, 346113, ...
+            397604, 259806, 260580, 277135, 301757, ...
+            346801, 398533, 395980, 265132, 265125, ...
+            289854, 289846, 336212, 336216, 389367, ...
+            268917, 268914, 286461, 286464, 311257, ...
+            311258, 349326, 349320, 405706, 279468, ...
+            279472, 298510, 298515, 319634, 319632, ...
+            362889, 281881, 281887, 303083, 326301, ...
+            ];
+
+Path_fMRI = './data/Normal_data/fMRI_SPM_%d.txt';
+addpath(genpath('Tools/NIfTI_Tools/'))
+files_No = 130;
+
+[~,numfiles] = size(fMRI_IID);
+fMRI_data = cell(1, numfiles);
+
+for ifile = 1:numfiles
+    fileID = fMRI_IID(ifile);
+    IIDfilename = sprintf(Path_fMRI, fileID);
+    fMRI_data{ifile} = sort(importdata(IIDfilename));
+end
+
+for ifile = 1:numfiles
+    for jfile = 1:files_No
+        fMRI_nii = load_nii(fMRI_data{ifile}{jfile});
+    end
+end
+
