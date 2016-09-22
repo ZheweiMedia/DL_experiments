@@ -1,0 +1,13 @@
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%   1. Step4. After After_SPM.m
+%   2. Now the fMRI files are all matched with AAL template, we need to
+%   separate fMRI files as 120 zones as AAL.
+%   3. How to do it faster other than travel all the pixels? Separate AAL 
+%   template as 120 matrix, and for each matrix its corresponding zone is 1 and others are 0. Then do pointwise multiplication.
+%
+%
+%
+%
+%
+%
