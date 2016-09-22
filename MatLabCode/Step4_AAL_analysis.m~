@@ -18,6 +18,8 @@ fMRI_IID = [346237];
 Path_fMRI = './data/AD_data/fMRI_SPM_%d.txt';
 addpath(genpath('Tools/NIfTI_Tools/'));
 %% index of AAL2
+frame_No = 130;
+zones_No = 120;
 [index, Label, value] = textread('/home/medialab/spm12/atlas/aal2.nii.txt','%u %s %u');
 % then make a dictionary
 [i_index,~] = size(index);
@@ -26,9 +28,9 @@ dictionary(:,1) = index;
 dictionary(:,2) = value;
 
 AAL_nii = load_nii('/home/medialab/spm12/atlas/AAL2.nii');
-AAL_matrices = cell(1, 120); % 120 zones
-AAL_PixelNO = zeros(1,120); % How many pixels for each zone?
-for iMatrix = 1:120
+AAL_matrices = cell(1, zones_No); % 120 zones
+AAL_PixelNO = zeros(1, zones_No); % How many pixels for each zone?
+for iMatrix = 1:zones_No
     aal_matrix = AAL_nii.img;
     aal_matrix(aal_matrix ~= dictionary(iMatrix,2)) = 0;
     aal_matrix(aal_matrix == dictionary(iMatrix,2)) = 1;
@@ -45,18 +47,22 @@ for ifile = 1:numfiles
     IIDfilename = sprintf(Path_fMRI, fileID);
     fMRI_data{ifile} = sort(importdata(IIDfilename));
 end
-
+tic
 for ifile = 1:numfiles
     display(ifile);
-    for jfile = 1:files_No
-        fMRI_nii = load_nii(fMRI_data{ifile}{jfile});
+    feature = zeros(zones_No, frame_No);
+    for jframe = 1:frame_No
+        fMRI_nii = load_nii(fMRI_data{ifile}{jframe});
         img = double(fMRI_nii.img);
         img_max = max(max(max(img)));
         img = img/img_max;
-        sum(sum(sum(img.*AAL_matrices{10})))/AAL_PixelNO(ifile)
+        for kzone = 1:zones_No
+            feature(kzone, jframe) = sum(sum(sum(img.*AAL_matrices{kzone})))/AAL_PixelNO(kzone);
+        end
     end
     
     % save in .mat files
-    mat_name = strcat();
+    mat_name = strcat(num2str(fMRI_IID(ifile)), '.mat');
+    save(mat_name, 'feature');
 end
     
