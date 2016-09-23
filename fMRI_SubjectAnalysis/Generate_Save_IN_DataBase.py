@@ -11,6 +11,8 @@ from subprocess import call
 from collections import defaultdict
 import scipy.io as sio
 import csv
+import gzip
+import pickle as Pickle
 
 badDataList = [229146, 249406, 249407, 282008, 297689,
                312870, 313953, 316542, 317121, 322060,
@@ -43,7 +45,7 @@ def printAnalysis(ValidData):
                 labels[idata.DX_Group][1] += 1
                 # print (idata.SubjectID)
     for ikey in labels.keys():
-        print(ikey, 'We have',labels[ikey][0],'subjects,', labels[ikey][1], 'of them have more once scan.')
+        print(ikey, 'We have',labels[ikey][0],'subjects,', labels[ikey][1], 'of them have more than one scan.')
 
 def outputImageId(ValidData, DX_Group):
     # output the images ID for AD
@@ -70,7 +72,7 @@ def matDict():
     for i in Name_List:
         mat_content = sio.loadmat(i)
         feature = mat_content['feature']
-        matDict[i[:6]] = feature
+        matDict[str(i[:6])] = feature
 
     return matDict
         
@@ -99,6 +101,27 @@ def ImageIDFilter(ValidData, DX_Group, badDataList):
 
     print (len(validList))
     print (validList)
+
+def fill_data_to_List(ValidDataList, matDataDict):
+    testList = list()
+    for validData in ValidDataList:
+        tmp_list = list(validData.baseline.keys())
+        for key in tmp_list:
+            if str(key) in list(matDataDict.keys()):
+                validData.baseline[key] = matDataDict[key]
+                testList.append(key)
+        if validData.other != {}:
+            tmp_list = list(validData.other.keys())
+            for other_key in tmp_list:
+                if str(other_key) == '308182':
+                    print ('Find it')
+                if str(other_key) in list(matDataDict.keys()):
+                    validData.other[other_key] = matDataDict[other_key]
+                    testList.append(other_key)
+    for test in list(matDataDict.keys()):
+        if test not in testList:
+            print('Lost one subject:', test)
+    return ValidDataList
                         
 def main():
     with open('idaSearch_9_07_2016_ADNI2.csv','r') as csvfile:
@@ -152,7 +175,14 @@ def main():
     # ImageIDFilter(ValidData, 'Normal', badDataList)
 
     raw_dataDict = matDict()
-    print (raw_dataDict.keys())
+    # print (len(list(raw_dataDict.keys())))
+    
+
+    # fill the data back to the ValidData list
+    ValidData = fill_data_to_List(ValidData, raw_dataDict)
+    with gzip.open('Subjects_180_ADNC.pickle.gz', 'wb') as output_file:
+        Pickle.dump(ValidData, output_file)
+    print('Done!')
 
 
 
