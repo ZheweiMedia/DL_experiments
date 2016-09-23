@@ -9,6 +9,7 @@ Zhewei@ 9/7/2016
 import os
 from subprocess import call
 from collections import defaultdict
+import scipy.io as sio
 import csv
 
 badDataList = [229146, 249406, 249407, 282008, 297689,
@@ -59,7 +60,21 @@ def outputImageId(ValidData, DX_Group):
                     for imageID in list((idata.other.keys())):
                         f.write(str(imageID))
                         f.write(',')
+def matDict():
+    matDict = defaultdict(list)
+    os.chdir("/home/medialab/Zhewei/data")
+    f = os.popen("ls *.mat")
+    Name_List = list()
+    for i in f.readlines():
+        Name_List.append(str(i).rstrip())
+    for i in Name_List:
+        mat_content = sio.loadmat(i)
+        feature = mat_content['feature']
+        matDict[i[:6]] = feature
 
+    return matDict
+        
+    
 
 def ImageIDFilter(ValidData, DX_Group, badDataList):
     #output the valid image ID
@@ -130,13 +145,14 @@ def main():
     print ('\n')
 
     # print ImageID and transform DCM to NII
-    outputImageId(ValidData, 'Normal')
+    # outputImageId(ValidData, 'Normal')
     # os.system("bash Step1_DCM2NII.sh Normal")    
 
     # print the valid imaeg ID
-    ImageIDFilter(ValidData, 'Normal', badDataList)
+    # ImageIDFilter(ValidData, 'Normal', badDataList)
 
-
+    raw_dataDict = matDict()
+    print (raw_dataDict.keys())
 
 
 

@@ -1,0 +1,11 @@
+"""
+Test for reading .mat files.
+
+
+"""
+
+import os
+import subprocess
+
+with cd ("~/Zhewei/data/"):
+    subprocess.call("ls *.mat")
