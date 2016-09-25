@@ -113,8 +113,6 @@ def fill_data_to_List(ValidDataList, matDataDict):
         if validData.other != {}:
             tmp_list = list(validData.other.keys())
             for other_key in tmp_list:
-                if str(other_key) == '308182':
-                    print ('Find it')
                 if str(other_key) in list(matDataDict.keys()):
                     validData.other[other_key] = matDataDict[other_key]
                     testList.append(other_key)
