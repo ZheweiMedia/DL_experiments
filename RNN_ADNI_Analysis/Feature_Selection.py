@@ -9,7 +9,7 @@ import gzip, os
 import pickle as Pickle
 import numpy
 from sklearn.feature_selection import SelectKBest
-from sklearn.feature_selection import chi2
+from sklearn.feature_selection import chi2, f_classif
 
 TimeFrame = 130
 
@@ -60,16 +60,28 @@ def stackData(Data_list):
     Data = numpy.zeros([1,1])
     for data_no, data in enumerate(Data_list):
         if data_no == 0:
-            Data = data;
+            Data = difference_of_data(data)
         else:
-            Data = numpy.hstack((Data, data))
+            Data = numpy.hstack((Data, difference_of_data(data)))
     return Data.transpose()
 
 def expandLabel(Label_list):
     Label = list()
     for label in Label_list:
-        Label += [label]*TimeFrame
+        Label += [label]*(TimeFrame-1)
     return Label
+
+def difference_of_data(data):
+    timeframe = data.shape[1]
+    tmp_data = numpy.zeros([1,1])
+    for i in range(1, timeframe):
+        if i == 1:
+            tmp_data = data[:,i]-data[:,i-1]
+        else:
+            tmp_data = numpy.vstack((tmp_data, data[:,i]-data[:,i-1]))
+    return tmp_data.transpose()
+        
+        
 
 os.chdir("/home/medialab/Zhewei/data")
 Raw_data = gzip.open('Subjects_180_ADNC.pickle.gz', 'rb')
@@ -82,14 +94,14 @@ Label, Data, ID = data_to_list(Subjects_data)
 # print (Data[0].shape)
 
 Data = stackData(Data)
-# print (Data.shape)
+print (Data.shape)
 
 # Now Lable is for each subject. We need to expand to each time frame
 Label_New = expandLabel(Label)
 # print (len(Label))
-# print (Label[0])
+# print (Label_New.shape)
 
-Data_new = SelectKBest(chi2, k=20).fit_transform(Data, Label_New)
+Data_new = SelectKBest(f_classif, k=20).fit_transform(Data, Label_New)
 
 # print (Data_new.shape)
 
@@ -97,14 +109,14 @@ Data_new = SelectKBest(chi2, k=20).fit_transform(Data, Label_New)
 VTK_DataList = list()
 for label_no, label in enumerate(Label):
     data = Data_new[TimeFrame*label_no:TimeFrame*(label_no+1),:]
-    # print (data.shape)
     subject = _VTK_Subject(ID[label_no], data, label)
     VTK_DataList.append(subject)
 
-print (len(VTK_DataList))
 
-with gzip.open('VTK_Subjects_180.pickle.gz', 'wb') as output_file:
-        Pickle.dump(VTK_DataList, output_file)
+
+
+with gzip.open('VTK_Subjects_180_difference.pickle.gz', 'wb') as output_file:
+        Pickle.dump([Data_new, Label, ID], output_file, protocol=2)
 print('Done!')
     
     
