@@ -42,6 +42,8 @@ def data_to_list(validDataList):
                     Label.append(validData.DX_Group)
                     Data.append(validData.baseline[str(key)])
                     ID.append(str(key))
+                '''if str(key) == '228872':# test at here
+                    print (validData.baseline[str(key)])'''
             except AttributeError:
                 pass
         if validData.other != {}:
@@ -58,6 +60,7 @@ def data_to_list(validDataList):
 
 
 def ReNewData(validDataList, Data_New, ID):
+    no = 0
     for validData in validDataList:
         tmp_list = list(validData.baseline.keys())
         for key in tmp_list:
@@ -66,6 +69,10 @@ def ReNewData(validDataList, Data_New, ID):
                     position = ID.index(str(key))
                     dataNew = Data_new[TimeFrame*position:TimeFrame*(position+1),:]
                     validData.baseline[str(key)] = dataNew
+                    no += 1
+                if str(key) == '228872':# test at here
+                    print (validData.baseline[str(key)])
+                    print (validData.baseline[str(key)].shape)
             except AttributeError:
                 pass
         if validData.other != {}:
@@ -76,8 +83,10 @@ def ReNewData(validDataList, Data_New, ID):
                         position = ID.index(str(other_key))
                         dataNew = Data_new[TimeFrame*position:TimeFrame*(position+1),:]
                         validData.other[str(other_key)] = dataNew
+                        no += 1
                 except AttributeError:
                     pass
+    print (no)
     return validDataList
 
 def stackData(Data_list):
@@ -132,7 +141,7 @@ Data_new = SelectKBest(chi2, k=60).fit_transform(Data, Label_New)
 # print (Data_new.shape)
 
 # Now save it back. Travel the data structure, and feed the data back.
-print (ID)
+# print (ID)
 NewSubjectsData = ReNewData(Subjects_data, Data_new, ID)   
 
 """for label_no, label in enumerate(Label):
@@ -140,11 +149,13 @@ NewSubjectsData = ReNewData(Subjects_data, Data_new, ID)
     subject = _VTK_Subject(ID[label_no], data, label)
     VTK_DataList.append(subject)
 
-
-
-
 with gzip.open('VTK_Subjects_180_difference.pickle.gz', 'wb') as output_file:
         Pickle.dump([Data_new, Label, ID], output_file, protocol=2)"""
+
+with gzip.open('Feature_Selection.pickle.gz', 'wb') as output_file:
+    Pickle.dump(NewSubjectsData, output_file)
+
+
 print('Done!')
     
     

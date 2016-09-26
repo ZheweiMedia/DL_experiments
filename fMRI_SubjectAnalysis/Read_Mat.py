@@ -18,4 +18,5 @@ for i in f.readlines():
 mat_content = sio.loadmat(Name_List[0])
 feature =  mat_content['feature']
 print (feature.shape)
+print (feature[0,:])
 print (Name_List[0][:6])
