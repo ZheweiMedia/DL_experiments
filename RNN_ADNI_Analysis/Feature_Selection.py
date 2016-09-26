@@ -51,24 +51,50 @@ def data_to_list(validDataList):
                     if validData.other[str(other_key)].any():
                         Label.append(validData.DX_Group)
                         Data.append(validData.other[str(other_key)])
-                        ID.append(str(key))
+                        ID.append(str(other_key))
                 except AttributeError:
                     pass
     return Label, Data, ID
+
+
+def ReNewData(validDataList, Data_New, ID):
+    for validData in validDataList:
+        tmp_list = list(validData.baseline.keys())
+        for key in tmp_list:
+            try:
+                if validData.baseline[str(key)].any():
+                    position = ID.index(str(key))
+                    dataNew = Data_new[TimeFrame*position:TimeFrame*(position+1),:]
+                    validData.baseline[str(key)] = dataNew
+            except AttributeError:
+                pass
+        if validData.other != {}:
+            tmp_list = list(validData.other.keys())
+            for other_key in tmp_list:
+                try:
+                    if validData.other[str(other_key)].any():
+                        position = ID.index(str(other_key))
+                        dataNew = Data_new[TimeFrame*position:TimeFrame*(position+1),:]
+                        validData.other[str(other_key)] = dataNew
+                except AttributeError:
+                    pass
+    return validDataList
 
 def stackData(Data_list):
     Data = numpy.zeros([1,1])
     for data_no, data in enumerate(Data_list):
         if data_no == 0:
-            Data = difference_of_data(data)
+            # Data = difference_of_data(data)
+            Data = data
         else:
-            Data = numpy.hstack((Data, difference_of_data(data)))
+            # Data = numpy.hstack((Data, difference_of_data(data)))
+            Data = numpy.hstack((Data, data))
     return Data.transpose()
 
 def expandLabel(Label_list):
     Label = list()
     for label in Label_list:
-        Label += [label]*(TimeFrame-1)
+        Label += [label]*(TimeFrame)
     return Label
 
 def difference_of_data(data):
@@ -101,13 +127,15 @@ Label_New = expandLabel(Label)
 # print (len(Label))
 # print (Label_New.shape)
 
-Data_new = SelectKBest(f_classif, k=20).fit_transform(Data, Label_New)
+Data_new = SelectKBest(chi2, k=60).fit_transform(Data, Label_New)
 
 # print (Data_new.shape)
 
-# Now save it to a new data structure
-VTK_DataList = list()
-for label_no, label in enumerate(Label):
+# Now save it back. Travel the data structure, and feed the data back.
+print (ID)
+NewSubjectsData = ReNewData(Subjects_data, Data_new, ID)   
+
+"""for label_no, label in enumerate(Label):
     data = Data_new[TimeFrame*label_no:TimeFrame*(label_no+1),:]
     subject = _VTK_Subject(ID[label_no], data, label)
     VTK_DataList.append(subject)
@@ -116,7 +144,7 @@ for label_no, label in enumerate(Label):
 
 
 with gzip.open('VTK_Subjects_180_difference.pickle.gz', 'wb') as output_file:
-        Pickle.dump([Data_new, Label, ID], output_file, protocol=2)
+        Pickle.dump([Data_new, Label, ID], output_file, protocol=2)"""
 print('Done!')
     
     
