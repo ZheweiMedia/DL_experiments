@@ -115,6 +115,27 @@ def difference_of_data(data):
         else:
             tmp_data = numpy.vstack((tmp_data, data[:,i]-data[:,i-1]))
     return tmp_data.transpose()
+
+def Normalize_Each_subject_as_One(dataList):
+    for data in dataList:
+        featureNo = data.shape[0]
+        for i in range(featureNo):
+            data[i,:] = data[i,:]/numpy.linalg.norm(data[i,:])
+
+    print(dataList[0][0,:])
+    return dataList
+
+
+def Normlize_Each_subject_as_Zero_One(dataList):
+    for data in dataList:
+        featureNo = data.shape[0]
+        for i in range(featureNo):
+            max_value = numpy.amax(data[i,:])
+            min_value = numpy.amin(data[i,:])
+            data[i,:] = (data[i,:]-min_value)/(max_value-min_value)
+    print(dataList[0][0,:])
+
+    return dataList
         
         
 
@@ -128,8 +149,13 @@ Label, Data, ID = data_to_list(Subjects_data)
 # print (len(Data))
 # print (Data[0].shape)
 
+# Normalize the data
+# Data = Normalize_Each_subject_as_One(Data)
+Data = Normlize_Each_subject_as_Zero_One(Data)
+# print(Data[0].shape)
 Data = stackData(Data)
-print (Data.shape)
+# print (Data.shape)
+print (Data[0:130,0])
 
 # Now Lable is for each subject. We need to expand to each time frame
 Label_New = expandLabel(Label)
@@ -137,7 +163,7 @@ Label_New = expandLabel(Label)
 # print (Label_New.shape)
 
 Data_new = SelectKBest(chi2, k=60).fit_transform(Data, Label_New)
-
+# print (Data_new[0:130,:])
 # print (Data_new.shape)
 
 # Now save it back. Travel the data structure, and feed the data back.
@@ -152,7 +178,7 @@ NewSubjectsData = ReNewData(Subjects_data, Data_new, ID)
 with gzip.open('VTK_Subjects_180_difference.pickle.gz', 'wb') as output_file:
         Pickle.dump([Data_new, Label, ID], output_file, protocol=2)"""
 
-with gzip.open('Feature_Selection.pickle.gz', 'wb') as output_file:
+with gzip.open('Feature_Selection_Normalize_as_zero_one.pickle.gz', 'wb') as output_file:
     Pickle.dump(NewSubjectsData, output_file)
 
 

@@ -6,6 +6,8 @@ LSTM for data analysis after feature selection.
 3. We have 214 persons. We totally processed 180 fMRI images. Separate the persons as train, vali, test, and then collect all images belongs to corresponding group.
 4. Change the percentage a little bit. Make sure have enough validation data and test data.
 
+5. Before RNN, let's visualize the data.
+
 
 Zhewei @ 9/26/2016
 
@@ -20,14 +22,18 @@ import numpy
 from keras.utils import np_utils
 from keras.models import Sequential
 from keras.layers.core import Dense, Activation
-from keras.layers import LSTM
+from keras.layers import LSTM, GRU
 from keras.optimizers import RMSprop
 from keras.initializations import normal, identity
+import matplotlib.pyplot as pyplot
 
 
 Train_percentage = 0.6
 Valid_percentage = 0.2
 Groups = 2
+hd_notes = 40
+learning_rate = 1e-6
+nb_epoch = 800
 
 class _EachSubject:
     # each subject is a element of a list
@@ -107,8 +113,10 @@ def label_to_binary(labelList):
             Label.append(1)
     return Label
 
+    
+
 os.chdir("/home/medialab/Zhewei/data")
-Raw_data = gzip.open('Feature_Selection.pickle.gz', 'rb')
+Raw_data = gzip.open('Feature_Selection_Normalize_as_zero_one.pickle.gz', 'rb')
 Subjects_data = Pickle.load(Raw_data)
 
 # Now data are in the list Subjects_data.
@@ -136,6 +144,8 @@ print ('We have', len(testID), 'test images.')
 # label, data, ID = collect_Baseline_And_Other(Subjects_data)
 # print (len(ID))
 
+# visualization:
+
 # transfer data to 3D
 # print (trainData[10])
 trainData = data_to_3D(trainData)
@@ -158,10 +168,37 @@ testLabel = label_to_binary(testLabel)
 LSTM
 """
 
+
 nb_classes = Groups
 timesteps = trainData.shape[1]
 featureNo = trainData.shape[2]
 
+
 Y_train = np_utils.to_categorical(trainLabel, nb_classes)
 Y_test = np_utils.to_categorical(testLabel, nb_classes)
-Y_valid = np_utils.to_categorical(validationLabel, nb_classes)
+Y_valid = np_utils.to_categorical(validLabel, nb_classes)
+
+
+print ("Building model...")
+model = Sequential()
+model.add(LSTM(hd_notes, input_shape=(timesteps, featureNo),\
+               init='glorot_uniform',\
+               inner_init='orthogonal',\
+               activation='tanh', return_sequences=False,\
+               dropout_W=0, dropout_U=0))
+model.add(Dense(nb_classes))
+model.add(Activation('softmax'))
+rmsprop = RMSprop(lr=learning_rate, rho=0.9, epsilon=1e-06)
+model.compile(loss='binary_crossentropy', optimizer='rmsprop', \
+              metrics=["accuracy"])
+
+print ("Training model...")
+
+model.fit(trainData, Y_train, \
+          nb_epoch=nb_epoch, verbose=1, validation_data=(validData, Y_valid))
+
+scores = model.evaluate(testData, Y_test, verbose=1)
+print('RNN test score:', scores[0])
+print('RNN test accuracy:', scores[1])
+print (testLabel)
+print (model.predict_classes(testData))
