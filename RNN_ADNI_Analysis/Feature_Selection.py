@@ -59,15 +59,19 @@ def data_to_list(validDataList):
     return Label, Data, ID
 
 
-def ReNewData(validDataList, Data_New, ID):
+def ReNewData(validDataList, Data_New, ID, residual):
     no = 0
+    if residual == 0:
+        timeFrame = 130
+    else:
+        timeFrame = 129
     for validData in validDataList:
         tmp_list = list(validData.baseline.keys())
         for key in tmp_list:
             try:
                 if validData.baseline[str(key)].any():
                     position = ID.index(str(key))
-                    dataNew = Data_new[TimeFrame*position:TimeFrame*(position+1),:]
+                    dataNew = Data_new[timeFrame*position:timeFrame*(position+1),:]
                     validData.baseline[str(key)] = dataNew
                     no += 1
                 if str(key) == '228872':# test at here
@@ -81,7 +85,7 @@ def ReNewData(validDataList, Data_New, ID):
                 try:
                     if validData.other[str(other_key)].any():
                         position = ID.index(str(other_key))
-                        dataNew = Data_new[TimeFrame*position:TimeFrame*(position+1),:]
+                        dataNew = Data_new[timeFrame*position:timeFrame*(position+1),:]
                         validData.other[str(other_key)] = dataNew
                         no += 1
                 except AttributeError:
@@ -184,16 +188,10 @@ Data_new = SelectKBest(chi2, k=120).fit_transform(Data, Label_New)
 
 # Now save it back. Travel the data structure, and feed the data back.
 # print (ID)
-NewSubjectsData = ReNewData(Subjects_data, Data_new, ID)   
+NewSubjectsData = ReNewData(Subjects_data, Data_new, ID, 1)   
 
-"""for label_no, label in enumerate(Label):
-    data = Data_new[TimeFrame*label_no:TimeFrame*(label_no+1),:]
-    subject = _VTK_Subject(ID[label_no], data, label)
-    VTK_DataList.append(subject)
 
-with gzip.open('VTK_Subjects_180_difference.pickle.gz', 'wb') as output_file:
-        Pickle.dump([Data_new, Label, ID], output_file, protocol=2)"""
-
+os.chdir("/home/medialab/Zhewei/data/")
 with gzip.open('Feature_Selection_Normalize_as_zero_one_residual.pickle.gz', 'wb') as output_file:
     Pickle.dump(NewSubjectsData, output_file)
 

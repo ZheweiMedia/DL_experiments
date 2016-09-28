@@ -18,6 +18,7 @@ import pickle as Pickle
 from random import shuffle
 import math
 import numpy
+import datetime
 
 from keras.utils import np_utils
 from keras.models import Sequential
@@ -31,9 +32,9 @@ import matplotlib.pyplot as pyplot
 Train_percentage = 0.6
 Valid_percentage = 0.2
 Groups = 2
-hd_notes = 40
+hd_notes = 30
 learning_rate = 1e-6
-nb_epoch = 800
+nb_epoch = 1500
 
 class _EachSubject:
     # each subject is a element of a list
@@ -95,6 +96,7 @@ def collect_Baseline_Only(validDataList):
 def data_to_3D(dataList):
     featureNo = dataList[0].shape[1]
     timeFrame = dataList[0].shape[0]
+    print (featureNo, timeFrame)
     # stack data
     Data = numpy.zeros([1,1])
     for dataNo, data in enumerate(dataList):
@@ -116,7 +118,7 @@ def label_to_binary(labelList):
     
 
 os.chdir("/home/medialab/Zhewei/data")
-Raw_data = gzip.open('Feature_Selection_Normalize_as_one_forAll.pickle.gz', 'rb')
+Raw_data = gzip.open('Feature_Selection_Normalize_as_zero_one_residual.pickle.gz', 'rb')
 Subjects_data = Pickle.load(Raw_data)
 
 # Now data are in the list Subjects_data.
@@ -181,7 +183,7 @@ Y_valid = np_utils.to_categorical(validLabel, nb_classes)
 
 print ("Building model...")
 model = Sequential()
-model.add(GRU(hd_notes, input_shape=(timesteps, featureNo),\
+model.add(LSTM(hd_notes, input_shape=(timesteps, featureNo),\
                init='glorot_uniform',\
                inner_init='orthogonal',\
                activation='tanh', return_sequences=False,\
@@ -189,12 +191,12 @@ model.add(GRU(hd_notes, input_shape=(timesteps, featureNo),\
 model.add(Dense(nb_classes))
 model.add(Activation('softmax'))
 rmsprop = RMSprop(lr=learning_rate, rho=0.9, epsilon=1e-06)
-model.compile(loss='binary_crossentropy', optimizer='rmsprop', \
+model.compile(loss='binary_crossentropy', optimizer='adam', \
               metrics=["accuracy"])
 
 print ("Training model...")
 
-model.fit(trainData, Y_train, \
+history = model.fit(trainData, Y_train, \
           nb_epoch=nb_epoch, verbose=1, validation_data=(validData, Y_valid))
 
 scores = model.evaluate(testData, Y_test, verbose=1)
@@ -202,3 +204,31 @@ print('RNN test score:', scores[0])
 print('RNN test accuracy:', scores[1])
 print (testLabel)
 print (model.predict_classes(testData))
+
+logTime = datetime.datetime.strftime(datetime.datetime.now(), '%Y-%m-%d %H:%M:%S')
+logName1 = logTime+'_1.png'
+logName2 = logTime+'_2.png'
+
+fig1 = pyplot.figure(1)
+
+pyplot.plot(history.history['acc'])
+pyplot.plot(history.history['val_acc'])
+pyplot.title('model accuracy')
+pyplot.ylabel('accuracy')
+pyplot.xlabel('epoch')
+pyplot.legend(['train', 'valid'], loc='upper left')
+pyplot.savefig(logName1)
+fig1.show()
+
+fig2 = pyplot.figure(2)
+# summarize history for loss
+pyplot.plot(history.history['loss'])
+pyplot.plot(history.history['val_loss'])
+pyplot.title('model loss')
+pyplot.ylabel('loss')
+pyplot.xlabel('epoch')
+pyplot.legend(['train', 'valid'], loc='upper left')
+pyplot.savefig(logName2)
+fig2.show()
+
+input()

@@ -114,7 +114,7 @@ def visualize_two_dimension_sequence(validDataList):
 
     
 os.chdir("/home/medialab/Zhewei/data")
-Raw_data = gzip.open('Feature_Selection_Normalize_as_one_forTwo.pickle.gz', 'rb')
+Raw_data = gzip.open('Feature_Selection_Normalize_as_zero_one_residual.pickle.gz', 'rb')
 Subjects_data = Pickle.load(Raw_data)
 
 visualize_two_dimension_postion(Subjects_data)
