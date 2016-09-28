@@ -116,7 +116,7 @@ def label_to_binary(labelList):
     
 
 os.chdir("/home/medialab/Zhewei/data")
-Raw_data = gzip.open('Feature_Selection_Normalize_as_zero_one.pickle.gz', 'rb')
+Raw_data = gzip.open('Feature_Selection_Normalize_as_one_forAll.pickle.gz', 'rb')
 Subjects_data = Pickle.load(Raw_data)
 
 # Now data are in the list Subjects_data.
@@ -181,11 +181,11 @@ Y_valid = np_utils.to_categorical(validLabel, nb_classes)
 
 print ("Building model...")
 model = Sequential()
-model.add(LSTM(hd_notes, input_shape=(timesteps, featureNo),\
+model.add(GRU(hd_notes, input_shape=(timesteps, featureNo),\
                init='glorot_uniform',\
                inner_init='orthogonal',\
                activation='tanh', return_sequences=False,\
-               dropout_W=0, dropout_U=0))
+               dropout_W=0.4, dropout_U=0.4))
 model.add(Dense(nb_classes))
 model.add(Activation('softmax'))
 rmsprop = RMSprop(lr=learning_rate, rho=0.9, epsilon=1e-06)

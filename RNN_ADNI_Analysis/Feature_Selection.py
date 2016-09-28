@@ -100,21 +100,31 @@ def stackData(Data_list):
             Data = numpy.hstack((Data, data))
     return Data.transpose()
 
-def expandLabel(Label_list):
+def expandLabel_for_origin(Label_list):
     Label = list()
     for label in Label_list:
         Label += [label]*(TimeFrame)
     return Label
 
-def difference_of_data(data):
-    timeframe = data.shape[1]
-    tmp_data = numpy.zeros([1,1])
-    for i in range(1, timeframe):
-        if i == 1:
-            tmp_data = data[:,i]-data[:,i-1]
-        else:
-            tmp_data = numpy.vstack((tmp_data, data[:,i]-data[:,i-1]))
-    return tmp_data.transpose()
+def expandLabel_for_residual(Label_list):
+    Label = list()
+    for label in Label_list:
+        Label += [label]*(TimeFrame-1)
+    return Label
+
+def difference_of_data(dataList):
+    timeframe = dataList[0].shape[1]
+    print (timeframe)
+    new_list = list()
+    for data in dataList:
+        tmp_data = numpy.zeros([1,1])
+        for i in range(1, timeframe):
+            if i == 1:
+                tmp_data = data[:,i]-data[:,i-1]
+            else:
+                tmp_data = numpy.vstack((tmp_data, data[:,i]-data[:,i-1]))
+        new_list.append(tmp_data.transpose())
+    return new_list
 
 def Normalize_Each_subject_as_One(dataList):
     for data in dataList:
@@ -127,6 +137,7 @@ def Normalize_Each_subject_as_One(dataList):
 
 
 def Normlize_Each_subject_as_Zero_One(dataList):
+    print (len(dataList))
     for data in dataList:
         featureNo = data.shape[0]
         for i in range(featureNo):
@@ -139,30 +150,35 @@ def Normlize_Each_subject_as_Zero_One(dataList):
         
         
 
-os.chdir("/home/medialab/Zhewei/data")
+os.chdir("/home/medialab/Zhewei/data/data_from_MATLAB/")
 Raw_data = gzip.open('Subjects_180_ADNC.pickle.gz', 'rb')
 Subjects_data = Pickle.load(Raw_data)
 Label, Data, ID = data_to_list(Subjects_data)
 
-# Now Data is a list of array. We need to stack the data
+# Now Data is a list of array [featureNo, timestep]. We need to stack the data
 # print (len(Label))
 # print (len(Data))
 # print (Data[0].shape)
 
+# If we use residual
+Data = difference_of_data(Data)# Now Data is a list of array [featureNo, timestep-1].
+# Now Lable is for each subject. We need to expand to each time frame
+# Label_New = expandLabel_for_origin(Label)
+Label_New = expandLabel_for_residual(Label)
+# print (len(Label))
+print (len(Label_New))
+
 # Normalize the data
 # Data = Normalize_Each_subject_as_One(Data)
 Data = Normlize_Each_subject_as_Zero_One(Data)
-# print(Data[0].shape)
+print(Data[0].shape)
 Data = stackData(Data)
 # print (Data.shape)
 print (Data[0:130,0])
 
-# Now Lable is for each subject. We need to expand to each time frame
-Label_New = expandLabel(Label)
-# print (len(Label))
-# print (Label_New.shape)
 
-Data_new = SelectKBest(chi2, k=60).fit_transform(Data, Label_New)
+
+Data_new = SelectKBest(chi2, k=120).fit_transform(Data, Label_New)
 # print (Data_new[0:130,:])
 # print (Data_new.shape)
 
@@ -178,7 +194,7 @@ NewSubjectsData = ReNewData(Subjects_data, Data_new, ID)
 with gzip.open('VTK_Subjects_180_difference.pickle.gz', 'wb') as output_file:
         Pickle.dump([Data_new, Label, ID], output_file, protocol=2)"""
 
-with gzip.open('Feature_Selection_Normalize_as_zero_one.pickle.gz', 'wb') as output_file:
+with gzip.open('Feature_Selection_Normalize_as_zero_one_residual.pickle.gz', 'wb') as output_file:
     Pickle.dump(NewSubjectsData, output_file)
 
 
