@@ -6,10 +6,10 @@ LSTM for data analysis after feature selection.
 3. We have 214 persons. We totally processed 180 fMRI images. Separate the persons as train, vali, test, and then collect all images belongs to corresponding group.
 4. Change the percentage a little bit. Make sure have enough validation data and test data.
 
-5. Before RNN, let's visualize the data.
+5. Now lets's try CNN. Or CNN-->RNN.
 
 
-Zhewei @ 9/26/2016
+Zhewei @ 9/28/2016
 
 """
 
@@ -21,9 +21,12 @@ import numpy
 import datetime
 
 from keras.utils import np_utils
+from keras.preprocessing import sequence
 from keras.models import Sequential
 from keras.layers.core import Dense, Activation
 from keras.layers import LSTM, GRU
+from keras.layers import Dense, Dropout, Activation, Flatten
+from keras.layers import Convolution2D, MaxPooling1D, Convolution1D
 from keras.optimizers import RMSprop
 from keras.initializations import normal, identity
 import matplotlib.pyplot as pyplot
@@ -32,9 +35,9 @@ import matplotlib.pyplot as pyplot
 Train_percentage = 0.6
 Valid_percentage = 0.2
 Groups = 2
-hd_notes = 60
+hd_notes = 30
 learning_rate = 1e-6
-nb_epoch = 1500
+nb_epoch = 100
 
 class _EachSubject:
     # each subject is a element of a list
@@ -93,18 +96,27 @@ def collect_Baseline_Only(validDataList):
                 pass
     return Label, Data, ID
 
-def data_to_3D(dataList):
-    featureNo = dataList[0].shape[1]
-    timeFrame = dataList[0].shape[0]
-    print (featureNo, timeFrame)
-    # stack data
+
+def stackData(Data_list):
+    featureNo = Data_list[0].shape[1]
+    timeFrame = Data_list[0].shape[0]
     Data = numpy.zeros([1,1])
-    for dataNo, data in enumerate(dataList):
-        if dataNo == 0:
+    for data_no, data in enumerate(Data_list):
+        if data_no == 0:
+            # Data = difference_of_data(data)
             Data = data
         else:
+            # Data = numpy.hstack((Data, difference_of_data(data)))
             Data = numpy.vstack((Data, data))
     return Data.reshape((-1, timeFrame, featureNo))
+
+def expandLabel_for_origin(Label_list):
+    Label = list()
+    for label in Label_list:
+        Label += [label]*130
+    return Label
+
+
 
 def label_to_binary(labelList):
     Label = list()
@@ -118,7 +130,7 @@ def label_to_binary(labelList):
     
 
 os.chdir("/home/medialab/Zhewei/data")
-Raw_data = gzip.open('Feature_Selection_Autoencoder.pickle.gz', 'rb')
+Raw_data = gzip.open('Feature_Selection_Normalize_as_zero_one_forAll.pickle.gz', 'rb')
 Subjects_data = Pickle.load(Raw_data)
 
 # Now data are in the list Subjects_data.
@@ -137,11 +149,11 @@ print ('We have', len(valid_Subjects), 'valid subjects.')
 print ('We have', len(test_Subjects), 'test subjects.')
 
 trainLabel, trainData, trainID = collect_Baseline_And_Other(train_Subjects)
-validLabel, validData, validID = collect_Baseline_And_Other(valid_Subjects)
+validLabel, validData, validID =collect_Baseline_And_Other(valid_Subjects)
 testLabel, testData, testID = collect_Baseline_And_Other(test_Subjects)
 
-# validLabel, validData, validID = collect_Baseline_Only(valid_Subjects)
-# testLabel, testData, testID = collect_Baseline_Only(test_Subjects)
+#validLabel, validData, validID = collect_Baseline_Only(valid_Subjects)
+#testLabel, testData, testID = collect_Baseline_Only(test_Subjects)
 
 print ('We have', len(trainID), 'train images.')
 print ('We have', len(validID), 'valid images.')
@@ -153,11 +165,16 @@ print ('We have', len(testID), 'test images.')
 
 # transfer data to 3D
 # print (trainData[10])
-trainData = data_to_3D(trainData)
-validData = data_to_3D(validData)
-testData = data_to_3D(testData)
-# print (testData.shape)
+trainData = stackData(trainData)
+validData = stackData(validData)
+testData = stackData(testData)
+print (testData.shape)
 # print (trainData[10,:,:])
+
+# label expand
+#trainLabel = expandLabel_for_origin(trainLabel)
+#validLabel = expandLabel_for_origin(validLabel)
+#testLabel = expandLabel_for_origin(testLabel)
 
 # labels to 0 and 1
 trainLabel = label_to_binary(trainLabel)
@@ -170,41 +187,70 @@ testLabel = label_to_binary(testLabel)
 
 
 """
-LSTM
+CNN
+CNN
 """
-
+nb_filters = 320
+# size of pooling area for max pooling
+# convolution kernel size
+batch_size = 30
 
 nb_classes = Groups
-timesteps = trainData.shape[1]
-featureNo = trainData.shape[2]
+#timesteps = trainData.shape[1]
+#featureNo = trainData.shape[2]
+
 
 
 Y_train = np_utils.to_categorical(trainLabel, nb_classes)
 Y_test = np_utils.to_categorical(testLabel, nb_classes)
 Y_valid = np_utils.to_categorical(validLabel, nb_classes)
+Y_train = sequence.pad_sequences(Y_train)
+Y_test = sequence.pad_sequences(Y_test)
+Y_valid = sequence.pad_sequences(Y_valid)
+print (Y_train.shape)
+
+trainData = sequence.pad_sequences(trainData)
+validData = sequence.pad_sequences(validData)
+testData = sequence.pad_sequences(testData)
+input_shape = trainData.shape
+print ('input_shape:',input_shape)
 
 
-print ("Building model...")
 model = Sequential()
-model.add(LSTM(hd_notes, input_shape=(timesteps, featureNo),\
+model.add(Convolution1D(nb_filter=nb_filters,\
+                        filter_length = 5,\
+                        border_mode='valid',\
+                        subsample_length = 1,\
+                        input_shape=(input_shape[1:])))
+model.add(Activation('relu'))
+model.add(MaxPooling1D(pool_length=4))
+model.add(Convolution1D(nb_filter=nb_filters,\
+                        filter_length = 10,\
+                        border_mode='valid',\
+                        subsample_length = 1,\
+                        input_shape=(input_shape[1:])))
+model.add(Activation('relu'))
+model.add(MaxPooling1D(pool_length=4))
+model.add(LSTM(hd_notes,\
                init='glorot_uniform',\
                inner_init='orthogonal',\
                activation='tanh', return_sequences=False,\
-               dropout_W=0.0, dropout_U=0.0))
+               dropout_W=0.4, dropout_U=0.4))
+# model.add(Flatten())
 model.add(Dense(nb_classes))
 model.add(Activation('softmax'))
-rmsprop = RMSprop(lr=learning_rate, rho=0.9, epsilon=1e-06)
-model.compile(loss='binary_crossentropy', optimizer='adam', \
-              metrics=["accuracy"])
 
-print ("Training model...")
+model.compile(loss='categorical_crossentropy',
+              optimizer='adam',
+              metrics=['accuracy'])
 
-history = model.fit(trainData, Y_train, \
-          nb_epoch=nb_epoch, verbose=1, validation_data=(validData, Y_valid))
+print ("training")
 
-scores = model.evaluate(testData, Y_test, verbose=1)
-print('RNN test score:', scores[0])
-print('RNN test accuracy:', scores[1])
+history = model.fit(trainData, Y_train, batch_size=batch_size,  nb_epoch=nb_epoch, verbose=1, validation_data=(validData, Y_valid))
+score = model.evaluate(testData, Y_test, verbose=0)
+print('Test score:', score[0])
+print('Test accuracy:', score[1])
+
 print (testLabel)
 print (model.predict_classes(testData))
 

@@ -7,9 +7,11 @@ Zhewei @ 9/25/2015
 
 import gzip, os
 import pickle as Pickle
-import numpy
+import numpy,math
 from sklearn.feature_selection import SelectKBest
 from sklearn.feature_selection import chi2, f_classif
+from keras.layers import Input, Dense
+from keras.models import Model
 
 TimeFrame = 130
 
@@ -75,7 +77,8 @@ def ReNewData(validDataList, Data_New, ID, residual):
                     validData.baseline[str(key)] = dataNew
                     no += 1
                 if str(key) == '228872':# test at here
-                    print (validData.baseline[str(key)])
+                    for i in range(validData.baseline[str(key)].shape[1]):
+                        print (validData.baseline[str(key)][:,i])
                     print (validData.baseline[str(key)].shape)
             except AttributeError:
                 pass
@@ -151,8 +154,40 @@ def Normlize_Each_subject_as_Zero_One(dataList):
     print(dataList[0][0,:])
 
     return dataList
-        
-        
+
+def Autoencoder(StackedData):
+    # stack data together. Daone
+    # 
+    
+    # data = StackedData.transpose()
+    input_feature = StackedData.shape[1]
+    print (input_feature)
+
+    x_train = StackedData[0:math.floor(StackedData.shape[1]*0.8), :]
+    x_test = StackedData[math.floor(StackedData.shape[1]*0.8):, ]
+    input_data = Input(shape=(input_feature,))
+    encoded = Dense(200, activation='relu')(input_data)
+    encoded = Dense(100, activation='relu')(encoded)
+    encoded = Dense(50, activation='relu')(encoded)
+    encoded = Dense(20, activation='relu')(encoded)
+
+    decoded = Dense(50, activation='relu')(encoded)
+    decoded = Dense(100, activation='relu')(decoded)
+    decoded = Dense(200, activation='relu')(decoded)
+    decoded = Dense(input_feature, activation='sigmoid')(decoded)
+
+    autoencoder = Model(input=input_data, output=decoded)
+    autoencoder.compile(optimizer='adadelta', loss='binary_crossentropy')
+    encoder = Model(input=input_data, output=encoded)
+    autoencoder.fit(x_train, x_train,
+                nb_epoch=100,
+                batch_size=10,
+                shuffle=True,
+                validation_data=(x_test, x_test))
+    
+    return encoder.predict(StackedData)    
+
+
 
 os.chdir("/home/medialab/Zhewei/data/data_from_MATLAB/")
 Raw_data = gzip.open('Subjects_180_ADNC.pickle.gz', 'rb')
@@ -165,10 +200,10 @@ Label, Data, ID = data_to_list(Subjects_data)
 # print (Data[0].shape)
 
 # If we use residual
-Data = difference_of_data(Data)# Now Data is a list of array [featureNo, timestep-1].
+# Data = difference_of_data(Data)# Now Data is a list of array [featureNo, timestep-1].
 # Now Lable is for each subject. We need to expand to each time frame
-# Label_New = expandLabel_for_origin(Label)
-Label_New = expandLabel_for_residual(Label)
+Label_New = expandLabel_for_origin(Label)
+# Label_New = expandLabel_for_residual(Label)
 # print (len(Label))
 print (len(Label_New))
 
@@ -181,18 +216,18 @@ Data = stackData(Data)
 print (Data[0:130,0])
 
 
-
-Data_new = SelectKBest(chi2, k=120).fit_transform(Data, Label_New)
+Data_new =  Autoencoder(Data)
+# Data_new = SelectKBest(chi2, k=120).fit_transform(Data, Label_New)
 # print (Data_new[0:130,:])
 # print (Data_new.shape)
 
 # Now save it back. Travel the data structure, and feed the data back.
 # print (ID)
-NewSubjectsData = ReNewData(Subjects_data, Data_new, ID, 1)   
+NewSubjectsData = ReNewData(Subjects_data, Data_new, ID, 0)   
 
 
 os.chdir("/home/medialab/Zhewei/data/")
-with gzip.open('Feature_Selection_Normalize_as_zero_one_residual.pickle.gz', 'wb') as output_file:
+with gzip.open('Feature_Selection_Autoencoder.pickle.gz', 'wb') as output_file:
     Pickle.dump(NewSubjectsData, output_file)
 
 
