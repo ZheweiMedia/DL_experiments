@@ -130,7 +130,7 @@ def label_to_binary(labelList):
     
 
 os.chdir("/home/medialab/Zhewei/data")
-Raw_data = gzip.open('Feature_Selection_Normalize_as_zero_one_forAll.pickle.gz', 'rb')
+Raw_data = gzip.open('Hippo_Zero_to_One.pickle.gz', 'rb')
 Subjects_data = Pickle.load(Raw_data)
 
 # Now data are in the list Subjects_data.
@@ -193,7 +193,7 @@ CNN
 nb_filters = 320
 # size of pooling area for max pooling
 # convolution kernel size
-batch_size = 30
+batch_size = 10
 
 nb_classes = Groups
 #timesteps = trainData.shape[1]
@@ -217,25 +217,23 @@ print ('input_shape:',input_shape)
 
 
 model = Sequential()
-model.add(Convolution1D(nb_filter=nb_filters,\
-                        filter_length = 5,\
-                        border_mode='valid',\
-                        subsample_length = 1,\
+model.add(Convolution1D(nb_filter=nb_filters*2,\
+                        filter_length = 1,\
+                        border_mode='same',\
                         input_shape=(input_shape[1:])))
 model.add(Activation('relu'))
-model.add(MaxPooling1D(pool_length=4))
+model.add(MaxPooling1D(pool_length=2))
 model.add(Convolution1D(nb_filter=nb_filters,\
-                        filter_length = 10,\
-                        border_mode='valid',\
-                        subsample_length = 1,\
+                        filter_length = 2,\
+                        border_mode='same',\
                         input_shape=(input_shape[1:])))
 model.add(Activation('relu'))
-model.add(MaxPooling1D(pool_length=4))
+model.add(MaxPooling1D(pool_length=2))
 model.add(LSTM(hd_notes,\
                init='glorot_uniform',\
                inner_init='orthogonal',\
                activation='tanh', return_sequences=False,\
-               dropout_W=0.4, dropout_U=0.4))
+               dropout_W=0.2, dropout_U=0.2))
 # model.add(Flatten())
 model.add(Dense(nb_classes))
 model.add(Activation('softmax'))

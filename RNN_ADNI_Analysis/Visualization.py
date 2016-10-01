@@ -41,6 +41,7 @@ def visualize_two_dimension_postion(validDataList):
                         color = (0,0,0.5+NCNo/180)
                         NCNo += 1
                         plotNC, = pyplot.plot(tmp_data[:,0], tmp_data[:,1], 'o-', color = color, label = 'NC', alpha = 0.5)
+                        
             except AttributeError:
                 pass
             if validData.other != {}:
@@ -58,6 +59,8 @@ def visualize_two_dimension_postion(validDataList):
                                 color = (0,0,0.5+NCNo/180)
                                 NCNo += 1
                                 plotNC, = pyplot.plot(tmp_data[:,0], tmp_data[:,1], 'o-', color = color, label = 'NC', alpha = 0.5)
+                                if tmp_data[0,0]<0.25:
+                                    print(str(other_key))
                     except AttributeError:
                         pass
 
@@ -81,11 +84,13 @@ def visualize_two_dimension_sequence(validDataList):
                     if validData.DX_Group == 'AD':
                         color = (0.5+ADNo/180, 0.0, 0.0)
                         ADNo += 1
-                        plotAD, = pyplot.plot(range(timeStep), tmp_data[:,0], 'o-', color = color, label = 'AD', alpha = 0.5)
+                        plotAD, = pyplot.plot(range(timeStep), tmp_data[:,1], 'o-', color = color, label = 'AD', alpha = 0.5)
                     else:
                         color = (0,0,0.5+NCNo/180)
                         NCNo += 1
-                        plotNC, = pyplot.plot(range(timeStep), tmp_data[:,0], 'o-', color = color, label = 'NC', alpha = 0.5)
+                        plotNC, = pyplot.plot(range(timeStep), tmp_data[:,1], 'o-', color = color, label = 'NC', alpha = 0.5)
+                        if tmp_data[0,0]<0.25:
+                            print (str(key))
             except AttributeError:
                 pass
             if validData.other != {}:
@@ -97,14 +102,21 @@ def visualize_two_dimension_sequence(validDataList):
                             timeStep = tmp_data.shape[0]
                             if tmp_data[0,0]< 0.06:
                                 print(str(key))
+                                print (tmp_data)
                             if validData.DX_Group == 'AD':
                                 color = (0.5+ADNo/180, 0.0, 0.0)
                                 ADNo += 1
-                                plotAD, = pyplot.plot(range(timeStep), tmp_data[:,0], 'o-', color = color, label = 'AD', alpha = 0.5)
+                                plotAD, = pyplot.plot(range(timeStep), tmp_data[:,1], 'o-', color = color, label = 'AD', alpha = 0.5)
                             else:
                                 color = (0,0,0.5+NCNo/180)
+                                if str(other_key) == '363620':
+                                    color = 'g'
+                                    print(tmp_data[:,1])
                                 NCNo += 1
-                                plotNC, = pyplot.plot(range(timeStep), tmp_data[:,0], 'o-', color = color, label = 'NC', alpha = 0.5)
+                                plotNC, = pyplot.plot(range(timeStep), tmp_data[:,1], 'o-', color = color, label = 'NC', alpha = 0.5)
+                                if tmp_data[0,0]<0.25:
+                                    print(str(other_key))
+                                    # print(tmp_data)
                     except AttributeError:
                         pass
 
@@ -114,7 +126,7 @@ def visualize_two_dimension_sequence(validDataList):
 
     
 os.chdir("/home/medialab/Zhewei/data")
-Raw_data = gzip.open('Feature_Selection_Normalize_as_zero_one_residual.pickle.gz', 'rb')
+Raw_data = gzip.open('Hippo.pickle.gz', 'rb')
 Subjects_data = Pickle.load(Raw_data)
 
 visualize_two_dimension_postion(Subjects_data)

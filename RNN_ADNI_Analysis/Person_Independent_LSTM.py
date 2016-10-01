@@ -32,8 +32,8 @@ import matplotlib.pyplot as pyplot
 Train_percentage = 0.6
 Valid_percentage = 0.2
 Groups = 2
-hd_notes = 60
-learning_rate = 1e-6
+hd_notes = 50
+learning_rate = 1e-9
 nb_epoch = 1500
 
 class _EachSubject:
@@ -96,7 +96,7 @@ def collect_Baseline_Only(validDataList):
 def data_to_3D(dataList):
     featureNo = dataList[0].shape[1]
     timeFrame = dataList[0].shape[0]
-    print (featureNo, timeFrame)
+    print (timeFrame, featureNo)
     # stack data
     Data = numpy.zeros([1,1])
     for dataNo, data in enumerate(dataList):
@@ -118,7 +118,7 @@ def label_to_binary(labelList):
     
 
 os.chdir("/home/medialab/Zhewei/data")
-Raw_data = gzip.open('Feature_Selection_Autoencoder.pickle.gz', 'rb')
+Raw_data = gzip.open('Hippo_Zero_to_One.pickle.gz', 'rb')
 Subjects_data = Pickle.load(Raw_data)
 
 # Now data are in the list Subjects_data.
@@ -137,11 +137,11 @@ print ('We have', len(valid_Subjects), 'valid subjects.')
 print ('We have', len(test_Subjects), 'test subjects.')
 
 trainLabel, trainData, trainID = collect_Baseline_And_Other(train_Subjects)
-validLabel, validData, validID = collect_Baseline_And_Other(valid_Subjects)
-testLabel, testData, testID = collect_Baseline_And_Other(test_Subjects)
+# validLabel, validData, validID = collect_Baseline_And_Other(valid_Subjects)
+# testLabel, testData, testID = collect_Baseline_And_Other(test_Subjects)
 
-# validLabel, validData, validID = collect_Baseline_Only(valid_Subjects)
-# testLabel, testData, testID = collect_Baseline_Only(test_Subjects)
+validLabel, validData, validID = collect_Baseline_Only(valid_Subjects)
+testLabel, testData, testID = collect_Baseline_Only(test_Subjects)
 
 print ('We have', len(trainID), 'train images.')
 print ('We have', len(validID), 'valid images.')

@@ -212,12 +212,13 @@ print (len(Label_New))
 Data = Normlize_Each_subject_as_Zero_One(Data)
 print(Data[0].shape)
 Data = stackData(Data)
-# print (Data.shape)
-print (Data[0:130,0])
+#print (Data.shape)
+#print (Data[0:130,0])
 
 
-Data_new =  Autoencoder(Data)
+# Data_new =  Autoencoder(Data)
 # Data_new = SelectKBest(chi2, k=120).fit_transform(Data, Label_New)
+Data_new = Data[:, 40:42]
 # print (Data_new[0:130,:])
 # print (Data_new.shape)
 
@@ -227,7 +228,7 @@ NewSubjectsData = ReNewData(Subjects_data, Data_new, ID, 0)
 
 
 os.chdir("/home/medialab/Zhewei/data/")
-with gzip.open('test.pickle.gz', 'wb') as output_file:
+with gzip.open('Hippo_Zero_to_One.pickle.gz', 'wb') as output_file:
     Pickle.dump(NewSubjectsData, output_file)
 
 

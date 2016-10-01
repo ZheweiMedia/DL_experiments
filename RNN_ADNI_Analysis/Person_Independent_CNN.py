@@ -36,7 +36,7 @@ Valid_percentage = 0.2
 Groups = 2
 hd_notes = 30
 learning_rate = 1e-6
-nb_epoch = 10
+nb_epoch = 100
 
 class _EachSubject:
     # each subject is a element of a list
@@ -120,7 +120,7 @@ def label_to_binary(labelList):
     
 
 os.chdir("/home/medialab/Zhewei/data")
-Raw_data = gzip.open('Feature_Selection_Autoencoder.pickle.gz', 'rb')
+Raw_data = gzip.open('Hippo.pickle.gz', 'rb')
 Subjects_data = Pickle.load(Raw_data)
 
 # Now data are in the list Subjects_data.
@@ -179,7 +179,7 @@ nb_filters = 32
 # size of pooling area for max pooling
 pool_size = (2, 2)
 # convolution kernel size
-kernel_size = (3, 3)
+kernel_size = (1, 1)
 batch_size = 10
 
 nb_classes = Groups
@@ -199,9 +199,9 @@ model.add(Convolution2D(nb_filters, kernel_size[0], kernel_size[1],
                         border_mode='valid',
                         input_shape=input_shape))
 model.add(Activation('relu'))
-model.add(Convolution2D(nb_filters, kernel_size[0]*2, kernel_size[1]*2))
+model.add(Convolution2D(nb_filters, kernel_size[0], kernel_size[1]))
 model.add(Activation('relu'))
-model.add(MaxPooling2D(pool_size=pool_size))
+# model.add(MaxPooling2D(pool_size=pool_size))
 """model.add(Convolution1D(nb_filter=nb_filters,
                         filter_length=kernel_size[0]*2,
                         border_mode='valid',

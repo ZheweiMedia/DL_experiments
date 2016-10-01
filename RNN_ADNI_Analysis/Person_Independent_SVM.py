@@ -6,10 +6,10 @@ LSTM for data analysis after feature selection.
 3. We have 214 persons. We totally processed 180 fMRI images. Separate the persons as train, vali, test, and then collect all images belongs to corresponding group.
 4. Change the percentage a little bit. Make sure have enough validation data and test data.
 
-5. Now lets's try CNN. Or CNN-->RNN.
+5. Before RNN, let's visualize the data.
 
 
-Zhewei @ 9/28/2016
+Zhewei @ 9/26/2016
 
 """
 
@@ -24,19 +24,18 @@ from keras.utils import np_utils
 from keras.models import Sequential
 from keras.layers.core import Dense, Activation
 from keras.layers import LSTM, GRU
-from keras.layers import Dense, Dropout, Activation, Flatten
-from keras.layers import Convolution2D, MaxPooling2D, Convolution1D
 from keras.optimizers import RMSprop
 from keras.initializations import normal, identity
 import matplotlib.pyplot as pyplot
+from sklearn.svm import SVC
 
 
 Train_percentage = 0.6
 Valid_percentage = 0.2
 Groups = 2
-hd_notes = 30
-learning_rate = 1e-6
-nb_epoch = 10
+hd_notes = 10
+learning_rate = 1e-3
+nb_epoch = 1500
 
 class _EachSubject:
     # each subject is a element of a list
@@ -95,10 +94,10 @@ def collect_Baseline_Only(validDataList):
                 pass
     return Label, Data, ID
 
-def data_to_4D(dataList):
+def data_to_3D(dataList):
     featureNo = dataList[0].shape[1]
     timeFrame = dataList[0].shape[0]
-    print (featureNo, timeFrame)
+    print (timeFrame, featureNo)
     # stack data
     Data = numpy.zeros([1,1])
     for dataNo, data in enumerate(dataList):
@@ -106,7 +105,8 @@ def data_to_4D(dataList):
             Data = data
         else:
             Data = numpy.vstack((Data, data))
-    return Data.reshape((-1, 1, timeFrame, featureNo))
+    Data = Data[:,1]
+    return Data.reshape((-1, timeFrame))
 
 def label_to_binary(labelList):
     Label = list()
@@ -120,7 +120,7 @@ def label_to_binary(labelList):
     
 
 os.chdir("/home/medialab/Zhewei/data")
-Raw_data = gzip.open('Feature_Selection_Normalize_as_zero_one_forAll.pickle.gz', 'rb')
+Raw_data = gzip.open('Hippo.pickle.gz', 'rb')
 Subjects_data = Pickle.load(Raw_data)
 
 # Now data are in the list Subjects_data.
@@ -139,6 +139,9 @@ print ('We have', len(valid_Subjects), 'valid subjects.')
 print ('We have', len(test_Subjects), 'test subjects.')
 
 trainLabel, trainData, trainID = collect_Baseline_And_Other(train_Subjects)
+#validLabel, validData, validID = collect_Baseline_And_Other(valid_Subjects)
+#testLabel, testData, testID = collect_Baseline_And_Other(test_Subjects)
+
 validLabel, validData, validID = collect_Baseline_Only(valid_Subjects)
 testLabel, testData, testID = collect_Baseline_Only(test_Subjects)
 
@@ -152,10 +155,10 @@ print ('We have', len(testID), 'test images.')
 
 # transfer data to 3D
 # print (trainData[10])
-trainData = data_to_4D(trainData)
-validData = data_to_4D(validData)
-testData = data_to_4D(testData)
-# print (testData.shape)
+trainData = data_to_3D(trainData)
+validData = data_to_3D(validData)
+testData = data_to_3D(testData)
+print (testData.shape)
 # print (trainData[10,:,:])
 
 # labels to 0 and 1
@@ -169,85 +172,16 @@ testLabel = label_to_binary(testLabel)
 
 
 """
-CNN
-CNN
+SVM
 """
-nb_filters = 32
-# size of pooling area for max pooling
-pool_size = (2, 1)
-# convolution kernel size
-kernel_size = (3, 1)
-batch_size = 10
 
-nb_classes = Groups
-#timesteps = trainData.shape[1]
-#featureNo = trainData.shape[2]
-input_shape = trainData.shape
-input_shape = trainData.shape[1:]
-print (input_shape)
+clf = SVC()
+clf.fit(trainData[:,0:10], trainLabel)
+
+print(clf.predict(testData[:,0:10]))
+print(testLabel)
+print(clf.score(testData[:,0:10], testLabel))
 
 
-Y_train = np_utils.to_categorical(trainLabel, nb_classes)
-Y_test = np_utils.to_categorical(testLabel, nb_classes)
-Y_valid = np_utils.to_categorical(validLabel, nb_classes)
 
-model = Sequential()
-model.add(Convolution2D(nb_filters, kernel_size[0], kernel_size[1],
-                        border_mode='valid',
-                        input_shape=input_shape))
-model.add(Activation('relu'))
-model.add(Convolution2D(nb_filters, kernel_size[0]*2, kernel_size[1]))
-model.add(Activation('relu'))
-model.add(MaxPooling2D(pool_size=pool_size))
-model.add(Dropout(0.5))
-model.add(LSTM(hd_notes, init='normal',\
-                            inner_init='identity',\
-                            activation='sigmoid', return_sequences=False,\
-                            dropout_W=0, dropout_U=0))
-model.add(Flatten())
-model.add(Dense(64))
-model.add(Activation('relu'))
-model.add(Dropout(0.5))
-model.add(Dense(nb_classes))
-model.add(Activation('softmax'))
 
-model.compile(loss='categorical_crossentropy',
-              optimizer='adadelta',
-              metrics=['accuracy'])
-
-history = model.fit(trainData, Y_train, batch_size=batch_size, nb_epoch=nb_epoch,
-          verbose=1, validation_data=(validData, Y_valid))
-score = model.evaluate(testData, Y_test, verbose=0)
-print('Test score:', score[0])
-print('Test accuracy:', score[1])
-
-print (testLabel)
-print (model.predict_classes(testData))
-
-logTime = datetime.datetime.strftime(datetime.datetime.now(), '%Y-%m-%d %H:%M:%S')
-logName1 = logTime+'_1.png'
-logName2 = logTime+'_2.png'
-
-fig1 = pyplot.figure(1)
-
-pyplot.plot(history.history['acc'])
-pyplot.plot(history.history['val_acc'])
-pyplot.title('model accuracy')
-pyplot.ylabel('accuracy')
-pyplot.xlabel('epoch')
-pyplot.legend(['train', 'valid'], loc='upper left')
-pyplot.savefig(logName1)
-fig1.show()
-
-fig2 = pyplot.figure(2)
-# summarize history for loss
-pyplot.plot(history.history['loss'])
-pyplot.plot(history.history['val_loss'])
-pyplot.title('model loss')
-pyplot.ylabel('loss')
-pyplot.xlabel('epoch')
-pyplot.legend(['train', 'valid'], loc='upper left')
-pyplot.savefig(logName2)
-fig2.show()
-
-input()
