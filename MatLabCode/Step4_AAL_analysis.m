@@ -71,7 +71,7 @@ for ifile = 1:numfiles
     display(ifile);
     feature = zeros(zones_No, frame_No);
     % normalize to gaussion (0,1)
-   total_img = [];
+    total_img = [];
     for jframe = 1:frame_No
         fMRI_nii = load_nii(fMRI_data{ifile}{jframe});
         tmp_img = double(fMRI_nii.img);
@@ -82,7 +82,6 @@ for ifile = 1:numfiles
     %total_img = normpdf(total_img);
     mean_total = mean(total_img);
     std_total = std(total_img);
-    total_img = (total_img-mean_total)/std_total;
         
     for jframe = 1:frame_No
         fMRI_nii = load_nii(fMRI_data{ifile}{jframe});
@@ -97,7 +96,7 @@ for ifile = 1:numfiles
     end
     
     % save in .mat files
-    mat_name = strcat('/home/medialab/Zhewei/data/',num2str(fMRI_IID(ifile)), '.mat');
+    mat_name = strcat('/home/medialab/Zhewei/data/data_from_SPM/',num2str(fMRI_IID(ifile)), '.mat');
     save(mat_name, 'feature');
 end
 
@@ -113,19 +112,7 @@ fMRI_IID = [238623, 303069, 240811, 304790, 371994, ...
             361431, 254581, 273218, 290923, 335999, ...
             391150, 257271, 274579, 297353, 340048, ...
             395105, 259654, 274825, 299159, 346113, ...
-            397604, 259806, 260580, 277135, 301757, ...
-            346801, 398533, 395980, 265132, 265125, ...
-            289854, 289846, 336212, 336216, 389367, ...
-            268917, 268914, 286461, 286464, 311257, ...
-            311258, 349326, 349320, 405706, 279468, ...
-            279472, 298510, 298515, 319634, 319632, ...
-            362889, 281881, 281887, 303083, 326301, ...
-            326298, 361294, 337404, 363620, 283913, ... 
-            319211, 350450, 238540, 238542, 253525, ...
-            296769, 352724, 375151, 296863, 369618, ...
-            340743, 368950, 300088, 314505, 343935, ...
-            368923, 308182, 262078, 296612, 320519, ...
-            268925, 297183, 321439, 401398, 266634];
+            397604, 259806, 260580];
 
 Path_fMRI = './data/Normal_data/fMRI_SPM_%d.txt';
 addpath(genpath('Tools/NIfTI_Tools/'));
@@ -163,18 +150,33 @@ end
 for ifile = 1:numfiles
     display(ifile);
     feature = zeros(zones_No, frame_No);
+    % normalize to gaussion (0,1)
+    total_img = [];
+    for jframe = 1:frame_No
+        fMRI_nii = load_nii(fMRI_data{ifile}{jframe});
+        tmp_img = double(fMRI_nii.img);
+        total_img = [total_img;tmp_img];
+    end
+    [m_t, n_t, p_t] = size(total_img);
+    total_img = reshape(total_img,m_t*n_t*p_t, 1);
+    %total_img = normpdf(total_img);
+    mean_total = mean(total_img);
+    std_total = std(total_img);
+        
     for jframe = 1:frame_No
         fMRI_nii = load_nii(fMRI_data{ifile}{jframe});
         img = double(fMRI_nii.img);
-        img_max = max(max(max(img)));
-        img = img/img_max;
+        [m_i, n_i, p_i] = size(img);
+        img = reshape(img, m_i*n_i*p_i,1);
+        img = (img-mean_total)/std_total;
+        img = reshape(img, m_i, n_i, p_i);
         for kzone = 1:zones_No
             feature(kzone, jframe) = sum(sum(sum(img.*AAL_matrices{kzone})))/AAL_PixelNO(kzone);
         end
     end
     
     % save in .mat files
-    mat_name = strcat('/home/medialab/Zhewei/data/',num2str(fMRI_IID(ifile)), '.mat');
+    mat_name = strcat('/home/medialab/Zhewei/data/data_from_SPM/',num2str(fMRI_IID(ifile)), '.mat');
     save(mat_name, 'feature');
 end
 

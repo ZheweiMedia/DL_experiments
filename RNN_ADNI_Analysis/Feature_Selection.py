@@ -189,7 +189,7 @@ def Autoencoder(StackedData):
 
 
 
-os.chdir("/home/medialab/Zhewei/data/data_from_MATLAB/")
+os.chdir("/home/medialab/Zhewei/data/data_from_SPM/")
 Raw_data = gzip.open('Subjects_180_ADNC.pickle.gz', 'rb')
 Subjects_data = Pickle.load(Raw_data)
 Label, Data, ID = data_to_list(Subjects_data)
@@ -209,7 +209,7 @@ print (len(Label_New))
 
 # Normalize the data
 # Data = Normalize_Each_subject_as_One(Data)
-Data = Normlize_Each_subject_as_Zero_One(Data)
+# Data = Normlize_Each_subject_as_Zero_One(Data)
 print(Data[0].shape)
 Data = stackData(Data)
 #print (Data.shape)
@@ -228,7 +228,7 @@ NewSubjectsData = ReNewData(Subjects_data, Data_new, ID, 0)
 
 
 os.chdir("/home/medialab/Zhewei/data/")
-with gzip.open('Hippo_Zero_to_One.pickle.gz', 'wb') as output_file:
+with gzip.open('Hippo.pickle.gz', 'wb') as output_file:
     Pickle.dump(NewSubjectsData, output_file)
 
 

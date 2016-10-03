@@ -107,11 +107,13 @@ AD_std = [x for (y,x) in sorted(zip(AD_Mean, AD_STD))]
 print (AD_std[15])
 print (AD_STD[0])
 
+print ('AD_Mean\'s ')
+
 NC_mean = [y for (y,x) in sorted(zip(NC_Mean,NC_STD))]
 print(AD_mean.index(AD_Mean[0]))
 NC_std = [x for (y,x) in sorted(zip(NC_Mean, NC_STD))]
 error_config = {'ecolor': '0.3'}
-index = numpy.arange(90)
+index = numpy.arange(28)
 rects1 = pyplot.bar(index, AD_mean, 0.35,
                  alpha=0.4,
                  color='r',
@@ -125,9 +127,10 @@ rects2 = pyplot.bar(index+0.35, NC_mean, 0.35,
                  yerr=NC_std,
                  error_kw=error_config,
                  label='NC')
+pyplot.title(r'Mean and STD of AD and NC')
 pyplot.show()
 
-plotAD, = pyplot.plot(range(90), AD_std, 'o-', color = 'r', label = 'AD', alpha = 1)
-plotNC, = pyplot.plot(range(90), NC_std, 'o-', color = 'g', label = 'NC', alpha = 1)
+plotAD, = pyplot.plot(range(28), AD_std, 'o-', color = 'r', label = 'AD', alpha = 1)
+plotNC, = pyplot.plot(range(28), NC_std, 'o-', color = 'g', label = 'NC', alpha = 1)
 pyplot.legend(handles=[plotAD, plotNC], loc = 4)
 pyplot.show()

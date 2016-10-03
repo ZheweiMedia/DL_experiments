@@ -64,7 +64,7 @@ def outputImageId(ValidData, DX_Group):
                         f.write(',')
 def matDict():
     matDict = defaultdict(list)
-    os.chdir("/home/medialab/Zhewei/data/data_from_MATLAB/")
+    os.chdir("/home/medialab/Zhewei/data/data_from_SPM/")
     f = os.popen("ls *.mat")
     Name_List = list()
     for i in f.readlines():
