@@ -228,7 +228,7 @@ NewSubjectsData = ReNewData(Subjects_data, Data_new, ID, 0)
 
 
 os.chdir("/home/medialab/Zhewei/data/")
-with gzip.open('Hippo_BandFilter.pickle.gz', 'wb') as output_file:
+with gzip.open('Hippo_BandPassFilter.pickle.gz', 'wb') as output_file:
     Pickle.dump(NewSubjectsData, output_file)
 
 

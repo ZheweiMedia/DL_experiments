@@ -82,7 +82,7 @@ def data_to_1D(dataList):
     return Data.reshape((-1,1))
 
 os.chdir("/home/medialab/Zhewei/data")
-Raw_data = gzip.open('Hippo_BandFilter.pickle.gz', 'rb')
+Raw_data = gzip.open('Hippo_BandPassFilter.pickle.gz', 'rb')
 Subjects_data = Pickle.load(Raw_data)
 
 AD_Mean, AD_STD, NC_Mean, NC_STD, AD_IDlist, NC_IDlist, AD_dataList, NC_dataList = Mean_STD(Subjects_data)
@@ -113,7 +113,7 @@ NC_mean = [y for (y,x) in sorted(zip(NC_Mean,NC_STD))]
 print(AD_mean.index(AD_Mean[0]))
 NC_std = [x for (y,x) in sorted(zip(NC_Mean, NC_STD))]
 error_config = {'ecolor': '0.3'}
-index = numpy.arange(28)
+index = numpy.arange(90)
 rects1 = pyplot.bar(index, AD_mean, 0.35,
                  alpha=0.4,
                  color='r',
@@ -130,7 +130,7 @@ rects2 = pyplot.bar(index+0.35, NC_mean, 0.35,
 pyplot.title(r'Mean and STD of AD and NC')
 pyplot.show()
 
-plotAD, = pyplot.plot(range(28), AD_std, 'o-', color = 'r', label = 'AD', alpha = 1)
-plotNC, = pyplot.plot(range(28), NC_std, 'o-', color = 'g', label = 'NC', alpha = 1)
+plotAD, = pyplot.plot(range(90), AD_std, 'o-', color = 'r', label = 'AD', alpha = 1)
+plotNC, = pyplot.plot(range(90), NC_std, 'o-', color = 'g', label = 'NC', alpha = 1)
 pyplot.legend(handles=[plotAD, plotNC], loc = 4)
 pyplot.show()

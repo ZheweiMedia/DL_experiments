@@ -32,7 +32,7 @@ import matplotlib.pyplot as pyplot
 Train_percentage = 0.6
 Valid_percentage = 0.2
 Groups = 2
-hd_notes = 50
+hd_notes = 30
 learning_rate = 1e-9
 nb_epoch = 1500
 
@@ -118,7 +118,7 @@ def label_to_binary(labelList):
     
 
 os.chdir("/home/medialab/Zhewei/data")
-Raw_data = gzip.open('Hippo_Zero_to_One.pickle.gz', 'rb')
+Raw_data = gzip.open('Hippo_BandPassFilter.pickle.gz', 'rb')
 Subjects_data = Pickle.load(Raw_data)
 
 # Now data are in the list Subjects_data.
