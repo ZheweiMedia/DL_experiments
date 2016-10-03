@@ -59,8 +59,8 @@ def visualize_two_dimension_postion(validDataList):
                                 color = (0,0,0.5+NCNo/180)
                                 NCNo += 1
                                 plotNC, = pyplot.plot(tmp_data[:,0], tmp_data[:,1], 'o-', color = color, label = 'NC', alpha = 0.5)
-                                if tmp_data[0,0]<0.25:
-                                    print(str(other_key))
+                                #if tmp_data[0,0]<0.25:
+                                    #print(str(other_key))
                     except AttributeError:
                         pass
 
@@ -79,18 +79,19 @@ def visualize_two_dimension_sequence(validDataList):
                 if validData.baseline[str(key)].any():
                     tmp_data = validData.baseline[str(key)]
                     timeStep = tmp_data.shape[0]
-                    if tmp_data[0,0]< 0.06:
-                        print(str(key))
                     if validData.DX_Group == 'AD':
                         color = (0.5+ADNo/180, 0.0, 0.0)
                         ADNo += 1
                         plotAD, = pyplot.plot(range(timeStep), tmp_data[:,1], 'o-', color = color, label = 'AD', alpha = 0.5)
+                        if tmp_data[0,1]<0.25:
+                            print ('AD:', str(key))
+                            print (tmp_data)
                     else:
                         color = (0,0,0.5+NCNo/180)
                         NCNo += 1
                         plotNC, = pyplot.plot(range(timeStep), tmp_data[:,1], 'o-', color = color, label = 'NC', alpha = 0.5)
-                        if tmp_data[0,0]<0.25:
-                            print (str(key))
+                        #if tmp_data[0,0]<0.25:
+                            #print (str(key))
             except AttributeError:
                 pass
             if validData.other != {}:
@@ -101,26 +102,30 @@ def visualize_two_dimension_sequence(validDataList):
                             tmp_data = validData.other[str(other_key)]
                             timeStep = tmp_data.shape[0]
                             if tmp_data[0,0]< 0.06:
-                                print(str(key))
+                                #print(str(key))
                                 print (tmp_data)
                             if validData.DX_Group == 'AD':
                                 color = (0.5+ADNo/180, 0.0, 0.0)
                                 ADNo += 1
                                 plotAD, = pyplot.plot(range(timeStep), tmp_data[:,1], 'o-', color = color, label = 'AD', alpha = 0.5)
+                                if tmp_data[0,1]<0.25:
+                                    print('AD',str(other_key))
+                                    print(tmp_data)
                             else:
                                 color = (0,0,0.5+NCNo/180)
                                 if str(other_key) == '363620':
                                     color = 'g'
-                                    print(tmp_data[:,1])
+                                    # print(tmp_data[:,1])
                                 NCNo += 1
                                 plotNC, = pyplot.plot(range(timeStep), tmp_data[:,1], 'o-', color = color, label = 'NC', alpha = 0.5)
-                                if tmp_data[0,0]<0.25:
-                                    print(str(other_key))
+                                #if tmp_data[0,0]<0.25:
+                                    #print(str(other_key))
                                     # print(tmp_data)
                     except AttributeError:
                         pass
 
     pyplot.legend(handles=[plotAD, plotNC], loc = 4)
+    print(ADNo, NCNo)
     pyplot.show()
 
 

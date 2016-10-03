@@ -70,11 +70,27 @@ end
 for ifile = 1:numfiles
     display(ifile);
     feature = zeros(zones_No, frame_No);
+    % normalize to gaussion (0,1)
+   total_img = [];
+    for jframe = 1:frame_No
+        fMRI_nii = load_nii(fMRI_data{ifile}{jframe});
+        tmp_img = double(fMRI_nii.img);
+        total_img = [total_img;tmp_img];
+    end
+    [m_t, n_t, p_t] = size(total_img);
+    total_img = reshape(total_img,m_t*n_t*p_t, 1);
+    %total_img = normpdf(total_img);
+    mean_total = mean(total_img);
+    std_total = std(total_img);
+    total_img = (total_img-mean_total)/std_total;
+        
     for jframe = 1:frame_No
         fMRI_nii = load_nii(fMRI_data{ifile}{jframe});
         img = double(fMRI_nii.img);
-        img_max = max(max(max(img)));
-        img = img/img_max;
+        [m_i, n_i, p_i] = size(img);
+        img = reshape(img, m_i*n_i*p_i,1);
+        img = (img-mean_total)/std_total;
+        img = reshape(img, m_i, n_i, p_i);
         for kzone = 1:zones_No
             feature(kzone, jframe) = sum(sum(sum(img.*AAL_matrices{kzone})))/AAL_PixelNO(kzone);
         end
