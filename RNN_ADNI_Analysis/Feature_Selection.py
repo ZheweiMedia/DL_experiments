@@ -189,7 +189,7 @@ def Autoencoder(StackedData):
 
 
 
-os.chdir("/home/medialab/Zhewei/data/data_from_SPM/")
+os.chdir("/home/medialab/Zhewei/data/data_After_BandPass/")
 Raw_data = gzip.open('Subjects_180_ADNC.pickle.gz', 'rb')
 Subjects_data = Pickle.load(Raw_data)
 Label, Data, ID = data_to_list(Subjects_data)
@@ -228,7 +228,7 @@ NewSubjectsData = ReNewData(Subjects_data, Data_new, ID, 0)
 
 
 os.chdir("/home/medialab/Zhewei/data/")
-with gzip.open('Hippo.pickle.gz', 'wb') as output_file:
+with gzip.open('Hippo_BandFilter.pickle.gz', 'wb') as output_file:
     Pickle.dump(NewSubjectsData, output_file)
 
 

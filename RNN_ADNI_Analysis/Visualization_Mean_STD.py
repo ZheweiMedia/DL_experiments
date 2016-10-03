@@ -82,7 +82,7 @@ def data_to_1D(dataList):
     return Data.reshape((-1,1))
 
 os.chdir("/home/medialab/Zhewei/data")
-Raw_data = gzip.open('Hippo.pickle.gz', 'rb')
+Raw_data = gzip.open('Hippo_BandFilter.pickle.gz', 'rb')
 Subjects_data = Pickle.load(Raw_data)
 
 AD_Mean, AD_STD, NC_Mean, NC_STD, AD_IDlist, NC_IDlist, AD_dataList, NC_dataList = Mean_STD(Subjects_data)

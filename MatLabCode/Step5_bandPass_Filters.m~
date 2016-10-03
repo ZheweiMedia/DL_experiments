@@ -22,4 +22,21 @@ fMRI_IID = [346237, 358614, 372812, 398684, 264986, ...
 
 cd ~/Zhewei/data/data_from_SPM/
 
-for id in fMRI_IID
+[~,numfiles] = size(fMRI_IID);
+order = 10;
+lowFreq = 12.5;
+hiFreq = 100;
+fs = 500;
+
+
+[b,a] = butter(order, [lowFreq hiFreq]/(fs/2), 'bandpass');
+ %y = filter(b,a,x)
+
+for ifile = 1:numfiles
+    fileID = fMRI_IID(ifile);
+    mat_name = strcat(num2str(fMRI_IID(ifile)), '.mat');
+    feature = load(mat_name);
+    feature = feature.feature;
+    
+    
+end
