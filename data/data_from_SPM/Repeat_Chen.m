@@ -54,18 +54,18 @@ fMRI_AD_IID = [238623, 303069, 240811, 304790, 371994, ...
 addpath(genpath('~/Zhewei/MatLabCode/'))        
 %% read files in
 
-[~,numfiles] = size(fMRI_NC_IID);
+[~,NC_numfiles] = size(fMRI_NC_IID);
 lowFreq = 0.01;
 hiFreq = 0.08;
 fs = 1/3;
 feature_No = 120;
 
-
-for ifile = 1:numfiles
-    fileID = fMRI_IID(ifile);
+NC_corr = zeros(120, 120);
+for ifile = 1:NC_numfiles
+    fileID = fMRI_NC_IID(ifile);
     cd ~/Zhewei/data/data_from_SPM/
     fMRI_NC{ifile,1} = fileID;
-    mat_name = strcat(num2str(fMRI_IID(ifile)), '.mat');
+    mat_name = strcat(num2str(fMRI_NC_IID(ifile)), '.mat');
     feature = load(mat_name);
     feature = feature.feature;
     [m_f, n_f] = size(feature);
@@ -74,16 +74,21 @@ for ifile = 1:numfiles
         tmp_feature(jframe, :) = bpfilt(feature(jframe, :), lowFreq, hiFreq, fs, 0);
     end
     fMRI_NC{ifile,2} = tmp_feature;
+    fMRI_NC{ifile,3} = corrcoef(tmp_feature');
+    NC_corr = NC_corr+fMRI_NC{ifile,3};
  
 end
 
-[~,numfiles] = size(fMRI_AD_IID);
+NC_corr = NC_corr/90;
 
-for ifile = 1:numfiles
-    fileID = fMRI_IID(ifile);
+[~,AD_numfiles] = size(fMRI_AD_IID);
+
+AD_corr = zeros(120, 120);
+for ifile = 1:AD_numfiles
+    fileID = fMRI_AD_IID(ifile);
     cd ~/Zhewei/data/data_from_SPM/
     fMRI_AD{ifile,1} = fileID;
-    mat_name = strcat(num2str(fMRI_IID(ifile)), '.mat');
+    mat_name = strcat(num2str(fMRI_AD_IID(ifile)), '.mat');
     feature = load(mat_name);
     feature = feature.feature;
     [m_f, n_f] = size(feature);
@@ -92,7 +97,35 @@ for ifile = 1:numfiles
         tmp_feature(jframe, :) = bpfilt(feature(jframe, :), lowFreq, hiFreq, fs, 0);
     end
     fMRI_AD{ifile,2} = tmp_feature;
+    fMRI_AD{ifile,3} = corrcoef(tmp_feature');
+    AD_corr = AD_corr+fMRI_AD{ifile,3};
  
 end
+
+AD_corr = AD_corr/90;
+
+
+%% Wilcoxon rank sum test
+W_matrix = zeros(120,120);
+for i_feature1 = 1:120
+    for i_feature2 = 1:120
+        % build x_NC, and y_AD
+        x_NC = [];
+        for ifile = 1:NC_numfiles
+            x_NC = [x_NC fMRI_NC{ifile,3}(i_feature1, i_feature2)];
+        end
+        y_AD = [];
+        for ifile = 1:AD_numfiles
+            y_AD = [y_AD fMRI_AD{ifile,3}(i_feature1, i_feature2)];
+        end
+        
+        % rank sum
+        [p,h,stats] = ranksum(x_NC,y_AD);
+        W_matrix(i_feature1, i_feature2) = stats.zval;
+    end
+end
+            
+        
+        
 
 

@@ -185,7 +185,32 @@ def Autoencoder(StackedData):
                 shuffle=True,
                 validation_data=(x_test, x_test))
     
-    return encoder.predict(StackedData)    
+    return encoder.predict(StackedData)
+
+def print_Each_Subject(validDataList):
+    no = 0
+    for validData in validDataList:
+        tmp_list = list(validData.baseline.keys())
+        subject = list()
+        for key in tmp_list:
+            try:
+                if validData.baseline[str(key)].any():
+                    subject.append(str(key))
+                    no += 1
+            except AttributeError:
+                pass
+        if validData.other != {}:
+            tmp_list = list(validData.other.keys())
+            for other_key in tmp_list:
+                try:
+                    if validData.other[str(other_key)].any():
+                       subject.append(str(other_key))
+                       no += 1
+                except AttributeError:
+                    pass
+        if (subject):
+            print (subject, validData.DX_Group)
+    
 
 
 
@@ -193,6 +218,8 @@ os.chdir("/home/medialab/Zhewei/data/data_After_BandPass/")
 Raw_data = gzip.open('Subjects_180_ADNC.pickle.gz', 'rb')
 Subjects_data = Pickle.load(Raw_data)
 Label, Data, ID = data_to_list(Subjects_data)
+
+print_Each_Subject(Subjects_data)
 
 # Now Data is a list of array [featureNo, timestep]. We need to stack the data
 # print (len(Label))

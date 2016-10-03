@@ -1,4 +1,11 @@
-%%
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%   1. Set data ID, data, in cells.
+%   2. Pearson corelation, also store in cells.
+%
+%
+%
+%
 
 
 
@@ -53,12 +60,12 @@ hiFreq = 0.08;
 fs = 1/3;
 feature_No = 120;
 
-
+NC_corr = zeros(120, 120);
 for ifile = 1:numfiles
-    fileID = fMRI_IID(ifile);
+    fileID = fMRI_NC_IID(ifile);
     cd ~/Zhewei/data/data_from_SPM/
-    fMRI_NC{ifile,1} = fileID
-    mat_name = strcat(num2str(fMRI_IID(ifile)), '.mat');
+    fMRI_NC{ifile,1} = fileID;
+    mat_name = strcat(num2str(fMRI_NC_IID(ifile)), '.mat');
     feature = load(mat_name);
     feature = feature.feature;
     [m_f, n_f] = size(feature);
@@ -66,7 +73,46 @@ for ifile = 1:numfiles
     for jframe = 1:feature_No
         tmp_feature(jframe, :) = bpfilt(feature(jframe, :), lowFreq, hiFreq, fs, 0);
     end
-    feature = tmp_feature;
-       
-    
+    fMRI_NC{ifile,2} = tmp_feature;
+    fMRI_NC{ifile,3} = corrcoef(tmp_feature');
+    NC_corr = NC_corr+fMRI_NC{ifile,3};
+ 
 end
+
+NC_corr = NC_corr/90;
+
+[~,AD_numfiles] = size(fMRI_AD_IID);
+
+AD_corr = zeros(120, 120);
+for ifile = 1:numfiles
+    fileID = fMRI_AD_IID(ifile);
+    cd ~/Zhewei/data/data_from_SPM/
+    fMRI_AD{ifile,1} = fileID;
+    mat_name = strcat(num2str(fMRI_AD_IID(ifile)), '.mat');
+    feature = load(mat_name);
+    feature = feature.feature;
+    [m_f, n_f] = size(feature);
+    tmp_feature = zeros(m_f, n_f);
+    for jframe = 1:feature_No
+        tmp_feature(jframe, :) = bpfilt(feature(jframe, :), lowFreq, hiFreq, fs, 0);
+    end
+    fMRI_AD{ifile,2} = tmp_feature;
+    fMRI_AD{ifile,3} = corrcoef(tmp_feature');
+    AD_corr = AD_corr+fMRI_AD{ifile,3};
+ 
+end
+
+AD_corr = AD_corr/90;
+
+
+%% Wilcoxon rank sum test
+
+for i_NC = 1:120
+    for i_AD = i:i_NC
+        % build x_NC, and y_AD
+        for ifile = 1:numfiles
+        
+        
+
+
+p = ranksum(x,y)
