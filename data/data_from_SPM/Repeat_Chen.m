@@ -10,7 +10,7 @@
 
 
 
-
+clear all
 
 
 fMRI_NC_IID = [346237, 358614, 372812, 398684, 264986, ...
@@ -124,6 +124,18 @@ for i_feature1 = 1:120
         W_matrix(i_feature1, i_feature2) = stats.zval;
     end
 end
+
+
+%% histogram
+connectList = [];
+for i_feature1 = 1:120
+    for i_feature2 = 1:i_feature1
+        connectList = [connectList W_matrix(i_feature1, i_feature2)];
+    end
+end
+
+histogram(connectList)
+
             
         
         
