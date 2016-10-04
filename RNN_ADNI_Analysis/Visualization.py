@@ -131,7 +131,7 @@ def visualize_two_dimension_sequence(validDataList):
 
     
 os.chdir("/home/medialab/Zhewei/data")
-Raw_data = gzip.open('Hippo_BandPassFilter.pickle.gz', 'rb')
+Raw_data = gzip.open('Hippo_BandPassFilter_100_5.pickle.gz', 'rb')
 Subjects_data = Pickle.load(Raw_data)
 
 visualize_two_dimension_postion(Subjects_data)

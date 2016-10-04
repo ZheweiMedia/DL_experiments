@@ -245,7 +245,7 @@ Data = stackData(Data)
 
 # Data_new =  Autoencoder(Data)
 # Data_new = SelectKBest(chi2, k=120).fit_transform(Data, Label_New)
-Data_new = Data[:, 40:42]
+Data_new = Data[:, [5, 100]]
 # print (Data_new[0:130,:])
 # print (Data_new.shape)
 
@@ -255,7 +255,7 @@ NewSubjectsData = ReNewData(Subjects_data, Data_new, ID, 0)
 
 
 os.chdir("/home/medialab/Zhewei/data/")
-with gzip.open('Hippo_BandPassFilter.pickle.gz', 'wb') as output_file:
+with gzip.open('Hippo_BandPassFilter_100_5.pickle.gz', 'wb') as output_file:
     Pickle.dump(NewSubjectsData, output_file)
 
 
