@@ -133,11 +133,12 @@ def difference_of_data(dataList):
         new_list.append(tmp_data.transpose())
     return new_list
 
-def Normalize_Each_subject_as_One(dataList):
+def Normalize_Each_subject_as_NDB(dataList):
     for data in dataList:
         featureNo = data.shape[0]
         for i in range(featureNo):
-            data[i,:] = data[i,:]/numpy.linalg.norm(data[i,:])
+            data[i,:] = (data[i,:]-numpy.mean(data[i,:]))/numpy.linalg.norm(data[i,:])
+            print (numpy.mean(data[i,:]))
 
     print(dataList[0][0,:])
     return dataList
@@ -235,7 +236,7 @@ Label_New = expandLabel_for_origin(Label)
 print (len(Label_New))
 
 # Normalize the data
-# Data = Normalize_Each_subject_as_One(Data)
+Data = Normalize_Each_subject_as_NDB(Data)
 # Data = Normlize_Each_subject_as_Zero_One(Data)
 print(Data[0].shape)
 Data = stackData(Data)
@@ -245,7 +246,7 @@ Data = stackData(Data)
 
 # Data_new =  Autoencoder(Data)
 # Data_new = SelectKBest(chi2, k=120).fit_transform(Data, Label_New)
-Data_new = Data[:, [5, 100]]
+Data_new = Data[:, [1, 82,119, 51,84, 9, 115, 84,82]]
 # print (Data_new[0:130,:])
 # print (Data_new.shape)
 
@@ -255,7 +256,7 @@ NewSubjectsData = ReNewData(Subjects_data, Data_new, ID, 0)
 
 
 os.chdir("/home/medialab/Zhewei/data/")
-with gzip.open('Hippo_BandPassFilter_100_5.pickle.gz', 'wb') as output_file:
+with gzip.open('Hippo_BandPassFilter_Nine.pickle.gz', 'wb') as output_file:
     Pickle.dump(NewSubjectsData, output_file)
 
 

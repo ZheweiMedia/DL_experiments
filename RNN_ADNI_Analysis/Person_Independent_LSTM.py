@@ -32,9 +32,9 @@ import matplotlib.pyplot as pyplot
 Train_percentage = 0.6
 Valid_percentage = 0.2
 Groups = 2
-hd_notes = 30
+hd_notes = 20
 learning_rate = 1e-9
-nb_epoch = 1500
+nb_epoch = 1000
 
 class _EachSubject:
     # each subject is a element of a list
@@ -118,7 +118,7 @@ def label_to_binary(labelList):
     
 
 os.chdir("/home/medialab/Zhewei/data")
-Raw_data = gzip.open('Hippo_BandPassFilter.pickle.gz', 'rb')
+Raw_data = gzip.open('Hippo_BandPassFilter_Nine.pickle.gz', 'rb')
 Subjects_data = Pickle.load(Raw_data)
 
 # Now data are in the list Subjects_data.
@@ -190,7 +190,7 @@ model.add(LSTM(hd_notes, input_shape=(timesteps, featureNo),\
                init='glorot_uniform',\
                inner_init='orthogonal',\
                activation='tanh', return_sequences=False,\
-               dropout_W=0.0, dropout_U=0.0))
+               dropout_W=0.2, dropout_U=0.2))
 model.add(Dense(nb_classes))
 model.add(Activation('softmax'))
 rmsprop = RMSprop(lr=learning_rate, rho=0.9, epsilon=1e-06)

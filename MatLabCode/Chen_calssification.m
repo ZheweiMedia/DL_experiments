@@ -138,7 +138,7 @@ end
 % connection set. choose 100 for each set.
 
 w_M_copy1 = W_matrix;
-Select_feature = 50;
+Select_feature = 5;
 increase_index = [];
 for i = 1:Select_feature*2
     [row_value, row_index] = max(w_M_copy1);
@@ -236,6 +236,7 @@ end
 trainData = [feature_NC;feature_AD];
 trainLabel = [label_NC; label_AD];
 
-MD = fitcsvm(trainData,trainLabel,'Standardize',false,'KernelFunction','RBF','KernelScale','auto');
+% MD = fitcsvm(trainData,trainLabel,'Standardize',false,'KernelFunction','RBF','KernelScale','auto');
+MD = fitcdiscr(trainData,trainLabel, 'discrimType','pseudoLinear');
 test_pred = predict(MD, feature_test);
 sum((label_test == test_pred))/length(label_test)

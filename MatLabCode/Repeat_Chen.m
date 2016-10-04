@@ -74,12 +74,9 @@ for ifile = 1:NC_numfiles
         tmp_feature(jframe, :) = bpfilt(feature(jframe, :), lowFreq, hiFreq, fs, 0);
     end
     fMRI_NC{ifile,2} = tmp_feature;
-    fMRI_NC{ifile,3} = corrcoef(tmp_feature');
-    NC_corr = NC_corr+fMRI_NC{ifile,3};
- 
+    fMRI_NC{ifile,3} = corrcoef(tmp_feature'); 
 end
 
-NC_corr = NC_corr/90;
 
 [~,AD_numfiles] = size(fMRI_AD_IID);
 
@@ -98,11 +95,9 @@ for ifile = 1:AD_numfiles
     end
     fMRI_AD{ifile,2} = tmp_feature;
     fMRI_AD{ifile,3} = corrcoef(tmp_feature');
-    AD_corr = AD_corr+fMRI_AD{ifile,3};
  
 end
 
-AD_corr = AD_corr/90;
 
 
 %% Wilcoxon rank sum test
@@ -134,7 +129,42 @@ for i_feature1 = 1:120
     end
 end
 
-histogram(connectList)
+% histogram(connectList)
+
+
+w_M_copy1 = W_matrix;
+Select_feature = 5;
+increase_index = [];
+for i = 1:Select_feature*2
+    [row_value, row_index] = max(w_M_copy1);
+    [max_value, column_index] = max(row_value);
+    increase_index = [increase_index;[row_index(column_index) column_index]];
+    % reduce the value and make it be negative inf
+    w_M_copy1(row_index(column_index), column_index) = -Inf;
+    
+end
+
+w_M_copy2 = W_matrix;
+decrease_index = [];
+for i = 1:Select_feature*2
+    [row_value, row_index] = min(w_M_copy2);
+    [min_value, column_index] = min(row_value);
+    decrease_index = [decrease_index;[row_index(column_index) column_index]];
+    % reduce the value and make it be negative inf
+    w_M_copy2(row_index(column_index), column_index) = Inf;
+    
+end
+
+% remove the duplicate index
+increase_set = [];
+for i  = 1:2:Select_feature*2
+    increase_set = [increase_set; increase_index(i,:)];
+end
+
+decrease_set = [];
+for i  = 1:2:Select_feature*2
+    decrease_set = [decrease_set; decrease_index(i,:)];
+end
 
             
         
