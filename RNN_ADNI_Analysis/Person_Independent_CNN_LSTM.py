@@ -130,7 +130,7 @@ def label_to_binary(labelList):
     
 
 os.chdir("/home/medialab/Zhewei/data")
-Raw_data = gzip.open('Hippo_Zero_to_One.pickle.gz', 'rb')
+Raw_data = gzip.open('Hippo_BandPassFilter_Fifty.pickle.gz', 'rb')
 Subjects_data = Pickle.load(Raw_data)
 
 # Now data are in the list Subjects_data.
@@ -218,17 +218,17 @@ print ('input_shape:',input_shape)
 
 model = Sequential()
 model.add(Convolution1D(nb_filter=nb_filters*2,\
-                        filter_length = 1,\
-                        border_mode='same',\
-                        input_shape=(input_shape[1:])))
-model.add(Activation('relu'))
-model.add(MaxPooling1D(pool_length=2))
-model.add(Convolution1D(nb_filter=nb_filters,\
                         filter_length = 2,\
                         border_mode='same',\
                         input_shape=(input_shape[1:])))
 model.add(Activation('relu'))
 model.add(MaxPooling1D(pool_length=2))
+'''model.add(Convolution1D(nb_filter=nb_filters,\
+                        filter_length = 2,\
+                        border_mode='same',\
+                        input_shape=(input_shape[1:])))
+model.add(Activation('relu'))
+model.add(MaxPooling1D(pool_length=2))'''
 model.add(LSTM(hd_notes,\
                init='glorot_uniform',\
                inner_init='orthogonal',\

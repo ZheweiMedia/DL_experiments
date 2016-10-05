@@ -181,7 +181,7 @@ def Autoencoder(StackedData):
     autoencoder.compile(optimizer='adadelta', loss='binary_crossentropy')
     encoder = Model(input=input_data, output=encoded)
     autoencoder.fit(x_train, x_train,
-                nb_epoch=100,
+                nb_epoch=30,
                 batch_size=10,
                 shuffle=True,
                 validation_data=(x_test, x_test))
@@ -236,7 +236,7 @@ Label_New = expandLabel_for_origin(Label)
 print (len(Label_New))
 
 # Normalize the data
-Data = Normalize_Each_subject_as_NDB(Data)
+# Data = Normalize_Each_subject_as_NDB(Data)
 # Data = Normlize_Each_subject_as_Zero_One(Data)
 print(Data[0].shape)
 Data = stackData(Data)
@@ -244,9 +244,51 @@ Data = stackData(Data)
 #print (Data[0:130,0])
 
 
-# Data_new =  Autoencoder(Data)
+Data_new =  Autoencoder(Data)
 # Data_new = SelectKBest(chi2, k=120).fit_transform(Data, Label_New)
-Data_new = Data[:, [1, 82,119, 51,84, 9, 115, 84,82]]
+feature_index = set([57,	55,	100,	53,	62,
+	         73,	107,	62,	107,	26,
+	         50,	62,	91,	111,	100,
+	         62,	107,	107,	62,	40,
+	         112,	40,	112,	107,	108,
+	         90,	54,	111,	107,	45,
+	         107,	74,	50,	91,	26,
+	         107,	107,	7,	25,	45,
+	         26,	51,	112,	108,	47,
+	         56,	2,	113,	53,	49,
+                 2,	2,	5,	2,	53,
+	         50,	47,	50,	53,	7,
+	         2,	55,	53,	51,	90,
+	         54,	55,	5,	57,	25,
+	         48,	26,	51,	56,	98,
+	         74,	2,	7,	48,	25,
+	         49,	50,	74,	70,	9,
+	         9,	7,	107,	5,	26,
+	         5,	2,	5,	5,	2,
+	         2,	56,	5,	111,	2,
+                 82,	119,	84,	115,	84,
+	         118,	9,	118,	117,	84,
+	         96,	120,	70,	96,	79,
+	         114,	78,	53,	82,	61,
+	         118,	66,	117,	84,	96,
+	         70,	116,	84,	96,	100,
+	         98,	79,	84,	81,	98,
+	         53,	119,	114,	64,	10,
+	         114,	84,	101,	49,	81,
+	         117,	98,	19,	118,	117,
+                 1,	51,	9,	84,	82,
+	         59,	5,	93,	116,	52,
+	         27,	99,	54,	70,	2,
+	         84,	14,	5,	61,	82,
+	         89,	14,	59,	40,	40,
+	         58,	84,	49,	49,	31,
+	         49,	34,	48,	67,	53,
+	         98,	57,	83,	34,	8,
+	         34,	50,	34,	47,	1,
+	         84,	55,	3,	83,	39])
+feature_index = numpy.array(list(feature_index))
+feature_index = feature_index-1
+# Data_new = Data[:, list(feature_index)]
 # print (Data_new[0:130,:])
 # print (Data_new.shape)
 
@@ -256,7 +298,7 @@ NewSubjectsData = ReNewData(Subjects_data, Data_new, ID, 0)
 
 
 os.chdir("/home/medialab/Zhewei/data/")
-with gzip.open('Hippo_BandPassFilter_Nine.pickle.gz', 'wb') as output_file:
+with gzip.open('Hippo_BandPassFilter_Auto.pickle.gz', 'wb') as output_file:
     Pickle.dump(NewSubjectsData, output_file)
 
 

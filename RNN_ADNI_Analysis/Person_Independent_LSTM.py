@@ -29,12 +29,12 @@ from keras.initializations import normal, identity
 import matplotlib.pyplot as pyplot
 
 
-Train_percentage = 0.6
-Valid_percentage = 0.2
+Train_percentage = 0.5
+Valid_percentage = 0.3
 Groups = 2
-hd_notes = 20
-learning_rate = 1e-9
-nb_epoch = 1000
+hd_notes = 50
+learning_rate = 1e-7
+nb_epoch = 500
 
 class _EachSubject:
     # each subject is a element of a list
@@ -118,7 +118,7 @@ def label_to_binary(labelList):
     
 
 os.chdir("/home/medialab/Zhewei/data")
-Raw_data = gzip.open('Hippo_BandPassFilter_Nine.pickle.gz', 'rb')
+Raw_data = gzip.open('Hippo_BandPassFilter_Auto.pickle.gz', 'rb')
 Subjects_data = Pickle.load(Raw_data)
 
 # Now data are in the list Subjects_data.
@@ -140,6 +140,7 @@ trainLabel, trainData, trainID = collect_Baseline_And_Other(train_Subjects)
 # validLabel, validData, validID = collect_Baseline_And_Other(valid_Subjects)
 # testLabel, testData, testID = collect_Baseline_And_Other(test_Subjects)
 
+# trainLabel, trainData, trainID = collect_Baseline_Only(train_Subjects)
 validLabel, validData, validID = collect_Baseline_Only(valid_Subjects)
 testLabel, testData, testID = collect_Baseline_Only(test_Subjects)
 
@@ -186,15 +187,13 @@ Y_valid = np_utils.to_categorical(validLabel, nb_classes)
 
 print ("Building model...")
 model = Sequential()
-model.add(LSTM(hd_notes, input_shape=(timesteps, featureNo),\
-               init='glorot_uniform',\
-               inner_init='orthogonal',\
-               activation='tanh', return_sequences=False,\
-               dropout_W=0.2, dropout_U=0.2))
+model.add(GRU(hd_notes, input_shape=(timesteps, featureNo),\
+               activation='relu', return_sequences=False,\
+               dropout_W=0.0, dropout_U=0.0))
 model.add(Dense(nb_classes))
 model.add(Activation('softmax'))
 rmsprop = RMSprop(lr=learning_rate, rho=0.9, epsilon=1e-06)
-model.compile(loss='binary_crossentropy', optimizer='adam', \
+model.compile(loss='categorical_crossentropy', optimizer='rmsprop', \
               metrics=["accuracy"])
 
 print ("Training model...")
