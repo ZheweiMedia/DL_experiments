@@ -36,8 +36,9 @@ def visualize_two_dimension_postion(validDataList):
                     if validData.DX_Group == 'AD':
                         color = (0.5+ADNo/180, 0.0, 0.0)
                         ADNo += 1
+                        print (ADNo)
                         plotAD, = pyplot.plot(tmp_data[:,0], tmp_data[:,1], 'o-', color = color, label = 'AD', alpha = 0.5)
-                    else:
+                    elif validData.DX_Group == 'Normal':
                         color = (0,0,0.5+NCNo/180)
                         NCNo += 1
                         plotNC, = pyplot.plot(tmp_data[:,0], tmp_data[:,1], 'o-', color = color, label = 'NC', alpha = 0.5)
@@ -55,7 +56,7 @@ def visualize_two_dimension_postion(validDataList):
                                 color = (0.5+ADNo/180, 0.0, 0.0)
                                 ADNo += 1
                                 plotAD, = pyplot.plot(tmp_data[:,0], tmp_data[:,1], 'o-', color = color, label = 'AD', alpha = 0.5)
-                            else:
+                            elif validData.DX_Group == 'Normal':
                                 color = (0,0,0.5+NCNo/180)
                                 NCNo += 1
                                 plotNC, = pyplot.plot(tmp_data[:,0], tmp_data[:,1], 'o-', color = color, label = 'NC', alpha = 0.5)
@@ -72,21 +73,19 @@ def visualize_two_dimension_sequence(validDataList):
     pyplot.figure(1)
     ADNo = 0
     NCNo = 0
-    for validData in validDataList:
+    for validData in validDataList[32:35]:
         tmp_list = list(validData.baseline.keys())
         for key in tmp_list:
             try:
                 if validData.baseline[str(key)].any():
                     tmp_data = validData.baseline[str(key)]
                     timeStep = tmp_data.shape[0]
+                    print (timeStep)
                     if validData.DX_Group == 'AD':
                         color = (0.5+ADNo/180, 0.0, 0.0)
                         ADNo += 1
                         plotAD, = pyplot.plot(range(timeStep), tmp_data[:,1], 'o-', color = color, label = 'AD', alpha = 0.5)
-                        if tmp_data[0,1]<0.25:
-                            print ('AD:', str(key))
-                            print (tmp_data)
-                    else:
+                    elif validData.DX_Group == 'Normal':
                         color = (0,0,0.5+NCNo/180)
                         NCNo += 1
                         plotNC, = pyplot.plot(range(timeStep), tmp_data[:,1], 'o-', color = color, label = 'NC', alpha = 0.5)
@@ -101,9 +100,6 @@ def visualize_two_dimension_sequence(validDataList):
                         if validData.other[str(other_key)].any():
                             tmp_data = validData.other[str(other_key)]
                             timeStep = tmp_data.shape[0]
-                            if tmp_data[0,0]< 0.06:
-                                #print(str(key))
-                                print (tmp_data)
                             if validData.DX_Group == 'AD':
                                 color = (0.5+ADNo/180, 0.0, 0.0)
                                 ADNo += 1
@@ -111,7 +107,7 @@ def visualize_two_dimension_sequence(validDataList):
                                 if tmp_data[0,1]<0.25:
                                     print('AD',str(other_key))
                                     print(tmp_data)
-                            else:
+                            elif validData.DX_Group == 'Normal':
                                 color = (0,0,0.5+NCNo/180)
                                 if str(other_key) == '363620':
                                     color = 'g'
@@ -131,7 +127,7 @@ def visualize_two_dimension_sequence(validDataList):
 
     
 os.chdir("/home/medialab/Zhewei/data")
-Raw_data = gzip.open('Hippo_BandPassFilter_Auto.pickle.gz', 'rb')
+Raw_data = gzip.open('ADNC_Nitime_All.pickle.gz', 'rb')
 Subjects_data = Pickle.load(Raw_data)
 
 visualize_two_dimension_postion(Subjects_data)

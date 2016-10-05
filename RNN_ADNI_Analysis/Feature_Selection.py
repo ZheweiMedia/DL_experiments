@@ -215,8 +215,8 @@ def print_Each_Subject(validDataList):
 
 
 
-os.chdir("/home/medialab/Zhewei/data/data_After_BandPass/")
-Raw_data = gzip.open('Subjects_180_ADNC.pickle.gz', 'rb')
+os.chdir("/home/medialab/Zhewei/data/")
+Raw_data = gzip.open('ADNC_Nitime_All.pickle.gz', 'rb')
 Subjects_data = Pickle.load(Raw_data)
 Label, Data, ID = data_to_list(Subjects_data)
 
@@ -244,7 +244,7 @@ Data = stackData(Data)
 #print (Data[0:130,0])
 
 
-Data_new =  Autoencoder(Data)
+# Data_new =  Autoencoder(Data)
 # Data_new = SelectKBest(chi2, k=120).fit_transform(Data, Label_New)
 feature_index = set([57,	55,	100,	53,	62,
 	         73,	107,	62,	107,	26,
@@ -288,7 +288,7 @@ feature_index = set([57,	55,	100,	53,	62,
 	         84,	55,	3,	83,	39])
 feature_index = numpy.array(list(feature_index))
 feature_index = feature_index-1
-# Data_new = Data[:, list(feature_index)]
+Data_new = Data[:, list(feature_index)]
 # print (Data_new[0:130,:])
 # print (Data_new.shape)
 
@@ -298,7 +298,7 @@ NewSubjectsData = ReNewData(Subjects_data, Data_new, ID, 0)
 
 
 os.chdir("/home/medialab/Zhewei/data/")
-with gzip.open('Hippo_BandPassFilter_Auto.pickle.gz', 'wb') as output_file:
+with gzip.open('ADNC_Nitime_All.pickle.gz', 'wb') as output_file:
     Pickle.dump(NewSubjectsData, output_file)
 
 

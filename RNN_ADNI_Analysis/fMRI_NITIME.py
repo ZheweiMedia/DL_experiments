@@ -99,9 +99,52 @@ os.chdir("/home/medialab/Zhewei/data/data_from_SPM/")
 Raw_data = gzip.open('Subjects_180_ADNC.pickle.gz', 'rb')
 Subjects_data = Pickle.load(Raw_data)
 
-#data = Subjects_data[25].baseline['306889']
-print ( Subjects_data[35].baseline.keys())
-print (data)
+TR = 3
+lb = 0.01
+ub = 0.08
+
+for validData in Subjects_data:
+        tmp_list = list(validData.baseline.keys())
+        for key in tmp_list:
+            try:
+                if validData.baseline[str(key)].any():
+                    tmp_data = validData.baseline[str(key)]
+                    T = TimeSeries(tmp_data, sampling_interval=TR)
+                    F = FilterAnalyzer(T, ub=ub, lb=lb)
+                    p_data = NormalizationAnalyzer(F.iir).percent_change.data
+                    print (numpy.amax(p_data))
+                    validData.baseline[str(key)] = p_data
+                    if str(key) == '228872':# test at here
+                        print (validData.baseline[str(key)])
+                        print('original:', tmp_data)
+            except AttributeError:
+                pass
+        if validData.other != {}:
+            tmp_list = list(validData.other.keys())
+            for other_key in tmp_list:
+                try:
+                    if validData.other[str(other_key)].any():
+                        tmp_data = validData.other[str(other_key)]
+                        T = TimeSeries(tmp_data, sampling_interval=TR)
+                        F = FilterAnalyzer(T, ub=ub, lb=lb)
+                        p_data = NormalizationAnalyzer(F.iir).percent_change.data
+                        validData.other[str(other_key)] = p_data
+                except AttributeError:
+                    pass
+
+'''
+os.chdir("/home/medialab/Zhewei/data/")
+with gzip.open('ADNC_Nitime_All.pickle.gz', 'wb') as output_file:
+    Pickle.dump(Subjects_data, output_file)'''
+
+
+
+
+"""                
+data = Subjects_data[5].baseline['286519']
+# print ( Subjects_data[25].baseline.keys())
+# data = numpy.array(data)
+print (data.shape)
 dataList = list()
 for i in range(120):
     tmp_data = data[i,:]
@@ -109,9 +152,9 @@ for i in range(120):
 
 print(len(dataList))
 print(dataList[0].shape)
-
-TR = 1.89
-T = TimeSeries(dataList, sampling_interval=TR)
+# data =  data.transpose()
+TR = 3
+T = TimeSeries(data, sampling_interval=TR)
 
 S_original = SpectralAnalyzer(T)
 
@@ -140,4 +183,36 @@ ax01.set_ylabel('Power')
 
 ax01.legend()
 
-plt.show()
+
+
+
+F = FilterAnalyzer(T, ub=0.15, lb=0.02)
+
+# Initialize a figure to display the results:
+fig02 = plt.figure()
+ax02 = fig02.add_subplot(1, 1, 1)
+
+# print (F.fir.data[0].shape)
+# Plot the original, unfiltered data:
+ax02.plot(F.data[0], label='unfiltered')
+
+ax02.plot(F.filtered_boxcar.data[0], label='Boxcar filter')
+
+# ax02.plot(F.fir.data[0], label='FIR')
+ax02.plot(F.iir.data[0], label='IIR')
+
+ax02.plot(F.filtered_fourier.data[0], label='Fourier')
+ax02.legend()
+ax02.set_xlabel('Time (TR)')
+ax02.set_ylabel('Signal amplitude (a.u.)')
+
+
+fig04 = plt.figure()
+ax04 = fig04.add_subplot(1, 1, 1)
+
+ax04.plot(NormalizationAnalyzer(F.iir).percent_change.data[0], label='% change')
+ax04.plot(NormalizationAnalyzer(F.iir).z_score.data[0], label='Z score')
+ax04.legend()
+ax04.set_xlabel('Time (TR)')
+ax04.set_ylabel('Amplitude (% change or Z-score)')
+plt.show()"""

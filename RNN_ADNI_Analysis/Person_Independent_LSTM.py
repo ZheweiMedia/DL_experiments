@@ -118,7 +118,7 @@ def label_to_binary(labelList):
     
 
 os.chdir("/home/medialab/Zhewei/data")
-Raw_data = gzip.open('Hippo_BandPassFilter_Auto.pickle.gz', 'rb')
+Raw_data = gzip.open('ADNC_Nitime_All.pickle.gz', 'rb')
 Subjects_data = Pickle.load(Raw_data)
 
 # Now data are in the list Subjects_data.
