@@ -215,8 +215,8 @@ def print_Each_Subject(validDataList):
 
 
 
-os.chdir("/home/medialab/Zhewei/data/")
-Raw_data = gzip.open('ADNC_Nitime_All.pickle.gz', 'rb')
+os.chdir("/home/medialab/Zhewei/data/data_After_BandPass/")
+Raw_data = gzip.open('Subjects_180_ADNC.pickle.gz', 'rb')
 Subjects_data = Pickle.load(Raw_data)
 Label, Data, ID = data_to_list(Subjects_data)
 
@@ -236,7 +236,7 @@ Label_New = expandLabel_for_origin(Label)
 print (len(Label_New))
 
 # Normalize the data
-# Data = Normalize_Each_subject_as_NDB(Data)
+Data = Normalize_Each_subject_as_NDB(Data)
 # Data = Normlize_Each_subject_as_Zero_One(Data)
 print(Data[0].shape)
 Data = stackData(Data)
@@ -246,7 +246,7 @@ Data = stackData(Data)
 
 # Data_new =  Autoencoder(Data)
 # Data_new = SelectKBest(chi2, k=120).fit_transform(Data, Label_New)
-feature_index = set([57,	55,	100,	53,	62,
+'''feature_index = set([57,	55,	100,	53,	62,
 	         73,	107,	62,	107,	26,
 	         50,	62,	91,	111,	100,
 	         62,	107,	107,	62,	40,
@@ -285,7 +285,8 @@ feature_index = set([57,	55,	100,	53,	62,
 	         49,	34,	48,	67,	53,
 	         98,	57,	83,	34,	8,
 	         34,	50,	34,	47,	1,
-	         84,	55,	3,	83,	39])
+	         84,	55,	3,	83,	39])'''
+feature_index = feature_index = set([57,	55,	100,  	53])
 feature_index = numpy.array(list(feature_index))
 feature_index = feature_index-1
 Data_new = Data[:, list(feature_index)]
@@ -298,7 +299,7 @@ NewSubjectsData = ReNewData(Subjects_data, Data_new, ID, 0)
 
 
 os.chdir("/home/medialab/Zhewei/data/")
-with gzip.open('ADNC_Nitime_All.pickle.gz', 'wb') as output_file:
+with gzip.open('ADNC_Nitime_Ten.pickle.gz', 'wb') as output_file:
     Pickle.dump(NewSubjectsData, output_file)
 
 

@@ -29,12 +29,12 @@ from keras.initializations import normal, identity
 import matplotlib.pyplot as pyplot
 
 
-Train_percentage = 0.5
-Valid_percentage = 0.3
+Train_percentage = 0.6
+Valid_percentage = 0.2
 Groups = 2
-hd_notes = 50
-learning_rate = 1e-7
-nb_epoch = 500
+hd_notes = 5
+learning_rate = 1e-5
+nb_epoch = 15000
 
 class _EachSubject:
     # each subject is a element of a list
@@ -118,7 +118,7 @@ def label_to_binary(labelList):
     
 
 os.chdir("/home/medialab/Zhewei/data")
-Raw_data = gzip.open('ADNC_Nitime_All.pickle.gz', 'rb')
+Raw_data = gzip.open('ADNC_Nitime_Ten.pickle.gz', 'rb')
 Subjects_data = Pickle.load(Raw_data)
 
 # Now data are in the list Subjects_data.
@@ -193,7 +193,7 @@ model.add(GRU(hd_notes, input_shape=(timesteps, featureNo),\
 model.add(Dense(nb_classes))
 model.add(Activation('softmax'))
 rmsprop = RMSprop(lr=learning_rate, rho=0.9, epsilon=1e-06)
-model.compile(loss='categorical_crossentropy', optimizer='rmsprop', \
+model.compile(loss='categorical_crossentropy', optimizer='adadelta', \
               metrics=["accuracy"])
 
 print ("Training model...")

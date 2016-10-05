@@ -113,6 +113,10 @@ for validData in Subjects_data:
                     F = FilterAnalyzer(T, ub=ub, lb=lb)
                     p_data = NormalizationAnalyzer(F.iir).percent_change.data
                     print (numpy.amax(p_data))
+                    print(numpy.argmax(p_data))
+                    index = numpy.unravel_index(numpy.argmax(p_data), (120,130))
+                    #plt.plot(NormalizationAnalyzer(F.iir).percent_change.data[index[0]])
+                    #plt.show()
                     validData.baseline[str(key)] = p_data
                     if str(key) == '228872':# test at here
                         print (validData.baseline[str(key)])
@@ -132,10 +136,9 @@ for validData in Subjects_data:
                 except AttributeError:
                     pass
 
-'''
 os.chdir("/home/medialab/Zhewei/data/")
-with gzip.open('ADNC_Nitime_All.pickle.gz', 'wb') as output_file:
-    Pickle.dump(Subjects_data, output_file)'''
+with gzip.open('ADNC_Nitime_Raw.pickle.gz', 'wb') as output_file:
+    Pickle.dump(Subjects_data, output_file)
 
 
 
