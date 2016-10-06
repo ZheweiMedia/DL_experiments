@@ -32,7 +32,7 @@ import matplotlib.pyplot as plt
 Train_percentage = 0.6
 Valid_percentage = 0.2
 Groups = 2
-hd_notes = 15
+hd_notes = 5
 learning_rate = 1e-2
 nb_epoch = 200
 
@@ -118,36 +118,41 @@ def label_to_binary(labelList):
 
 x1 = numpy.linspace(-2*numpy.pi, 2*numpy.pi, 201)
 y1 = numpy.sin(x1)
-y2 = numpy.sin(2*x1)
+y2 = numpy.sin(3*x1)
 plt.plot(x1,y1)
 plt.plot(x1,y2)
 
 
 Data1 = numpy.zeros([1,1])
-for i in range(10000):
+for i in range(100):
     if i == 0:
         Data1 = y1+(numpy.random.rand(201)*0.1)
     else:
         Data1 = numpy.vstack((Data1, y1+(numpy.random.rand(201)*0.1)))
 
 Data2 = numpy.zeros([1,1])
-for i in range(10000):
+for i in range(100):
     if i == 0:
         Data2 = y2+(numpy.random.rand(201)*0.1)
     else:
-        Data2 = numpy.vstack((Data2, y1+(numpy.random.rand(201)*0.1)))
+        Data2 = numpy.vstack((Data2, y2+(numpy.random.rand(201)*0.1)))
 
 Data1 = Data1.reshape((-1, 201, 1))
 Data2 = Data2.reshape((-1, 201, 1))
 
-index = [i for i in range(10000)]
+plt.plot(x1, Data1[0,:,0])
+plt.plot(x1, Data2[10,:,0])
+plt.show()
+
+
+index = [i for i in range(100)]
 shuffle(index)
-trainData = numpy.vstack((Data1[index[0:9000],:,:],Data2[index[0:9000],:,:]))
-validData = numpy.vstack((Data1[index[9000:9500],:,:],Data2[index[9000:9500],:,:]))
-testData = numpy.vstack((Data1[index[9500:],:,:],Data2[index[9500:],:,:]))
-trainLabel = [0 for i in range(9000)]+[1 for i in range(9000)]
-validLabel = [0 for i in range(500)]+[1 for i in range(500)]
-testLabel = [0 for i in range(500)]+[1 for i in range(500)]
+trainData = numpy.vstack((Data1[index[0:90],:,:],Data2[index[0:90],:,:]))
+validData = numpy.vstack((Data1[index[90:95],:,:],Data2[index[90:95],:,:]))
+testData = numpy.vstack((Data1[index[95:],:,:],Data2[index[95:],:,:]))
+trainLabel = [0 for i in range(90)]+[1 for i in range(90)]
+validLabel = [0 for i in range(5)]+[1 for i in range(5)]
+testLabel = [0 for i in range(5)]+[1 for i in range(5)]
                   
 '''
 print (a)
@@ -223,7 +228,7 @@ Y_valid = np_utils.to_categorical(validLabel, nb_classes)
 print ("Building model...")
 model = Sequential()
 model.add(GRU(hd_notes, input_shape=(timesteps, featureNo),\
-               activation='relu', return_sequences=False,\
+               activation='tanh', return_sequences=False,\
                dropout_W=0.0, dropout_U=0.0))
 model.add(Dense(nb_classes))
 model.add(Activation('softmax'))
