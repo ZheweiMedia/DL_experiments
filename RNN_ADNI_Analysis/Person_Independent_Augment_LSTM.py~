@@ -233,4 +233,3 @@ fi2.xlabel('epoch')
 fi2.legend(['train', 'valid'], loc='upper left')
 fi2.savefig(logName2)
 pyplot.show()
-

@@ -64,7 +64,7 @@ def outputImageId(ValidData, DX_Group):
                         f.write(',')
 def matDict():
     matDict = defaultdict(list)
-    os.chdir("/home/medialab/Zhewei/data/data_After_BandPass/")
+    os.chdir("/home/medialab/Zhewei/data/data_from_SPM/")
     f = os.popen("ls *.mat")
     Name_List = list()
     for i in f.readlines():
@@ -179,7 +179,7 @@ def main():
 
     # fill the data back to the ValidData list
     ValidData = fill_data_to_List(ValidData, raw_dataDict)
-    with gzip.open('Subjects_180_ADNC.pickle.gz', 'wb') as output_file:
+    with gzip.open('Subjects_From_SPM.pickle.gz', 'wb') as output_file:
         Pickle.dump(ValidData, output_file)
     print('Done!')
 

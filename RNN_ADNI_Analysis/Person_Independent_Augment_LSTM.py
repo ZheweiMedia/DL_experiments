@@ -34,7 +34,7 @@ Valid_percentage = 0.2
 Groups = 2
 hd_notes = 5
 learning_rate = 1e-5
-nb_epoch = 5000
+nb_epoch = 500
 
 class _EachSubject:
     # each subject is a element of a list
@@ -115,10 +115,25 @@ def label_to_binary(labelList):
             Label.append(1)
     return Label
 
+def augment(trainData, times, trainLabel):
+    Num = trainData.shape[0]
+    augmentList = list()
+    augmentLabel = list()
+    for i in range(Num):
+        for j in range(times):
+            tmp = trainData[i,:,:]
+            tmp = tmp.reshape([trainData.shape[1], trainData.shape[2]])
+            tmp = tmp+numpy.random.rand(trainData.shape[1], trainData.shape[2])*0.2
+            augmentList.append(tmp)
+            augmentLabel.append(trainLabel[i])
+    return augmentList, augmentLabel
+            
+    
+
     
 
 os.chdir("/home/medialab/Zhewei/data")
-Raw_data = gzip.open('ADNC_Nitime_Four.pickle.gz', 'rb')
+Raw_data = gzip.open('ADNC_Nitime_All.pickle.gz', 'rb')
 Subjects_data = Pickle.load(Raw_data)
 
 # Now data are in the list Subjects_data.
@@ -167,6 +182,30 @@ testLabel = label_to_binary(testLabel)
 # print (trainLabel)
 # print (validLabel)
 # print (testLabel)
+times = 10
+augmentTrain, augmentTrainLabel = augment(trainData, times, trainLabel)
+augmentValid, augmentValidLabel = augment(validData, times, validLabel)
+augmentTrain = data_to_3D(augmentTrain)
+augmentValid = data_to_3D(augmentValid)
+
+trainData = numpy.vstack((trainData, augmentTrain))
+validData = numpy.vstack((validData, augmentValid))
+trainLabel = trainLabel + augmentTrainLabel
+validLabel = validLabel + augmentValidLabel
+print(len(validLabel))
+
+print ('We have', trainData.shape[0], 'train images.')
+print ('We have', validData.shape[0], 'valid images.')
+
+
+
+fig0 = pyplot.figure(2)
+fi0 = fig0.add_subplot(1, 1, 1)
+nnnnn = 0
+fi0.plot(range(130), trainData[nnnnn,:,0])
+fi0.plot(range(130), trainData[nnnnn+len(trainID)+2,:,0])
+fi0.plot(range(130), trainData[nnnnn+len(trainID)+8,:,0])
+pyplot.show()
 
 
 
@@ -189,7 +228,7 @@ print ("Building model...")
 model = Sequential()
 model.add(GRU(hd_notes, input_shape=(timesteps, featureNo),\
                activation='relu', return_sequences=False,\
-               dropout_W=0.2, dropout_U=0.0))
+               dropout_W=0.4, dropout_U=0.0))
 model.add(Dense(nb_classes))
 model.add(Activation('softmax'))
 rmsprop = RMSprop(lr=learning_rate, rho=0.9, epsilon=1e-06)
@@ -216,21 +255,20 @@ fi1 = fig1.add_subplot(1, 1, 1)
 
 fi1.plot(history.history['acc'])
 fi1.plot(history.history['val_acc'])
-fi1.title('model accuracy')
-fi1.ylabel('accuracy')
-fi1.xlabel('epoch')
+fi1.set_title('model accuracy')
+fi1.set_ylabel('accuracy')
+fi1.set_xlabel('epoch')
 fi1.legend(['train', 'valid'], loc='upper left')
-fi1.savefig(logName1)
+fig1.savefig(logName1)
 
 fig2 = pyplot.figure(2)
-fi2 = fig1.add_subplot(1, 1, 1)
+fi2 = fig2.add_subplot(1, 1, 1)
 # summarize history for loss
 fi2.plot(history.history['loss'])
 fi2.plot(history.history['val_loss'])
-fi2.title('model loss')
-fi2.ylabel('loss')
-fi2.xlabel('epoch')
+fi2.set_title('model loss')
+fi2.set_ylabel('loss')
+fi2.set_xlabel('epoch')
 fi2.legend(['train', 'valid'], loc='upper left')
-fi2.savefig(logName2)
+fig2.savefig(logName2)
 pyplot.show()
-
