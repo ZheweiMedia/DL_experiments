@@ -111,11 +111,11 @@ for validData in Subjects_data:
                     tmp_data = validData.baseline[str(key)]
                     T = TimeSeries(tmp_data, sampling_interval=TR)
                     F = FilterAnalyzer(T, ub=ub, lb=lb)
-                    p_data = NormalizationAnalyzer(F.iir).percent_change.data
+                    p_data = NormalizationAnalyzer(F.iir).z_score.data
                     print (numpy.amax(p_data))
                     print(numpy.argmax(p_data))
                     index = numpy.unravel_index(numpy.argmax(p_data), (120,130))
-                    #plt.plot(NormalizationAnalyzer(F.iir).percent_change.data[index[0]])
+                    #plt.plot(NormalizationAnalyzer(F.iir).z_score.data[index[0]])
                     #plt.show()
                     validData.baseline[str(key)] = p_data
                     if str(key) == '228872':# test at here
@@ -131,13 +131,13 @@ for validData in Subjects_data:
                         tmp_data = validData.other[str(other_key)]
                         T = TimeSeries(tmp_data, sampling_interval=TR)
                         F = FilterAnalyzer(T, ub=ub, lb=lb)
-                        p_data = NormalizationAnalyzer(F.iir).percent_change.data
+                        p_data = NormalizationAnalyzer(F.iir).z_score.data
                         validData.other[str(other_key)] = p_data
                 except AttributeError:
                     pass
 
 os.chdir("/home/medialab/Zhewei/data/")
-with gzip.open('ADNC_Nitime_Raw.pickle.gz', 'wb') as output_file:
+with gzip.open('ADNC_Nitime_Z_Raw.pickle.gz', 'wb') as output_file:
     Pickle.dump(Subjects_data, output_file)
 
 

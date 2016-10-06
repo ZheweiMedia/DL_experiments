@@ -26,16 +26,15 @@ from keras.layers.core import Dense, Activation
 from keras.layers import LSTM, GRU
 from keras.optimizers import RMSprop
 from keras.initializations import normal, identity
-import matplotlib.pyplot as pyplot
-from sklearn.svm import SVC
+import matplotlib.pyplot as plt
 
 
 Train_percentage = 0.6
 Valid_percentage = 0.2
 Groups = 2
-hd_notes = 10
-learning_rate = 1e-3
-nb_epoch = 1500
+hd_notes = 15
+learning_rate = 1e-2
+nb_epoch = 200
 
 class _EachSubject:
     # each subject is a element of a list
@@ -105,8 +104,7 @@ def data_to_3D(dataList):
             Data = data
         else:
             Data = numpy.vstack((Data, data))
-    Data = Data[:,1]
-    return Data.reshape((-1, timeFrame))
+    return Data.reshape((-1, timeFrame, featureNo))
 
 def label_to_binary(labelList):
     Label = list()
@@ -117,10 +115,45 @@ def label_to_binary(labelList):
             Label.append(1)
     return Label
 
-    
+
+x1 = numpy.linspace(-2*numpy.pi, 2*numpy.pi, 201)
+y1 = numpy.sin(x1)
+y2 = numpy.sin(2*x1)
+plt.plot(x1,y1)
+plt.plot(x1,y2)
+
+
+Data1 = numpy.zeros([1,1])
+for i in range(10000):
+    if i == 0:
+        Data1 = y1+(numpy.random.rand(201)*0.1)
+    else:
+        Data1 = numpy.vstack((Data1, y1+(numpy.random.rand(201)*0.1)))
+
+Data2 = numpy.zeros([1,1])
+for i in range(10000):
+    if i == 0:
+        Data2 = y2+(numpy.random.rand(201)*0.1)
+    else:
+        Data2 = numpy.vstack((Data2, y1+(numpy.random.rand(201)*0.1)))
+
+Data1 = Data1.reshape((-1, 201, 1))
+Data2 = Data2.reshape((-1, 201, 1))
+
+index = [i for i in range(10000)]
+shuffle(index)
+trainData = numpy.vstack((Data1[index[0:9000],:,:],Data2[index[0:9000],:,:]))
+validData = numpy.vstack((Data1[index[9000:9500],:,:],Data2[index[9000:9500],:,:]))
+testData = numpy.vstack((Data1[index[9500:],:,:],Data2[index[9500:],:,:]))
+trainLabel = [0 for i in range(9000)]+[1 for i in range(9000)]
+validLabel = [0 for i in range(500)]+[1 for i in range(500)]
+testLabel = [0 for i in range(500)]+[1 for i in range(500)]
+                  
+'''
+print (a)
 
 os.chdir("/home/medialab/Zhewei/data")
-Raw_data = gzip.open('ADNC_Nitime_Ten.pickle.gz', 'rb')
+Raw_data = gzip.open('ADNC_Nitime_Z_Raw.pickle.gz', 'rb')
 Subjects_data = Pickle.load(Raw_data)
 
 # Now data are in the list Subjects_data.
@@ -139,9 +172,10 @@ print ('We have', len(valid_Subjects), 'valid subjects.')
 print ('We have', len(test_Subjects), 'test subjects.')
 
 trainLabel, trainData, trainID = collect_Baseline_And_Other(train_Subjects)
-#validLabel, validData, validID = collect_Baseline_And_Other(valid_Subjects)
-#testLabel, testData, testID = collect_Baseline_And_Other(test_Subjects)
+# validLabel, validData, validID = collect_Baseline_And_Other(valid_Subjects)
+# testLabel, testData, testID = collect_Baseline_And_Other(test_Subjects)
 
+# trainLabel, trainData, trainID = collect_Baseline_Only(train_Subjects)
 validLabel, validData, validID = collect_Baseline_Only(valid_Subjects)
 testLabel, testData, testID = collect_Baseline_Only(test_Subjects)
 
@@ -158,7 +192,7 @@ print ('We have', len(testID), 'test images.')
 trainData = data_to_3D(trainData)
 validData = data_to_3D(validData)
 testData = data_to_3D(testData)
-print (testData.shape)
+# print (testData.shape)
 # print (trainData[10,:,:])
 
 # labels to 0 and 1
@@ -167,21 +201,43 @@ validLabel = label_to_binary(validLabel)
 testLabel = label_to_binary(testLabel)
 # print (trainLabel)
 # print (validLabel)
-# print (testLabel)
+# print (testLabel)'''
 
-print (trainData.shape)
-print(len(trainLabel))
+
+
 """
-SVM
+LSTM
 """
 
-clf = SVC()
-clf.fit(trainData, trainLabel)
 
-print(clf.predict(testData))
-print(testLabel)
-print(clf.score(testData, testLabel))
+nb_classes = 2
+timesteps = 201
+featureNo =1
 
 
+Y_train = np_utils.to_categorical(trainLabel, nb_classes)
+Y_test = np_utils.to_categorical(testLabel, nb_classes)
+Y_valid = np_utils.to_categorical(validLabel, nb_classes)
 
 
+print ("Building model...")
+model = Sequential()
+model.add(GRU(hd_notes, input_shape=(timesteps, featureNo),\
+               activation='relu', return_sequences=False,\
+               dropout_W=0.0, dropout_U=0.0))
+model.add(Dense(nb_classes))
+model.add(Activation('softmax'))
+rmsprop = RMSprop(lr=learning_rate, rho=0.9, epsilon=1e-06)
+model.compile(loss='categorical_crossentropy', optimizer='adadelta', \
+              metrics=["accuracy"])
+
+print ("Training model...")
+
+history = model.fit(trainData, Y_train, \
+          nb_epoch=nb_epoch, verbose=1, validation_data=(validData, Y_valid))
+
+scores = model.evaluate(testData, Y_test, verbose=1)
+print('RNN test score:', scores[0])
+print('RNN test accuracy:', scores[1])
+print (testLabel)
+print (model.predict_classes(testData))

@@ -32,9 +32,9 @@ import matplotlib.pyplot as pyplot
 Train_percentage = 0.6
 Valid_percentage = 0.2
 Groups = 2
-hd_notes = 5
+hd_notes = 3
 learning_rate = 1e-5
-nb_epoch = 15000
+nb_epoch = 200
 
 class _EachSubject:
     # each subject is a element of a list
@@ -118,7 +118,7 @@ def label_to_binary(labelList):
     
 
 os.chdir("/home/medialab/Zhewei/data")
-Raw_data = gzip.open('ADNC_Nitime_Ten.pickle.gz', 'rb')
+Raw_data = gzip.open('ADNC_Nitime_Z_Raw.pickle.gz', 'rb')
 Subjects_data = Pickle.load(Raw_data)
 
 # Now data are in the list Subjects_data.
