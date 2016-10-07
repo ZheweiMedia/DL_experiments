@@ -55,7 +55,7 @@ addpath(genpath('~/Zhewei/MatLabCode/'))
 %% read files in
 
 [~,NC_numfiles] = size(fMRI_NC_IID);
-lowFreq = 0.01;
+lowFreq = 0.02;
 hiFreq = 0.08;
 fs = 1/3;
 feature_No = 120;
@@ -92,6 +92,8 @@ for ifile = 1:AD_numfiles
     tmp_feature = zeros(m_f, n_f);
     for jframe = 1:feature_No
         tmp_feature(jframe, :) = bpfilt(feature(jframe, :), lowFreq, hiFreq, fs, 0);
+        % % %
+        tmp_feature(jframe, :) = (tmp_feature(jframe, :)-mean(tmp_feature(jframe, :)))/std(tmp_feature(jframe, :));
     end
     fMRI_AD{ifile,2} = tmp_feature;
     fMRI_AD{ifile,3} = corrcoef(tmp_feature');

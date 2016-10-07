@@ -48,9 +48,9 @@ os.chdir("/home/medialab/Zhewei/data/data_from_SPM/")
 Raw_data = gzip.open('Subjects_From_SPM.pickle.gz', 'rb')
 Subjects_data = Pickle.load(Raw_data)
 
-
+"""
 TR = 3
-lb = 0.01
+lb = 0.02
 ub = 0.08
 
 for validData in Subjects_data:
@@ -66,9 +66,9 @@ for validData in Subjects_data:
                     print (numpy.amax(p_data))
                     #print(numpy.argmax(p_data))
                     index = numpy.unravel_index(numpy.argmax(p_data), (120,130))
-                    #plt.plot(NormalizationAnalyzer(F.fir).percent_change.data[index[0]])
-                    #plt.plot(NormalizationAnalyzer(F.fir).z_score.data[index[0]])
-                    #plt.show()
+                    plt.plot(NormalizationAnalyzer(F.fir).percent_change.data[index[0]])
+                    plt.plot(NormalizationAnalyzer(F.fir).z_score.data[index[0]])
+                    plt.show()
                     validData.baseline[str(key)] = p_data
                     if str(key) == '228872':# test at here
                         print (validData.baseline[str(key)])
@@ -92,10 +92,10 @@ for validData in Subjects_data:
 
 os.chdir("/home/medialab/Zhewei/data/")
 with gzip.open('ADNC_Nitime_Z_Raw.pickle.gz', 'wb') as output_file:
-    Pickle.dump(Subjects_data, output_file)
+    Pickle.dump(Subjects_data, output_file)"""
 
 
-"""
+
 
 No = 19             
 data = Subjects_data[No].baseline[list(Subjects_data[No].baseline.keys())[0]]
@@ -143,7 +143,7 @@ ax01.legend()
 
 
 
-F = FilterAnalyzer(T, ub=0.15, lb=0.02, filt_order=40)
+F = FilterAnalyzer(T, ub=0.08, lb=0.02, filt_order=40)
 
 # Initialize a figure to display the results:
 fig02 = plt.figure()
@@ -180,4 +180,4 @@ ax05.plot(NormalizationAnalyzer(F.fir).z_score.data[0], label='Z score')
 ax05.legend()
 ax05.set_xlabel('Time (TR)')
 ax05.set_ylabel('Amplitude (% change or Z-score)')
-plt.show()"""
+plt.show()

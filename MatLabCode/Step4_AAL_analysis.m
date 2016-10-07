@@ -44,6 +44,8 @@ dictionary(:,2) = value;
 AAL_nii = load_nii('/home/medialab/spm12/atlas/AAL2.nii');
 AAL_matrices = cell(1, zones_No); % 120 zones
 AAL_PixelNO = zeros(1, zones_No); % How many pixels for each zone?
+AAL_mask = AAL_nii.img;
+AAL_b_mask = AAL_mask>0.001;
 for iMatrix = 1:zones_No
     aal_matrix = AAL_nii.img;
     aal_matrix(aal_matrix ~= dictionary(iMatrix,2)) = 0;
@@ -70,6 +72,7 @@ for ifile = 1:numfiles
     for jframe = 1:frame_No
         fMRI_nii = load_nii(fMRI_data{ifile}{jframe});
         tmp_img = double(fMRI_nii.img);
+        % tmp_img = tmp_img.*AAL_b_mask;
         total_img = [total_img;tmp_img];
     end
     [m_t, n_t, p_t] = size(total_img);
@@ -131,6 +134,8 @@ dictionary(:,2) = value;
 AAL_nii = load_nii('/home/medialab/spm12/atlas/AAL2.nii');
 AAL_matrices = cell(1, zones_No); % 120 zones
 AAL_PixelNO = zeros(1, zones_No); % How many pixels for each zone?
+AAL_mask = AAL_nii.img;
+AAL_b_mask = AAL_mask>0.001;
 for iMatrix = 1:zones_No
     aal_matrix = AAL_nii.img;
     aal_matrix(aal_matrix ~= dictionary(iMatrix,2)) = 0;
@@ -157,6 +162,7 @@ for ifile = 1:numfiles
     for jframe = 1:frame_No
         fMRI_nii = load_nii(fMRI_data{ifile}{jframe});
         tmp_img = double(fMRI_nii.img);
+        tmp_img = tmp_img.*AAL_b_mask;
         total_img = [total_img;tmp_img];
     end
     [m_t, n_t, p_t] = size(total_img);

@@ -1,0 +1,24 @@
+
+
+
+
+
+import os
+
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.mlab import csv2rec
+import scipy.stats.distributions as dist
+from scipy import fftpack
+
+import nitime
+from nitime.timeseries import TimeSeries
+from nitime import utils
+import nitime.algorithms as alg
+import nitime.viz
+from nitime.viz import drawmatrix_channels
+from nitime.analysis import CoherenceAnalyzer, MTCoherenceAnalyzer
+
+TR = 1.89
+f_ub = 0.15
+f_lb = 0.02

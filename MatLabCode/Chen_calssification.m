@@ -20,14 +20,14 @@ cd ~/Zhewei/data/data_from_SPM/
 % subjects: 48
 subjectNo = 48;
 index = randperm(subjectNo);
-train_index = index(1:45);
-test_index = index(46:end);
+train_index = index(1:32);
+test_index = index(33:end);
 
 fMRI_train_NC_IID = [];
 fMRI_train_AD_IID = [];
 fMRI_test_IID = [];
 label_test = [];
-for i_train = 1:45
+for i_train = 1:32
     if strcmp(char(data{train_index(i_train),1}), 'AD')
         fMRI_train_AD_IID = [fMRI_train_AD_IID data{train_index(i_train),2}];
     else
@@ -35,7 +35,7 @@ for i_train = 1:45
     end
 end
 
-for i_test = 1:3
+for i_test = 1:16
     fMRI_test_IID = [fMRI_test_IID data{test_index(i_test),2}];
     if strcmp(char(data{test_index(i_test),1}) , 'AD')
         label_test = [label_test;zeros(length(data{test_index(i_test),2}),1)];
@@ -49,7 +49,7 @@ addpath(genpath('~/Zhewei/MatLabCode/'))
 %% read files in, { , 2} is the signal after filter, { , 3} is the r matrix.
 
 [~,train_NC_numfiles] = size(fMRI_train_NC_IID);
-lowFreq = 0.01;
+lowFreq = 0.02;
 hiFreq = 0.08;
 fs = 1/3;
 feature_No = 120;
@@ -138,7 +138,7 @@ end
 % connection set. choose 100 for each set.
 
 w_M_copy1 = W_matrix;
-Select_feature = 5;
+Select_feature = 10;
 increase_index = [];
 for i = 1:Select_feature*2
     [row_value, row_index] = max(w_M_copy1);
@@ -237,6 +237,6 @@ trainData = [feature_NC;feature_AD];
 trainLabel = [label_NC; label_AD];
 
 % MD = fitcsvm(trainData,trainLabel,'Standardize',false,'KernelFunction','RBF','KernelScale','auto');
-MD = fitcdiscr(trainData,trainLabel, 'discrimType','pseudoLinear');
+MD = fitcdiscr(trainData,trainLabel);
 test_pred = predict(MD, feature_test);
 sum((label_test == test_pred))/length(label_test)
