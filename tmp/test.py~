@@ -1,8 +1,0 @@
-"""
-test slcie timing
-
-Zhewei@9/8/2016
-"""
-
-from nipype.interfaces.spm import SliceTiming
-st = SliceTiming()
