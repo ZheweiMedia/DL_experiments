@@ -155,6 +155,10 @@ def Normlize_Each_subject_as_Zero_One(dataList):
     print(dataList[0][0,:])
 
     return dataList
+def timesData(DataArray):
+    for i in range(DataArray.shape[1]):
+        DataArray[:,i] = DataArray[:,i]*100000
+    return DataArray
 
 def Autoencoder(StackedData):
     # stack data together. Daone
@@ -215,8 +219,8 @@ def print_Each_Subject(validDataList):
 
 
 
-os.chdir("/home/medialab/Zhewei/data/")
-Raw_data = gzip.open('ADNC_Nitime_Z_Raw.pickle.gz', 'rb')
+os.chdir("/home/medialab/Zhewei/data/data_After_BandPass")
+Raw_data = gzip.open('Subjects_After_BandPass.pickle.gz', 'rb')
 Subjects_data = Pickle.load(Raw_data)
 Label, Data, ID = data_to_list(Subjects_data)
 
@@ -286,11 +290,11 @@ Data = stackData(Data)
 	         98,	57,	83,	34,	8,
 	         34,	50,	34,	47,	1,
 	         84,	55,	3,	83,	39])'''
-feature_index = feature_index = set([57,	55,	100,  	53])
+feature_index = set([57,	55,	100,  	53])
 feature_index = numpy.array(list(feature_index))
 feature_index = feature_index-1
 # Data_new = Data[:, list(feature_index)]
-Data_new = Data
+Data_new = timesData(Data)
 # print (Data_new[0:130,:])
 # print (Data_new.shape)
 
@@ -300,7 +304,7 @@ NewSubjectsData = ReNewData(Subjects_data, Data_new, ID, 0)
 
 
 os.chdir("/home/medialab/Zhewei/data/")
-with gzip.open('ADNC_Nitime_All.pickle.gz', 'wb') as output_file:
+with gzip.open('ADNC_BandPass_times100000.pickle.gz', 'wb') as output_file:
     Pickle.dump(NewSubjectsData, output_file)
 
 

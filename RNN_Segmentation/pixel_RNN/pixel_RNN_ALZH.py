@@ -1,5 +1,5 @@
 """
-1. read ellipse file in, and separate as train, validation, test.
+1. read Alz file in, and separate as train, validation, test.
 2. validation is not use for update parameter, just use to check lost function, and 
     compare with train lost function, to see over-fitting or under-fitting.
 3. Four corners Done.

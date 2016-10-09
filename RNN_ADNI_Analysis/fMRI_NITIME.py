@@ -13,6 +13,7 @@ import numpy,math
 import matplotlib.pyplot as plt
 from matplotlib.mlab import csv2rec
 import nitime
+import scipy.io
 
 # Import the time-series objects:
 from nitime.timeseries import TimeSeries
@@ -45,10 +46,10 @@ class _EachSubject:
 
 
 os.chdir("/home/medialab/Zhewei/data/data_from_SPM/")
-Raw_data = gzip.open('Subjects_From_SPM.pickle.gz', 'rb')
+Raw_data = gzip.open('Subjects_from_SPM.pickle.gz', 'rb')
 Subjects_data = Pickle.load(Raw_data)
 
-"""
+
 TR = 3
 lb = 0.02
 ub = 0.08
@@ -62,13 +63,16 @@ for validData in Subjects_data:
                     print (tmp_data.shape)
                     T = TimeSeries(tmp_data, sampling_interval=TR)
                     F = FilterAnalyzer(T, ub=ub, lb=lb, filt_order=40)
+                    feature = {'feature':F.iir.data}
+                    fileName = '/home/medialab/Zhewei/data/data_from_Nitime/'+str(key)+'.mat'
+                    scipy.io.savemat(fileName, feature)
                     p_data = NormalizationAnalyzer(F.fir).z_score.data
                     print (numpy.amax(p_data))
                     #print(numpy.argmax(p_data))
-                    index = numpy.unravel_index(numpy.argmax(p_data), (120,130))
-                    plt.plot(NormalizationAnalyzer(F.fir).percent_change.data[index[0]])
-                    plt.plot(NormalizationAnalyzer(F.fir).z_score.data[index[0]])
-                    plt.show()
+                    #index = numpy.unravel_index(numpy.argmax(p_data), (120,130))
+                    #plt.plot(NormalizationAnalyzer(F.fir).percent_change.data[index[0]])
+                    #plt.plot(NormalizationAnalyzer(F.fir).z_score.data[index[0]])
+                    #plt.show()
                     validData.baseline[str(key)] = p_data
                     if str(key) == '228872':# test at here
                         print (validData.baseline[str(key)])
@@ -83,6 +87,9 @@ for validData in Subjects_data:
                         tmp_data = validData.other[str(other_key)]
                         T = TimeSeries(tmp_data, sampling_interval=TR)
                         F = FilterAnalyzer(T, ub=ub, lb=lb, filt_order=40)
+                        feature = {'feature':F.iir.data}
+                        fileName = '/home/medialab/Zhewei/data/data_from_Nitime/'+str(other_key)+'.mat'
+                        scipy.io.savemat(fileName, feature)
                         p_data = NormalizationAnalyzer(F.fir).z_score.data
                         validData.other[str(other_key)] = p_data
                 except AttributeError:
@@ -92,13 +99,15 @@ for validData in Subjects_data:
 
 os.chdir("/home/medialab/Zhewei/data/")
 with gzip.open('ADNC_Nitime_Z_Raw.pickle.gz', 'wb') as output_file:
-    Pickle.dump(Subjects_data, output_file)"""
+    Pickle.dump(Subjects_data, output_file)
 
 
 
-
-No = 19             
+"""
+No = 5             
 data = Subjects_data[No].baseline[list(Subjects_data[No].baseline.keys())[0]]
+
+print (list(Subjects_data[No].baseline.keys())[0])
 print ( data)
 # data = numpy.array(data)
 # print (data.shape)
@@ -157,6 +166,7 @@ ax02.plot(F.filtered_boxcar.data[0], label='Boxcar filter')
 
 ax02.plot(F.fir.data[0], label='FIR')
 ax02.plot(F.iir.data[0], label='IIR')
+print (F.fir.data[0])
 
 ax02.plot(F.filtered_fourier.data[0], label='Fourier')
 ax02.legend()
@@ -180,4 +190,4 @@ ax05.plot(NormalizationAnalyzer(F.fir).z_score.data[0], label='Z score')
 ax05.legend()
 ax05.set_xlabel('Time (TR)')
 ax05.set_ylabel('Amplitude (% change or Z-score)')
-plt.show()
+plt.show()"""
