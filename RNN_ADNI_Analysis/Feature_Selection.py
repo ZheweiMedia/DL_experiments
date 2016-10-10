@@ -38,24 +38,29 @@ def data_to_list(validDataList):
     ID = list()
     for validData in validDataList:
         tmp_list = list(validData.baseline.keys())
+        print (validData.DX_Group)
         for key in tmp_list:
             try:
                 if validData.baseline[str(key)].any():
                     Label.append(validData.DX_Group)
                     Data.append(validData.baseline[str(key)])
                     ID.append(str(key))
+                    print (str(key))
                 '''if str(key) == '228872':# test at here
                     print (validData.baseline[str(key)])'''
             except AttributeError:
                 pass
+            
         if validData.other != {}:
             tmp_list = list(validData.other.keys())
+            print 
             for other_key in tmp_list:
                 try:
                     if validData.other[str(other_key)].any():
                         Label.append(validData.DX_Group)
                         Data.append(validData.other[str(other_key)])
                         ID.append(str(other_key))
+                        print(str(other_key))
                 except AttributeError:
                     pass
     return Label, Data, ID

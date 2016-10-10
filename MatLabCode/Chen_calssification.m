@@ -15,13 +15,16 @@
 
 load('dataList.mat')
 
-featureNO = [1, 2, 3, 4, 5, 6, 8,10, 15, 20, 30, 40, 60, 80, 100, 150, 200, 250, 300, 350, 400];
+% featureNO = [1, 2, 3, 4, 5, 6, 8,10, 15, 20, 30, 40, 60, 80, 100, 150, 200, 250, 300, 350, 400];
+featureNO = [1, 2, 3, 5, 8, 15, 20, 40, 60, 100, 150, 200, 300, 400];
 [f_m, f_n] = size(featureNO);
 accurrate_matrix = zeros(f_n, f_n);
 repeatNO = 10;
 for i_increase = 1:f_n
     for i_decrease = 1:f_n
         accurateList = [];
+        display(i_increase);
+        display(i_decrease);
         for j = 1:repeatNO
             % subjects: 48
             subjectNo = 48;
@@ -194,7 +197,7 @@ for i_increase = 1:f_n
                     tmp_feature = [tmp_feature fMRI_train_NC{i,3}(increase_set(j,1), increase_set(j,2))];
                 end
                 % decrease set feature
-                for j = 1:increase_feature
+                for j = 1:decrease_feature
                     tmp_feature = [tmp_feature fMRI_train_NC{i,3}(decrease_set(j,1), decrease_set(j,2))];
                 end
 
@@ -214,7 +217,7 @@ for i_increase = 1:f_n
                     tmp_feature = [tmp_feature fMRI_train_AD{i,3}(increase_set(j,1), increase_set(j,2))];
                 end
                 % decrease set feature
-                for j = 1:increase_feature
+                for j = 1:decrease_feature
                     tmp_feature = [tmp_feature fMRI_train_AD{i,3}(decrease_set(j,1), decrease_set(j,2))];
                 end
 
@@ -232,7 +235,7 @@ for i_increase = 1:f_n
                     tmp_feature = [tmp_feature fMRI_test{i,3}(increase_set(j,1), increase_set(j,2))];
                 end
                 % decrease set feature
-                for j = 1:increase_feature
+                for j = 1:decrease_feature
                     tmp_feature = [tmp_feature fMRI_test{i,3}(decrease_set(j,1), decrease_set(j,2))];
                 end
 

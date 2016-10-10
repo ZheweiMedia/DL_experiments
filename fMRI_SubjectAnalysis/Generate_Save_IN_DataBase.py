@@ -110,7 +110,7 @@ def fill_data_to_List(ValidDataList, matDataDict):
             if str(key) in list(matDataDict.keys()):
                 validData.baseline[key] = matDataDict[key]
                 testList.append(key)
-                print (matDataDict[key])
+                #print (matDataDict[key])
         if validData.other != {}:
             tmp_list = list(validData.other.keys())
             for other_key in tmp_list:
