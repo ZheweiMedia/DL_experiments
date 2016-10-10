@@ -9,11 +9,11 @@
 %
 
 
-fileFold = fullfile('~/data/VOCdevkit/VOC2012/SegmentationClass/');
+fileFold = fullfile('~/data/VOCdevkit/VOC2012/SegmentationObject/');
 postFix = '*.png';
-cd ~/data/VOCdevkit/VOC2012/SegmentationClass/
-path = '~/data/VOC_Preprocessed_Data/SegmentationClass/500_500/';
-sizeTo = 500;
+cd ~/data/VOCdevkit/VOC2012/SegmentationObject/
+path = '~/data/VOC_Preprocessed_Data/SegmentationObject/50_50/';
+sizeTo = 50;
 
 dirOutput = dir(fullfile(fileFold, postFix));
 fileNames = {dirOutput.name};
@@ -22,8 +22,8 @@ fileNames = {dirOutput.name};
 for files = 1:n
     %fileName = strcat(fileNames{1,files},'.jpg');
     [I, map]  = imread(fileNames{1,files});
-    I_500 = imresize(I, [sizeTo sizeTo]);
+    [I_500, newmap] = imresize(I, map, [sizeTo sizeTo]);
     saveName = strcat(path,fileNames{1,files});
-    imwrite(I_500, 'saveName.jpg','jpg');
+    imwrite(I_500, newmap,saveName);
     
 end
