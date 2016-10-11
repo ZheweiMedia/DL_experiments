@@ -69,11 +69,11 @@ for ifile = 1:NC_numfiles
     feature = load(mat_name);
     feature = feature.feature;
     [m_f, n_f] = size(feature);
-    tmp_feature = feature;
-%     tmp_feature = zeros(m_f, n_f);
-%     for jframe = 1:feature_No
-%         tmp_feature(jframe, :) = bpfilt(feature(jframe, :), lowFreq, hiFreq, fs, 0);
-%     end
+    tmp_feature = zeros(m_f, n_f);
+    for jframe = 1:feature_No
+        tmp_feature(jframe, :) = bpfilt(feature(jframe, :), lowFreq, hiFreq, fs, 0);
+        tmp_feature(jframe, :) = tmp_feature(jframe, :) - mean(tmp_feature(jframe, :)) + mean(feature(jframe, :));
+    end
     fMRI_NC{ifile,2} = tmp_feature;
     fMRI_NC{ifile,3} = corrcoef(tmp_feature'); 
 end
@@ -90,13 +90,11 @@ for ifile = 1:AD_numfiles
     feature = load(mat_name);
     feature = feature.feature;
     [m_f, n_f] = size(feature);
-%     tmp_feature = zeros(m_f, n_f);
-%     for jframe = 1:feature_No
-%         tmp_feature(jframe, :) = bpfilt(feature(jframe, :), lowFreq, hiFreq, fs, 0);
-%         % % %
-%         tmp_feature(jframe, :) = (tmp_feature(jframe, :)-mean(tmp_feature(jframe, :)))/std(tmp_feature(jframe, :));
-%     end
-    tmp_feature = feature;
+    tmp_feature = zeros(m_f, n_f);
+    for jframe = 1:feature_No
+        tmp_feature(jframe, :) = bpfilt(feature(jframe, :), lowFreq, hiFreq, fs, 0);
+        tmp_feature(jframe, :) = tmp_feature(jframe, :) - mean(tmp_feature(jframe, :)) + mean(feature(jframe, :));
+    end
     fMRI_AD{ifile,2} = tmp_feature;
     fMRI_AD{ifile,3} = corrcoef(tmp_feature');
  
