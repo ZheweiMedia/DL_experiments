@@ -63,7 +63,7 @@ feature_No = 120;
 NC_corr = zeros(120, 120);
 for ifile = 1:NC_numfiles
     fileID = fMRI_NC_IID(ifile);
-    cd ~/Zhewei/data/data_from_Nitime/
+    cd ~/Zhewei/data/data_from_SPM/
     fMRI_NC{ifile,1} = fileID;
     mat_name = strcat(num2str(fMRI_NC_IID(ifile)), '.mat');
     feature = load(mat_name);
@@ -84,7 +84,7 @@ end
 AD_corr = zeros(120, 120);
 for ifile = 1:AD_numfiles
     fileID = fMRI_AD_IID(ifile);
-    cd ~/Zhewei/data/data_from_Nitime/
+    cd ~/Zhewei/data/data_from_SPM/
     fMRI_AD{ifile,1} = fileID;
     mat_name = strcat(num2str(fMRI_AD_IID(ifile)), '.mat');
     feature = load(mat_name);
