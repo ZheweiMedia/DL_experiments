@@ -69,7 +69,7 @@ def prepareData(IDList):
 
     data = numpy.zeros((dataNo, HEIGHT*WIDTH))
     for i in range(dataNo):
-        tag_data = "~/data/VOCdevkit/VOC2012/JPEGImages/"+str(IDList(i))+'.jpg'
+        tag_data = "~/data/VOCdevkit/VOC2012/JPEGImages/"+str(IDList[i])+'.jpg'
         pngfile = Image.open(tag_data)
         pix = pngfile.load()
         pixelValue = numpy.zeros((HEIGHT, WIDTH))
@@ -81,7 +81,7 @@ def prepareData(IDList):
     
     target = numpy.zeros((dataNo, HEIGHT*WIDTH))
     for i in range(dataNo):
-        tag_target = "~/data/VOC_Preprocessed_Data/SegmentationClass/50_50/"+str(i)+'.png'
+        tag_target = "~/data/VOC_Preprocessed_Data/SegmentationClass/50_50/"+str(IDList[i])+'.png'
         pngfile = Image.open(tag_target)
         pix = pngfile.load()
         pixelValue = numpy.zeros((HEIGHT, WIDTH))
@@ -407,7 +407,7 @@ sample_fn = theano.function(
 print ("Prepare data:")
 
 IDList = list()
-with open(txt_file, 'rb') as f:
+with open('IDs.txt', 'rb') as f:
     for line in f:
         IDList.append(line)
 
