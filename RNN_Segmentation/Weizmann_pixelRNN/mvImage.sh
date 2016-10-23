@@ -8,13 +8,13 @@ echo $folds
 
 declare -i No=0
 
-for i in "${folds[@]}"
+for i_file in "${folds[@]}"
 do
-    echo $i
-    cd /home/medialab/data/Weizmann_Seg/1obj/$i/human_seg/
+    echo $i_file
+    cd /home/medialab/data/Weizmann_Seg/1obj/$i_file/human_seg/
     files=($(ls -1))
     cp ${files[0]} /home/medialab/data/Weizmann_Seg/Labels/$No.png
-    cd /home/medialab/data/Weizmann_Seg/1obj/$i/src_color/
+    cd /home/medialab/data/Weizmann_Seg/1obj/$i_file/src_color/
     files=($(ls -1))
     cp ${files[0]} /home/medialab/data/Weizmann_Seg/Img/$No.png
     cd /home/medialab/data/Weizmann_Seg/1obj/
