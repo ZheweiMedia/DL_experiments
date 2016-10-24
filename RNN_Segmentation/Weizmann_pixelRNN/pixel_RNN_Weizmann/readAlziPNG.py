@@ -16,14 +16,14 @@ import math
 dataNo = 100
 height = 50
 width = 50
-channel = 3
+channel = 1
 
 
 
 # data tag
 data = numpy.zeros((dataNo, height*width*channel))
 for i in range(dataNo):
-    tag_data = "../data/Img/50_50/"+str(i)+'.png'
+    tag_data = "../data/BW/"+str(i)+'.jpg'
     pngfile = Image.open(tag_data)
     pix = pngfile.load()
     pixelValue = numpy.zeros((height, width, channel))

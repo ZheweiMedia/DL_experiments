@@ -1,5 +1,5 @@
 """
-1. read Weizmann file in, and separate as train, validation, test.
+1. read Alz file in, and separate as train, validation, test.
 2. validation is not use for update parameter, just use to check lost function, and 
     compare with train lost function, to see over-fitting or under-fitting.
 3. Four corners Done.
@@ -12,7 +12,7 @@
     "allow_input_downcast=True"
 
 @Zhewei
-10/24/2016
+7/15/2016
 
 """
 
@@ -46,7 +46,7 @@ DIM = 64 # Model dimensionality.
 GRAD_CLIP = 1 # Elementwise grad clip threshold
 
 # Dataset
-N_CHANNELS = 3
+N_CHANNELS = 1
 dataNo = 100
 WIDTH = 50
 HEIGHT = 50
@@ -68,16 +68,16 @@ lib.utils.print_model_settings(locals().copy())
 
 def prepareData():
 
-    data = numpy.zeros((dataNo, HEIGHT*WIDTH*N_CHANNELS))
+    data = numpy.zeros((dataNo, HEIGHT*WIDTH))
     for i in range(dataNo):
-        tag_data = "../data/Img/50_50/"+str(i)+'.png'
+        tag_data = "../data/BW/"+str(i)+'.jpg'
         pngfile = Image.open(tag_data)
         pix = pngfile.load()
-        pixelValue = numpy.zeros((HEIGHT, WIDTH, N_CHANNELS))
+        pixelValue = numpy.zeros((HEIGHT, WIDTH))
         for h in range(HEIGHT):
             for w in range(WIDTH):
-                pixelValue[h,w] = numpy.array(pix[h,w])/255
-        pixelValue = pixelValue.reshape(HEIGHT*WIDTH*N_CHANNELS)
+                pixelValue[h,w] = numpy.array(pix[h,w])/256
+        pixelValue = pixelValue.reshape(HEIGHT*WIDTH)
         data[i-1,:] = pixelValue
     
     target = numpy.zeros((dataNo, HEIGHT*WIDTH))
@@ -88,9 +88,9 @@ def prepareData():
         pixelValue = numpy.zeros((HEIGHT, WIDTH))
         for h in range(HEIGHT):
             for w in range(WIDTH):
-                pixelValue[h,w] = numpy.array(pix[h,w])/255
+                pixelValue[h,w] = numpy.array(pix[h,w])/256
         pixelValue = pixelValue.reshape(HEIGHT*WIDTH)
-        target[i,:] = pixelValue
+        target[i-1,:] = pixelValue
 
     print (data.shape,target.shape)
 
@@ -101,7 +101,8 @@ def prepareData():
     # train:validation:test = 8:1:1
     trainNo = math.floor(0.8*data.shape[0])
     validNo = math.floor(0.1*data.shape[0])
-
+    trainNo = int(trainNo)
+    validNo = int(validNo)
     trainData = data[dataOrder[0:trainNo], :]
     validData = data[dataOrder[trainNo:trainNo+validNo], :]
     testData = data[dataOrder[trainNo+validNo:], :]
@@ -338,7 +339,7 @@ def DiagonalBiLSTM(name, input_dim, inputs):
 data = T.tensor4('inputs')
 targets = T.tensor4('targets')
 
-output = Conv2D('InputConv', N_CHANNELS, DIM, 5, data, mask_type='None')
+output = Conv2D('InputConv', N_CHANNELS, DIM, 7, data, mask_type='None')
 
 if MODEL=='pixel_rnn':
 
@@ -422,6 +423,8 @@ trainData, validData, testData, \
     trainTarget, validTarget, testTarget, trainIndex = prepareData()
 
 test = zip(testData, testTarget)
+train_cost = list()
+valid_cost = list()
     
 for epoch in range(STOP_ITERS):
     trainIndex = [i for i in range(len(trainIndex))]
@@ -437,7 +440,7 @@ for epoch in range(STOP_ITERS):
         progressbar((pairNo+1)/len(trainData))
         pairNo += 1
         # print (images.shape)
-        images = images.reshape((BATCH_SIZE, HEIGHT, WIDTH, N_CHANNELS))
+        images = images.reshape((BATCH_SIZE, HEIGHT, WIDTH, 1))
         targets = targets.reshape((BATCH_SIZE, HEIGHT, WIDTH, 1))
         # print (images.shape)
         
@@ -455,7 +458,7 @@ for epoch in range(STOP_ITERS):
         for images, targets in valid:
             progressbar((validDataNo+1)/len(validData))
             validDataNo += 1
-            images = images.reshape((-1, HEIGHT, WIDTH, N_CHANNELS))
+            images = images.reshape((-1, HEIGHT, WIDTH, 1))
             targets = targets.reshape((-1, HEIGHT, WIDTH, 1))
             dev_cost = eval_fn(images, targets)
             print (dev_cost)
@@ -464,6 +467,8 @@ for epoch in range(STOP_ITERS):
         dev_costs.append(0.)
     
     total_time = time.time() - start_time
+    train_cost.append(numpy.mean(costs))
+    valid_cost.append(numpy.mean(dev_costs))
     print ("epoch:{}\ttotal iters:{}\ttrain cost:{}\tdev cost:{}\ttotal time:{}\ttime per iter:{}".format(
             epoch,
             total_iters,
@@ -472,20 +477,24 @@ for epoch in range(STOP_ITERS):
             total_time,
             total_time / total_iters
          ))
-    
+
+print ('Train cost:')
+print (train_cost)
+print ('Valid cost:')
+print (valid_cost)
 # save about 10 images of validation
 saveImage = validData[0:10]
 saveTarget = validTarget[0:10]
 saveData = zip(saveImage, saveTarget)
 saveDataNo = 0
 for images, targets in saveData:
-    images = images.reshape((-1, HEIGHT, WIDTH, N_CHANNELS))
+    images = images.reshape((-1, HEIGHT, WIDTH, 1))
     targets = targets.reshape((-1, HEIGHT, WIDTH, 1))
     segmentation = sample_fn(images, targets)
     # segmentation as only one array (batch size is 1)in a list, so read it out.
     segmentation = segmentation[0]
     segmentation = segmentation.reshape((HEIGHT, WIDTH))
-    images = images.reshape((HEIGHT, WIDTH, N_CHANNELS))    
+    images = images.reshape((HEIGHT, WIDTH))    
     # binary
     segmentationBI = binarize(segmentation)
         
