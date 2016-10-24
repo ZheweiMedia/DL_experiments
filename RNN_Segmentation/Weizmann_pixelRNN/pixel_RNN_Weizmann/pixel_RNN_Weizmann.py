@@ -422,6 +422,8 @@ trainData, validData, testData, \
     trainTarget, validTarget, testTarget, trainIndex = prepareData()
 
 test = zip(testData, testTarget)
+train_cost = list()
+valid_cost = list()
     
 for epoch in range(STOP_ITERS):
     trainIndex = [i for i in range(len(trainIndex))]
@@ -458,12 +460,13 @@ for epoch in range(STOP_ITERS):
             images = images.reshape((-1, HEIGHT, WIDTH, N_CHANNELS))
             targets = targets.reshape((-1, HEIGHT, WIDTH, 1))
             dev_cost = eval_fn(images, targets)
-            print (dev_cost)
             dev_costs.append(dev_cost)
     else:
         dev_costs.append(0.)
     
     total_time = time.time() - start_time
+    train_cost.append(numpy.mean(costs))
+    valid_cost.append(numpy.mean(dev_costs))
     print ("epoch:{}\ttotal iters:{}\ttrain cost:{}\tdev cost:{}\ttotal time:{}\ttime per iter:{}".format(
             epoch,
             total_iters,
@@ -473,31 +476,36 @@ for epoch in range(STOP_ITERS):
             total_time / total_iters
          ))
     
-# save about 10 images of validation
-saveImage = validData[0:10]
-saveTarget = validTarget[0:10]
-saveData = zip(saveImage, saveTarget)
-saveDataNo = 0
-for images, targets in saveData:
-    images = images.reshape((-1, HEIGHT, WIDTH, N_CHANNELS))
-    targets = targets.reshape((-1, HEIGHT, WIDTH, 1))
-    segmentation = sample_fn(images, targets)
-    # segmentation as only one array (batch size is 1)in a list, so read it out.
-    segmentation = segmentation[0]
-    segmentation = segmentation.reshape((HEIGHT, WIDTH))
-    images = images.reshape((HEIGHT, WIDTH, N_CHANNELS))    
-    # binary
-    segmentationBI = binarize(segmentation)
+    # save about 10 images of validation
+    saveImage = validData[0:10]
+    saveTarget = validTarget[0:10]
+    saveData = zip(saveImage, saveTarget)
+    saveDataNo = 0
+    for images, targets in saveData:
+        images = images.reshape((-1, HEIGHT, WIDTH, N_CHANNELS))
+        targets = targets.reshape((-1, HEIGHT, WIDTH, 1))
+        segmentation = sample_fn(images, targets)
+        # segmentation as only one array (batch size is 1)in a list, so read it out.
+        segmentation = segmentation[0]
+        segmentation = segmentation.reshape((HEIGHT, WIDTH))
+        images = images.reshape((HEIGHT, WIDTH, N_CHANNELS))    
+        # binary
+        segmentationBI = binarize(segmentation)
         
-    targets = targets.reshape((HEIGHT, WIDTH))
-    logTime = datetime.datetime.strftime(datetime.datetime.now(), '%Y-%m-%d %H:%M:%S')
-    tag = "epoch{}_No{}_time{}".format(epoch, saveDataNo, logTime)
-    nameSeg = 'Segmentation_'+tag+'.png'
-    nameGT = 'GroundTruth_'+tag+'.png'
-    nameBI = 'BiS_'+tag+'.png'
-    nameOrigin = 'ORI'+tag+'.png'
-    mpimg.imsave(nameSeg, segmentation, cmap='Greys_r')
-    mpimg.imsave(nameBI, segmentationBI, cmap='Greys_r')
-    mpimg.imsave(nameGT, targets, cmap='Greys_r')
-    mpimg.imsave(nameOrigin, images, cmap='Greys_r')
-    saveDataNo += 1
+        targets = targets.reshape((HEIGHT, WIDTH))
+        logTime = datetime.datetime.strftime(datetime.datetime.now(), '%Y-%m-%d %H:%M:%S')
+        tag = "epoch{}_No{}_time{}".format(epoch, saveDataNo, logTime)
+        nameSeg = 'Segmentation_'+tag+'.png'
+        nameGT = 'GroundTruth_'+tag+'.png'
+        nameBI = 'BiS_'+tag+'.png'
+        nameOrigin = 'ORI'+tag+'.png'
+        mpimg.imsave(nameSeg, segmentation, cmap='Greys_r')
+        # mpimg.imsave(nameBI, segmentationBI, cmap='Greys_r')
+        # mpimg.imsave(nameGT, targets, cmap='Greys_r')
+        mpimg.imsave(nameOrigin, images, cmap='Greys_r')
+        saveDataNo += 1
+
+print ('Train cost:')
+print (train_cost)
+print ('Valid cost:')
+print (valid_cost)
