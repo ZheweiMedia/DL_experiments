@@ -46,7 +46,7 @@ DIM = 64 # Model dimensionality.
 GRAD_CLIP = 1 # Elementwise grad clip threshold
 
 # Dataset
-N_CHANNELS = 1
+N_CHANNELS = 3
 dataNo = 100
 WIDTH = 50
 HEIGHT = 50
@@ -68,29 +68,29 @@ lib.utils.print_model_settings(locals().copy())
 
 def prepareData():
 
-    data = numpy.zeros((dataNo, HEIGHT*WIDTH))
+    data = numpy.zeros((dataNo, height*width*N_CHANNELS))
     for i in range(dataNo):
-        tag_data = "..data/Img/"+str(i)+'.png'
+        tag_data = "../data/Img/50_50/"+str(i)+'.png'
         pngfile = Image.open(tag_data)
         pix = pngfile.load()
-        pixelValue = numpy.zeros((HEIGHT, WIDTH))
-        for h in range(HEIGHT):
-            for w in range(WIDTH):
-                pixelValue[h,w] = pix[h,w]/256
-        pixelValue = pixelValue.reshape(HEIGHT*WIDTH)
+        pixelValue = numpy.zeros((height, width, N_CHANNELS))
+        for h in range(height):
+            for w in range(width):
+                pixelValue[h,w] = numpy.array(pix[h,w])/256
+        pixelValue = pixelValue.reshape(height*width*N_CHANNELS)
         data[i-1,:] = pixelValue
     
-    target = numpy.zeros((dataNo, HEIGHT*WIDTH))
+    target = numpy.zeros((dataNo, height*width))
     for i in range(dataNo):
-        tag_target = "..data/Label/"+str(i)+'.png'
+        tag_target = "../data/Label/50_50/"+str(i)+'.png'
         pngfile = Image.open(tag_target)
         pix = pngfile.load()
-        pixelValue = numpy.zeros((HEIGHT, WIDTH))
-        for h in range(HEIGHT):
-            for w in range(WIDTH):
-                pixelValue[h,w] = pix[h,w]/256
-        pixelValue = pixelValue.reshape(HEIGHT*WIDTH)
-        target[i-1,:] = pixelValue
+        pixelValue = numpy.zeros((height, width))
+        for h in range(height):
+            for w in range(width):
+                pixelValue[h,w] = numpy.array(pix[h,w])/256
+        pixelValue = pixelValue.reshape(height*width)
+        target[i,:] = pixelValue
 
     print (data.shape,target.shape)
 
@@ -101,8 +101,7 @@ def prepareData():
     # train:validation:test = 8:1:1
     trainNo = math.floor(0.8*data.shape[0])
     validNo = math.floor(0.1*data.shape[0])
-    trainNo = int(trainNo)
-    validNo = int(validNo)
+
     trainData = data[dataOrder[0:trainNo], :]
     validData = data[dataOrder[trainNo:trainNo+validNo], :]
     testData = data[dataOrder[trainNo+validNo:], :]
@@ -215,7 +214,7 @@ def Conv1D(name, input_dim, output_dim, filter_size, inputs, apply_biases=True):
     )
 
     # conv2d takes inputs as (batch size, input channels, height[?], width[?])
-    inputs = inputs.reshape((inputs.shape[0], inputs.shape[1], 1, inputs.shape[2]))
+    inputs = inputs.reshape((inputs.shape[0], inputs.shape[1], N_CHANNELS, inputs.shape[2]))
     inputs = inputs.dimshuffle(0, 3, 1, 2)
     result = T.nnet.conv2d(inputs, filters, border_mode='valid', filter_flip=False)
 
@@ -480,13 +479,13 @@ saveTarget = validTarget[0:10]
 saveData = zip(saveImage, saveTarget)
 saveDataNo = 0
 for images, targets in saveData:
-    images = images.reshape((-1, HEIGHT, WIDTH, 1))
+    images = images.reshape((-1, HEIGHT, WIDTH, N_CHANNELS))
     targets = targets.reshape((-1, HEIGHT, WIDTH, 1))
     segmentation = sample_fn(images, targets)
     # segmentation as only one array (batch size is 1)in a list, so read it out.
     segmentation = segmentation[0]
     segmentation = segmentation.reshape((HEIGHT, WIDTH))
-    images = images.reshape((HEIGHT, WIDTH))    
+    images = images.reshape((HEIGHT, WIDTH, N_CHANNELS))    
     # binary
     segmentationBI = binarize(segmentation)
         
