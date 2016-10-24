@@ -4,7 +4,6 @@ clear all;
 % postFix = '*.png';
 % cd ~/data/Weizmann_Seg/Labels/Origin/
 % path = '~/data/Weizmann_Seg/Labels/BW/';
-% sizeTo = 50;
 % 
 % dirInput = dir(fullfile(fileFold, postFix));
 % fileNames = {dirInput.name};
@@ -28,10 +27,10 @@ clear all;
 
 
 
-fileFold = fullfile('~/data/Weizmann_Seg/Img/Origin/');
+fileFold = fullfile('~/data/Weizmann_Seg/Labels/BW/');
 postFix = '*.png';
-cd ~/data/Weizmann_Seg//Img/Origin/
-path = '~/data/Weizmann_Seg/Img/50_50/';
+cd ~/data/Weizmann_Seg/Labels/BW/
+path = '~/data/Weizmann_Seg/Labels/50_50/';
 sizeTo = 50;
 
 dirInput = dir(fullfile(fileFold, postFix));
@@ -40,7 +39,7 @@ fileNames = {dirInput.name};
 [m,n] = size(fileNames);
 for files = 1:n
     I  = imread(fileNames{1,files});
-    I_500 = imresize(I, [sizeTo sizeTo]);
+    I_500 = imresize(I, [sizeTo sizeTo], 'nearest');
     saveName = strcat(path,fileNames{1,files});
     imwrite(I_500, saveName);
     
