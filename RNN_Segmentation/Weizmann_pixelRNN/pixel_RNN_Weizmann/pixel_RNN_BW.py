@@ -448,9 +448,10 @@ for epoch in range(STOP_ITERS):
         total_iters += 1
         # print (total_iters)
         # print (total_time)
-        print (cost)
+        # print (cost)
         costs.append(cost)
-   # train all images, and then validation
+    print ( )
+    # train all images, and then validation
     dev_costs = []
     if EVAL_DEV_COST:
         valid = zip(validData, validTarget)
