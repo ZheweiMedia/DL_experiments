@@ -338,12 +338,12 @@ def DiagonalBiLSTM(name, input_dim, inputs):
 data = T.tensor4('inputs')
 targets = T.tensor4('targets')
 
-output = Conv2D('InputConv', N_CHANNELS, DIM, 5, data, mask_type='None')
+output = Conv2D('InputConv', N_CHANNELS, DIM, 7, data, mask_type='None')
 
 if MODEL=='pixel_rnn':
 
     output = DiagonalBiLSTM('LSTM1', DIM, output)
-    output = Conv2D('OutputConv0', DIM*4, DIM, 1, output, mask_type='None', he_init=True)
+    output = Conv2D('OutputConv0', DIM*4, DIM, 5, output, mask_type='None', he_init=True)
     output = relu(output)
     output = DiagonalBiLSTM('LSTM2', DIM, output)
 
@@ -355,15 +355,15 @@ elif MODEL=='pixel_cnn':
         output = relu(output)
 
 # DIM*16 to DIM*4, to DIM, to 1
-output = Conv2D('OutputConv1', DIM*4, DIM, 1, output, mask_type='None', he_init=True)
+output = Conv2D('OutputConv1', DIM*4, DIM, 5, output, mask_type='None', he_init=True)
 output = relu(output)
 
-output = Conv2D('OutputConv2', DIM, DIM, 1, output, mask_type='None', he_init=True)
+output = Conv2D('OutputConv2', DIM, DIM, 3, output, mask_type='None', he_init=True)
 output = relu(output)
 
 # TODO: for color images, implement a 256-way softmax for each RGB channel here
 # we don't need it....
-output = Conv2D('OutputConv3', DIM, 1, 1, output, mask_type='None')
+output = Conv2D('OutputConv3', DIM, 1, 3, output, mask_type='None')
 
 # Here should be softmax?
 # The answer is NO. Softmax and sigmoid are similiar. 

@@ -12,6 +12,7 @@ from PIL import Image
 import numpy
 from random import shuffle
 import math
+import matplotlib.image as mpimg
 
 dataNo = 100
 height = 50
@@ -63,5 +64,11 @@ trainTarget = target[dataOrder[0:trainNo], :]
 validTarget = target[dataOrder[trainNo:trainNo+validNo], :]
 testTarget = target[dataOrder[trainNo+validNo:], :]
 
+for i in range(validNo):
+    tmp = validData[i,:]
+    tmp = tmp.reshape((height, width))
+    tag = "No{}".format(i)
+    mpimg.imsave(tag, tmp, cmap='Greys_r')
+    
 
  
