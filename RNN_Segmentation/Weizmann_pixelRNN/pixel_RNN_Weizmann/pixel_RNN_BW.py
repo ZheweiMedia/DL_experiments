@@ -58,7 +58,7 @@ GEN_SAMPLES = True # whether to generate samples during training (generating sam
 TRAIN_MODE = 'iters' # 'iters' to use PRINT_ITERS and STOP_ITERS, 'time' to use PRINT_TIME and STOP_TIME
 PRINT_ITERS = 1 # Print cost, generate samples, save model checkpoint every N iterations.
                   #PRINT_ITERS is useless now.
-STOP_ITERS = 500 # Stop after this many iterations
+STOP_ITERS = 50 # Stop after this many iterations
                   # Each means shuffle training data and continue to train
 PRINT_TIME = 60*60 # Print cost, generate samples, save model checkpoint every N seconds.
 STOP_TIME = 60*60*2 # Stop after this many seconds of actual training (not including time req'd to generate samples etc.)
@@ -344,7 +344,7 @@ output = Conv2D('InputConv', N_CHANNELS, DIM, 7, data, mask_type='None')
 if MODEL=='pixel_rnn':
 
     output = DiagonalBiLSTM('LSTM1', DIM, output)
-    output = Conv2D('OutputConv0', DIM*4, DIM, 1, output, mask_type='None', he_init=True)
+    output = Conv2D('OutputConv0', DIM*4, DIM, 5, output, mask_type='None', he_init=True)
     output = relu(output)
     output = DiagonalBiLSTM('LSTM2', DIM, output)
 
@@ -356,10 +356,10 @@ elif MODEL=='pixel_cnn':
         output = relu(output)
 
 # DIM*16 to DIM*4, to DIM, to 1
-output = Conv2D('OutputConv1', DIM*4, DIM, 1, output, mask_type='None', he_init=True)
+output = Conv2D('OutputConv1', DIM*4, DIM, 3, output, mask_type='None', he_init=True)
 output = relu(output)
 
-output = Conv2D('OutputConv2', DIM, DIM, 1, output, mask_type='None', he_init=True)
+output = Conv2D('OutputConv2', DIM, DIM, 3, output, mask_type='None', he_init=True)
 output = relu(output)
 
 # TODO: for color images, implement a 256-way softmax for each RGB channel here
