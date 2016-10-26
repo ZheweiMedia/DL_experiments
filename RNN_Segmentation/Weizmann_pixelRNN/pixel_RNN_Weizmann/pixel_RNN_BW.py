@@ -58,7 +58,7 @@ GEN_SAMPLES = True # whether to generate samples during training (generating sam
 TRAIN_MODE = 'iters' # 'iters' to use PRINT_ITERS and STOP_ITERS, 'time' to use PRINT_TIME and STOP_TIME
 PRINT_ITERS = 1 # Print cost, generate samples, save model checkpoint every N iterations.
                   #PRINT_ITERS is useless now.
-STOP_ITERS = 50 # Stop after this many iterations
+STOP_ITERS = 100 # Stop after this many iterations
                   # Each means shuffle training data and continue to train
 PRINT_TIME = 60*60 # Print cost, generate samples, save model checkpoint every N seconds.
 STOP_TIME = 60*60*2 # Stop after this many seconds of actual training (not including time req'd to generate samples etc.)
@@ -379,7 +379,7 @@ lib.utils.print_params_info(params)
 grads = T.grad(cost, wrt=params, disconnected_inputs='warn')
 grads = [T.clip(g, lib.floatX(-GRAD_CLIP), lib.floatX(GRAD_CLIP)) for g in grads]
 
-updates = lasagne.updates.adam(grads, params, learning_rate=1e-3)
+updates = lasagne.updates.adadelta(grads, params, learning_rate=1e-3)
 
 train_fn = theano.function(
     inputs=[data,targets],
