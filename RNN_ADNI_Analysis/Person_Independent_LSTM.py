@@ -118,7 +118,7 @@ def label_to_binary(labelList):
     
 
 os.chdir("/home/medialab/Zhewei/data")
-Raw_data = gzip.open('ADNC_Nitime_Four.pickle.gz', 'rb')
+Raw_data = gzip.open('ADNC_Nitime_Z_Raw.pickle.gz', 'rb')
 Subjects_data = Pickle.load(Raw_data)
 
 # Now data are in the list Subjects_data.
@@ -128,7 +128,9 @@ shuffle(Subjects_data)
 trainNo = math.floor(len(Subjects_data)*Train_percentage)
 validNo = math.floor(len(Subjects_data)*Valid_percentage)
 
-train_Subjects = Subjects_data[0:trainNo]
+
+train_Subjects = Subjects_data[0:len(Subjects_data)]
+# train_Subjects = Subjects_data[0:trainNo]
 valid_Subjects = Subjects_data[trainNo:trainNo+validNo]
 test_Subjects = Subjects_data[trainNo+validNo:]
 
@@ -147,6 +149,7 @@ testLabel, testData, testID = collect_Baseline_Only(test_Subjects)
 print ('We have', len(trainID), 'train images.')
 print ('We have', len(validID), 'valid images.')
 print ('We have', len(testID), 'test images.')
+print (trainData[0])
 # label, data, ID = collect_Baseline_And_Other(Subjects_data)
 # print (len(ID))
 

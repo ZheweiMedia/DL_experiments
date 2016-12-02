@@ -34,6 +34,8 @@ do
     timeDay=${timeMonthDay:3:4}
     timeFilt=$timeYear$timeMonth$timeDay
     
+    echo $timeMonthDay
+    
     # echo $timeFilt
     No=$fileShould
     case "${IIDarray[@]}" in  *$iid*)
@@ -41,11 +43,11 @@ do
         # find sid to identify .dcm files
         # sid=`xmllint --xpath '//project/subject/subjectIdentifier/text()' $X`
         # find the path to .dcm
-        dcm_fMRI=`find $PWD -name "*Resting_State_fMRI*${iid}*.dcm"`
+        # dcm_fMRI=`find $PWD -name "*Resting_State_fMRI*${iid}*.dcm"`
         # cp .dcm to new fold, then dcm2nii, then delete .dcm in the new fold
-        mkdir /home/medialab/data/ADNI/fMRI_${iid}
+        # mkdir /home/medialab/data/ADNI/fMRI_${iid}
 	
-        cp $dcm_fMRI /home/medialab/data/ADNI/fMRI_${iid}
+        # cp $dcm_fMRI /home/medialab/data/ADNI/fMRI_${iid}
         # dcm2nii  -g n -n y /home/medialab/data/ADNI/fMRI_${iid}
         # del_dcmFile=`find /home/medialab/data/ADNI/fMRI_${iid}/ -name "*.dcm"`
         # rm $del_dcmFile

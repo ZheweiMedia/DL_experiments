@@ -224,17 +224,17 @@ def print_Each_Subject(validDataList):
 
 
 
-os.chdir("/home/medialab/Zhewei/data/data_After_BandPass")
-Raw_data = gzip.open('Subjects_After_BandPass.pickle.gz', 'rb')
+os.chdir("/home/medialab/Zhewei/data")
+Raw_data = gzip.open('ADNC_Nitime_Z_Raw.pickle.gz', 'rb')
 Subjects_data = Pickle.load(Raw_data)
 Label, Data, ID = data_to_list(Subjects_data)
 
-print_Each_Subject(Subjects_data)
+# print_Each_Subject(Subjects_data)
 
 # Now Data is a list of array [featureNo, timestep]. We need to stack the data
 # print (len(Label))
 # print (len(Data))
-# print (Data[0].shape)
+print (Data[0].shape)
 
 # If we use residual
 # Data = difference_of_data(Data)# Now Data is a list of array [featureNo, timestep-1].
@@ -245,15 +245,15 @@ Label_New = expandLabel_for_origin(Label)
 print (len(Label_New))
 
 # Normalize the data
-# Data = Normalize_Each_subject_as_NDB(Data)
+Data = Normalize_Each_subject_as_NDB(Data)
 # Data = Normlize_Each_subject_as_Zero_One(Data)
-print(Data[0].shape)
+print('Here:', Data[0].shape)
 Data = stackData(Data)
-#print (Data.shape)
-#print (Data[0:130,0])
+print (Data.shape)
+print ((Data[0:130,0]))
 
 
-# Data_new =  Autoencoder(Data)
+Data_new =  Autoencoder(Data)
 # Data_new = SelectKBest(chi2, k=120).fit_transform(Data, Label_New)
 '''feature_index = set([57,	55,	100,	53,	62,
 	         73,	107,	62,	107,	26,

@@ -44,6 +44,8 @@ def work(fnames):
     MRI_ImageID_List_tmp = list()
     fMRI_ImageID_List_tmp = list()
 
+    subjects = list()
+
     MRI_tmp = list()
     fMRI_tmp = list()
 
@@ -91,6 +93,7 @@ def work(fnames):
                     # raise ValueError('More than one fMRI')
                 MRI_ImageID_List_tmp += MRI_tmp
                 fMRI_ImageID_List_tmp += fMRI_tmp
+                subjects.append(iSubjID)
             Flag_MRI = False
             Flag_fMRI = False
             iSubjID = row['Subject ID']
@@ -111,6 +114,9 @@ def work(fnames):
     print (fMRI_ImageID_List_tmp)
     print ('We have valid MRI Images:',len(MRI_ImageID_List_tmp))
     print ('We have valid fMRI Images:',len(fMRI_ImageID_List_tmp))
+    subjectList = list(set(subjects))
+    print (subjectList)
+    print (len(set(subjects)))
 
     with open(fnames[1:],'w') as f:
         for ID in MRI_ImageID_List_tmp:

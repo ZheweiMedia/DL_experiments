@@ -1,8 +1,0 @@
-%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%   1. Do preprocssing via Afni, then we have 136 nii files.
-%   2. Use matlab to calculate the avarage of the zones
-%
-%
-%
-%
