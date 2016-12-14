@@ -187,7 +187,7 @@ def Autoencoder(StackedData):
     decoded = Dense(input_feature, activation='sigmoid')(decoded)
 
     autoencoder = Model(input=input_data, output=decoded)
-    autoencoder.compile(optimizer='adadelta', loss='binary_crossentropy')
+    autoencoder.compile(optimizer='adadelta', loss='mean_squared_error')
     encoder = Model(input=input_data, output=encoded)
     autoencoder.fit(x_train, x_train,
                 nb_epoch=30,
@@ -254,6 +254,7 @@ print ((Data[0:130,0]))
 
 
 Data_new =  Autoencoder(Data)
+print (Data_new[10])
 # Data_new = SelectKBest(chi2, k=120).fit_transform(Data, Label_New)
 '''feature_index = set([57,	55,	100,	53,	62,
 	         73,	107,	62,	107,	26,
