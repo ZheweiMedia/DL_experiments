@@ -67,7 +67,7 @@ for xmlfile in $xmlfiles; do
 	flirt -omat func2anat.mat -cost corratio -dof 12 -interp trilinear -ref ../T1/skullstrip.nii -in despike0050.nii
 	
 	# Get anatimical-to-standard image registration
-	flirt -omat anat2stnd.mat -cost corratio -dof 12 -interp triilinear -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+	flirt -omat anat2stnd.mat -cost corratio -dof 12 -interp trilinear -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
 
 	# Get functional-to-standard image transformation
 	convert_xfm -omat func2stnd.mat -concat anat2stnd.mat func2anat.mat
