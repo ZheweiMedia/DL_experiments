@@ -57,7 +57,7 @@ for xmlfile in $xmlfiles; do
 
 	## splite and clean .nii files
 	fslsplit despike.nii despike
-	rm slicetiming.nii motioncorrection.nii despike.nii
+	rm slicetiming.nii motioncorrection.nii despike.nii fMRI_4d.nii
 
 	### Step 2: ends ###
 
@@ -69,10 +69,57 @@ for xmlfile in $xmlfiles; do
 	# Get anatimical-to-standard image registration
 	flirt -omat anat2stnd.mat -cost corratio -dof 12 -interp trilinear -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
 
+	# apply MRI to standard registration
+	flirt -out registration_T1.nii -interp trilinear -applyxfm -init anat2stnd.mat -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+
+
 	# Get functional-to-standard image transformation
 	convert_xfm -omat func2stnd.mat -concat anat2stnd.mat func2anat.mat
+	
+	despike_fileNo=`ls despike*.nii | wc`
+	despike_fileNo=($fileNo)
+	despike_fileNo=${fileNo[0]}
+	
+	## Apply functional-to-standard image registration
+	i=0
+	while [ $i -lt $despike_fileNo ];
+	do
+	    if [ $i -lt 10 ]; then
+		fMRI_index=000$i
+	    elif [ $i -lt 100 ]; then
+		fMRI_index=00$i
+	    else
+		fMRI_index=0$i
+	    fi
+	    flirt -out registration_fMRI_$fMRI_index.nii -interp trilinear -applyxfm -init func2stnd.mat -ref ~/data/template/std_skullstrip.nii.gz -in despike$fMRI_index.nii
+	    i=`expr $i + 1`
+	done
+	
+	fslmerge -t registration_fMRI_4d.nii registration_fMRI*.nii
+	### Step 3: ends ###
 
-	## Apply 
+
+	### Step 4: Remove noise signal ###
+
+	## segment anatomical image
+	fsl5.0-fast -o T1_segm_A -t 1 -n 3 -g -p registration_T1.nii
+
+	## Get mrean signal of CSF segment
+	3dmaskave -quiet -mask T1_segm_A_seg_0.nii registration_fMRI_4d.nii > fMRI_csf.1D
+
+	## motion correction in the standard space
+	3dvolreg -prefix _mc_F.nii -1Dfile fMRI_motion.1D -Fourier -twopass -zpad 4 -base 50 registration_fMRI_4d.nii
+
+	## Get motion derivative
+	1d_tool.py -write fMRI_motion_deriv.1D -derivative -infile fMRI_motion.1D
+
+	## concatenate CSF signal, motion correction, motion derivative into 'noise signal'
+	1dcat fMRI_csf1D fMRI_motion.1D fMRI_motion_deriv.1D > fMRI_noise.1D
+
+	## Regress out the 'noise signal' from functional image
+	3dBandpass -prefix fMRI_removenoise.nii -mask registration_fMRI_0003.nii -ort fMRI_noise.1D 0.01 0.08 registration_fMRI_4d.nii
+
+	
 	cd $initial_dataFolder
     fi
 done
