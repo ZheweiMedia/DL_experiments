@@ -30,8 +30,9 @@ for xmlfile in $xmlfiles; do
     if [ ${arr[0]} == 1 ]; then
         cd $process_dataFolder/$group/$subjectID/
 	cd T1
-	3dSkullStrip -o_ply skullstrip_musk.nii -input *.nii
-	3dcalc -prefix skullstrip.nii -expr 'a*step(b)' -b skullstrip_musk.nii 
+	mv *.nii T1.nii
+	3dSkullStrip -o_ply skullstrip_musk.nii -input T1.nii
+	3dcalc -prefix skullstrip.nii -expr 'a*step(b)' -b skullstrip_musk.nii -a T1.nii 
 	cd ../fMRI
 	# discard first 10 images 
 	mv *.nii fMRI.nii
