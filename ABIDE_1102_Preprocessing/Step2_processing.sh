@@ -77,9 +77,10 @@ for xmlfile in $xmlfiles; do
 	convert_xfm -omat func2stnd.mat -concat anat2stnd.mat func2anat.mat
 	
 	despike_fileNo=`ls despike*.nii | wc`
-	despike_fileNo=($fileNo)
-	despike_fileNo=${fileNo[0]}
+	despike_fileNo=($despike_fileNo)
+	despike_fileNo=${despike_fileNo[0]}
 	
+	echo $despike_fileNo
 	## Apply functional-to-standard image registration
 	i=0
 	while [ $i -lt $despike_fileNo ];
@@ -91,6 +92,7 @@ for xmlfile in $xmlfiles; do
 	    else
 		fMRI_index=0$i
 	    fi
+	    
 	    flirt -out registration_fMRI_$fMRI_index.nii -interp trilinear -applyxfm -init func2stnd.mat -ref ~/data/template/std_skullstrip.nii.gz -in despike$fMRI_index.nii
 	    i=`expr $i + 1`
 	done
@@ -114,7 +116,7 @@ for xmlfile in $xmlfiles; do
 	1d_tool.py -write fMRI_motion_deriv.1D -derivative -infile fMRI_motion.1D
 
 	## concatenate CSF signal, motion correction, motion derivative into 'noise signal'
-	1dcat fMRI_csf1D fMRI_motion.1D fMRI_motion_deriv.1D > fMRI_noise.1D
+	1dcat fMRI_csf.1D fMRI_motion.1D fMRI_motion_deriv.1D > fMRI_noise.1D
 
 	## Regress out the 'noise signal' from functional image
 	3dBandpass -prefix fMRI_removenoise.nii -mask registration_fMRI_0003.nii -ort fMRI_noise.1D 0.01 0.08 registration_fMRI_4d.nii
