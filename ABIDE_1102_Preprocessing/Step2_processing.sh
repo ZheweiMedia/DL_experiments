@@ -15,6 +15,7 @@ cd $initial_dataFolder
 # read all .xml file, separate as ABIDE or Control
 
 xmlfiles=`ls *Resting_State_fMRI*.xml`
+rm $process_dataFolder/processedID.txt
 
 for xmlfile in $xmlfiles; do
     echo ''
@@ -29,12 +30,13 @@ for xmlfile in $xmlfiles; do
 
     if [ ${arr[0]} == 1 ]; then
         cd $process_dataFolder/$group/$subjectID/
+	echo $subjectID >> $process_dataFolder/processedID.txt
 	cd T1
 	mv *.nii T1.nii
 	3dSkullStrip -o_ply skullstrip_musk.nii -input T1.nii
 	3dcalc -prefix skullstrip.nii -expr 'a*step(b)' -b skullstrip_musk.nii -a T1.nii 
 	cd ../fMRI
-	# discard first 10 images 
+	# discard first 10 images
 	mv *.nii fMRI.nii
 	fslsplit fMRI.nii fMRI
 	i=1
@@ -122,7 +124,11 @@ for xmlfile in $xmlfiles; do
 	## Regress out the 'noise signal' from functional image
 	3dBandpass -prefix fMRI_removenoise.nii -mask registration_fMRI_0003.nii -ort fMRI_noise.1D 0.01 0.08 registration_fMRI_4d.nii
 
-	
+	## clean data
+	mkdir result_fMRI_image
+	mv fMRI_removenoise.nii ./result_fMRI_image
+	rm *	
+	rm ../T1/*
 	cd $initial_dataFolder
     fi
 done
