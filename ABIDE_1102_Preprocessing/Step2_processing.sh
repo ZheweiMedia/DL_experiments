@@ -1,6 +1,6 @@
 #! bin/bash
 
-# This program use for moving data
+# This program use for processing data, one by one
 #
 #
 #
