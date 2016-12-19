@@ -1,0 +1,3764 @@
+
+xmlfile: ABIDE_50002_Resting_State_fMRI_S163211_I327154.xml
+
+xmlfile: ABIDE_50003_Resting_State_fMRI_S164263_I328256.xml
+
+xmlfile: ABIDE_50004_Resting_State_fMRI_S163622_I327565.xml
+
+xmlfile: ABIDE_50007_Resting_State_fMRI_S163674_I327617.xml
+
+xmlfile: ABIDE_50005_Resting_State_fMRI_S163384_I327327.xml
+
+xmlfile: ABIDE_50008_Resting_State_fMRI_S163123_I327048.xml
+
+xmlfile: ABIDE_50006_Resting_State_fMRI_S163789_I327734.xml
+
+xmlfile: ABIDE_50009_Resting_State_fMRI_S163323_I327266.xml
+
+xmlfile: ABIDE_50030_Resting_State_fMRI_S163587_I327530.xml
+
+
+xmlfile: ABIDE_50031_Resting_State_fMRI_S163124_I327050.xml
+xmlfile: ABIDE_50032_Resting_State_fMRI_S163535_I327478.xml
+
+xmlfile: ABIDE_50033_Resting_State_fMRI_S163708_I327653.xml
+50002
+50006
+50007
+50031
+50032
+50033
+50008
+50009
+50005
+50004
+50003
+50030
+
+Fatal Signal 2 (SIGINT) received
+
+Fatal Signal 2 (SIGINT) received
+
+Fatal Signal 2 (SIGINT) received
+
+Fatal Signal 2 (SIGINT) received
+
+Fatal Signal 2 (SIGINT) received
+
+Fatal Signal 2 (SIGINT) received
+
+Fatal Signal 2 (SIGINT) received
+    mri_short2mask
+   mri_brainormalize
+    mri_short2mask
+    mri_short2mask
+   mri_brainormalize
+   mri_brainormalize
+    mri_short2mask
+   mri_brainormalize
+  3dSkullStrip
+   mri_brainormalize
+   mri_brainormalize
+  3dSkullStrip
+  3dSkullStrip
+   mri_brainormalize
+  3dSkullStrip
+ Bottom of Debug Stack
+  3dSkullStrip
+  3dSkullStrip
+ Bottom of Debug Stack
+ Bottom of Debug Stack
+  3dSkullStrip
+ Bottom of Debug Stack
+ Bottom of Debug Stack
+** AFNI version = AFNI_16.2.16  Compile date = Sep  4 2016
+ Bottom of Debug Stack
+** AFNI version = AFNI_16.2.16  Compile date = Sep  4 2016
+** AFNI version = AFNI_16.2.16  Compile date = Sep  4 2016
+ Bottom of Debug Stack
+** AFNI version = AFNI_16.2.16  Compile date = Sep  4 2016
+** AFNI version = AFNI_16.2.16  Compile date = Sep  4 2016
+** [[Precompiled binary linux_openmp_64: Sep  4 2016]]
+** [[Precompiled binary linux_openmp_64: Sep  4 2016]]
+** AFNI version = AFNI_16.2.16  Compile date = Sep  4 2016
+** [[Precompiled binary linux_openmp_64: Sep  4 2016]]
+** [[Precompiled binary linux_openmp_64: Sep  4 2016]]
+** AFNI version = AFNI_16.2.16  Compile date = Sep  4 2016
+** [[Precompiled binary linux_openmp_64: Sep  4 2016]]
+** Program Death **
+** Program Death **
+** [[Precompiled binary linux_openmp_64: Sep  4 2016]]
+** Program Death **
+** Program Death **
+** [[Precompiled binary linux_openmp_64: Sep  4 2016]]
+** Program Death **
+** Program Death **
+** Program Death **
+
+Fatal Signal 2 (SIGINT) received
+   mri_brainormalize
+  3dSkullStrip
+ Bottom of Debug Stack
+** AFNI version = AFNI_16.2.16  Compile date = Sep  4 2016
+** [[Precompiled binary linux_openmp_64: Sep  4 2016]]
+** Program Death **
+
+Fatal Signal 2 (SIGINT) received
+   mri_brainormalize
+  3dSkullStrip
+ Bottom of Debug Stack
+** AFNI version = AFNI_16.2.16  Compile date = Sep  4 2016
+** [[Precompiled binary linux_openmp_64: Sep  4 2016]]
+** Program Death **
+
+Fatal Signal 2 (SIGINT) received
+   mri_brainormalize
+  3dSkullStrip
+ Bottom of Debug Stack
+** AFNI version = AFNI_16.2.16  Compile date = Sep  4 2016
+** [[Precompiled binary linux_openmp_64: Sep  4 2016]]
+** Program Death **
+
+Fatal Signal 2 (SIGINT) received
+   mri_brainormalize
+  3dSkullStrip
+ Bottom of Debug Stack
+** AFNI version = AFNI_16.2.16  Compile date = Sep  4 2016
+** [[Precompiled binary linux_openmp_64: Sep  4 2016]]
+** Program Death **
+
+Fatal Signal 2 (SIGINT) received
+   mri_brainormalize
+  3dSkullStrip
+ Bottom of Debug Stack
+** AFNI version = AFNI_16.2.16  Compile date = Sep  4 2016
+** [[Precompiled binary linux_openmp_64: Sep  4 2016]]
+** Program Death **
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+** ERROR (nifti_image_read): failed to find header file for 'skullstrip_musk.nii'
+[7m** FATAL ERROR:[0m can't open dataset skullstrip_musk.nii
+** Program compile date = Sep  4 2016
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+** ERROR (nifti_image_read): failed to find header file for 'skullstrip_musk.nii'
+[7m** FATAL ERROR:[0m can't open dataset skullstrip_musk.nii
+** Program compile date = Sep  4 2016
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+** ERROR (nifti_image_read): failed to find header file for 'skullstrip_musk.nii'
+[7m** FATAL ERROR:[0m can't open dataset skullstrip_musk.nii
+** Program compile date = Sep  4 2016
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+** ERROR (nifti_image_read): failed to find header file for 'skullstrip_musk.nii'
+[7m** FATAL ERROR:[0m can't open dataset skullstrip_musk.nii
+** Program compile date = Sep  4 2016
+** ERROR (nifti_image_read): failed to find header file for 'skullstrip_musk.nii'
+[7m** FATAL ERROR:[0m can't open dataset skullstrip_musk.nii
+** Program compile date = Sep  4 2016
+** ERROR (nifti_image_read): failed to find header file for 'skullstrip_musk.nii'
+[7m** FATAL ERROR:[0m can't open dataset skullstrip_musk.nii
+** Program compile date = Sep  4 2016
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+** ERROR (nifti_image_read): failed to find header file for 'skullstrip_musk.nii'
+[7m** FATAL ERROR:[0m can't open dataset skullstrip_musk.nii
+** Program compile date = Sep  4 2016
+** ERROR (nifti_image_read): failed to find header file for 'skullstrip_musk.nii'
+[7m** FATAL ERROR:[0m can't open dataset skullstrip_musk.nii
+** Program compile date = Sep  4 2016
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+** ERROR (nifti_image_read): failed to find header file for 'skullstrip_musk.nii'
+[7m** FATAL ERROR:[0m can't open dataset skullstrip_musk.nii
+** Program compile date = Sep  4 2016
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+** ERROR (nifti_image_read): failed to find header file for 'skullstrip_musk.nii'
+** ERROR (nifti_image_read): failed to find header file for 'skullstrip_musk.nii'
+[7m** FATAL ERROR:[0m can't open dataset skullstrip_musk.nii
+** Program compile date = Sep  4 2016
+[7m** FATAL ERROR:[0m can't open dataset skullstrip_musk.nii
+** Program compile date = Sep  4 2016
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+** ERROR (nifti_image_read): failed to find header file for 'skullstrip_musk.nii'
+[7m** FATAL ERROR:[0m can't open dataset skullstrip_musk.nii
+** Program compile date = Sep  4 2016
+++ 3dTshift: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ 3dTshift: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ 3dTshift: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ 3dTshift: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ 3dTshift: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ 3dTshift: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ 3dTshift: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ 3dTshift: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ 3dTshift: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ 3dTshift: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ 3dTshift: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ 3dTshift: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 3
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 3
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 3
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 3
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 3
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 3
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 3
+
+xmlfile: ABIDE_50033_Resting_State_fMRI_S163708_I327653.xml
+
+xmlfile: ABIDE_50008_Resting_State_fMRI_S163123_I327048.xml
+
+xmlfile: ABIDE_50009_Resting_State_fMRI_S163323_I327266.xml
+
+xmlfile: ABIDE_50031_Resting_State_fMRI_S163124_I327050.xml
+
+xmlfile: ABIDE_50032_Resting_State_fMRI_S163535_I327478.xml
+
+xmlfile: ABIDE_50030_Resting_State_fMRI_S163587_I327530.xml
+
+xmlfile: ABIDE_50007_Resting_State_fMRI_S163674_I327617.xml
+
+xmlfile: ABIDE_50006_Resting_State_fMRI_S163789_I327734.xml
+
+xmlfile: ABIDE_50005_Resting_State_fMRI_S163384_I327327.xml
+
+xmlfile: ABIDE_50004_Resting_State_fMRI_S163622_I327565.xml
+
+xmlfile: ABIDE_50003_Resting_State_fMRI_S164263_I328256.xml
+
+xmlfile: ABIDE_50002_Resting_State_fMRI_S163211_I327154.xml
+50009
+50033
+50005
+50031
+mv: 'T1.nii' and 'T1.nii' are the same file
+50002
+50004
+50003
+50030
+50007
+50008
+50032
+50006
+mv: 'T1.nii' and 'T1.nii' are the same file
+mv: 'T1.nii' and 'T1.nii' are the same file
+mv: 'T1.nii' and 'T1.nii' are the same file
+mv: 'T1.nii' and 'T1.nii' are the same file
+mv: 'T1.nii' and 'T1.nii' are the same file
+mv: 'T1.nii' and 'T1.nii' are the same file
+mv: 'T1.nii' and 'T1.nii' are the same file
+mv: mv: 'T1.nii' and 'T1.nii' are the same file'T1.nii' and 'T1.nii' are the same file
+
+mv: 'T1.nii' and 'T1.nii' are the same file
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 3
+mv: 'T1.nii' and 'T1.nii' are the same file
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 3
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 3
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 3
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 3
+
+Fatal Signal 15 (SIGTERM) received
+    SUMA_Find_IminImax
+   SUMA_StretchToFitLeCerveau
+  3dSkullStrip
+ Bottom of Debug Stack
+** AFNI version = AFNI_16.2.16  Compile date = Sep  4 2016
+** [[Precompiled binary linux_openmp_64: Sep  4 2016]]
+** Program Death **
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+** ERROR (nifti_image_read): failed to find header file for 'skullstrip_musk.nii'
+[7m** FATAL ERROR:[0m can't open dataset skullstrip_musk.nii
+** Program compile date = Sep  4 2016
+mv: target 'fMRI.nii' is not a directory
+Cannot open volume fMRI for reading!
+rm: cannot remove '*001.nii': No such file or directory
+rm: cannot remove '*002.nii': No such file or directory
+rm: cannot remove '*003.nii': No such file or directory
+rm: cannot remove '*004.nii': No such file or directory
+rm: cannot remove '*005.nii': No such file or directory
+rm: cannot remove '*006.nii': No such file or directory
+rm: cannot remove '*007.nii': No such file or directory
+rm: cannot remove '*008.nii': No such file or directory
+rm: cannot remove '*009.nii': No such file or directory
+rm: cannot remove '*0010.nii': No such file or directory
+rm: cannot remove 'fMRI.nii': No such file or directory
+rm: cannot remove 'fMRI0*.nii': No such file or directory
+++ 3dTshift: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+
+Fatal Signal 15 (SIGTERM) received
+     nn_shift
+    apply_xshear
+   apply_3shear
+  3dvolreg main
+ Bottom of Debug Stack
+** Command line was:
+3dvolreg -prefix motioncorrection.nii -1Dfile _motion.1D -Fourier -twopass -zpad 4 -base 50 slicetiming.nii
+** AFNI version = AFNI_16.2.16  Compile date = Sep  4 2016
+** [[Precompiled binary linux_openmp_64: Sep  4 2016]]
+** Program Death **
+++ 3dDespike: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'motioncorrection.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'motioncorrection.nii'
+** Program compile date = Sep  4 2016
+Cannot open volume despike for reading!
+rm: cannot remove 'motioncorrection.nii': No such file or directory
+rm: cannot remove 'despike.nii': No such file or directory
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 17933 Aborted                 (core dumped) flirt -omat func2anat.mat -cost corratio -dof 12 -interp trilinear -ref ../T1/skullstrip.nii -in despike0050.nii
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 17936 Aborted                 (core dumped) flirt -omat anat2stnd.mat -cost corratio -dof 12 -interp trilinear -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 17941 Aborted                 (core dumped) flirt -out registration_T1.nii -interp trilinear -applyxfm -init anat2stnd.mat -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+Could not open matrix file func2anat.mat
+Cannot read input-matrix
+ls: cannot access 'despike*.nii': No such file or directory
+0
+Cannot open volume registration_fMRI* for reading!
+Image Exception : #22 :: ERROR: Could not open image registration_T1
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 17948 Aborted                 (core dumped) fsl5.0-fast -o T1_segm_A -t 1 -n 3 -g -p registration_T1.nii
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+** ERROR (nifti_image_read): failed to find header file for 'T1_segm_A_seg_0.nii'
+*** Cannot open mask dataset!
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_4d.nii'
+** Can't open dataset registration_fMRI_4d.nii
+failed to open 1D file fMRI_motion.1D
+** failed to read text data file fMRI_motion.1D
+[7m** FATAL ERROR:[0m Can't read input file 'fMRI_csf.1D'
+** Program compile date = Sep  4 2016
+++ 3dBandpass: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+[7m*+ WARNING:[0m (-: For most purposes, 3dTproject is superior to 3dBandpass :-)
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_0003.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'registration_fMRI_0003.nii'
+** Program compile date = Sep  4 2016
+mv: cannot stat 'fMRI_removenoise.nii': No such file or directory
+[7m** ERROR:[0m output dataset name 'slicetiming.nii' conflicts with existing file
+[7m** ERROR:[0m dataset NOT written to disk!
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 3
+
+Fatal Signal 15 (SIGTERM) received
+     nn_shift
+    apply_xshear
+   apply_3shear
+  3dvolreg main
+ Bottom of Debug Stack
+** Command line was:
+3dvolreg -prefix motioncorrection.nii -1Dfile _motion.1D -Fourier -twopass -zpad 4 -base 50 slicetiming.nii
+** AFNI version = AFNI_16.2.16  Compile date = Sep  4 2016
+** [[Precompiled binary linux_openmp_64: Sep  4 2016]]
+** Program Death **
+++ 3dDespike: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'motioncorrection.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'motioncorrection.nii'
+** Program compile date = Sep  4 2016
+Cannot open volume despike for reading!
+rm: cannot remove 'motioncorrection.nii': No such file or directory
+rm: cannot remove 'despike.nii': No such file or directory
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 18004 Aborted                 (core dumped) flirt -omat func2anat.mat -cost corratio -dof 12 -interp trilinear -ref ../T1/skullstrip.nii -in despike0050.nii
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 18006 Aborted                 (core dumped) flirt -omat anat2stnd.mat -cost corratio -dof 12 -interp trilinear -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 18008 Aborted                 (core dumped) flirt -out registration_T1.nii -interp trilinear -applyxfm -init anat2stnd.mat -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+Could not open matrix file func2anat.mat
+Cannot read input-matrix
+ls: cannot access 'despike*.nii': No such file or directory
+0
+Cannot open volume registration_fMRI* for reading!
+Image Exception : #22 :: ERROR: Could not open image registration_T1
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 18015 Aborted                 (core dumped) fsl5.0-fast -o T1_segm_A -t 1 -n 3 -g -p registration_T1.nii
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+** ERROR (nifti_image_read): failed to find header file for 'T1_segm_A_seg_0.nii'
+*** Cannot open mask dataset!
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_4d.nii'
+** Can't open dataset registration_fMRI_4d.nii
+failed to open 1D file fMRI_motion.1D
+** failed to read text data file fMRI_motion.1D
+[7m** FATAL ERROR:[0m Can't read input file 'fMRI_csf.1D'
+** Program compile date = Sep  4 2016
+++ 3dBandpass: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+[7m*+ WARNING:[0m (-: For most purposes, 3dTproject is superior to 3dBandpass :-)
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_0003.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'registration_fMRI_0003.nii'
+** Program compile date = Sep  4 2016
+mv: cannot stat 'fMRI_removenoise.nii': No such file or directory
+
+Fatal Signal 15 (SIGTERM) received
+     nn_shift
+    apply_yshear
+   apply_3shear
+  3dvolreg main
+ Bottom of Debug Stack
+** Command line was:
+3dvolreg -prefix motioncorrection.nii -1Dfile _motion.1D -Fourier -twopass -zpad 4 -base 50 slicetiming.nii
+** AFNI version = AFNI_16.2.16  Compile date = Sep  4 2016
+** [[Precompiled binary linux_openmp_64: Sep  4 2016]]
+** Program Death **
+++ 3dDespike: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'motioncorrection.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'motioncorrection.nii'
+** Program compile date = Sep  4 2016
+Cannot open volume despike for reading!
+rm: cannot remove 'motioncorrection.nii': No such file or directory
+rm: cannot remove 'despike.nii': No such file or directory
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 18040 Aborted                 (core dumped) flirt -omat func2anat.mat -cost corratio -dof 12 -interp trilinear -ref ../T1/skullstrip.nii -in despike0050.nii
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 18042 Aborted                 (core dumped) flirt -omat anat2stnd.mat -cost corratio -dof 12 -interp trilinear -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 18044 Aborted                 (core dumped) flirt -out registration_T1.nii -interp trilinear -applyxfm -init anat2stnd.mat -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+Could not open matrix file func2anat.mat
+Cannot read input-matrix
+ls: cannot access 'despike*.nii': No such file or directory
+0
+Cannot open volume registration_fMRI* for reading!
+Image Exception : #22 :: ERROR: Could not open image registration_T1
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 18051 Aborted                 (core dumped) fsl5.0-fast -o T1_segm_A -t 1 -n 3 -g -p registration_T1.nii
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+** ERROR (nifti_image_read): failed to find header file for 'T1_segm_A_seg_0.nii'
+*** Cannot open mask dataset!
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_4d.nii'
+** Can't open dataset registration_fMRI_4d.nii
+failed to open 1D file fMRI_motion.1D
+** failed to read text data file fMRI_motion.1D
+[7m** FATAL ERROR:[0m Can't read input file 'fMRI_csf.1D'
+** Program compile date = Sep  4 2016
+++ 3dBandpass: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+[7m*+ WARNING:[0m (-: For most purposes, 3dTproject is superior to 3dBandpass :-)
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_0003.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'registration_fMRI_0003.nii'
+** Program compile date = Sep  4 2016
+mv: cannot stat 'fMRI_removenoise.nii': No such file or directory
+
+Fatal Signal 15 (SIGTERM) received
+     nn_shift
+    apply_yshear
+   apply_3shear
+  3dvolreg main
+ Bottom of Debug Stack
+** Command line was:
+3dvolreg -prefix motioncorrection.nii -1Dfile _motion.1D -Fourier -twopass -zpad 4 -base 50 slicetiming.nii
+** AFNI version = AFNI_16.2.16  Compile date = Sep  4 2016
+** [[Precompiled binary linux_openmp_64: Sep  4 2016]]
+** Program Death **
+++ 3dDespike: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'motioncorrection.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'motioncorrection.nii'
+** Program compile date = Sep  4 2016
+Cannot open volume despike for reading!
+rm: cannot remove 'motioncorrection.nii': No such file or directory
+rm: cannot remove 'despike.nii': No such file or directory
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 18076 Aborted                 (core dumped) flirt -omat func2anat.mat -cost corratio -dof 12 -interp trilinear -ref ../T1/skullstrip.nii -in despike0050.nii
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 18078 Aborted                 (core dumped) flirt -omat anat2stnd.mat -cost corratio -dof 12 -interp trilinear -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 18080 Aborted                 (core dumped) flirt -out registration_T1.nii -interp trilinear -applyxfm -init anat2stnd.mat -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+Could not open matrix file func2anat.mat
+Cannot read input-matrix
+ls: cannot access 'despike*.nii': No such file or directory
+0
+Cannot open volume registration_fMRI* for reading!
+Image Exception : #22 :: ERROR: Could not open image registration_T1
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 18087 Aborted                 (core dumped) fsl5.0-fast -o T1_segm_A -t 1 -n 3 -g -p registration_T1.nii
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+** ERROR (nifti_image_read): failed to find header file for 'T1_segm_A_seg_0.nii'
+*** Cannot open mask dataset!
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_4d.nii'
+** Can't open dataset registration_fMRI_4d.nii
+failed to open 1D file fMRI_motion.1D
+** failed to read text data file fMRI_motion.1D
+[7m** FATAL ERROR:[0m Can't read input file 'fMRI_csf.1D'
+** Program compile date = Sep  4 2016
+++ 3dBandpass: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+[7m*+ WARNING:[0m (-: For most purposes, 3dTproject is superior to 3dBandpass :-)
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_0003.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'registration_fMRI_0003.nii'
+** Program compile date = Sep  4 2016
+mv: cannot stat 'fMRI_removenoise.nii': No such file or directory
+
+Fatal Signal 15 (SIGTERM) received
+    SUMA_Find_IminImax
+   SUMA_StretchToFitLeCerveau
+  3dSkullStrip
+ Bottom of Debug Stack
+** AFNI version = AFNI_16.2.16  Compile date = Sep  4 2016
+** [[Precompiled binary linux_openmp_64: Sep  4 2016]]
+** Program Death **
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+** ERROR (nifti_image_read): failed to find header file for 'skullstrip_musk.nii'
+[7m** FATAL ERROR:[0m can't open dataset skullstrip_musk.nii
+** Program compile date = Sep  4 2016
+mv: target 'fMRI.nii' is not a directory
+Cannot open volume fMRI for reading!
+rm: cannot remove '*001.nii': No such file or directory
+rm: cannot remove '*002.nii': No such file or directory
+rm: cannot remove '*003.nii': No such file or directory
+rm: cannot remove '*004.nii': No such file or directory
+rm: cannot remove '*005.nii': No such file or directory
+rm: cannot remove '*006.nii': No such file or directory
+rm: cannot remove '*007.nii': No such file or directory
+rm: cannot remove '*008.nii': No such file or directory
+rm: cannot remove '*009.nii': No such file or directory
+rm: cannot remove '*0010.nii': No such file or directory
+rm: cannot remove 'fMRI.nii': No such file or directory
+rm: cannot remove 'fMRI0*.nii': No such file or directory
+++ 3dTshift: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+[7m** ERROR:[0m output dataset name 'slicetiming.nii' conflicts with existing file
+[7m** ERROR:[0m dataset NOT written to disk!
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 3
+
+Fatal Signal 15 (SIGTERM) received
+    apply_zshear
+   apply_3shear
+  3dvolreg main
+ Bottom of Debug Stack
+** Command line was:
+3dvolreg -prefix motioncorrection.nii -1Dfile _motion.1D -Fourier -twopass -zpad 4 -base 50 slicetiming.nii
+** AFNI version = AFNI_16.2.16  Compile date = Sep  4 2016
+** [[Precompiled binary linux_openmp_64: Sep  4 2016]]
+** Program Death **
+++ 3dDespike: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'motioncorrection.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'motioncorrection.nii'
+** Program compile date = Sep  4 2016
+Cannot open volume despike for reading!
+rm: cannot remove 'motioncorrection.nii': No such file or directory
+rm: cannot remove 'despike.nii': No such file or directory
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 18144 Aborted                 (core dumped) flirt -omat func2anat.mat -cost corratio -dof 12 -interp trilinear -ref ../T1/skullstrip.nii -in despike0050.nii
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 18146 Aborted                 (core dumped) flirt -omat anat2stnd.mat -cost corratio -dof 12 -interp trilinear -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 18148 Aborted                 (core dumped) flirt -out registration_T1.nii -interp trilinear -applyxfm -init anat2stnd.mat -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+Could not open matrix file func2anat.mat
+Cannot read input-matrix
+ls: cannot access 'despike*.nii': No such file or directory
+0
+Cannot open volume registration_fMRI* for reading!
+Image Exception : #22 :: ERROR: Could not open image registration_T1
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 18155 Aborted                 (core dumped) fsl5.0-fast -o T1_segm_A -t 1 -n 3 -g -p registration_T1.nii
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+** ERROR (nifti_image_read): failed to find header file for 'T1_segm_A_seg_0.nii'
+*** Cannot open mask dataset!
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_4d.nii'
+** Can't open dataset registration_fMRI_4d.nii
+failed to open 1D file fMRI_motion.1D
+** failed to read text data file fMRI_motion.1D
+[7m** FATAL ERROR:[0m Can't read input file 'fMRI_csf.1D'
+** Program compile date = Sep  4 2016
+++ 3dBandpass: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+[7m*+ WARNING:[0m (-: For most purposes, 3dTproject is superior to 3dBandpass :-)
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_0003.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'registration_fMRI_0003.nii'
+** Program compile date = Sep  4 2016
+mv: cannot stat 'fMRI_removenoise.nii': No such file or directory
+
+Fatal Signal 15 (SIGTERM) received
+     mri_max
+    THD_cliplevel
+   mri_automask_image
+  3dvolreg main
+ Bottom of Debug Stack
+** Command line was:
+3dvolreg -prefix motioncorrection.nii -1Dfile _motion.1D -Fourier -twopass -zpad 4 -base 50 slicetiming.nii
+** AFNI version = AFNI_16.2.16  Compile date = Sep  4 2016
+** [[Precompiled binary linux_openmp_64: Sep  4 2016]]
+** Program Death **
+++ 3dDespike: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'motioncorrection.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'motioncorrection.nii'
+** Program compile date = Sep  4 2016
+Cannot open volume despike for reading!
+rm: cannot remove 'motioncorrection.nii': No such file or directory
+rm: cannot remove 'despike.nii': No such file or directory
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 18180 Aborted                 (core dumped) flirt -omat func2anat.mat -cost corratio -dof 12 -interp trilinear -ref ../T1/skullstrip.nii -in despike0050.nii
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 18182 Aborted                 (core dumped) flirt -omat anat2stnd.mat -cost corratio -dof 12 -interp trilinear -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 18184 Aborted                 (core dumped) flirt -out registration_T1.nii -interp trilinear -applyxfm -init anat2stnd.mat -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+Could not open matrix file func2anat.mat
+Cannot read input-matrix
+ls: cannot access 'despike*.nii': No such file or directory
+0
+Cannot open volume registration_fMRI* for reading!
+Image Exception : #22 :: ERROR: Could not open image registration_T1
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 18191 Aborted                 (core dumped) fsl5.0-fast -o T1_segm_A -t 1 -n 3 -g -p registration_T1.nii
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+** ERROR (nifti_image_read): failed to find header file for 'T1_segm_A_seg_0.nii'
+*** Cannot open mask dataset!
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_4d.nii'
+** Can't open dataset registration_fMRI_4d.nii
+failed to open 1D file fMRI_motion.1D
+** failed to read text data file fMRI_motion.1D
+[7m** FATAL ERROR:[0m Can't read input file 'fMRI_csf.1D'
+** Program compile date = Sep  4 2016
+++ 3dBandpass: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+[7m*+ WARNING:[0m (-: For most purposes, 3dTproject is superior to 3dBandpass :-)
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_0003.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'registration_fMRI_0003.nii'
+** Program compile date = Sep  4 2016
+mv: cannot stat 'fMRI_removenoise.nii': No such file or directory
+
+Fatal Signal 15 (SIGTERM) received
+    SUMA_Find_IminImax
+   SUMA_StretchToFitLeCerveau
+  3dSkullStrip
+ Bottom of Debug Stack
+** AFNI version = AFNI_16.2.16  Compile date = Sep  4 2016
+** [[Precompiled binary linux_openmp_64: Sep  4 2016]]
+** Program Death **
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+** ERROR (nifti_image_read): failed to find header file for 'skullstrip_musk.nii'
+[7m** FATAL ERROR:[0m can't open dataset skullstrip_musk.nii
+** Program compile date = Sep  4 2016
+mv: cannot stat '*.nii': No such file or directory
+Cannot open volume fMRI for reading!
+rm: cannot remove '*001.nii': No such file or directory
+rm: cannot remove '*002.nii': No such file or directory
+rm: cannot remove '*003.nii': No such file or directory
+rm: cannot remove '*004.nii': No such file or directory
+rm: cannot remove '*005.nii': No such file or directory
+rm: cannot remove '*006.nii': No such file or directory
+rm: cannot remove '*007.nii': No such file or directory
+rm: cannot remove '*008.nii': No such file or directory
+rm: cannot remove '*009.nii': No such file or directory
+rm: cannot remove '*0010.nii': No such file or directory
+rm: cannot remove 'fMRI.nii': No such file or directory
+Cannot open volume * for reading!
+rm: cannot remove 'fMRI0*.nii': No such file or directory
+++ 3dTshift: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+** ERROR (nifti_image_read): failed to find header file for 'fMRI_4d.nii'
+[7m** FATAL ERROR:[0m Can't open input dataset 'fMRI_4d.nii'
+** Program compile date = Sep  4 2016
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'slicetiming.nii'
+** Can't open dataset slicetiming.nii
+++ 3dDespike: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'motioncorrection.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'motioncorrection.nii'
+** Program compile date = Sep  4 2016
+Cannot open volume despike for reading!
+rm: cannot remove 'slicetiming.nii': No such file or directory
+rm: cannot remove 'motioncorrection.nii': No such file or directory
+rm: cannot remove 'despike.nii': No such file or directory
+rm: cannot remove 'fMRI_4d.nii': No such file or directory
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 18244 Aborted                 (core dumped) flirt -omat func2anat.mat -cost corratio -dof 12 -interp trilinear -ref ../T1/skullstrip.nii -in despike0050.nii
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 18246 Aborted                 (core dumped) flirt -omat anat2stnd.mat -cost corratio -dof 12 -interp trilinear -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 18248 Aborted                 (core dumped) flirt -out registration_T1.nii -interp trilinear -applyxfm -init anat2stnd.mat -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+Could not open matrix file func2anat.mat
+Cannot read input-matrix
+ls: cannot access 'despike*.nii': No such file or directory
+0
+Cannot open volume registration_fMRI* for reading!
+Image Exception : #22 :: ERROR: Could not open image registration_T1
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 18255 Aborted                 (core dumped) fsl5.0-fast -o T1_segm_A -t 1 -n 3 -g -p registration_T1.nii
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+** ERROR (nifti_image_read): failed to find header file for 'T1_segm_A_seg_0.nii'
+*** Cannot open mask dataset!
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_4d.nii'
+** Can't open dataset registration_fMRI_4d.nii
+failed to open 1D file fMRI_motion.1D
+** failed to read text data file fMRI_motion.1D
+[7m** FATAL ERROR:[0m Can't read input file 'fMRI_csf.1D'
+** Program compile date = Sep  4 2016
+++ 3dBandpass: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+[7m*+ WARNING:[0m (-: For most purposes, 3dTproject is superior to 3dBandpass :-)
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_0003.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'registration_fMRI_0003.nii'
+** Program compile date = Sep  4 2016
+mkdir: cannot create directory ‘result_fMRI_image’: File exists
+mv: cannot stat 'fMRI_removenoise.nii': No such file or directory
+rm: cannot remove '../T1/*': No such file or directory
+
+Fatal Signal 15 (SIGTERM) received
+    SUMA_LimitCoordToVolume
+   SUMA_StretchToFitLeCerveau
+  3dSkullStrip
+ Bottom of Debug Stack
+** AFNI version = AFNI_16.2.16  Compile date = Sep  4 2016
+** [[Precompiled binary linux_openmp_64: Sep  4 2016]]
+** Program Death **
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+** ERROR (nifti_image_read): failed to find header file for 'skullstrip_musk.nii'
+[7m** FATAL ERROR:[0m can't open dataset skullstrip_musk.nii
+** Program compile date = Sep  4 2016
+mv: target 'fMRI.nii' is not a directory
+Cannot open volume fMRI for reading!
+rm: cannot remove '*001.nii': No such file or directory
+rm: cannot remove '*002.nii': No such file or directory
+rm: cannot remove '*003.nii': No such file or directory
+rm: cannot remove '*004.nii': No such file or directory
+rm: cannot remove '*005.nii': No such file or directory
+rm: cannot remove '*006.nii': No such file or directory
+rm: cannot remove '*007.nii': No such file or directory
+rm: cannot remove '*008.nii': No such file or directory
+rm: cannot remove '*009.nii': No such file or directory
+rm: cannot remove '*0010.nii': No such file or directory
+rm: cannot remove 'fMRI.nii': No such file or directory
+rm: cannot remove 'fMRI0*.nii': No such file or directory
+++ 3dTshift: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+Warning 3dSkullStrip:****************
+ Surface self intersecting! trying again:
+ smoothing of 84, avoid_vent -1
+Warning 3dSkullStrip:****************
+ Surface self intersecting! trying again:
+ smoothing of 84, avoid_vent -1
+[7m** ERROR:[0m output dataset name 'slicetiming.nii' conflicts with existing file
+[7m** ERROR:[0m dataset NOT written to disk!
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 3
+
+Fatal Signal 15 (SIGTERM) received
+     nn_shift
+    apply_yshear
+   apply_3shear
+  3dvolreg main
+ Bottom of Debug Stack
+** Command line was:
+3dvolreg -prefix motioncorrection.nii -1Dfile _motion.1D -Fourier -twopass -zpad 4 -base 50 slicetiming.nii
+** AFNI version = AFNI_16.2.16  Compile date = Sep  4 2016
+** [[Precompiled binary linux_openmp_64: Sep  4 2016]]
+** Program Death **
+
+Fatal Signal 15 (SIGTERM) received
+
+Fatal Signal 15 (SIGTERM) received
+  3dvolreg main
+     SUMA_Plane_Equation
+ Bottom of Debug Stack
+    SUMA_SurfGridIntersect
+** Command line was:
+3dvolreg -prefix motioncorrection.nii -1Dfile _motion.1D -Fourier -twopass -zpad 4 -base 50 slicetiming.nii
+   SUMA_FindVoxelsInSurface
+  3dSkullStrip
+ Bottom of Debug Stack
+** AFNI version = AFNI_16.2.16  Compile date = Sep  4 2016
+** [[Precompiled binary linux_openmp_64: Sep  4 2016]]
+** AFNI version = AFNI_16.2.16  Compile date = Sep  4 2016
+** Program Death **
+** [[Precompiled binary linux_openmp_64: Sep  4 2016]]
+** Program Death **
+++ 3dDespike: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'motioncorrection.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'motioncorrection.nii'
+** Program compile date = Sep  4 2016
+Cannot open volume despike for reading!
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+** ERROR (nifti_image_read): failed to find header file for 'skullstrip_musk.nii'
+[7m** FATAL ERROR:[0m can't open dataset skullstrip_musk.nii
+** Program compile date = Sep  4 2016
+++ 3dDespike: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'motioncorrection.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'motioncorrection.nii'
+** Program compile date = Sep  4 2016
+rm: cannot remove 'motioncorrection.nii': No such file or directory
+rm: cannot remove 'despike.nii': No such file or directory
+mv: target 'fMRI.nii' is not a directory
+Cannot open volume fMRI for reading!
+rm: cannot remove '*001.nii': No such file or directory
+Cannot open volume despike for reading!
+rm: cannot remove 'motioncorrection.nii': No such file or directory
+rm: cannot remove 'despike.nii': No such file or directory
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+rm: cannot remove '*002.nii': No such file or directory
+rm: cannot remove '*003.nii': No such file or directory
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+rm: cannot remove '*004.nii': No such file or directory
+rm: cannot remove '*005.nii': No such file or directory
+Step2_processing_parallel.sh: line 9: 18317 Aborted                 (core dumped) flirt -omat func2anat.mat -cost corratio -dof 12 -interp trilinear -ref ../T1/skullstrip.nii -in despike0050.nii
+rm: cannot remove '*006.nii': No such file or directory
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+rm: cannot remove '*007.nii': No such file or directory
+Step2_processing_parallel.sh: line 9: 18325 Aborted                 (core dumped) flirt -omat func2anat.mat -cost corratio -dof 12 -interp trilinear -ref ../T1/skullstrip.nii -in despike0050.nii
+rm: cannot remove '*008.nii': No such file or directory
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+rm: cannot remove '*009.nii': No such file or directory
+rm: cannot remove '*0010.nii': No such file or directory
+rm: cannot remove 'fMRI.nii': No such file or directory
+Step2_processing_parallel.sh: line 9: 18333 Aborted                 (core dumped) flirt -omat anat2stnd.mat -cost corratio -dof 12 -interp trilinear -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 18338 Aborted                 (core dumped) flirt -omat anat2stnd.mat -cost corratio -dof 12 -interp trilinear -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 18348 Aborted                 (core dumped) flirt -out registration_T1.nii -interp trilinear -applyxfm -init anat2stnd.mat -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+Could not open matrix file func2anat.mat
+Cannot read input-matrix
+ls: cannot access 'despike*.nii': No such file or directory
+0
+Cannot open volume registration_fMRI* for reading!
+Step2_processing_parallel.sh: line 9: 18350 Aborted                 (core dumped) flirt -out registration_T1.nii -interp trilinear -applyxfm -init anat2stnd.mat -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+Could not open matrix file func2anat.mat
+Cannot read input-matrix
+Image Exception : #22 :: ERROR: Could not open image registration_T1
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+ls: cannot access 'despike*.nii': No such file or directory
+0
+Cannot open volume registration_fMRI* for reading!
+Image Exception : #22 :: ERROR: Could not open image registration_T1
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 18357 Aborted                 (core dumped) fsl5.0-fast -o T1_segm_A -t 1 -n 3 -g -p registration_T1.nii
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+** ERROR (nifti_image_read): failed to find header file for 'T1_segm_A_seg_0.nii'
+*** Cannot open mask dataset!
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_4d.nii'
+** Can't open dataset registration_fMRI_4d.nii
+Step2_processing_parallel.sh: line 9: 18376 Aborted                 (core dumped) fsl5.0-fast -o T1_segm_A -t 1 -n 3 -g -p registration_T1.nii
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+** ERROR (nifti_image_read): failed to find header file for 'T1_segm_A_seg_0.nii'
+*** Cannot open mask dataset!
+failed to open 1D file fMRI_motion.1D
+** failed to read text data file fMRI_motion.1D
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_4d.nii'
+** Can't open dataset registration_fMRI_4d.nii
+[7m** FATAL ERROR:[0m Can't read input file 'fMRI_csf.1D'
+** Program compile date = Sep  4 2016
+rm: cannot remove 'fMRI0*.nii': No such file or directory
+++ 3dBandpass: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+[7m*+ WARNING:[0m (-: For most purposes, 3dTproject is superior to 3dBandpass :-)
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_0003.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'registration_fMRI_0003.nii'
+** Program compile date = Sep  4 2016
+++ 3dTshift: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+mv: cannot stat 'fMRI_removenoise.nii': No such file or directory
+failed to open 1D file fMRI_motion.1D
+** failed to read text data file fMRI_motion.1D
+[7m** FATAL ERROR:[0m Can't read input file 'fMRI_csf.1D'
+** Program compile date = Sep  4 2016
+++ 3dBandpass: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+[7m*+ WARNING:[0m (-: For most purposes, 3dTproject is superior to 3dBandpass :-)
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_0003.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'registration_fMRI_0003.nii'
+** Program compile date = Sep  4 2016
+mv: cannot stat 'fMRI_removenoise.nii': No such file or directory
+[7m** ERROR:[0m output dataset name 'slicetiming.nii' conflicts with existing file
+[7m** ERROR:[0m dataset NOT written to disk!
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 3
+
+Fatal Signal 15 (SIGTERM) received
+    SUMA_MT_intersect_triangle
+   SUMA_isSelfIntersect
+  3dSkullStrip
+ Bottom of Debug Stack
+** AFNI version = AFNI_16.2.16  Compile date = Sep  4 2016
+** [[Precompiled binary linux_openmp_64: Sep  4 2016]]
+** Program Death **
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+** ERROR (nifti_image_read): failed to find header file for 'skullstrip_musk.nii'
+[7m** FATAL ERROR:[0m can't open dataset skullstrip_musk.nii
+** Program compile date = Sep  4 2016
+mv: target 'fMRI.nii' is not a directory
+
+Fatal Signal 15 (SIGTERM) received
+    SUMA_MT_intersect_triangle
+   SUMA_isSelfIntersect
+  3dSkullStrip
+ Bottom of Debug Stack
+** AFNI version = AFNI_16.2.16  Compile date = Sep  4 2016
+** [[Precompiled binary linux_openmp_64: Sep  4 2016]]
+** Program Death **
+Cannot open volume fMRI for reading!
+rm: cannot remove '*001.nii': No such file or directory
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+** ERROR (nifti_image_read): failed to find header file for 'skullstrip_musk.nii'
+[7m** FATAL ERROR:[0m can't open dataset skullstrip_musk.nii
+** Program compile date = Sep  4 2016
+rm: cannot remove '*002.nii': No such file or directory
+mv: cannot stat '*.nii': No such file or directory
+Cannot open volume fMRI for reading!
+rm: cannot remove '*003.nii': No such file or directory
+rm: cannot remove '*001.nii': No such file or directory
+rm: cannot remove '*004.nii': No such file or directory
+rm: cannot remove '*002.nii': No such file or directory
+rm: cannot remove '*005.nii': No such file or directory
+rm: cannot remove '*003.nii': No such file or directory
+rm: cannot remove '*006.nii': No such file or directory
+rm: cannot remove '*004.nii': No such file or directory
+rm: cannot remove '*007.nii': No such file or directory
+rm: cannot remove '*005.nii': No such file or directory
+rm: cannot remove '*008.nii': No such file or directory
+rm: cannot remove '*006.nii': No such file or directory
+rm: cannot remove '*009.nii': No such file or directory
+rm: cannot remove '*007.nii': No such file or directory
+rm: cannot remove '*0010.nii': No such file or directory
+rm: cannot remove '*008.nii': No such file or directory
+rm: cannot remove 'fMRI.nii': No such file or directory
+rm: cannot remove '*009.nii': No such file or directory
+rm: cannot remove '*0010.nii': No such file or directory
+rm: cannot remove 'fMRI.nii': No such file or directory
+Cannot open volume * for reading!
+rm: cannot remove 'fMRI0*.nii': No such file or directory
+++ 3dTshift: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+** ERROR (nifti_image_read): failed to find header file for 'fMRI_4d.nii'
+[7m** FATAL ERROR:[0m Can't open input dataset 'fMRI_4d.nii'
+** Program compile date = Sep  4 2016
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'slicetiming.nii'
+** Can't open dataset slicetiming.nii
+++ 3dDespike: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'motioncorrection.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'motioncorrection.nii'
+** Program compile date = Sep  4 2016
+Cannot open volume despike for reading!
+rm: cannot remove 'slicetiming.nii': No such file or directory
+rm: cannot remove 'motioncorrection.nii': No such file or directory
+rm: cannot remove 'despike.nii': No such file or directory
+rm: cannot remove 'fMRI_4d.nii': No such file or directory
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 18466 Aborted                 (core dumped) flirt -omat func2anat.mat -cost corratio -dof 12 -interp trilinear -ref ../T1/skullstrip.nii -in despike0050.nii
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 18468 Aborted                 (core dumped) flirt -omat anat2stnd.mat -cost corratio -dof 12 -interp trilinear -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 18470 Aborted                 (core dumped) flirt -out registration_T1.nii -interp trilinear -applyxfm -init anat2stnd.mat -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+Could not open matrix file func2anat.mat
+Cannot read input-matrix
+ls: cannot access 'despike*.nii': No such file or directory
+0
+Cannot open volume registration_fMRI* for reading!
+Image Exception : #22 :: ERROR: Could not open image registration_T1
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+rm: cannot remove 'fMRI0*.nii': No such file or directory
+++ 3dTshift: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+Step2_processing_parallel.sh: line 9: 18477 Aborted                 (core dumped) fsl5.0-fast -o T1_segm_A -t 1 -n 3 -g -p registration_T1.nii
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+** ERROR (nifti_image_read): failed to find header file for 'T1_segm_A_seg_0.nii'
+*** Cannot open mask dataset!
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_4d.nii'
+** Can't open dataset registration_fMRI_4d.nii
+failed to open 1D file fMRI_motion.1D
+** failed to read text data file fMRI_motion.1D
+[7m** FATAL ERROR:[0m Can't read input file 'fMRI_csf.1D'
+** Program compile date = Sep  4 2016
+++ 3dBandpass: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+[7m*+ WARNING:[0m (-: For most purposes, 3dTproject is superior to 3dBandpass :-)
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_0003.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'registration_fMRI_0003.nii'
+** Program compile date = Sep  4 2016
+mkdir: cannot create directory ‘result_fMRI_image’: File exists
+mv: cannot stat 'fMRI_removenoise.nii': No such file or directory
+rm: cannot remove '../T1/*': No such file or directory
+
+Fatal Signal 15 (SIGTERM) received
+    SUMA_MT_intersect_triangle
+   SUMA_isSelfIntersect
+  3dSkullStrip
+ Bottom of Debug Stack
+** AFNI version = AFNI_16.2.16  Compile date = Sep  4 2016
+** [[Precompiled binary linux_openmp_64: Sep  4 2016]]
+** Program Death **
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+** ERROR (nifti_image_read): failed to find header file for 'skullstrip_musk.nii'
+[7m** FATAL ERROR:[0m can't open dataset skullstrip_musk.nii
+** Program compile date = Sep  4 2016
+mv: cannot stat '*.nii': No such file or directory
+
+Fatal Signal 15 (SIGTERM) received
+     nn_shift
+    apply_yshear
+   apply_3shear
+  3dvolreg main
+ Bottom of Debug Stack
+** Command line was:
+3dvolreg -prefix motioncorrection.nii -1Dfile _motion.1D -Fourier -twopass -zpad 4 -base 50 slicetiming.nii
+** AFNI version = AFNI_16.2.16  Compile date = Sep  4 2016
+** [[Precompiled binary linux_openmp_64: Sep  4 2016]]
+** Program Death **
+Cannot open volume fMRI for reading!
+rm: cannot remove '*001.nii': No such file or directory
+rm: cannot remove '*002.nii': No such file or directory
+rm: cannot remove '*003.nii': No such file or directory
+++ 3dDespike: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'motioncorrection.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'motioncorrection.nii'
+** Program compile date = Sep  4 2016
+rm: cannot remove '*004.nii': No such file or directory
+Cannot open volume despike for reading!
+rm: cannot remove 'motioncorrection.nii': No such file or directory
+rm: cannot remove 'despike.nii': No such file or directory
+rm: cannot remove '*005.nii': No such file or directory
+rm: cannot remove '*006.nii': No such file or directory
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+rm: cannot remove '*007.nii': No such file or directory
+rm: cannot remove '*008.nii': No such file or directory
+rm: cannot remove '*009.nii': No such file or directory
+rm: cannot remove '*0010.nii': No such file or directory
+rm: cannot remove 'fMRI.nii': No such file or directory
+Step2_processing_parallel.sh: line 9: 18518 Aborted                 (core dumped) flirt -omat func2anat.mat -cost corratio -dof 12 -interp trilinear -ref ../T1/skullstrip.nii -in despike0050.nii
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Cannot open volume * for reading!
+rm: cannot remove 'fMRI0*.nii': No such file or directory
+++ 3dTshift: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+** ERROR (nifti_image_read): failed to find header file for 'fMRI_4d.nii'
+[7m** FATAL ERROR:[0m Can't open input dataset 'fMRI_4d.nii'
+** Program compile date = Sep  4 2016
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'slicetiming.nii'
+** Can't open dataset slicetiming.nii
+++ 3dDespike: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'motioncorrection.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'motioncorrection.nii'
+** Program compile date = Sep  4 2016
+Cannot open volume despike for reading!
+[7m** ERROR:[0m output dataset name 'slicetiming.nii' conflicts with existing file
+[7m** ERROR:[0m dataset NOT written to disk!
+rm: cannot remove 'slicetiming.nii': No such file or directory
+rm: cannot remove 'motioncorrection.nii': No such file or directory
+rm: cannot remove 'despike.nii': No such file or directory
+rm: cannot remove 'fMRI_4d.nii': No such file or directory
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 3
+Step2_processing_parallel.sh: line 9: 18531 Aborted                 (core dumped) flirt -omat anat2stnd.mat -cost corratio -dof 12 -interp trilinear -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 18540 Aborted                 (core dumped) flirt -omat func2anat.mat -cost corratio -dof 12 -interp trilinear -ref ../T1/skullstrip.nii -in despike0050.nii
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 18542 Aborted                 (core dumped) flirt -out registration_T1.nii -interp trilinear -applyxfm -init anat2stnd.mat -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+Could not open matrix file func2anat.mat
+Cannot read input-matrix
+ls: cannot access 'despike*.nii': No such file or directory
+0
+Cannot open volume registration_fMRI* for reading!
+Step2_processing_parallel.sh: line 9: 18544 Aborted                 (core dumped) flirt -omat anat2stnd.mat -cost corratio -dof 12 -interp trilinear -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Image Exception : #22 :: ERROR: Could not open image registration_T1
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 18559 Aborted                 (core dumped) flirt -out registration_T1.nii -interp trilinear -applyxfm -init anat2stnd.mat -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+Could not open matrix file func2anat.mat
+Cannot read input-matrix
+Step2_processing_parallel.sh: line 9: 18551 Aborted                 (core dumped) fsl5.0-fast -o T1_segm_A -t 1 -n 3 -g -p registration_T1.nii
+ls: cannot access 'despike*.nii': No such file or directory
+0
+Cannot open volume registration_fMRI* for reading!
+Image Exception : #22 :: ERROR: Could not open image registration_T1
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+** ERROR (nifti_image_read): failed to find header file for 'T1_segm_A_seg_0.nii'
+*** Cannot open mask dataset!
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_4d.nii'
+** Can't open dataset registration_fMRI_4d.nii
+failed to open 1D file fMRI_motion.1D
+** failed to read text data file fMRI_motion.1D
+[7m** FATAL ERROR:[0m Can't read input file 'fMRI_csf.1D'
+** Program compile date = Sep  4 2016
+++ 3dBandpass: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+[7m*+ WARNING:[0m (-: For most purposes, 3dTproject is superior to 3dBandpass :-)
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_0003.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'registration_fMRI_0003.nii'
+** Program compile date = Sep  4 2016
+mv: cannot stat 'fMRI_removenoise.nii': No such file or directory
+Step2_processing_parallel.sh: line 9: 18573 Aborted                 (core dumped) fsl5.0-fast -o T1_segm_A -t 1 -n 3 -g -p registration_T1.nii
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+** ERROR (nifti_image_read): failed to find header file for 'T1_segm_A_seg_0.nii'
+*** Cannot open mask dataset!
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_4d.nii'
+** Can't open dataset registration_fMRI_4d.nii
+failed to open 1D file fMRI_motion.1D
+** failed to read text data file fMRI_motion.1D
+[7m** FATAL ERROR:[0m Can't read input file 'fMRI_csf.1D'
+** Program compile date = Sep  4 2016
+++ 3dBandpass: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+[7m*+ WARNING:[0m (-: For most purposes, 3dTproject is superior to 3dBandpass :-)
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_0003.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'registration_fMRI_0003.nii'
+** Program compile date = Sep  4 2016
+mkdir: cannot create directory ‘result_fMRI_image’: File exists
+mv: cannot stat 'fMRI_removenoise.nii': No such file or directory
+rm: cannot remove '../T1/*': No such file or directory
+
+Fatal Signal 15 (SIGTERM) received
+   EDIT_volpad
+  3dvolreg main
+ Bottom of Debug Stack
+** Command line was:
+3dvolreg -prefix motioncorrection.nii -1Dfile _motion.1D -Fourier -twopass -zpad 4 -base 50 slicetiming.nii
+** AFNI version = AFNI_16.2.16  Compile date = Sep  4 2016
+** [[Precompiled binary linux_openmp_64: Sep  4 2016]]
+** Program Death **
+
+Fatal Signal 15 (SIGTERM) received
+     nn_shift
+    apply_zshear
+   apply_3shear
+  3dvolreg main
+ Bottom of Debug Stack
+** Command line was:
+3dvolreg -prefix motioncorrection.nii -1Dfile _motion.1D -Fourier -twopass -zpad 4 -base 50 slicetiming.nii
+** AFNI version = AFNI_16.2.16  Compile date = Sep  4 2016
+** [[Precompiled binary linux_openmp_64: Sep  4 2016]]
+** Program Death **
+
+Fatal Signal 15 (SIGTERM) received
+    SUMA_LimitCoordToVolume
+   SUMA_StretchToFitLeCerveau
+  3dSkullStrip
+ Bottom of Debug Stack
+** AFNI version = AFNI_16.2.16  Compile date = Sep  4 2016
+** [[Precompiled binary linux_openmp_64: Sep  4 2016]]
+** Program Death **
+++ 3dDespike: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'motioncorrection.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'motioncorrection.nii'
+** Program compile date = Sep  4 2016
+++ 3dDespike: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'motioncorrection.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'motioncorrection.nii'
+** Program compile date = Sep  4 2016
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+** ERROR (nifti_image_read): failed to find header file for 'skullstrip_musk.nii'
+[7m** FATAL ERROR:[0m can't open dataset skullstrip_musk.nii
+** Program compile date = Sep  4 2016
+Cannot open volume despike for reading!
+Cannot open volume despike for reading!
+mv: cannot stat '*.nii': No such file or directory
+rm: cannot remove 'slicetiming.nii': No such file or directory
+rm: cannot remove 'motioncorrection.nii': No such file or directory
+rm: cannot remove 'despike.nii': No such file or directory
+rm: cannot remove 'fMRI_4d.nii': No such file or directory
+rm: cannot remove 'motioncorrection.nii': No such file or directory
+rm: cannot remove 'despike.nii': No such file or directory
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Cannot open volume fMRI for reading!
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+rm: cannot remove '*001.nii': No such file or directory
+rm: cannot remove '*002.nii': No such file or directory
+rm: cannot remove '*003.nii': No such file or directory
+rm: cannot remove '*004.nii': No such file or directory
+Step2_processing_parallel.sh: line 9: 18614 Aborted                 (core dumped) flirt -omat func2anat.mat -cost corratio -dof 12 -interp trilinear -ref ../T1/skullstrip.nii -in despike0050.nii
+rm: cannot remove '*005.nii': No such file or directory
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 18617 Aborted                 (core dumped) flirt -omat func2anat.mat -cost corratio -dof 12 -interp trilinear -ref ../T1/skullstrip.nii -in despike0050.nii
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+rm: cannot remove '*006.nii': No such file or directory
+rm: cannot remove '*007.nii': No such file or directory
+The intensity in the output dataset is a modified version
+of the intensity in the input volume.
+To obtain a masked version of the input with identical values inside
+the brain, you can either use 3dSkullStrip's -orig_vol option
+or run the following command:
+  3dcalc -a T1.nii -b ./skullstrip_musk.nii+orig -expr 'a*step(b)' \
+         -prefix ./skullstrip_musk.nii_orig_vol
+to generate a new masked version of the input.
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+rm: cannot remove '*008.nii': No such file or directory
+rm: cannot remove '*009.nii': No such file or directory
+rm: cannot remove '*0010.nii': No such file or directory
+Step2_processing_parallel.sh: line 9: 18627 Aborted                 (core dumped) flirt -omat anat2stnd.mat -cost corratio -dof 12 -interp trilinear -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+Step2_processing_parallel.sh: line 9: 18630 Aborted                 (core dumped) flirt -omat anat2stnd.mat -cost corratio -dof 12 -interp trilinear -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+rm: cannot remove 'fMRI.nii': No such file or directory
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Cannot open volume * for reading!
+rm: cannot remove 'fMRI0*.nii': No such file or directory
+++ 3dTshift: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+** ERROR (nifti_image_read): failed to find header file for 'fMRI_4d.nii'
+[7m** FATAL ERROR:[0m Can't open input dataset 'fMRI_4d.nii'
+** Program compile date = Sep  4 2016
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'slicetiming.nii'
+** Can't open dataset slicetiming.nii
+++ 3dDespike: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'motioncorrection.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'motioncorrection.nii'
+** Program compile date = Sep  4 2016
+Cannot open volume despike for reading!
+rm: cannot remove 'slicetiming.nii': No such file or directory
+rm: cannot remove 'motioncorrection.nii': No such file or directory
+rm: cannot remove 'despike.nii': No such file or directory
+rm: cannot remove 'fMRI_4d.nii': No such file or directory
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 18644 Aborted                 (core dumped) flirt -out registration_T1.nii -interp trilinear -applyxfm -init anat2stnd.mat -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+Could not open matrix file func2anat.mat
+Cannot read input-matrix
+Step2_processing_parallel.sh: line 9: 18645 Aborted                 (core dumped) flirt -out registration_T1.nii -interp trilinear -applyxfm -init anat2stnd.mat -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+ls: cannot access 'despike*.nii': No such file or directory
+0
+Could not open matrix file func2anat.mat
+Cannot read input-matrix
+Cannot open volume registration_fMRI* for reading!
+ls: cannot access 'despike*.nii': No such file or directory
+0
+Cannot open volume registration_fMRI* for reading!
+Image Exception : #22 :: ERROR: Could not open image registration_T1
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Image Exception : #22 :: ERROR: Could not open image registration_T1
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 18655 Aborted                 (core dumped) flirt -omat func2anat.mat -cost corratio -dof 12 -interp trilinear -ref ../T1/skullstrip.nii -in despike0050.nii
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 18664 Aborted                 (core dumped) fsl5.0-fast -o T1_segm_A -t 1 -n 3 -g -p registration_T1.nii
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+** ERROR (nifti_image_read): failed to find header file for 'T1_segm_A_seg_0.nii'
+*** Cannot open mask dataset!
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_4d.nii'
+** Can't open dataset registration_fMRI_4d.nii
+Step2_processing_parallel.sh: line 9: 18695 Aborted                 (core dumped) flirt -omat anat2stnd.mat -cost corratio -dof 12 -interp trilinear -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+Step2_processing_parallel.sh: line 9: 18674 Aborted                 (core dumped) fsl5.0-fast -o T1_segm_A -t 1 -n 3 -g -p registration_T1.nii
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+** ERROR (nifti_image_read): failed to find header file for 'T1_segm_A_seg_0.nii'
+*** Cannot open mask dataset!
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_4d.nii'
+** Can't open dataset registration_fMRI_4d.nii
+Step2_processing_parallel.sh: line 9: 18700 Aborted                 (core dumped) flirt -out registration_T1.nii -interp trilinear -applyxfm -init anat2stnd.mat -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+Could not open matrix file func2anat.mat
+Cannot read input-matrix
+ls: cannot access 'despike*.nii': No such file or directory
+failed to open 1D file fMRI_motion.1D
+** failed to read text data file fMRI_motion.1D
+0
+[7m** FATAL ERROR:[0m Can't read input file 'fMRI_csf.1D'
+** Program compile date = Sep  4 2016
+Cannot open volume registration_fMRI* for reading!
+++ 3dBandpass: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+[7m*+ WARNING:[0m (-: For most purposes, 3dTproject is superior to 3dBandpass :-)
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_0003.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'registration_fMRI_0003.nii'
+** Program compile date = Sep  4 2016
+failed to open 1D file fMRI_motion.1D
+** failed to read text data file fMRI_motion.1D
+mkdir: cannot create directory ‘result_fMRI_image’: File exists
+mv: cannot stat 'fMRI_removenoise.nii': No such file or directory
+rm: cannot remove '../T1/*': No such file or directory
+[7m** FATAL ERROR:[0m Can't read input file 'fMRI_csf.1D'
+** Program compile date = Sep  4 2016
+Image Exception : #22 :: ERROR: Could not open image registration_T1
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+++ 3dBandpass: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+[7m*+ WARNING:[0m (-: For most purposes, 3dTproject is superior to 3dBandpass :-)
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_0003.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'registration_fMRI_0003.nii'
+** Program compile date = Sep  4 2016
+mv: cannot stat 'fMRI_removenoise.nii': No such file or directory
+Step2_processing_parallel.sh: line 9: 18712 Aborted                 (core dumped) fsl5.0-fast -o T1_segm_A -t 1 -n 3 -g -p registration_T1.nii
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+** ERROR (nifti_image_read): failed to find header file for 'T1_segm_A_seg_0.nii'
+*** Cannot open mask dataset!
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_4d.nii'
+** Can't open dataset registration_fMRI_4d.nii
+failed to open 1D file fMRI_motion.1D
+** failed to read text data file fMRI_motion.1D
+[7m** FATAL ERROR:[0m Can't read input file 'fMRI_csf.1D'
+** Program compile date = Sep  4 2016
+++ 3dBandpass: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+[7m*+ WARNING:[0m (-: For most purposes, 3dTproject is superior to 3dBandpass :-)
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_0003.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'registration_fMRI_0003.nii'
+** Program compile date = Sep  4 2016
+mkdir: cannot create directory ‘result_fMRI_image’: File exists
+mv: cannot stat 'fMRI_removenoise.nii': No such file or directory
+rm: cannot remove '../T1/*': No such file or directory
+++ Output dataset ./skullstrip.nii
+mv: target 'fMRI.nii' is not a directory
+Cannot open volume fMRI for reading!
+rm: cannot remove '*001.nii': No such file or directory
+rm: cannot remove '*002.nii': No such file or directory
+rm: cannot remove '*003.nii': No such file or directory
+rm: cannot remove '*004.nii': No such file or directory
+rm: cannot remove '*005.nii': No such file or directory
+rm: cannot remove '*006.nii': No such file or directory
+rm: cannot remove '*007.nii': No such file or directory
+rm: cannot remove '*008.nii': No such file or directory
+rm: cannot remove '*009.nii': No such file or directory
+rm: cannot remove '*0010.nii': No such file or directory
+rm: cannot remove 'fMRI.nii': No such file or directory
+rm: cannot remove 'fMRI0*.nii': No such file or directory
+++ 3dTshift: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+
+Fatal Signal 15 (SIGTERM) received
+    SUMA_LimitCoordToVolume
+   SUMA_StretchToFitLeCerveau
+  3dSkullStrip
+ Bottom of Debug Stack
+** AFNI version = AFNI_16.2.16  Compile date = Sep  4 2016
+** [[Precompiled binary linux_openmp_64: Sep  4 2016]]
+** Program Death **
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+** ERROR (nifti_image_read): failed to find header file for 'skullstrip_musk.nii'
+[7m** FATAL ERROR:[0m can't open dataset skullstrip_musk.nii
+** Program compile date = Sep  4 2016
+mv: cannot stat '*.nii': No such file or directory
+Cannot open volume fMRI for reading!
+rm: cannot remove '*001.nii': No such file or directory
+rm: cannot remove '*002.nii': No such file or directory
+rm: cannot remove '*003.nii': No such file or directory
+rm: cannot remove '*004.nii': No such file or directory
+rm: cannot remove '*005.nii': No such file or directory
+rm: cannot remove '*006.nii': No such file or directory
+rm: cannot remove '*007.nii': No such file or directory
+rm: cannot remove '*008.nii': No such file or directory
+rm: cannot remove '*009.nii': No such file or directory
+rm: cannot remove '*0010.nii': No such file or directory
+rm: cannot remove 'fMRI.nii': No such file or directory
+Cannot open volume * for reading!
+rm: cannot remove 'fMRI0*.nii': No such file or directory
+++ 3dTshift: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+** ERROR (nifti_image_read): failed to find header file for 'fMRI_4d.nii'
+[7m** FATAL ERROR:[0m Can't open input dataset 'fMRI_4d.nii'
+** Program compile date = Sep  4 2016
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'slicetiming.nii'
+** Can't open dataset slicetiming.nii
+++ 3dDespike: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'motioncorrection.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'motioncorrection.nii'
+** Program compile date = Sep  4 2016
+Cannot open volume despike for reading!
+rm: cannot remove 'slicetiming.nii': No such file or directory
+rm: cannot remove 'motioncorrection.nii': No such file or directory
+rm: cannot remove 'despike.nii': No such file or directory
+rm: cannot remove 'fMRI_4d.nii': No such file or directory
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 18801 Aborted                 (core dumped) flirt -omat func2anat.mat -cost corratio -dof 12 -interp trilinear -ref ../T1/skullstrip.nii -in despike0050.nii
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+The intensity in the output dataset is a modified version
+of the intensity in the input volume.
+To obtain a masked version of the input with identical values inside
+the brain, you can either use 3dSkullStrip's -orig_vol option
+or run the following command:
+  3dcalc -a T1.nii -b ./skullstrip_musk.nii+orig -expr 'a*step(b)' \
+         -prefix ./skullstrip_musk.nii_orig_vol
+to generate a new masked version of the input.
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+** ERROR (nifti_image_read): failed to find header file for 'T1.nii'
+[7m** FATAL ERROR:[0m can't open dataset T1.nii
+** Program compile date = Sep  4 2016
+mv: cannot stat '*.nii': No such file or directory
+Cannot open volume fMRI for reading!
+rm: cannot remove '*001.nii': No such file or directory
+rm: cannot remove '*002.nii': No such file or directory
+rm: cannot remove '*003.nii': No such file or directory
+rm: cannot remove '*004.nii': No such file or directory
+rm: cannot remove '*005.nii': No such file or directory
+rm: cannot remove '*006.nii': No such file or directory
+rm: cannot remove '*007.nii': No such file or directory
+rm: cannot remove '*008.nii': No such file or directory
+rm: Step2_processing_parallel.sh: line 9: 18803 Aborted                 (core dumped) flirt -omat anat2stnd.mat -cost corratio -dof 12 -interp trilinear -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+cannot remove '*009.nii': No such file or directory
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+rm: cannot remove '*0010.nii': No such file or directory
+rm: cannot remove 'fMRI.nii': No such file or directory
+Cannot open volume * for reading!
+rm: cannot remove 'fMRI0*.nii': No such file or directory
+++ 3dTshift: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+** ERROR (nifti_image_read): failed to find header file for 'fMRI_4d.nii'
+[7m** FATAL ERROR:[0m Can't open input dataset 'fMRI_4d.nii'
+** Program compile date = Sep  4 2016
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'slicetiming.nii'
+** Can't open dataset slicetiming.nii
+++ 3dDespike: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'motioncorrection.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'motioncorrection.nii'
+** Program compile date = Sep  4 2016
+Cannot open volume despike for reading!
+Step2_processing_parallel.sh: line 9: 18825 Aborted                 (core dumped) flirt -out registration_T1.nii -interp trilinear -applyxfm -init anat2stnd.mat -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+rm: cannot remove 'slicetiming.nii': No such file or directory
+rm: cannot remove 'motioncorrection.nii': No such file or directory
+rm: cannot remove 'despike.nii': No such file or directory
+rm: cannot remove 'fMRI_4d.nii': No such file or directory
+Could not open matrix file func2anat.mat
+Cannot read input-matrix
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+ls: cannot access 'despike*.nii': No such file or directory
+0
+Cannot open volume registration_fMRI* for reading!
+Image Exception : #22 :: ERROR: Could not open image registration_T1
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 18839 Aborted                 (core dumped) flirt -omat func2anat.mat -cost corratio -dof 12 -interp trilinear -ref ../T1/skullstrip.nii -in despike0050.nii
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 18845 Aborted                 (core dumped) fsl5.0-fast -o T1_segm_A -t 1 -n 3 -g -p registration_T1.nii
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+** ERROR (nifti_image_read): failed to find header file for 'T1_segm_A_seg_0.nii'
+*** Cannot open mask dataset!
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_4d.nii'
+** Can't open dataset registration_fMRI_4d.nii
+Step2_processing_parallel.sh: line 9: 18859 Aborted                 (core dumped) flirt -omat anat2stnd.mat -cost corratio -dof 12 -interp trilinear -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+failed to open 1D file fMRI_motion.1D
+** failed to read text data file fMRI_motion.1D
+[7m** FATAL ERROR:[0m Can't read input file 'fMRI_csf.1D'
+** Program compile date = Sep  4 2016
+Step2_processing_parallel.sh: line 9: 18864 Aborted                 (core dumped) flirt -out registration_T1.nii -interp trilinear -applyxfm -init anat2stnd.mat -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+++ 3dBandpass: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+[7m*+ WARNING:[0m (-: For most purposes, 3dTproject is superior to 3dBandpass :-)
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_0003.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'registration_fMRI_0003.nii'
+** Program compile date = Sep  4 2016
+Could not open matrix file func2anat.mat
+Cannot read input-matrix
+mkdir: cannot create directory ‘result_fMRI_image’: File exists
+mv: cannot stat 'fMRI_removenoise.nii': No such file or directory
+ls: cannot access 'despike*.nii': No such file or directory
+0
+rm: cannot remove '../T1/*': No such file or directory
+Cannot open volume registration_fMRI* for reading!
+Image Exception : #22 :: ERROR: Could not open image registration_T1
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 18876 Aborted                 (core dumped) fsl5.0-fast -o T1_segm_A -t 1 -n 3 -g -p registration_T1.nii
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+** ERROR (nifti_image_read): failed to find header file for 'T1_segm_A_seg_0.nii'
+*** Cannot open mask dataset!
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_4d.nii'
+** Can't open dataset registration_fMRI_4d.nii
+failed to open 1D file fMRI_motion.1D
+** failed to read text data file fMRI_motion.1D
+[7m** FATAL ERROR:[0m Can't read input file 'fMRI_csf.1D'
+** Program compile date = Sep  4 2016
+++ 3dBandpass: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+[7m*+ WARNING:[0m (-: For most purposes, 3dTproject is superior to 3dBandpass :-)
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_0003.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'registration_fMRI_0003.nii'
+** Program compile date = Sep  4 2016
+mkdir: cannot create directory ‘result_fMRI_image’: File exists
+mv: cannot stat 'fMRI_removenoise.nii': No such file or directory
+[7m** ERROR:[0m output dataset name 'slicetiming.nii' conflicts with existing file
+[7m** ERROR:[0m dataset NOT written to disk!
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 3
+
+Fatal Signal 15 (SIGTERM) received
+     nn_shift
+    apply_yshear
+   apply_3shear
+  3dvolreg main
+ Bottom of Debug Stack
+** Command line was:
+3dvolreg -prefix motioncorrection.nii -1Dfile _motion.1D -Fourier -twopass -zpad 4 -base 50 slicetiming.nii
+** AFNI version = AFNI_16.2.16  Compile date = Sep  4 2016
+** [[Precompiled binary linux_openmp_64: Sep  4 2016]]
+** Program Death **
+++ 3dDespike: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'motioncorrection.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'motioncorrection.nii'
+** Program compile date = Sep  4 2016
+Cannot open volume despike for reading!
+rm: cannot remove 'motioncorrection.nii': No such file or directory
+rm: cannot remove 'despike.nii': No such file or directory
+Image Exception : #22 :: ERROR: Could not open image despike0050
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 18903 Aborted                 (core dumped) flirt -omat func2anat.mat -cost corratio -dof 12 -interp trilinear -ref ../T1/skullstrip.nii -in despike0050.nii
+
+Fatal Signal 15 (SIGTERM) received
+
+Fatal Signal 15 (SIGTERM) received
+     nn_shift
+
+Fatal Signal 15 (SIGTERM) received
+    apply_xshear
+     nn_shift
+   apply_3shear
+     nn_shift
+  3dvolreg main
+    apply_xshear
+ Bottom of Debug Stack
+    apply_xshear
+** Command line was:
+3dvolreg -prefix motioncorrection.nii -1Dfile _motion.1D -Fourier -twopass -zpad 4 -base 50 slicetiming.nii
+   apply_3shear
+   apply_3shear
+  3dvolreg main
+  3dvolreg main
+ Bottom of Debug Stack
+** AFNI version = AFNI_16.2.16  Compile date = Sep  4 2016
+ Bottom of Debug Stack
+** [[Precompiled binary linux_openmp_64: Sep  4 2016]]
+** Command line was:
+3dvolreg -prefix motioncorrection.nii -1Dfile _motion.1D -Fourier -twopass -zpad 4 -base 50 slicetiming.nii
+** Program Death **
+** Command line was:
+3dvolreg -prefix motioncorrection.nii -1Dfile _motion.1D -Fourier -twopass -zpad 4 -base 50 slicetiming.nii
+** AFNI version = AFNI_16.2.16  Compile date = Sep  4 2016
+** [[Precompiled binary linux_openmp_64: Sep  4 2016]]
+** AFNI version = AFNI_16.2.16  Compile date = Sep  4 2016
+** Program Death **
+** [[Precompiled binary linux_openmp_64: Sep  4 2016]]
+** Program Death **
+
+Fatal Signal 15 (SIGTERM) received
+  3dvolreg main
+ Bottom of Debug Stack
+** Command line was:
+3dvolreg -prefix motioncorrection.nii -1Dfile _motion.1D -Fourier -twopass -zpad 4 -base 50 slicetiming.nii
+** AFNI version = AFNI_16.2.16  Compile date = Sep  4 2016
+** [[Precompiled binary linux_openmp_64: Sep  4 2016]]
+** Program Death **
+++ 3dDespike: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ 3dDespike: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'motioncorrection.nii'
+** ERROR (nifti_image_read): failed to find header file for 'motioncorrection.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'motioncorrection.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'motioncorrection.nii'
+** Program compile date = Sep  4 2016
+** Program compile date = Sep  4 2016
+Cannot open volume despike for reading!
+Cannot open volume despike for reading!
+++ 3dDespike: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'motioncorrection.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'motioncorrection.nii'
+** Program compile date = Sep  4 2016
+rm: cannot remove 'slicetiming.nii': No such file or directory
+rm: cannot remove 'motioncorrection.nii': No such file or directory
+rm: cannot remove 'despike.nii': No such file or directory
+rm: cannot remove 'fMRI_4d.nii': No such file or directory
+Cannot open volume despike for reading!
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+rm: cannot remove 'motioncorrection.nii': No such file or directory
+rm: cannot remove 'despike.nii': No such file or directory
+rm: cannot remove 'slicetiming.nii': No such file or directory
+rm: cannot remove 'motioncorrection.nii': No such file or directory
+rm: cannot remove 'despike.nii': No such file or directory
+rm: cannot remove 'fMRI_4d.nii': No such file or directory
+++ 3dDespike: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'motioncorrection.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'motioncorrection.nii'
+** Program compile date = Sep  4 2016
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Cannot open volume despike for reading!
+rm: cannot remove 'slicetiming.nii': No such file or directory
+rm: cannot remove 'motioncorrection.nii': No such file or directory
+rm: cannot remove 'despike.nii': No such file or directory
+rm: cannot remove 'fMRI_4d.nii': No such file or directory
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 18919 Aborted                 (core dumped) flirt -omat func2anat.mat -cost corratio -dof 12 -interp trilinear -ref ../T1/skullstrip.nii -in despike0050.nii
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 18928 Aborted                 (core dumped) flirt -omat func2anat.mat -cost corratio -dof 12 -interp trilinear -ref ../T1/skullstrip.nii -in despike0050.nii
+Step2_processing_parallel.sh: line 9: 18926 Aborted                 (core dumped) flirt -omat func2anat.mat -cost corratio -dof 12 -interp trilinear -ref ../T1/skullstrip.nii -in despike0050.nii
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 18922 Aborted                 (core dumped) flirt -omat func2anat.mat -cost corratio -dof 12 -interp trilinear -ref ../T1/skullstrip.nii -in despike0050.nii
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 18930 Aborted                 (core dumped) flirt -omat anat2stnd.mat -cost corratio -dof 12 -interp trilinear -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 18933 Aborted                 (core dumped) flirt -omat anat2stnd.mat -cost corratio -dof 12 -interp trilinear -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 18936 Aborted                 (core dumped) flirt -omat anat2stnd.mat -cost corratio -dof 12 -interp trilinear -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+Step2_processing_parallel.sh: line 9: 18932 Aborted                 (core dumped) flirt -omat anat2stnd.mat -cost corratio -dof 12 -interp trilinear -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 18938 Aborted                 (core dumped) flirt -out registration_T1.nii -interp trilinear -applyxfm -init anat2stnd.mat -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+Could not open matrix file func2anat.mat
+Cannot read input-matrix
+ls: cannot access 'despike*.nii': No such file or directory
+0
+Cannot open volume registration_fMRI* for reading!
+Image Exception : #22 :: ERROR: Could not open image registration_T1
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 18940 Aborted                 (core dumped) flirt -out registration_T1.nii -interp trilinear -applyxfm -init anat2stnd.mat -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+Could not open matrix file func2anat.mat
+Cannot read input-matrix
+ls: cannot access 'despike*.nii': No such file or directory
+0
+Cannot open volume registration_fMRI* for reading!
+Image Exception : #22 :: ERROR: Could not open image registration_T1
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 18942 Aborted                 (core dumped) flirt -out registration_T1.nii -interp trilinear -applyxfm -init anat2stnd.mat -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+Could not open matrix file func2anat.mat
+Cannot read input-matrix
+ls: cannot access 'despike*.nii': No such file or directory
+0
+Cannot open volume registration_fMRI* for reading!
+Image Exception : #22 :: ERROR: Could not open image registration_T1
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 18943 Aborted                 (core dumped) flirt -out registration_T1.nii -interp trilinear -applyxfm -init anat2stnd.mat -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+Could not open matrix file func2anat.mat
+Cannot read input-matrix
+Step2_processing_parallel.sh: line 9: 18951 Aborted                 (core dumped) fsl5.0-fast -o T1_segm_A -t 1 -n 3 -g -p registration_T1.nii
+ls: cannot access 'despike*.nii': No such file or directory
+0
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+** ERROR (nifti_image_read): failed to find header file for 'T1_segm_A_seg_0.nii'
+*** Cannot open mask dataset!
+Cannot open volume registration_fMRI* for reading!
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_4d.nii'
+** Can't open dataset registration_fMRI_4d.nii
+Image Exception : #22 :: ERROR: Could not open image registration_T1
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 18970 Aborted                 (core dumped) fsl5.0-fast -o T1_segm_A -t 1 -n 3 -g -p registration_T1.nii
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+** ERROR (nifti_image_read): failed to find header file for 'T1_segm_A_seg_0.nii'
+*** Cannot open mask dataset!
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_4d.nii'
+** Can't open dataset registration_fMRI_4d.nii
+failed to open 1D file fMRI_motion.1D
+** failed to read text data file fMRI_motion.1D
+[7m** FATAL ERROR:[0m Can't read input file 'fMRI_csf.1D'
+** Program compile date = Sep  4 2016
+++ 3dBandpass: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+[7m*+ WARNING:[0m (-: For most purposes, 3dTproject is superior to 3dBandpass :-)
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_0003.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'registration_fMRI_0003.nii'
+** Program compile date = Sep  4 2016
+mkdir: cannot create directory ‘result_fMRI_image’: File exists
+mv: cannot stat 'fMRI_removenoise.nii': No such file or directory
+rm: cannot remove '../T1/*': No such file or directory
+Step2_processing_parallel.sh: line 9: 19010 Aborted                 (core dumped) fsl5.0-fast -o T1_segm_A -t 1 -n 3 -g -p registration_T1.nii
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+** ERROR (nifti_image_read): failed to find header file for 'T1_segm_A_seg_0.nii'
+*** Cannot open mask dataset!
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_4d.nii'
+** Can't open dataset registration_fMRI_4d.nii
+Step2_processing_parallel.sh: line 9: 18989 Aborted                 (core dumped) fsl5.0-fast -o T1_segm_A -t 1 -n 3 -g -p registration_T1.nii
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+** ERROR (nifti_image_read): failed to find header file for 'T1_segm_A_seg_0.nii'
+*** Cannot open mask dataset!
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_4d.nii'
+** Can't open dataset registration_fMRI_4d.nii
+failed to open 1D file fMRI_motion.1D
+** failed to read text data file fMRI_motion.1D
+[7m** FATAL ERROR:[0m Can't read input file 'fMRI_csf.1D'
+** Program compile date = Sep  4 2016
+++ 3dBandpass: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+[7m*+ WARNING:[0m (-: For most purposes, 3dTproject is superior to 3dBandpass :-)
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_0003.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'registration_fMRI_0003.nii'
+** Program compile date = Sep  4 2016
+mv: cannot stat 'fMRI_removenoise.nii': No such file or directory
+failed to open 1D file fMRI_motion.1D
+** failed to read text data file fMRI_motion.1D
+[7m** FATAL ERROR:[0m Can't read input file 'fMRI_csf.1D'
+** Program compile date = Sep  4 2016
+++ 3dBandpass: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+[7m*+ WARNING:[0m (-: For most purposes, 3dTproject is superior to 3dBandpass :-)
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_0003.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'registration_fMRI_0003.nii'
+** Program compile date = Sep  4 2016
+mkdir: cannot create directory ‘result_fMRI_image’: File exists
+mv: cannot stat 'fMRI_removenoise.nii': No such file or directory
+rm: cannot remove '../T1/*': No such file or directory
+failed to open 1D file fMRI_motion.1D
+** failed to read text data file fMRI_motion.1D
+[7m** FATAL ERROR:[0m Can't read input file 'fMRI_csf.1D'
+** Program compile date = Sep  4 2016
+++ 3dBandpass: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+[7m*+ WARNING:[0m (-: For most purposes, 3dTproject is superior to 3dBandpass :-)
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_0003.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'registration_fMRI_0003.nii'
+** Program compile date = Sep  4 2016
+mkdir: cannot create directory ‘result_fMRI_image’: File exists
+mv: cannot stat 'fMRI_removenoise.nii': No such file or directory
+rm: cannot remove '../T1/*': No such file or directory
+
+Fatal Signal 15 (SIGTERM) received
+
+Fatal Signal 15 (SIGTERM) received
+     nn_shift
+     nn_shift
+    apply_yshear
+    apply_xshear
+   apply_3shear
+   apply_3shear
+  3dvolreg main
+  3dvolreg main
+ Bottom of Debug Stack
+ Bottom of Debug Stack
+** Command line was:
+3dvolreg -prefix motioncorrection.nii -1Dfile _motion.1D -Fourier -twopass -zpad 4 -base 50 slicetiming.nii
+** Command line was:
+3dvolreg -prefix motioncorrection.nii -1Dfile _motion.1D -Fourier -twopass -zpad 4 -base 50 slicetiming.nii
+** AFNI version = AFNI_16.2.16  Compile date = Sep  4 2016
+** AFNI version = AFNI_16.2.16  Compile date = Sep  4 2016
+** [[Precompiled binary linux_openmp_64: Sep  4 2016]]
+** [[Precompiled binary linux_openmp_64: Sep  4 2016]]
+** Program Death **
+** Program Death **
+Step2_processing_parallel.sh: line 9: 18905 Terminated              flirt -omat anat2stnd.mat -cost corratio -dof 12 -interp trilinear -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+++ 3dDespike: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'motioncorrection.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'motioncorrection.nii'
+** Program compile date = Sep  4 2016
+++ 3dDespike: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'motioncorrection.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'motioncorrection.nii'
+** Program compile date = Sep  4 2016
+Cannot open volume despike for reading!
+rm: cannot remove 'slicetiming.nii': No such file or directory
+rm: cannot remove 'motioncorrection.nii': No such file or directory
+rm: cannot remove 'despike.nii': No such file or directory
+rm: cannot remove 'fMRI_4d.nii': No such file or directory
+Cannot open volume despike for reading!
+rm: cannot remove 'slicetiming.nii': No such file or directory
+rm: cannot remove 'motioncorrection.nii': No such file or directory
+rm: cannot remove 'despike.nii': No such file or directory
+rm: cannot remove 'fMRI_4d.nii': No such file or directory
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Image Exception : #22 :: ERROR: Could not open image despike0050
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Could not open matrix file anat2stnd.mat
+terminate called after throwing an instance of 'NEWMAT::IncompatibleDimensionsException'
+Step2_processing_parallel.sh: line 9: 19061 Aborted                 (core dumped) flirt -omat func2anat.mat -cost corratio -dof 12 -interp trilinear -ref ../T1/skullstrip.nii -in despike0050.nii
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 19063 Aborted                 (core dumped) flirt -omat func2anat.mat -cost corratio -dof 12 -interp trilinear -ref ../T1/skullstrip.nii -in despike0050.nii
+Step2_processing_parallel.sh: line 9: 19055 Aborted                 (core dumped) flirt -out registration_T1.nii -interp trilinear -applyxfm -init anat2stnd.mat -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+Could not open matrix file func2anat.mat
+Cannot read input-matrix
+ls: cannot access 'despike*.nii': No such file or directory
+0
+Cannot open volume registration_fMRI* for reading!
+Image Exception : #22 :: ERROR: Could not open image registration_T1
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 19067 Aborted                 (core dumped) flirt -omat anat2stnd.mat -cost corratio -dof 12 -interp trilinear -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 19075 Aborted                 (core dumped) fsl5.0-fast -o T1_segm_A -t 1 -n 3 -g -p registration_T1.nii
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+** ERROR (nifti_image_read): failed to find header file for 'T1_segm_A_seg_0.nii'
+*** Cannot open mask dataset!
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_4d.nii'
+** Can't open dataset registration_fMRI_4d.nii
+failed to open 1D file fMRI_motion.1D
+** failed to read text data file fMRI_motion.1D
+[7m** FATAL ERROR:[0m Can't read input file 'fMRI_csf.1D'
+** Program compile date = Sep  4 2016
+++ 3dBandpass: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+[7m*+ WARNING:[0m (-: For most purposes, 3dTproject is superior to 3dBandpass :-)
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_0003.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'registration_fMRI_0003.nii'
+** Program compile date = Sep  4 2016
+mv: cannot stat 'fMRI_removenoise.nii': No such file or directory
+Step2_processing_parallel.sh: line 9: 19090 Aborted                 (core dumped) flirt -out registration_T1.nii -interp trilinear -applyxfm -init anat2stnd.mat -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+Could not open matrix file func2anat.mat
+Cannot read input-matrix
+ls: cannot access 'despike*.nii': No such file or directory
+0
+Cannot open volume registration_fMRI* for reading!
+Image Exception : #22 :: ERROR: Could not open image registration_T1
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 19105 Aborted                 (core dumped) fsl5.0-fast -o T1_segm_A -t 1 -n 3 -g -p registration_T1.nii
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+** ERROR (nifti_image_read): failed to find header file for 'T1_segm_A_seg_0.nii'
+*** Cannot open mask dataset!
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_4d.nii'
+** Can't open dataset registration_fMRI_4d.nii
+failed to open 1D file fMRI_motion.1D
+** failed to read text data file fMRI_motion.1D
+[7m** FATAL ERROR:[0m Can't read input file 'fMRI_csf.1D'
+** Program compile date = Sep  4 2016
+++ 3dBandpass: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+[7m*+ WARNING:[0m (-: For most purposes, 3dTproject is superior to 3dBandpass :-)
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_0003.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'registration_fMRI_0003.nii'
+** Program compile date = Sep  4 2016
+mkdir: cannot create directory ‘result_fMRI_image’: File exists
+mv: cannot stat 'fMRI_removenoise.nii': No such file or directory
+rm: cannot remove '../T1/*': No such file or directory
+Step2_processing_parallel.sh: line 9: 19069 Terminated              flirt -omat anat2stnd.mat -cost corratio -dof 12 -interp trilinear -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 19130 Aborted                 (core dumped) flirt -out registration_T1.nii -interp trilinear -applyxfm -init anat2stnd.mat -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+Could not open matrix file func2anat.mat
+Cannot read input-matrix
+ls: cannot access 'despike*.nii': No such file or directory
+0
+Cannot open volume registration_fMRI* for reading!
+Image Exception : #22 :: ERROR: Could not open image registration_T1
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 19137 Aborted                 (core dumped) fsl5.0-fast -o T1_segm_A -t 1 -n 3 -g -p registration_T1.nii
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+** ERROR (nifti_image_read): failed to find header file for 'T1_segm_A_seg_0.nii'
+*** Cannot open mask dataset!
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_4d.nii'
+** Can't open dataset registration_fMRI_4d.nii
+failed to open 1D file fMRI_motion.1D
+** failed to read text data file fMRI_motion.1D
+[7m** FATAL ERROR:[0m Can't read input file 'fMRI_csf.1D'
+** Program compile date = Sep  4 2016
+++ 3dBandpass: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+[7m*+ WARNING:[0m (-: For most purposes, 3dTproject is superior to 3dBandpass :-)
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_0003.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'registration_fMRI_0003.nii'
+** Program compile date = Sep  4 2016
+mkdir: cannot create directory ‘result_fMRI_image’: File exists
+mv: cannot stat 'fMRI_removenoise.nii': No such file or directory
+rm: cannot remove '../T1/*': No such file or directory
+
+xmlfile: ABIDE_50034_Resting_State_fMRI_S164036_I328011.xml
+
+xmlfile: ABIDE_50036_Resting_State_fMRI_S164176_I328163.xml
+
+xmlfile: ABIDE_50037_Resting_State_fMRI_S163253_I327196.xml
+
+xmlfile: ABIDE_50038_Resting_State_fMRI_S163658_I327601.xml
+
+
+xmlfile: ABIDE_50039_Resting_State_fMRI_S163867_I327831.xml
+xmlfile: ABIDE_50035_Resting_State_fMRI_S163790_I327735.xml
+50037
+50036
+50034
+50035
+50039
+50038
+
+Fatal Signal 15 (SIGTERM) received
+    SUMA_Find_IminImax
+   SUMA_StretchToFitLeCerveau
+  3dSkullStrip
+ Bottom of Debug Stack
+** AFNI version = AFNI_16.2.16  Compile date = Sep  4 2016
+** [[Precompiled binary linux_openmp_64: Sep  4 2016]]
+** Program Death **
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+** ERROR (nifti_image_read): failed to find header file for 'skullstrip_musk.nii'
+[7m** FATAL ERROR:[0m can't open dataset skullstrip_musk.nii
+** Program compile date = Sep  4 2016
+++ 3dTshift: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 3
+
+Fatal Signal 15 (SIGTERM) received
+    SUMA_Find_IminImax
+   SUMA_StretchToFitLeCerveau
+  3dSkullStrip
+ Bottom of Debug Stack
+** AFNI version = AFNI_16.2.16  Compile date = Sep  4 2016
+** [[Precompiled binary linux_openmp_64: Sep  4 2016]]
+** Program Death **
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+** ERROR (nifti_image_read): failed to find header file for 'skullstrip_musk.nii'
+[7m** FATAL ERROR:[0m can't open dataset skullstrip_musk.nii
+** Program compile date = Sep  4 2016
+++ 3dTshift: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 3
+
+Fatal Signal 15 (SIGTERM) received
+
+Fatal Signal 15 (SIGTERM) received
+     SUMA_Find_IminImax
+    SUMA_Find_IminImax
+    SUMA_Suggest_Touchup
+   SUMA_StretchToFitLeCerveau
+   SUMA_StretchToFitLeCerveau
+  3dSkullStrip
+  3dSkullStrip
+ Bottom of Debug Stack
+ Bottom of Debug Stack
+** AFNI version = AFNI_16.2.16  Compile date = Sep  4 2016
+** AFNI version = AFNI_16.2.16  Compile date = Sep  4 2016
+** [[Precompiled binary linux_openmp_64: Sep  4 2016]]
+** [[Precompiled binary linux_openmp_64: Sep  4 2016]]
+** Program Death **
+** Program Death **
+
+Fatal Signal 15 (SIGTERM) received
+    SUMA_Find_IminImax
+   SUMA_StretchToFitLeCerveau
+  3dSkullStrip
+ Bottom of Debug Stack
+** AFNI version = AFNI_16.2.16  Compile date = Sep  4 2016
+** [[Precompiled binary linux_openmp_64: Sep  4 2016]]
+** Program Death **
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+** ERROR (nifti_image_read): failed to find header file for 'skullstrip_musk.nii'
+[7m** FATAL ERROR:[0m can't open dataset skullstrip_musk.nii
+** Program compile date = Sep  4 2016
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+** ERROR (nifti_image_read): failed to find header file for 'skullstrip_musk.nii'
+[7m** FATAL ERROR:[0m can't open dataset skullstrip_musk.nii
+** Program compile date = Sep  4 2016
+** ERROR (nifti_image_read): failed to find header file for 'skullstrip_musk.nii'
+[7m** FATAL ERROR:[0m can't open dataset skullstrip_musk.nii
+** Program compile date = Sep  4 2016
+++ 3dTshift: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ 3dTshift: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ 3dTshift: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 3
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 3
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 3
+
+Fatal Signal 15 (SIGTERM) received
+
+Fatal Signal 15 (SIGTERM) received
+     nn_shift
+     nn_shift
+    apply_xshear
+    apply_zshear
+   apply_3shear
+   apply_3shear
+  3dvolreg main
+  3dvolreg main
+ Bottom of Debug Stack
+ Bottom of Debug Stack
+** Command line was:
+3dvolreg -prefix motioncorrection.nii -1Dfile _motion.1D -Fourier -twopass -zpad 4 -base 50 slicetiming.nii
+** Command line was:
+3dvolreg -prefix motioncorrection.nii -1Dfile _motion.1D -Fourier -twopass -zpad 4 -base 50 slicetiming.nii
+** AFNI version = AFNI_16.2.16  Compile date = Sep  4 2016
+** AFNI version = AFNI_16.2.16  Compile date = Sep  4 2016
+** [[Precompiled binary linux_openmp_64: Sep  4 2016]]
+** [[Precompiled binary linux_openmp_64: Sep  4 2016]]
+** Program Death **
+** Program Death **
+++ 3dDespike: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'motioncorrection.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'motioncorrection.nii'
+** Program compile date = Sep  4 2016
+++ 3dDespike: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'motioncorrection.nii'
+Cannot open volume despike[7m** FATAL ERROR:[0m Can't open dataset 'motioncorrection.nii'
+ for reading!
+** Program compile date = Sep  4 2016
+rm: cannot remove 'motioncorrection.nii': No such file or directory
+rm: cannot remove 'despike.nii': No such file or directory
+Image Exception : #Cannot open volume 22despike :: ERROR: Could not open image ../T1/skullstrip for reading!
+
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+rm: cannot remove 'motioncorrection.nii': No such file or directory
+rm: cannot remove 'despike.nii': No such file or directory
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 19360 Aborted                 (core dumped) flirt -omat func2anat.mat -cost corratio -dof 12 -interp trilinear -ref ../T1/skullstrip.nii -in despike0050.nii
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 19357 Aborted                 (core dumped) flirt -omat func2anat.mat -cost corratio -dof 12 -interp trilinear -ref ../T1/skullstrip.nii -in despike0050.nii
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 19362 Aborted                 (core dumped) flirt -omat anat2stnd.mat -cost corratio -dof 12 -interp trilinear -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 19364 Aborted                 (core dumped) flirt -omat anat2stnd.mat -cost corratio -dof 12 -interp trilinear -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 19366 Aborted                 (core dumped) flirt -out registration_T1.nii -interp trilinear -applyxfm -init anat2stnd.mat -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+Could not open matrix file func2anat.mat
+Cannot read input-matrix
+ls: cannot access 'despike*.nii': No such file or directory
+0
+Cannot open volume registration_fMRI* for reading!
+Image Exception : #22 :: ERROR: Could not open image registration_T1
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 19368 Aborted                 (core dumped) flirt -out registration_T1.nii -interp trilinear -applyxfm -init anat2stnd.mat -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+Could not open matrix file func2anat.mat
+Cannot read input-matrix
+ls: cannot access 'despike*.nii': No such file or directory
+0
+Cannot open volume registration_fMRI* for reading!
+Image Exception : #22 :: ERROR: Could not open image registration_T1
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 19375 Aborted                 (core dumped) fsl5.0-fast -o T1_segm_A -t 1 -n 3 -g -p registration_T1.nii
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+** ERROR (nifti_image_read): failed to find header file for 'T1_segm_A_seg_0.nii'
+*** Cannot open mask dataset!
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_4d.nii'
+** Can't open dataset registration_fMRI_4d.nii
+Step2_processing_parallel.sh: line 9: 19394 Aborted                 (core dumped) fsl5.0-fast -o T1_segm_A -t 1 -n 3 -g -p registration_T1.nii
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+** ERROR (nifti_image_read): failed to find header file for 'T1_segm_A_seg_0.nii'
+*** Cannot open mask dataset!
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_4d.nii'
+** Can't open dataset registration_fMRI_4d.nii
+failed to open 1D file fMRI_motion.1D
+** failed to read text data file fMRI_motion.1D
+[7m** FATAL ERROR:[0m Can't read input file 'fMRI_csf.1D'
+** Program compile date = Sep  4 2016
+++ 3dBandpass: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+[7m*+ WARNING:[0m (-: For most purposes, 3dTproject is superior to 3dBandpass :-)
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_0003.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'registration_fMRI_0003.nii'
+** Program compile date = Sep  4 2016
+mv: cannot stat 'fMRI_removenoise.nii': No such file or directory
+failed to open 1D file fMRI_motion.1D
+** failed to read text data file fMRI_motion.1D
+[7m** FATAL ERROR:[0m Can't read input file 'fMRI_csf.1D'
+** Program compile date = Sep  4 2016
+++ 3dBandpass: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+[7m*+ WARNING:[0m (-: For most purposes, 3dTproject is superior to 3dBandpass :-)
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_0003.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'registration_fMRI_0003.nii'
+** Program compile date = Sep  4 2016
+mv: cannot stat 'fMRI_removenoise.nii': No such file or directory
+Warning 3dSkullStrip:****************
+ Surface self intersecting! trying again:
+ smoothing of 84, avoid_vent -1
+
+Fatal Signal 15 (SIGTERM) received
+
+Fatal Signal 15 (SIGTERM) received
+
+Fatal Signal 15 (SIGTERM) received
+     nn_shift
+  3dvolreg main
+    apply_yshear
+    apply_yshear
+ Bottom of Debug Stack
+   apply_3shear
+   apply_3shear
+** Command line was:
+3dvolreg -prefix motioncorrection.nii -1Dfile _motion.1D -Fourier -twopass -zpad 4 -base 50 slicetiming.nii
+  3dvolreg main
+  3dvolreg main
+ Bottom of Debug Stack
+ Bottom of Debug Stack
+** Command line was:
+3dvolreg -prefix motioncorrection.nii -1Dfile _motion.1D -Fourier -twopass -zpad 4 -base 50 slicetiming.nii
+** AFNI version = AFNI_16.2.16  Compile date = Sep  4 2016
+** Command line was:
+3dvolreg -prefix motioncorrection.nii -1Dfile _motion.1D -Fourier -twopass -zpad 4 -base 50 slicetiming.nii
+** [[Precompiled binary linux_openmp_64: Sep  4 2016]]
+** Program Death **
+** AFNI version = AFNI_16.2.16  Compile date = Sep  4 2016
+** AFNI version = AFNI_16.2.16  Compile date = Sep  4 2016
+** [[Precompiled binary linux_openmp_64: Sep  4 2016]]
+** [[Precompiled binary linux_openmp_64: Sep  4 2016]]
+** Program Death **
+** Program Death **
+++ 3dDespike: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'motioncorrection.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'motioncorrection.nii'
+** Program compile date = Sep  4 2016
+++ 3dDespike: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'motioncorrection.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'motioncorrection.nii'
+** Program compile date = Sep  4 2016
+++ 3dDespike: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'motioncorrection.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'motioncorrection.nii'
+** Program compile date = Sep  4 2016
+Cannot open volume despike for reading!
+Cannot open volume despike for reading!
+Cannot open volume despike for reading!
+rm: cannot remove 'motioncorrection.nii': No such file or directory
+rm: cannot remove 'despike.nii': No such file or directory
+rm: cannot remove 'motioncorrection.nii': No such file or directory
+rm: cannot remove 'despike.nii': No such file or directory
+rm: cannot remove 'motioncorrection.nii': No such file or directory
+rm: cannot remove 'despike.nii': No such file or directory
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'Image Exception : #RBD_COMMON::BaseException'
+22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 19436 Aborted                 (core dumped) flirt -omat func2anat.mat -cost corratio -dof 12 -interp trilinear -ref ../T1/skullstrip.nii -in despike0050.nii
+Step2_processing_parallel.sh: line 9: 19437 Aborted                 (core dumped) flirt -omat func2anat.mat -cost corratio -dof 12 -interp trilinear -ref ../T1/skullstrip.nii -in despike0050.nii
+Step2_processing_parallel.sh: line 9: 19434 Aborted                 (core dumped) flirt -omat func2anat.mat -cost corratio -dof 12 -interp trilinear -ref ../T1/skullstrip.nii -in despike0050.nii
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 19442 Aborted                 (core dumped) flirt -omat anat2stnd.mat -cost corratio -dof 12 -interp trilinear -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+Step2_processing_parallel.sh: line 9: 19440 Aborted                 (core dumped) flirt -omat anat2stnd.mat -cost corratio -dof 12 -interp trilinear -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+Step2_processing_parallel.sh: line 9: 19441 Aborted                 (core dumped) flirt -omat anat2stnd.mat -cost corratio -dof 12 -interp trilinear -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 19446 Aborted                 (core dumped) flirt -out registration_T1.nii -interp trilinear -applyxfm -init anat2stnd.mat -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+Step2_processing_parallel.sh: line 9: 19447 Aborted                 (core dumped) flirt -out registration_T1.nii -interp trilinear -applyxfm -init anat2stnd.mat -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+Could not open matrix file func2anat.mat
+Cannot read input-matrix
+Could not open matrix file func2anat.mat
+Cannot read input-matrix
+ls: cannot access 'despike*.nii': No such file or directory
+Step2_processing_parallel.sh: line 9: 19448 Aborted                 (core dumped) flirt -out registration_T1.nii -interp trilinear -applyxfm -init anat2stnd.mat -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+0
+ls: cannot access 'despike*.nii': No such file or directory
+0
+Cannot open volume registration_fMRI* for reading!
+Could not open matrix file func2anat.mat
+Cannot read input-matrix
+Cannot open volume registration_fMRI* for reading!
+ls: cannot access 'despike*.nii': No such file or directory
+0
+Cannot open volume registration_fMRI* for reading!
+Image Exception : #22 :: ERROR: Could not open image registration_T1
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Image Exception : #22 :: ERROR: Could not open image registration_T1
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Image Exception : #22 :: ERROR: Could not open image registration_T1
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 19473 Aborted                 (core dumped) fsl5.0-fast -o T1_segm_A -t 1 -n 3 -g -p registration_T1.nii
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+** ERROR (nifti_image_read): failed to find header file for 'T1_segm_A_seg_0.nii'
+*** Cannot open mask dataset!
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_4d.nii'
+** Can't open dataset registration_fMRI_4d.nii
+Step2_processing_parallel.sh: line 9: 19487 Aborted                 (core dumped) fsl5.0-fast -o T1_segm_A -t 1 -n 3 -g -p registration_T1.nii
+Step2_processing_parallel.sh: line 9: 19463 Aborted                 (core dumped) fsl5.0-fast -o T1_segm_A -t 1 -n 3 -g -p registration_T1.nii
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+** ERROR (nifti_image_read): failed to find header file for 'T1_segm_A_seg_0.nii'
+*** Cannot open mask dataset!
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+** ERROR (nifti_image_read): failed to find header file for 'T1_segm_A_seg_0.nii'
+*** Cannot open mask dataset!
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_4d.nii'
+** Can't open dataset registration_fMRI_4d.nii
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_4d.nii'
+** Can't open dataset registration_fMRI_4d.nii
+failed to open 1D file fMRI_motion.1D
+** failed to read text data file fMRI_motion.1D
+failed to open 1D file fMRI_motion.1D
+** failed to read text data file fMRI_motion.1D
+[7m** FATAL ERROR:[0m Can't read input file 'fMRI_csf.1D'
+** Program compile date = Sep  4 2016
+++ 3dBandpass: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+[7m*+ WARNING:[0m (-: For most purposes, 3dTproject is superior to 3dBandpass :-)
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_0003.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'registration_fMRI_0003.nii'
+** Program compile date = Sep  4 2016
+[7m** FATAL ERROR:[0m Can't read input file 'fMRI_csf.1D'
+** Program compile date = Sep  4 2016
+mv: cannot stat 'fMRI_removenoise.nii': No such file or directory
+++ 3dBandpass: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+[7m*+ WARNING:[0m (-: For most purposes, 3dTproject is superior to 3dBandpass :-)
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_0003.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'registration_fMRI_0003.nii'
+** Program compile date = Sep  4 2016
+mv: cannot stat 'fMRI_removenoise.nii': No such file or directory
+failed to open 1D file fMRI_motion.1D
+** failed to read text data file fMRI_motion.1D
+[7m** FATAL ERROR:[0m Can't read input file 'fMRI_csf.1D'
+** Program compile date = Sep  4 2016
+++ 3dBandpass: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+[7m*+ WARNING:[0m (-: For most purposes, 3dTproject is superior to 3dBandpass :-)
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_0003.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'registration_fMRI_0003.nii'
+** Program compile date = Sep  4 2016
+mv: cannot stat 'fMRI_removenoise.nii': No such file or directory
+
+Fatal Signal 15 (SIGTERM) received
+    SUMA_Find_IminImax
+   SUMA_StretchToFitLeCerveau
+  3dSkullStrip
+ Bottom of Debug Stack
+** AFNI version = AFNI_16.2.16  Compile date = Sep  4 2016
+** [[Precompiled binary linux_openmp_64: Sep  4 2016]]
+** Program Death **
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+** ERROR (nifti_image_read): failed to find header file for 'skullstrip_musk.nii'
+[7m** FATAL ERROR:[0m can't open dataset skullstrip_musk.nii
+** Program compile date = Sep  4 2016
+++ 3dTshift: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 3
+
+Fatal Signal 15 (SIGTERM) received
+     nn_shift
+    apply_zshear
+   apply_3shear
+  3dvolreg main
+ Bottom of Debug Stack
+** Command line was:
+3dvolreg -prefix motioncorrection.nii -1Dfile _motion.1D -Fourier -twopass -zpad 4 -base 50 slicetiming.nii
+** AFNI version = AFNI_16.2.16  Compile date = Sep  4 2016
+** [[Precompiled binary linux_openmp_64: Sep  4 2016]]
+** Program Death **
+++ 3dDespike: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'motioncorrection.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'motioncorrection.nii'
+** Program compile date = Sep  4 2016
+Cannot open volume despike for reading!
+rm: cannot remove 'motioncorrection.nii': No such file or directory
+rm: cannot remove 'despike.nii': No such file or directory
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 19569 Aborted                 (core dumped) flirt -omat func2anat.mat -cost corratio -dof 12 -interp trilinear -ref ../T1/skullstrip.nii -in despike0050.nii
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 19571 Aborted                 (core dumped) flirt -omat anat2stnd.mat -cost corratio -dof 12 -interp trilinear -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+Image Exception : #22 :: ERROR: Could not open image ../T1/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 19573 Aborted                 (core dumped) flirt -out registration_T1.nii -interp trilinear -applyxfm -init anat2stnd.mat -ref ~/data/template/std_skullstrip.nii.gz -in ../T1/skullstrip.nii
+Could not open matrix file func2anat.mat
+Cannot read input-matrix
+ls: cannot access 'despike*.nii': No such file or directory
+0
+Cannot open volume registration_fMRI* for reading!
+Image Exception : #22 :: ERROR: Could not open image registration_T1
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+Step2_processing_parallel.sh: line 9: 19580 Aborted                 (core dumped) fsl5.0-fast -o T1_segm_A -t 1 -n 3 -g -p registration_T1.nii
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+** ERROR (nifti_image_read): failed to find header file for 'T1_segm_A_seg_0.nii'
+*** Cannot open mask dataset!
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_4d.nii'
+** Can't open dataset registration_fMRI_4d.nii
+failed to open 1D file fMRI_motion.1D
+** failed to read text data file fMRI_motion.1D
+[7m** FATAL ERROR:[0m Can't read input file 'fMRI_csf.1D'
+** Program compile date = Sep  4 2016
+++ 3dBandpass: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+[7m*+ WARNING:[0m (-: For most purposes, 3dTproject is superior to 3dBandpass :-)
+** ERROR (nifti_image_read): failed to find header file for 'registration_fMRI_0003.nii'
+[7m** FATAL ERROR:[0m Can't open dataset 'registration_fMRI_0003.nii'
+** Program compile date = Sep  4 2016
+mv: cannot stat 'fMRI_removenoise.nii': No such file or directory
+
+xmlfile: ABIDE_50002_Resting_State_fMRI_S163211_I327154.xml
+
+xmlfile: ABIDE_50003_Resting_State_fMRI_S164263_I328256.xml
+
+xmlfile: ABIDE_50004_Resting_State_fMRI_S163622_I327565.xml
+
+xmlfile: ABIDE_50031_Resting_State_fMRI_S163124_I327050.xml
+
+
+xmlfile: ABIDE_50032_Resting_State_fMRI_S163535_I327478.xml
+xmlfile: ABIDE_50005_Resting_State_fMRI_S163384_I327327.xml
+
+xmlfile: ABIDE_50033_Resting_State_fMRI_S163708_I327653.xml
+
+
+xmlfile: ABIDE_50007_Resting_State_fMRI_S163674_I327617.xml
+xmlfile: ABIDE_50006_Resting_State_fMRI_S163789_I327734.xml
+
+xmlfile: ABIDE_50008_Resting_State_fMRI_S163123_I327048.xml
+
+xmlfile: ABIDE_50009_Resting_State_fMRI_S163323_I327266.xml
+
+xmlfile: ABIDE_50030_Resting_State_fMRI_S163587_I327530.xml
+50002
+50033
+50008
+50032
+50003
+50031
+50004
+50030
+50007
+50006
+50005
+50009
+Warning 3dSkullStrip:****************
+ Surface self intersecting! trying again:
+ smoothing of 84, avoid_vent -1
+Warning 3dSkullStrip:****************
+ Surface self intersecting! trying again:
+ smoothing of 84, avoid_vent -1
+The intensity in the output dataset is a modified version
+of the intensity in the input volume.
+To obtain a masked version of the input with identical values inside
+the brain, you can either use 3dSkullStrip's -orig_vol option
+or run the following command:
+  3dcalc -a T1.nii -b ./skullstrip_musk.nii+orig -expr 'a*step(b)' \
+         -prefix ./skullstrip_musk.nii_orig_vol
+to generate a new masked version of the input.
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+++ Output dataset ./skullstrip.nii
+++ 3dTshift: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 3
+The intensity in the output dataset is a modified version
+of the intensity in the input volume.
+To obtain a masked version of the input with identical values inside
+the brain, you can either use 3dSkullStrip's -orig_vol option
+or run the following command:
+  3dcalc -a T1.nii -b ./skullstrip_musk.nii+orig -expr 'a*step(b)' \
+         -prefix ./skullstrip_musk.nii_orig_vol
+to generate a new masked version of the input.
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+The intensity in the output dataset is a modified version
+of the intensity in the input volume.
+To obtain a masked version of the input with identical values inside
+the brain, you can either use 3dSkullStrip's -orig_vol option
+or run the following command:
+  3dcalc -a T1.nii -b ./skullstrip_musk.nii+orig -expr 'a*step(b)' \
+         -prefix ./skullstrip_musk.nii_orig_vol
+to generate a new masked version of the input.
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+++ Output dataset ./skullstrip.nii
+++ Output dataset ./skullstrip.nii
+The intensity in the output dataset is a modified version
+of the intensity in the input volume.
+To obtain a masked version of the input with identical values inside
+the brain, you can either use 3dSkullStrip's -orig_vol option
+or run the following command:
+  3dcalc -a T1.nii -b ./skullstrip_musk.nii+orig -expr 'a*step(b)' \
+         -prefix ./skullstrip_musk.nii_orig_vol
+to generate a new masked version of the input.
+++ 3dTshift: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+++ 3dTshift: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Output dataset ./skullstrip.nii
+++ 3dTshift: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 3
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 3
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 3
+The intensity in the output dataset is a modified version
+of the intensity in the input volume.
+To obtain a masked version of the input with identical values inside
+the brain, you can either use 3dSkullStrip's -orig_vol option
+or run the following command:
+  3dcalc -a T1.nii -b ./skullstrip_musk.nii+orig -expr 'a*step(b)' \
+         -prefix ./skullstrip_musk.nii_orig_vol
+to generate a new masked version of the input.
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+The intensity in the output dataset is a modified version
+of the intensity in the input volume.
+To obtain a masked version of the input with identical values inside
+the brain, you can either use 3dSkullStrip's -orig_vol option
+or run the following command:
+  3dcalc -a T1.nii -b ./skullstrip_musk.nii+orig -expr 'a*step(b)' \
+         -prefix ./skullstrip_musk.nii_orig_vol
+to generate a new masked version of the input.
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+++ Output dataset ./skullstrip.nii
+The intensity in the output dataset is a modified version
+of the intensity in the input volume.
+To obtain a masked version of the input with identical values inside
+the brain, you can either use 3dSkullStrip's -orig_vol option
+or run the following command:
+  3dcalc -a T1.nii -b ./skullstrip_musk.nii+orig -expr 'a*step(b)' \
+         -prefix ./skullstrip_musk.nii_orig_vol
+to generate a new masked version of the input.
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+++ Output dataset ./skullstrip.nii
+++ 3dTshift: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ 3dTshift: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Output dataset ./skullstrip.nii
+++ 3dTshift: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 3
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 3
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 3
+The intensity in the output dataset is a modified version
+of the intensity in the input volume.
+To obtain a masked version of the input with identical values inside
+the brain, you can either use 3dSkullStrip's -orig_vol option
+or run the following command:
+  3dcalc -a T1.nii -b ./skullstrip_musk.nii+orig -expr 'a*step(b)' \
+         -prefix ./skullstrip_musk.nii_orig_vol
+to generate a new masked version of the input.
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+++ Output dataset ./skullstrip.nii
+++ 3dTshift: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+The intensity in the output dataset is a modified version
+of the intensity in the input volume.
+To obtain a masked version of the input with identical values inside
+the brain, you can either use 3dSkullStrip's -orig_vol option
+or run the following command:
+  3dcalc -a T1.nii -b ./skullstrip_musk.nii+orig -expr 'a*step(b)' \
+         -prefix ./skullstrip_musk.nii_orig_vol
+to generate a new masked version of the input.
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+The intensity in the output dataset is a modified version
+of the intensity in the input volume.
+To obtain a masked version of the input with identical values inside
+the brain, you can either use 3dSkullStrip's -orig_vol option
+or run the following command:
+  3dcalc -a T1.nii -b ./skullstrip_musk.nii+orig -expr 'a*step(b)' \
+         -prefix ./skullstrip_musk.nii_orig_vol
+to generate a new masked version of the input.
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+++ Output dataset ./skullstrip.nii
+++ Output dataset ./skullstrip.nii
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 3
+++ 3dTshift: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ 3dTshift: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 3
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 3
+The intensity in the output dataset is a modified version
+of the intensity in the input volume.
+To obtain a masked version of the input with identical values inside
+the brain, you can either use 3dSkullStrip's -orig_vol option
+or run the following command:
+  3dcalc -a T1.nii -b ./skullstrip_musk.nii+orig -expr 'a*step(b)' \
+         -prefix ./skullstrip_musk.nii_orig_vol
+to generate a new masked version of the input.
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+++ Output dataset ./skullstrip.nii
+++ 3dTshift: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 3
+The intensity in the output dataset is a modified version
+of the intensity in the input volume.
+To obtain a masked version of the input with identical values inside
+the brain, you can either use 3dSkullStrip's -orig_vol option
+or run the following command:
+  3dcalc -a T1.nii -b ./skullstrip_musk.nii+orig -expr 'a*step(b)' \
+         -prefix ./skullstrip_musk.nii_orig_vol
+to generate a new masked version of the input.
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+++ Output dataset ./skullstrip.nii
+++ 3dTshift: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 3
+++ Max displacement in automask = 0.88 (mm) at sub-brick 92
+++ Max delta displ  in automask = 0.50 (mm) at sub-brick 94
+++ 3dDespike: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Input data type = short
+++ ignoring first 0 time points, using last 190
+++ using 190 time points => -corder 6
+++ Loading dataset motioncorrection.nii
+++ 36732 voxels in the automask [out of 118784 in dataset]
+++ 57764 voxels in the dilated automask [out of 118784 in dataset]
+++ Procesing time series with OLD model fit algorithm
+++ smash edit thresholds: 3.1 .. 5.0 MADs
+ +   [ 3.457% .. 0.072% of normal distribution]
+ +   [ 8.839% .. 3.125% of Laplace distribution]
+++ 29 slices to process
+++ start OpenMP thread #0
+++ start OpenMP thread #7
+++ start OpenMP thread #6
+++ start OpenMP thread #5
+++ start OpenMP thread #4
+++ start OpenMP thread #3
+++ start OpenMP thread #2
+++ start OpenMP thread #1
+.............++ Max displacement in automask = 2.69 (mm) at sub-brick 159
+++ Max delta displ  in automask = 1.22 (mm) at sub-brick 179
+++ 3dDespike: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Input data type = short
+++ ignoring first 0 time points, using last 190
+++ using 190 time points => -corder 6
+++ Loading dataset motioncorrection.nii
+.......++ 35677 voxels in the automask [out of 118784 in dataset]
+++ 56569 voxels in the dilated automask [out of 118784 in dataset]
+++ Procesing time series with OLD model fit algorithm
+++ smash edit thresholds: 3.1 .. 5.0 MADs
+ +   [ 3.457% .. 0.072% of normal distribution]
+ +   [ 8.839% .. 3.125% of Laplace distribution]
+++ 29 slices to process
+++ start OpenMP thread #0
+++ start OpenMP thread #6
+++ start OpenMP thread #3
+++ start OpenMP thread #1
+++ start OpenMP thread #2
+++ start OpenMP thread #4
+++ start OpenMP thread #7
+++ start OpenMP thread #5
+.........................
+++ Elapsed despike time =  7s 831ms
+
+++ FINAL: 10975160 data points, 642159 edits [5.851%], 41949 big edits [0.382%]
+.++ Output dataset ./despike.nii
+.++ Output dataset ./_spikiness.nii
+......
+++ Elapsed despike time =  7s 730ms
+
+++ FINAL: 10748110 data points, 806688 edits [7.505%], 171871 big edits [1.599%]
+++ Output dataset ./despike.nii
+++ Output dataset ./_spikiness.nii
+++ Max displacement in automask = 1.82 (mm) at sub-brick 90
+++ Max delta displ  in automask = 0.99 (mm) at sub-brick 88
+++ 3dDespike: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Input data type = short
+++ ignoring first 0 time points, using last 190
+++ using 190 time points => -corder 6
+++ Loading dataset motioncorrection.nii
+++ 32591 voxels in the automask [out of 118784 in dataset]
+++ 52505 voxels in the dilated automask [out of 118784 in dataset]
+++ Procesing time series with OLD model fit algorithm
+++ smash edit thresholds: 3.1 .. 5.0 MADs
+ +   [ 3.457% .. 0.072% of normal distribution]
+ +   [ 8.839% .. 3.125% of Laplace distribution]
+++ 29 slices to process
+++ start OpenMP thread #0
+++ start OpenMP thread #1
+++ start OpenMP thread #6
+++ start OpenMP thread #2
+++ start OpenMP thread #3
+++ start OpenMP thread #4
+++ start OpenMP thread #5
+++ start OpenMP thread #7
+...............++ Max displacement in automask = 2.24 (mm) at sub-brick 105
+++ Max delta displ  in automask = 0.69 (mm) at sub-brick 172
+....++ 3dDespike: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Input data type = short
+++ ignoring first 0 time points, using last 190
+++ using 190 time points => -corder 6
+++ Loading dataset motioncorrection.nii
+....++ 37031 voxels in the automask [out of 118784 in dataset]
+++ 57061 voxels in the dilated automask [out of 118784 in dataset]
+++ Procesing time series with OLD model fit algorithm
+++ smash edit thresholds: 3.1 .. 5.0 MADs
+ +   [ 3.457% .. 0.072% of normal distribution]
+ +   [ 8.839% .. 3.125% of Laplace distribution]
+++ 29 slices to process
+++ start OpenMP thread #0
+++ start OpenMP thread #2
+++ start OpenMP thread #3
+++ start OpenMP thread #6
+++ start OpenMP thread #7
+++ start OpenMP thread #5
+++ start OpenMP thread #4
+++ start OpenMP thread #1
+.................
+++ Elapsed despike time =  7s 972ms
+
+++ FINAL: 9975950 data points, 710419 edits [7.121%], 121521 big edits [1.218%]
+++ Output dataset ./despike.nii
+...++ Output dataset ./_spikiness.nii
+........
+++ Elapsed despike time =  7s 336ms
+
+++ FINAL: 10841590 data points, 646194 edits [5.960%], 45297 big edits [0.418%]
+++ Output dataset ./despike.nii
+++ Output dataset ./_spikiness.nii
+++ Max displacement in automask = 1.81 (mm) at sub-brick 0
+++ Max delta displ  in automask = 1.35 (mm) at sub-brick 1
+++ 3dDespike: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Input data type = short
+++ ignoring first 0 time points, using last 190
+++ using 190 time points => -corder 6
+++ Loading dataset motioncorrection.nii
+++ 38197 voxels in the automask [out of 118784 in dataset]
+++ 58385 voxels in the dilated automask [out of 118784 in dataset]
+++ Procesing time series with OLD model fit algorithm
+++ smash edit thresholds: 3.1 .. 5.0 MADs
+ +   [ 3.457% .. 0.072% of normal distribution]
+ +   [ 8.839% .. 3.125% of Laplace distribution]
+++ 29 slices to process
+++ start OpenMP thread #7
+++ start OpenMP thread #0
+++ start OpenMP thread #1
+++ start OpenMP thread #2
+++ start OpenMP thread #3
+++ start OpenMP thread #5
+++ start OpenMP thread #4
+++ start OpenMP thread #6
+............................
+++ Elapsed despike time =  6s 258ms
+
+++ FINAL: 11092580 data points, 652441 edits [5.882%], 67045 big edits [0.604%]
+++ Output dataset ./despike.nii
+++ Output dataset ./_spikiness.nii
+++ Max displacement in automask = 1.06 (mm) at sub-brick 0
+++ Max delta displ  in automask = 0.42 (mm) at sub-brick 141
+++ 3dDespike: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Input data type = short
+++ ignoring first 0 time points, using last 190
+++ using 190 time points => -corder 6
+++ Loading dataset motioncorrection.nii
+++ Max displacement in automask = 1.15 (mm) at sub-brick 0
+++ Max delta displ  in automask = 0.34 (mm) at sub-brick 181
+++ 3dDespike: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Input data type = short
+++ ignoring first 0 time points, using last 190
+++ using 190 time points => -corder 6
+++ Loading dataset motioncorrection.nii
+++ 34903 voxels in the automask [out of 118784 in dataset]
+++ 55859 voxels in the dilated automask [out of 118784 in dataset]
+++ Procesing time series with OLD model fit algorithm
+++ smash edit thresholds: 3.1 .. 5.0 MADs
+ +   [ 3.457% .. 0.072% of normal distribution]
+ +   [ 8.839% .. 3.125% of Laplace distribution]
+++ 29 slices to process
+++ start OpenMP thread #7
+++ start OpenMP thread #0
+++ start OpenMP thread #1
+++ start OpenMP thread #2
+++ start OpenMP thread #3
+++ start OpenMP thread #4
+++ start OpenMP thread #5
+++ start OpenMP thread #6
+++ 35452 voxels in the automask [out of 118784 in dataset]
+++ 55716 voxels in the dilated automask [out of 118784 in dataset]
+++ Procesing time series with OLD model fit algorithm
+++ smash edit thresholds: 3.1 .. 5.0 MADs
+ +   [ 3.457% .. 0.072% of normal distribution]
+ +   [ 8.839% .. 3.125% of Laplace distribution]
+++ 29 slices to process
+++ start OpenMP thread #0
+++ start OpenMP thread #7
+++ start OpenMP thread #6
+++ start OpenMP thread #5
+++ start OpenMP thread #4
+++ start OpenMP thread #3
+++ start OpenMP thread #2
+++ start OpenMP thread #1
+........................................................
+++ Elapsed despike time =  8s 373ms
+
+++ FINAL: 10613210 data points, 638052 edits [6.012%], 47874 big edits [0.451%]
+++ Output dataset ./despike.nii
+++ Output dataset ./_spikiness.nii
+
+++ Elapsed despike time =  8s 499ms
+
+++ FINAL: 10586040 data points, 635373 edits [6.002%], 47919 big edits [0.453%]
+++ Output dataset ./despike.nii
+++ Output dataset ./_spikiness.nii
+++ Max displacement in automask = 3.04 (mm) at sub-brick 162
+++ Max delta displ  in automask = 1.34 (mm) at sub-brick 177
+++ 3dDespike: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Input data type = short
+++ ignoring first 0 time points, using last 190
+++ using 190 time points => -corder 6
+++ Loading dataset motioncorrection.nii
+++ 33525 voxels in the automask [out of 118784 in dataset]
+++ 53898 voxels in the dilated automask [out of 118784 in dataset]
+++ Procesing time series with OLD model fit algorithm
+++ smash edit thresholds: 3.1 .. 5.0 MADs
+ +   [ 3.457% .. 0.072% of normal distribution]
+ +   [ 8.839% .. 3.125% of Laplace distribution]
+++ 29 slices to process
+++ start OpenMP thread #0
+++ start OpenMP thread #7
+++ start OpenMP thread #6
+++ start OpenMP thread #5
+++ start OpenMP thread #2
+++ start OpenMP thread #4
+++ start OpenMP thread #3
+++ start OpenMP thread #1
+................++ Max displacement in automask = 3.12 (mm) at sub-brick 78
+++ Max delta displ  in automask = 2.69 (mm) at sub-brick 78
+.++ 3dDespike: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Input data type = short
+++ ignoring first 0 time points, using last 190
+++ using 190 time points => -corder 6
+++ Loading dataset motioncorrection.nii
+.......++ Max displacement in automask = 4.32 (mm) at sub-brick 187
+++ Max delta displ  in automask = 1.41 (mm) at sub-brick 146
+++ 37476 voxels in the automask [out of 118784 in dataset]
+++ 58171 voxels in the dilated automask [out of 118784 in dataset]
+++ Procesing time series with OLD model fit algorithm
+++ smash edit thresholds: 3.1 .. 5.0 MADs
+ +   [ 3.457% .. 0.072% of normal distribution]
+ +   [ 8.839% .. 3.125% of Laplace distribution]
+++ 29 slices to process
+++ start OpenMP thread #7
+++ start OpenMP thread #1
+++ start OpenMP thread #0
+++ start OpenMP thread #2
+++ start OpenMP thread #3
+++ start OpenMP thread #4
+++ start OpenMP thread #5
+++ start OpenMP thread #6
+++ 3dDespike: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Input data type = short
+++ ignoring first 0 time points, using last 190
+++ using 190 time points => -corder 6
+++ Loading dataset motioncorrection.nii
+.....++ 34126 voxels in the automask [out of 118784 in dataset]
+++ 53723 voxels in the dilated automask [out of 118784 in dataset]
+.++ Procesing time series with OLD model fit algorithm
+++ smash edit thresholds: 3.1 .. 5.0 MADs
+ +   [ 3.457% .. 0.072% of normal distribution]
+ +   [ 8.839% .. 3.125% of Laplace distribution]
+++ 29 slices to process
+++ start OpenMP thread #0
+++ start OpenMP thread #7
+++ start OpenMP thread #1
+++ start OpenMP thread #4
+++ start OpenMP thread #2
+++ start OpenMP thread #5
+++ start OpenMP thread #3
+++ start OpenMP thread #6
+...............
+++ Elapsed despike time =  7s 725ms
+
+++ FINAL: 10240620 data points, 686585 edits [6.705%], 89411 big edits [0.873%]
+.++ Output dataset ./despike.nii
+.++ Output dataset ./_spikiness.nii
+..............................
+++ Elapsed despike time =  9s 389ms
+
+++ FINAL: 11052300 data points, 909184 edits [8.226%], 251707 big edits [2.277%]
+
+++ Elapsed despike time =  8s 181ms
+
+++ FINAL: 10207370 data points, 672695 edits [6.590%], 78030 big edits [0.764%]
+++ Output dataset ./despike.nii
+++ Output dataset ./despike.nii
+++ Output dataset ./_spikiness.nii
+++ Output dataset ./_spikiness.nii
+++ Max displacement in automask = 1.86 (mm) at sub-brick 145
+++ Max delta displ  in automask = 1.20 (mm) at sub-brick 176
+++ 3dDespike: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Input data type = short
+++ ignoring first 0 time points, using last 190
+++ using 190 time points => -corder 6
+++ Loading dataset motioncorrection.nii
+++ 33963 voxels in the automask [out of 118784 in dataset]
+++ 54655 voxels in the dilated automask [out of 118784 in dataset]
+++ Procesing time series with OLD model fit algorithm
+++ smash edit thresholds: 3.1 .. 5.0 MADs
+ +   [ 3.457% .. 0.072% of normal distribution]
+ +   [ 8.839% .. 3.125% of Laplace distribution]
+++ 29 slices to process
+++ start OpenMP thread #0
+++ start OpenMP thread #7
+++ start OpenMP thread #6
+++ start OpenMP thread #5
+++ start OpenMP thread #4
+++ start OpenMP thread #3
+++ start OpenMP thread #2
+++ start OpenMP thread #1
+........................
+++ Elapsed despike time =  6s 754ms
+
+++ FINAL: 10384450 data points, 717545 edits [6.910%], 107019 big edits [1.031%]
+++ Output dataset ./despike.nii
+++ Output dataset ./_spikiness.nii
+++ Max displacement in automask = 4.00 (mm) at sub-brick 189
+++ Max delta displ  in automask = 2.37 (mm) at sub-brick 77
+++ 3dDespike: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Input data type = short
+++ ignoring first 0 time points, using last 190
+++ using 190 time points => -corder 6
+++ Loading dataset motioncorrection.nii
+++ 40317 voxels in the automask [out of 118784 in dataset]
+++ 60999 voxels in the dilated automask [out of 118784 in dataset]
+++ Procesing time series with OLD model fit algorithm
+++ smash edit thresholds: 3.1 .. 5.0 MADs
+ +   [ 3.457% .. 0.072% of normal distribution]
+ +   [ 8.839% .. 3.125% of Laplace distribution]
+++ 29 slices to process
+++ start OpenMP thread #0
+++ start OpenMP thread #7
+++ start OpenMP thread #1
+++ start OpenMP thread #2
+++ start OpenMP thread #3
+++ start OpenMP thread #4
+++ start OpenMP thread #5
+++ start OpenMP thread #6
+.............................
+++ Elapsed despike time =  7s 446ms
+
+++ FINAL: 11589810 data points, 857884 edits [7.402%], 167830 big edits [1.448%]
+++ Output dataset ./despike.nii
+++ Output dataset ./_spikiness.nii
+190
+190
+190
+190
+190
+190
+190
+190
+190
+190
+190
+190
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+** AFNI converts NIFTI_datatype=8 (INT32) in file T1_segm_A_seg_0.nii to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
++++ 44864 voxels survive the mask
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 9
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+** AFNI converts NIFTI_datatype=8 (INT32) in file T1_segm_A_seg_0.nii to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
++++ 45828 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+** AFNI converts NIFTI_datatype=8 (INT32) in file T1_segm_A_seg_0.nii to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
++++ 46476 voxels survive the mask
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 9
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 9
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+** AFNI converts NIFTI_datatype=8 (INT32) in file T1_segm_A_seg_0.nii to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+** AFNI converts NIFTI_datatype=8 (INT32) in file T1_segm_A_seg_0.nii to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
++++ 45844 voxels survive the mask
++++ 43812 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+** AFNI converts NIFTI_datatype=8 (INT32) in file T1_segm_A_seg_0.nii to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
++++ 54843 voxels survive the mask
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 9
+++ Coarse del was 10, replaced with 9
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 9
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+** AFNI converts NIFTI_datatype=8 (INT32) in file T1_segm_A_seg_0.nii to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
++++ 44836 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+** AFNI converts NIFTI_datatype=8 (INT32) in file T1_segm_A_seg_0.nii to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
++++ 45598 voxels survive the mask
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 9
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 9
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+** AFNI converts NIFTI_datatype=8 (INT32) in file T1_segm_A_seg_0.nii to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
++++ 48163 voxels survive the mask
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 9
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+** AFNI converts NIFTI_datatype=8 (INT32) in file T1_segm_A_seg_0.nii to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
++++ 44050 voxels survive the mask
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 9
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+** AFNI converts NIFTI_datatype=8 (INT32) in file T1_segm_A_seg_0.nii to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
++++ 46009 voxels survive the mask
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 9
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+** AFNI converts NIFTI_datatype=8 (INT32) in file T1_segm_A_seg_0.nii to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
++++ 43581 voxels survive the mask
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 9
+++ Max displacement in automask = 0.08 (mm) at sub-brick 188
+++ Max delta displ  in automask = 0.04 (mm) at sub-brick 36
+++ 3dBandpass: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+[7m*+ WARNING:[0m (-: For most purposes, 3dTproject is superior to 3dBandpass :-)
+++ Number of voxels in mask = 355973
+++ Data length = 190  FFT length = 192
+ + bandpass: ntime=190 nFFT=192 dt=1.5 dFreq=0.00347222 Nyquist=0.333333 passband indexes=3..23
+++ Loading input dataset time series
+++ Checking dataset for initial transients [use '-notrans' to skip this test]
+ + No widespread initial positive transient detected :-)
+++ 190 dimensional data reduced to 26 by:
+    148 (bandpass), 13 (-ort), 0 (-dsort), 3 (detrend)
+++ Bandpassing data time series
+++ Creating output dataset in memory, then writing it
+++ Output dataset ./fMRI_removenoise.nii
+++ Max displacement in automask = 0.11 (mm) at sub-brick 168
+++ Max delta displ  in automask = 0.05 (mm) at sub-brick 159
+++ 3dBandpass: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+[7m*+ WARNING:[0m (-: For most purposes, 3dTproject is superior to 3dBandpass :-)
+++ Number of voxels in mask = 357579
+++ Data length = 190  FFT length = 192
+ + bandpass: ntime=190 nFFT=192 dt=1.5 dFreq=0.00347222 Nyquist=0.333333 passband indexes=3..23
+++ Loading input dataset time series
+++ Checking dataset for initial transients [use '-notrans' to skip this test]
+ + No widespread initial positive transient detected :-)
+++ 190 dimensional data reduced to 26 by:
+    148 (bandpass), 13 (-ort), 0 (-dsort), 3 (detrend)
+++ Bandpassing data time series
+++ Creating output dataset in memory, then writing it
+++ Max displacement in automask = 0.11 (mm) at sub-brick 2
+++ Max delta displ  in automask = 0.11 (mm) at sub-brick 168
+++ 3dBandpass: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+[7m*+ WARNING:[0m (-: For most purposes, 3dTproject is superior to 3dBandpass :-)
+++ Number of voxels in mask = 371620
+++ Data length = 190  FFT length = 192
+ + bandpass: ntime=190 nFFT=192 dt=1.5 dFreq=0.00347222 Nyquist=0.333333 passband indexes=3..23
+++ Loading input dataset time series
+++ Output dataset ./fMRI_removenoise.nii
+++ Checking dataset for initial transients [use '-notrans' to skip this test]
+ + No widespread initial positive transient detected :-)
+++ 190 dimensional data reduced to 26 by:
+    148 (bandpass), 13 (-ort), 0 (-dsort), 3 (detrend)
+++ Bandpassing data time series
+++ Creating output dataset in memory, then writing it
+++ Max displacement in automask = 0.05 (mm) at sub-brick 162
+++ Max delta displ  in automask = 0.05 (mm) at sub-brick 162
+++ Max displacement in automask = 0.10 (mm) at sub-brick 116
+++ Max delta displ  in automask = 0.03 (mm) at sub-brick 117
+++ Output dataset ./fMRI_removenoise.nii
+++ Max displacement in automask = 0.06 (mm) at sub-brick 0
+++ Max delta displ  in automask = 0.03 (mm) at sub-brick 182
+++ Max displacement in automask = 0.10 (mm) at sub-brick 76
+++ Max delta displ  in automask = 0.10 (mm) at sub-brick 77
+++ 3dBandpass: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+[7m*+ WARNING:[0m (-: For most purposes, 3dTproject is superior to 3dBandpass :-)
+++ 3dBandpass: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+[7m*+ WARNING:[0m (-: For most purposes, 3dTproject is superior to 3dBandpass :-)
+++ 3dBandpass: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+[7m*+ WARNING:[0m (-: For most purposes, 3dTproject is superior to 3dBandpass :-)
+++ Max displacement in automask = 0.10 (mm) at sub-brick 33
+++ Max delta displ  in automask = 0.08 (mm) at sub-brick 100
+++ 3dBandpass: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+[7m*+ WARNING:[0m (-: For most purposes, 3dTproject is superior to 3dBandpass :-)
+++ Number of voxels in mask = 348421
+++ Data length = 190  FFT length = 192
+ + bandpass: ntime=190 nFFT=192 dt=1.5 dFreq=0.00347222 Nyquist=0.333333 passband indexes=3..23
+++ Loading input dataset time series
+++ Number of voxels in mask = 346427
+++ Data length = 190  FFT length = 192
+ + bandpass: ntime=190 nFFT=192 dt=1.5 dFreq=0.00347222 Nyquist=0.333333 passband indexes=3..23
+++ Loading input dataset time series
+++ Number of voxels in mask = 351950
+++ 3dBandpass: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+[7m*+ WARNING:[0m (-: For most purposes, 3dTproject is superior to 3dBandpass :-)
+++ Data length = 190  FFT length = 192
+ + bandpass: ntime=190 nFFT=192 dt=1.5 dFreq=0.00347222 Nyquist=0.333333 passband indexes=3..23
+++ Loading input dataset time series
+++ Number of voxels in mask = 342059
+++ Data length = 190  FFT length = 192
+ + bandpass: ntime=190 nFFT=192 dt=1.5 dFreq=0.00347222 Nyquist=0.333333 passband indexes=3..23
+++ Loading input dataset time series
+++ Checking dataset for initial transients [use '-notrans' to skip this test]
+++ Number of voxels in mask = 360514
+++ Data length = 190  FFT length = 192
+ + bandpass: ntime=190 nFFT=192 dt=1.5 dFreq=0.00347222 Nyquist=0.333333 passband indexes=3..23
+++ Loading input dataset time series
+ + No widespread initial positive transient detected :-)
+++ 190 dimensional data reduced to 26 by:
+    148 (bandpass), 13 (-ort), 0 (-dsort), 3 (detrend)
+++ Bandpassing data time series
+++ Checking dataset for initial transients [use '-notrans' to skip this test]
+++ Checking dataset for initial transients [use '-notrans' to skip this test]
+ + No widespread initial positive transient detected :-)
+++ 190 dimensional data reduced to 26 by:
+    148 (bandpass), 13 (-ort), 0 (-dsort), 3 (detrend)
+++ Bandpassing data time series
+++ Checking dataset for initial transients [use '-notrans' to skip this test]
+++ Checking dataset for initial transients [use '-notrans' to skip this test]
+++ Creating output dataset in memory, then writing it
+ + No widespread initial positive transient detected :-)
+ + No widespread initial positive transient detected :-)
+++ 190 dimensional data reduced to 26 by:
+    148 (bandpass), 13 (-ort), 0 (-dsort), 3 (detrend)
+++ Bandpassing data time series
+ + No widespread initial positive transient detected :-)
+++ Max displacement in automask = 0.13 (mm) at sub-brick 153
+++ Max delta displ  in automask = 0.07 (mm) at sub-brick 146
+++ 190 dimensional data reduced to 26 by:
+    148 (bandpass), 13 (-ort), 0 (-dsort), 3 (detrend)
+++ Bandpassing data time series
+++ 190 dimensional data reduced to 26 by:
+    148 (bandpass), 13 (-ort), 0 (-dsort), 3 (detrend)
+++ Bandpassing data time series
+++ Creating output dataset in memory, then writing it
+++ Creating output dataset in memory, then writing it
+++ Creating output dataset in memory, then writing it
+++ Output dataset ./fMRI_removenoise.nii
+++ Creating output dataset in memory, then writing it
+++ Max displacement in automask = 0.27 (mm) at sub-brick 173
+++ Max delta displ  in automask = 0.22 (mm) at sub-brick 177
+++ Output dataset ./fMRI_removenoise.nii
+++ Max displacement in automask = 0.13 (mm) at sub-brick 144
+++ Max delta displ  in automask = 0.11 (mm) at sub-brick 149
+++ 3dBandpass: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+[7m*+ WARNING:[0m (-: For most purposes, 3dTproject is superior to 3dBandpass :-)
+++ 3dBandpass: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+[7m*+ WARNING:[0m (-: For most purposes, 3dTproject is superior to 3dBandpass :-)
+++ Number of voxels in mask = 354761
+++ Data length = 190  FFT length = 192
+ + bandpass: ntime=190 nFFT=192 dt=1.5 dFreq=0.00347222 Nyquist=0.333333 passband indexes=3..23
+++ Loading input dataset time series
+++ Output dataset ./fMRI_removenoise.nii
+++ Number of voxels in mask = 363082
+++ Data length = 190  FFT length = 192
+ + bandpass: ntime=190 nFFT=192 dt=1.5 dFreq=0.00347222 Nyquist=0.333333 passband indexes=3..23
+++ Loading input dataset time series
+++ 3dBandpass: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+[7m*+ WARNING:[0m (-: For most purposes, 3dTproject is superior to 3dBandpass :-)
+++ Output dataset ./fMRI_removenoise.nii
+++ Max displacement in automask = 0.23 (mm) at sub-brick 178
+++ Max delta displ  in automask = 0.08 (mm) at sub-brick 90
+++ Output dataset ./fMRI_removenoise.nii
+++ Number of voxels in mask = 352039
+++ Data length = 190  FFT length = 192
+ + bandpass: ntime=190 nFFT=192 dt=1.5 dFreq=0.00347222 Nyquist=0.333333 passband indexes=3..23
+++ Loading input dataset time series
+++ 3dBandpass: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+[7m*+ WARNING:[0m (-: For most purposes, 3dTproject is superior to 3dBandpass :-)
+++ Number of voxels in mask = 337835
+++ Data length = 190  FFT length = 192
+ + bandpass: ntime=190 nFFT=192 dt=1.5 dFreq=0.00347222 Nyquist=0.333333 passband indexes=3..23
+++ Loading input dataset time series
+++ Checking dataset for initial transients [use '-notrans' to skip this test]
+++ Checking dataset for initial transients [use '-notrans' to skip this test]
+++ Checking dataset for initial transients [use '-notrans' to skip this test]
+ + No widespread initial positive transient detected :-)
+++ Checking dataset for initial transients [use '-notrans' to skip this test]
+++ 190 dimensional data reduced to 26 by:
+    148 (bandpass), 13 (-ort), 0 (-dsort), 3 (detrend)
+++ Bandpassing data time series
+ + No widespread initial positive transient detected :-)
+ + No widespread initial positive transient detected :-)
+ + No widespread initial positive transient detected :-)
+++ 190 dimensional data reduced to 26 by:
+    148 (bandpass), 13 (-ort), 0 (-dsort), 3 (detrend)
+++ Bandpassing data time series
+++ 190 dimensional data reduced to 26 by:
+    148 (bandpass), 13 (-ort), 0 (-dsort), 3 (detrend)
+++ Bandpassing data time series
+++ 190 dimensional data reduced to 26 by:
+    148 (bandpass), 13 (-ort), 0 (-dsort), 3 (detrend)
+++ Bandpassing data time series
+++ Creating output dataset in memory, then writing it
+++ Creating output dataset in memory, then writing it
+++ Creating output dataset in memory, then writing it
+++ Creating output dataset in memory, then writing it
+++ Output dataset ./fMRI_removenoise.nii
+++ Output dataset ./fMRI_removenoise.nii
+++ Output dataset ./fMRI_removenoise.nii
+++ Output dataset ./fMRI_removenoise.nii
+
+xmlfile: ABIDE_50034_Resting_State_fMRI_S164036_I328011.xml
+
+xmlfile: ABIDE_50035_Resting_State_fMRI_S163790_I327735.xml
+
+xmlfile: ABIDE_50036_Resting_State_fMRI_S164176_I328163.xml
+
+xmlfile: ABIDE_50037_Resting_State_fMRI_S163253_I327196.xml
+
+xmlfile: ABIDE_50038_Resting_State_fMRI_S163658_I327601.xml
+
+xmlfile: ABIDE_50039_Resting_State_fMRI_S163867_I327831.xml
+50036
+50039
+50034
+50037
+50035
+50038
+Warning 3dSkullStrip:****************
+ Surface self intersecting! trying again:
+ smoothing of 84, avoid_vent -1
+The intensity in the output dataset is a modified version
+of the intensity in the input volume.
+To obtain a masked version of the input with identical values inside
+the brain, you can either use 3dSkullStrip's -orig_vol option
+or run the following command:
+  3dcalc -a T1.nii -b ./skullstrip_musk.nii+orig -expr 'a*step(b)' \
+         -prefix ./skullstrip_musk.nii_orig_vol
+to generate a new masked version of the input.
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+++ Output dataset ./skullstrip.nii
+++ 3dTshift: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 3
+The intensity in the output dataset is a modified version
+of the intensity in the input volume.
+To obtain a masked version of the input with identical values inside
+the brain, you can either use 3dSkullStrip's -orig_vol option
+or run the following command:
+  3dcalc -a T1.nii -b ./skullstrip_musk.nii+orig -expr 'a*step(b)' \
+         -prefix ./skullstrip_musk.nii_orig_vol
+to generate a new masked version of the input.
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+++ Output dataset ./skullstrip.nii
+The intensity in the output dataset is a modified version
+of the intensity in the input volume.
+To obtain a masked version of the input with identical values inside
+the brain, you can either use 3dSkullStrip's -orig_vol option
+or run the following command:
+  3dcalc -a T1.nii -b ./skullstrip_musk.nii+orig -expr 'a*step(b)' \
+         -prefix ./skullstrip_musk.nii_orig_vol
+to generate a new masked version of the input.
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+++ 3dTshift: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Output dataset ./skullstrip.nii
+++ 3dTshift: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 3
+The intensity in the output dataset is a modified version
+of the intensity in the input volume.
+To obtain a masked version of the input with identical values inside
+the brain, you can either use 3dSkullStrip's -orig_vol option
+or run the following command:
+  3dcalc -a T1.nii -b ./skullstrip_musk.nii+orig -expr 'a*step(b)' \
+         -prefix ./skullstrip_musk.nii_orig_vol
+to generate a new masked version of the input.
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+++ Output dataset ./skullstrip.nii
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 3
+++ 3dTshift: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 3
+The intensity in the output dataset is a modified version
+of the intensity in the input volume.
+To obtain a masked version of the input with identical values inside
+the brain, you can either use 3dSkullStrip's -orig_vol option
+or run the following command:
+  3dcalc -a T1.nii -b ./skullstrip_musk.nii+orig -expr 'a*step(b)' \
+         -prefix ./skullstrip_musk.nii_orig_vol
+to generate a new masked version of the input.
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+++ Output dataset ./skullstrip.nii
+++ 3dTshift: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 3
+The intensity in the output dataset is a modified version
+of the intensity in the input volume.
+To obtain a masked version of the input with identical values inside
+the brain, you can either use 3dSkullStrip's -orig_vol option
+or run the following command:
+  3dcalc -a T1.nii -b ./skullstrip_musk.nii+orig -expr 'a*step(b)' \
+         -prefix ./skullstrip_musk.nii_orig_vol
+to generate a new masked version of the input.
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+++ Output dataset ./skullstrip.nii
+++ 3dTshift: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 3
+++ Max displacement in automask = 0.66 (mm) at sub-brick 114
+++ Max delta displ  in automask = 0.91 (mm) at sub-brick 115
+++ 3dDespike: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Input data type = short
+++ ignoring first 0 time points, using last 190
+++ using 190 time points => -corder 6
+++ Loading dataset motioncorrection.nii
+++ 30732 voxels in the automask [out of 118784 in dataset]
+++ 50146 voxels in the dilated automask [out of 118784 in dataset]
+++ Procesing time series with OLD model fit algorithm
+++ smash edit thresholds: 3.1 .. 5.0 MADs
+ +   [ 3.457% .. 0.072% of normal distribution]
+ +   [ 8.839% .. 3.125% of Laplace distribution]
+++ 29 slices to process
+++ start OpenMP thread #1
+++ start OpenMP thread #2
+++ start OpenMP thread #3
+++ start OpenMP thread #4
+++ start OpenMP thread #0
+++ start OpenMP thread #7
+++ start OpenMP thread #6
+++ start OpenMP thread #5
+....++ Max displacement in automask = 0.53 (mm) at sub-brick 0
+++ Max delta displ  in automask = 0.41 (mm) at sub-brick 1
+.++ 3dDespike: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Input data type = short
+++ ignoring first 0 time points, using last 190
+++ using 190 time points => -corder 6
+++ Loading dataset motioncorrection.nii
+..++ 32922 voxels in the automask [out of 118784 in dataset]
+++ 52880 voxels in the dilated automask [out of 118784 in dataset]
+++ Procesing time series with OLD model fit algorithm
+++ smash edit thresholds: 3.1 .. 5.0 MADs
+ +   [ 3.457% .. 0.072% of normal distribution]
+ +   [ 8.839% .. 3.125% of Laplace distribution]
+++ 29 slices to process
+++ start OpenMP thread #0
+.++ start OpenMP thread #7
+++ start OpenMP thread #6
+++ start OpenMP thread #5
+++ start OpenMP thread #4
+++ start OpenMP thread #3
+++ start OpenMP thread #2
+++ start OpenMP thread #1
+.........................................
+++ Elapsed despike time =  5s 307ms
+
+++ FINAL: 9527740 data points, 575970 edits [6.045%], 46383 big edits [0.487%]
+.++ Output dataset ./despike.nii
+++ Output dataset ./_spikiness.nii
+
+++ Elapsed despike time =  4s 815ms
+
+++ FINAL: 10046820 data points, 576575 edits [5.739%], 33001 big edits [0.328%]
+++ Output dataset ./despike.nii
+++ Output dataset ./_spikiness.nii
+++ Max displacement in automask = 0.32 (mm) at sub-brick 182
+++ Max delta displ  in automask = 0.20 (mm) at sub-brick 137
+++ 3dDespike: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Input data type = short
+++ ignoring first 0 time points, using last 190
+++ using 190 time points => -corder 6
+++ Loading dataset motioncorrection.nii
+++ 35195 voxels in the automask [out of 118784 in dataset]
+++ 54991 voxels in the dilated automask [out of 118784 in dataset]
+++ Procesing time series with OLD model fit algorithm
+++ smash edit thresholds: 3.1 .. 5.0 MADs
+ +   [ 3.457% .. 0.072% of normal distribution]
+ +   [ 8.839% .. 3.125% of Laplace distribution]
+++ 29 slices to process
+++ start OpenMP thread #0
+++ start OpenMP thread #1
+++ start OpenMP thread #2
+++ start OpenMP thread #7
+++ start OpenMP thread #6
+++ start OpenMP thread #3
+++ start OpenMP thread #4
+++ start OpenMP thread #5
+.........................
+++ Elapsed despike time =  3s 637ms
+
+++ FINAL: 10446580 data points, 611740 edits [5.856%], 35875 big edits [0.343%]
+++ Output dataset ./despike.nii
+++ Output dataset ./_spikiness.nii
+++ Max displacement in automask = 4.23 (mm) at sub-brick 173
+++ Max delta displ  in automask = 3.87 (mm) at sub-brick 174
+++ 3dDespike: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Input data type = short
+++ ignoring first 0 time points, using last 190
+++ using 190 time points => -corder 6
+++ Loading dataset motioncorrection.nii
+++ 32819 voxels in the automask [out of 118784 in dataset]
+++ 53791 voxels in the dilated automask [out of 118784 in dataset]
+++ Procesing time series with OLD model fit algorithm
+++ smash edit thresholds: 3.1 .. 5.0 MADs
+ +   [ 3.457% .. 0.072% of normal distribution]
+ +   [ 8.839% .. 3.125% of Laplace distribution]
+++ 29 slices to process
+++ start OpenMP thread #0
+++ start OpenMP thread #7
+++ start OpenMP thread #2
+++ start OpenMP thread #1
+++ start OpenMP thread #4
+++ start OpenMP thread #5
+++ start OpenMP thread #6
+++ start OpenMP thread #3
+.........................
+++ Elapsed despike time =  3s 853ms
+
+++ FINAL: 10220290 data points, 729430 edits [7.137%], 145073 big edits [1.419%]
+++ Output dataset ./despike.nii
+++ Output dataset ./_spikiness.nii
+++ Max displacement in automask = 2.83 (mm) at sub-brick 26
+++ Max delta displ  in automask = 2.65 (mm) at sub-brick 148
+++ 3dDespike: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Input data type = short
+++ ignoring first 0 time points, using last 190
+++ using 190 time points => -corder 6
+++ Loading dataset motioncorrection.nii
+++ 33934 voxels in the automask [out of 118784 in dataset]
+++ 55109 voxels in the dilated automask [out of 118784 in dataset]
+++ Procesing time series with OLD model fit algorithm
+++ smash edit thresholds: 3.1 .. 5.0 MADs
+ +   [ 3.457% .. 0.072% of normal distribution]
+ +   [ 8.839% .. 3.125% of Laplace distribution]
+++ 29 slices to process
+++ start OpenMP thread #0
+++ start OpenMP thread #7
+++ start OpenMP thread #2
+++ start OpenMP thread #1
+++ start OpenMP thread #6
+++ start OpenMP thread #4
+++ start OpenMP thread #3
+++ start OpenMP thread #5
+.........................
+++ Elapsed despike time =  4s 48ms
+
+++ FINAL: 10458170 data points, 674571 edits [6.450%], 76755 big edits [0.734%]
+++ Output dataset ./despike.nii
+++ Output dataset ./_spikiness.nii
+++ Max displacement in automask = 4.39 (mm) at sub-brick 72
+++ Max delta displ  in automask = 2.93 (mm) at sub-brick 73
+++ 3dDespike: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Input data type = short
+++ ignoring first 0 time points, using last 190
+++ using 190 time points => -corder 6
+++ Loading dataset motioncorrection.nii
+++ 31626 voxels in the automask [out of 118784 in dataset]
+++ 51260 voxels in the dilated automask [out of 118784 in dataset]
+++ Procesing time series with OLD model fit algorithm
+++ smash edit thresholds: 3.1 .. 5.0 MADs
+ +   [ 3.457% .. 0.072% of normal distribution]
+ +   [ 8.839% .. 3.125% of Laplace distribution]
+++ 29 slices to process
+++ start OpenMP thread #0
+++ start OpenMP thread #1
+++ start OpenMP thread #2
+++ start OpenMP thread #4
+++ start OpenMP thread #7
+++ start OpenMP thread #6
+++ start OpenMP thread #3
+++ start OpenMP thread #5
+........................
+++ Elapsed despike time =  4s 135ms
+
+++ FINAL: 9739400 data points, 696635 edits [7.153%], 136787 big edits [1.404%]
+++ Output dataset ./despike.nii
+++ Output dataset ./_spikiness.nii
+190
+190
+190
+190
+190
+190
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+** AFNI converts NIFTI_datatype=8 (INT32) in file T1_segm_A_seg_0.nii to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
++++ 45378 voxels survive the mask
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 9
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+** AFNI converts NIFTI_datatype=8 (INT32) in file T1_segm_A_seg_0.nii to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
++++ 43783 voxels survive the mask
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 9
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+** AFNI converts NIFTI_datatype=8 (INT32) in file T1_segm_A_seg_0.nii to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
++++ 46135 voxels survive the mask
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 9
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+** AFNI converts NIFTI_datatype=8 (INT32) in file T1_segm_A_seg_0.nii to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
++++ 43827 voxels survive the mask
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 9
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+** AFNI converts NIFTI_datatype=8 (INT32) in file T1_segm_A_seg_0.nii to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
++++ 47306 voxels survive the mask
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 9
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+** AFNI converts NIFTI_datatype=8 (INT32) in file T1_segm_A_seg_0.nii to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
++++ 46543 voxels survive the mask
+++ 3dvolreg: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+++ Coarse del was 10, replaced with 9
+++ Max displacement in automask = 0.10 (mm) at sub-brick 175
+++ Max delta displ  in automask = 0.10 (mm) at sub-brick 55
+++ 3dBandpass: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+[7m*+ WARNING:[0m (-: For most purposes, 3dTproject is superior to 3dBandpass :-)
+++ Number of voxels in mask = 366568
+++ Data length = 190  FFT length = 192
+ + bandpass: ntime=190 nFFT=192 dt=1.5 dFreq=0.00347222 Nyquist=0.333333 passband indexes=3..23
+++ Loading input dataset time series
+++ Checking dataset for initial transients [use '-notrans' to skip this test]
+ + No widespread initial positive transient detected :-)
+++ 190 dimensional data reduced to 26 by:
+    148 (bandpass), 13 (-ort), 0 (-dsort), 3 (detrend)
+++ Bandpassing data time series
+++ Creating output dataset in memory, then writing it
+++ Max displacement in automask = 0.04 (mm) at sub-brick 166
+++ Max delta displ  in automask = 0.03 (mm) at sub-brick 72
+++ 3dBandpass: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+[7m*+ WARNING:[0m (-: For most purposes, 3dTproject is superior to 3dBandpass :-)
+++ Number of voxels in mask = 346856
+++ Data length = 190  FFT length = 192
+ + bandpass: ntime=190 nFFT=192 dt=1.5 dFreq=0.00347222 Nyquist=0.333333 passband indexes=3..23
+++ Loading input dataset time series
+++ Checking dataset for initial transients [use '-notrans' to skip this test]
+ + No widespread initial positive transient detected :-)
+++ Output dataset ./fMRI_removenoise.nii
+++ 190 dimensional data reduced to 26 by:
+    148 (bandpass), 13 (-ort), 0 (-dsort), 3 (detrend)
+++ Bandpassing data time series
+++ Creating output dataset in memory, then writing it
+++ Output dataset ./fMRI_removenoise.nii
+++ Max displacement in automask = 0.06 (mm) at sub-brick 0
+++ Max delta displ  in automask = 0.04 (mm) at sub-brick 1
+++ 3dBandpass: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+[7m*+ WARNING:[0m (-: For most purposes, 3dTproject is superior to 3dBandpass :-)
+++ Number of voxels in mask = 362759
+++ Data length = 190  FFT length = 192
+ + bandpass: ntime=190 nFFT=192 dt=1.5 dFreq=0.00347222 Nyquist=0.333333 passband indexes=3..23
+++ Loading input dataset time series
+++ Checking dataset for initial transients [use '-notrans' to skip this test]
+ + No widespread initial positive transient detected :-)
+++ 190 dimensional data reduced to 26 by:
+    148 (bandpass), 13 (-ort), 0 (-dsort), 3 (detrend)
+++ Bandpassing data time series
+++ Creating output dataset in memory, then writing it
+++ Output dataset ./fMRI_removenoise.nii
+++ Max displacement in automask = 0.08 (mm) at sub-brick 115
+++ Max delta displ  in automask = 0.09 (mm) at sub-brick 115
+++ 3dBandpass: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+[7m*+ WARNING:[0m (-: For most purposes, 3dTproject is superior to 3dBandpass :-)
+++ Number of voxels in mask = 371635
+++ Data length = 190  FFT length = 192
+ + bandpass: ntime=190 nFFT=192 dt=1.5 dFreq=0.00347222 Nyquist=0.333333 passband indexes=3..23
+++ Loading input dataset time series
+++ Checking dataset for initial transients [use '-notrans' to skip this test]
+ + No widespread initial positive transient detected :-)
+++ 190 dimensional data reduced to 26 by:
+    148 (bandpass), 13 (-ort), 0 (-dsort), 3 (detrend)
+++ Bandpassing data time series
+++ Creating output dataset in memory, then writing it
+++ Max displacement in automask = 0.11 (mm) at sub-brick 188
+++ Max delta displ  in automask = 0.09 (mm) at sub-brick 187
+++ Output dataset ./fMRI_removenoise.nii
+++ 3dBandpass: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+[7m*+ WARNING:[0m (-: For most purposes, 3dTproject is superior to 3dBandpass :-)
+++ Number of voxels in mask = 340788
+++ Data length = 190  FFT length = 192
+ + bandpass: ntime=190 nFFT=192 dt=1.5 dFreq=0.00347222 Nyquist=0.333333 passband indexes=3..23
+++ Loading input dataset time series
+++ Checking dataset for initial transients [use '-notrans' to skip this test]
+ + No widespread initial positive transient detected :-)
+++ 190 dimensional data reduced to 26 by:
+    148 (bandpass), 13 (-ort), 0 (-dsort), 3 (detrend)
+++ Bandpassing data time series
+++ Creating output dataset in memory, then writing it
+++ Output dataset ./fMRI_removenoise.nii
+++ Max displacement in automask = 0.18 (mm) at sub-brick 120
+++ Max delta displ  in automask = 0.20 (mm) at sub-brick 123
+++ 3dBandpass: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: RW Cox
+[7m*+ WARNING:[0m (-: For most purposes, 3dTproject is superior to 3dBandpass :-)
+++ Number of voxels in mask = 360765
+++ Data length = 190  FFT length = 192
+ + bandpass: ntime=190 nFFT=192 dt=1.5 dFreq=0.00347222 Nyquist=0.333333 passband indexes=3..23
+++ Loading input dataset time series
+++ Checking dataset for initial transients [use '-notrans' to skip this test]
+ + No widespread initial positive transient detected :-)
+++ 190 dimensional data reduced to 26 by:
+    148 (bandpass), 13 (-ort), 0 (-dsort), 3 (detrend)
+++ Bandpassing data time series
+++ Creating output dataset in memory, then writing it
+++ Output dataset ./fMRI_removenoise.nii
