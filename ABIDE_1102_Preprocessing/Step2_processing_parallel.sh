@@ -117,7 +117,7 @@ function processing(){
 	      ## clean data
 	      mkdir result_fMRI_image
 	      mv fMRI_removenoise.nii ./result_fMRI_image
-	      rm *	
+	      # rm *	
 	      rm ../T1/*
 	      cd $initial_dataFolder
     fi
