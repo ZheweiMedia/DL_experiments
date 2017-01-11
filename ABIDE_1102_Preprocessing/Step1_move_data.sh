@@ -1,7 +1,7 @@
 #! bin/bash
 
 # This program use for moving data
-#
+# Usage: bash Step1_move_data.sh ~/data/ABIDE_1102
 #
 #
 

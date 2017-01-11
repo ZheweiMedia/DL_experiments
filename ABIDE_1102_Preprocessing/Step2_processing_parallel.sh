@@ -133,7 +133,7 @@ cd $initial_dataFolder
 
 xmlfiles=`ls *Resting_State_fMRI*.xml`
 rm $process_dataFolder/processedID.txt
-N=12
+N=6
 for xmlfile in $xmlfiles; do
     ((i=i%N)); ((i++==0)) && wait
 	processing $xmlfile &
