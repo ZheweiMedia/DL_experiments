@@ -24,7 +24,7 @@ class _EachSubject:
         self.fMRI_other = list()
 
 def main():
-    with open('ida_ADNI2.csv','r') as csvfile:
+    with open('idaSearch_1_11_2017.csv','r') as csvfile:
         reader = csv.DictReader(csvfile)
         wholeDataOfCSV = list()
         for row in reader:
@@ -56,7 +56,8 @@ def main():
                 ValidData.append(_Subject)
             MRI_ImageID = None
             fMRI_ImageID = None
-            if row['Description'] == 'ExtendedResting State fMRI':
+            if row['Description'] == 'Resting State fMRI' :
+                # \or row['Description'] == 'Extended Resting State fMRI':
                 fMRI_ImageID = row['Image ID']
             if row['Description'] == 'MPRAGE':
                 MRI_ImageID = row['Image ID']
@@ -75,29 +76,34 @@ def main():
                     if Baseline_flag == False:
                         # False means no baseline exist
                         _Subject = _EachSubject(Subject_ID, DX_group, MRI_ImageID, fMRI_ImageID)
-                        
                         Baseline_flag = True
                     else:
                         _Subject.MRI_other.append(MRI_ImageID)
                         _Subject.fMRI_other.append(fMRI_ImageID)
                 MRI_ImageID = None
                 fMRI_ImageID = None
-                if row['Description'] == 'Extended Resting State fMRI':
+                if row['Description'] == 'Resting State fMRI' :
+                   # \or row['Description'] == 'Extended Resting State fMRI':
                     fMRI_ImageID = row['Image ID']
                 if row['Description'] == 'MPRAGE':
                     MRI_ImageID = row['Image ID']
                 iAge = row['Age']
             else:
                 # during a scan
-                if row['Description'] == 'Extended Resting State fMRI':
+                if row['Description'] == 'Resting State fMRI' :
+                   # \or row['Description'] == 'Extended Resting State fMRI':
                     fMRI_ImageID = row['Image ID']
                 if row['Description'] == 'MPRAGE':
                     MRI_ImageID = row['Image ID']
 
     
     print(len(ValidData))
-    #for subject in ValidData:
-        #print(subject)
+    NO = 0
+    for subject in ValidData:
+        if subject.DX_Group == 'AD':
+            NO += 1
+
+    print(NO)
 
 
 
