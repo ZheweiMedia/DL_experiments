@@ -100,22 +100,40 @@ def main():
                     MRI_ImageID = row['Image ID']
 
     
-    print(len(ValidData))
-    NO = 0
-    print(sys.argv)
-    print(sys.argv[1])
+    print('Totally we have subjects :', len(ValidData))
+    #print(ValidData[100].MRI_other)
+    MRI_list = list()
+    fMRI_list = list()
+    Subjects_in_group = 0
+
     with open(str(sys.argv[1])+'_MRI_ImageID','w') as f:
         for subject in ValidData:
             if subject.DX_Group == str(sys.argv[1]):
+                Subjects_in_group += 1
+                MRI_list.append(subject.MRI_baseline)
                 f.write(subject.MRI_baseline)
                 f.write(',')
-                if not subject.MRI_other:
+                if subject.MRI_other:
                     for ID in subject.MRI_other:
+                        MRI_list.append(ID)
                         f.write(ID)
                         f.write(',')
-            NO += 1
 
-    print(NO)
+    print('We have', Subjects_in_group, 'subjects in', str(sys.argv[1]))
+    print('MRI Image of', str(sys.argv[1]), ':', len(MRI_list))
+
+    with open(str(sys.argv[1])+'_fMRI_ImageID','w') as f:
+        for subject in ValidData:
+            if subject.DX_Group == str(sys.argv[1]):
+                fMRI_list.append(subject.fMRI_baseline)
+                f.write(subject.fMRI_baseline)
+                f.write(',')
+                if subject.fMRI_other:
+                    for ID in subject.fMRI_other:
+                        fMRI_list.append(ID)
+                        f.write(ID)
+                        f.write(',')
+    print('fMRI Image of', str(sys.argv[1]), ':', len(fMRI_list))
 
 
 
