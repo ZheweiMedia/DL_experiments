@@ -2,6 +2,8 @@
 1. Analysis how many valid subject in csv file.
 2. The csv file is idaSearch_1_11_2017.csv
 3. Find the subject that has MRI and fMRI at the same time.
+4. Generate image ID.
+5. usage: python3.5 csv_Subject.py AD
 
 
 """
@@ -9,6 +11,7 @@
 
 
 import csv
+import sys
 
 
 class _EachSubject:
@@ -99,8 +102,17 @@ def main():
     
     print(len(ValidData))
     NO = 0
-    for subject in ValidData:
-        if subject.DX_Group == 'AD':
+    print(sys.argv)
+    print(sys.argv[1])
+    with open(str(sys.argv[1])+'_MRI_ImageID','w') as f:
+        for subject in ValidData:
+            if subject.DX_Group == str(sys.argv[1]):
+                f.write(subject.MRI_baseline)
+                f.write(',')
+                if not subject.MRI_other:
+                    for ID in subject.MRI_other:
+                        f.write(ID)
+                        f.write(',')
             NO += 1
 
     print(NO)
