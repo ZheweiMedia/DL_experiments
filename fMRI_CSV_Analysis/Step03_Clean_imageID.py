@@ -62,5 +62,42 @@ for subject in Original_Data:
 
 print (len(fMRI_list))
 
+MRI_list = list()
+fMRI_list = list()
+Subjects_in_group = 0
+
+with open('Clean_MRI_ImageID','w') as f:
+        for subject in Original_Data:
+            if subject.DX_Group == "AD" or subject.DX_Group == "Normal":
+                Subjects_in_group += 1
+                if subject.MRI_baseline != None:
+                    MRI_list.append(subject.MRI_baseline)
+                    f.write(subject.MRI_baseline)
+                    f.write(',')
+                if subject.MRI_other:
+                    for ID in subject.MRI_other:
+                        if ID != None:
+                            MRI_list.append(ID)
+                            f.write(ID)
+                            f.write(',')
+
+print('We have', Subjects_in_group, 'subjects.')
+print('MRI Image:', len(MRI_list))
+
+with open('Clean_fMRI_ImageID','w') as f:
+    for subject in Original_Data:
+        if subject.DX_Group == "AD" or subject.DX_Group == "Normal":
+            if subject.fMRI_baseline != None:
+                fMRI_list.append(subject.fMRI_baseline)
+                f.write(subject.fMRI_baseline)
+                f.write(',')
+            if subject.fMRI_other:
+                for ID in subject.fMRI_other:
+                    if ID != None:
+                        fMRI_list.append(ID)
+                        f.write(ID)
+                        f.write(',')
+print('fMRI Image:', len(fMRI_list))
+
 with gzip.open("Clean_imageID.gz", "wb") as output_file:
     pickle.dump(Original_Data, output_file)
