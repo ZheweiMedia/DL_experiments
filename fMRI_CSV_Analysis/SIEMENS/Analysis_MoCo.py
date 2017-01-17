@@ -1,6 +1,6 @@
 """
-1. Analysis how many valid subject in csv file.
-2. The csv file is idaSearch_1_11_2017.csv
+1. Analysis how many valid subject of SIEMENS in csv file.
+2. The csv file is ida_ADNIGO_ADNI2.csv
 3. Find the subject that has MRI and fMRI at the same time.
 
 
@@ -9,6 +9,8 @@
 
 
 import csv
+import gzip
+import pickle
 
 
 class _EachSubject:
@@ -109,6 +111,55 @@ def main():
     
     print('Totally we have subjects :', len(ValidData), 'for MoCoSeries')
 
+    # save the data structure
+    with gzip.open("Original_Moco_imageID.gz", "wb") as output_file:
+        pickle.dump(ValidData, output_file)
+
+    MRI_list = list()
+    fMRI_list = list()
+    Subjects_in_group = 0
+
+    with open('Original_MRI_ImageID','w') as f:
+        for subject in ValidData:
+            if subject.DX_Group == "AD" or subject.DX_Group == "Normal":
+                Subjects_in_group += 1
+                if subject.MRI_baseline != None:
+                    MRI_list.append(subject.MRI_baseline)
+                    f.write(subject.MRI_baseline)
+                    f.write(',')
+                if subject.MRI_other:
+                    for ID in subject.MRI_other:
+                        if ID != None:
+                            MRI_list.append(ID)
+                            f.write(ID)
+                            f.write(',')
+
+    print('We have', Subjects_in_group, 'subjects.')
+    print('MRI Image:', len(MRI_list))
+
+    Subjects_in_group = 0
+    with open('Original_fMRI_ImageID','w') as f:
+        for subject in ValidData:
+            if subject.DX_Group == "AD" or subject.DX_Group == "Normal":
+                Subjects_in_group += 1
+                if subject.MRI_baseline != None:
+                    fMRI_list.append(subject.fMRI_baseline)
+                    f.write(subject.fMRI_baseline)
+                    f.write(',')
+                if subject.MRI_other:
+                    for ID in subject.fMRI_other:
+                        if ID != None:
+                            fMRI_list.append(ID)
+                            f.write(ID)
+                            f.write(',')
+
+    print('We have', Subjects_in_group, 'subjects.')
+    print('fMRI Image:', len(fMRI_list))
+
+
+
+
+
     Moco_list = list()
     for subject in ValidData:
         Moco_list.append(subject.SubjectID)
@@ -206,6 +257,9 @@ def main():
     for subject in Moco_list:
         if subject not in ASL_list:
             print (subject)
+
+
+
 
 
 
