@@ -12,6 +12,8 @@
 
 import csv
 import sys
+import gzip
+import pickle
 
 
 class _EachSubject:
@@ -101,7 +103,10 @@ def main():
 
     
     print('Totally we have subjects :', len(ValidData))
-    #print(ValidData[100].MRI_other)
+
+    """
+    # print all the image IDs of a group
+
     MRI_list = list()
     fMRI_list = list()
     Subjects_in_group = 0
@@ -134,6 +139,12 @@ def main():
                         f.write(ID)
                         f.write(',')
     print('fMRI Image of', str(sys.argv[1]), ':', len(fMRI_list))
+
+    """
+
+    # save the data structure
+    with gzip.open("Original_imageID.gz", "wb") as output_file:
+        pickle.dump(ValidData, output_file)
 
 
 
