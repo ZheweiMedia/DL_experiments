@@ -6,11 +6,14 @@ fMRI_imageIDs=(`cat $1`)
 MRI_imageIDs=(`cat $2`)
 
 
+Core=2
 ID_Number=5
 for ((i=0; $i<ID_Number; i++))
 do
+    ((i=i%Core)); ((i++==0)) && wait
     echo $i
     echo ${fMRI_imageIDs[i]}
+    processing ${fMRI_imageIDs[i]} ${MRI_imageIDs[i]} &
 done
 
 
@@ -137,9 +140,22 @@ function processing(){
 	  3dBandpass -prefix fMRI_removenoise.nii -mask registration_fMRI_0003.nii \
                -ort fMRI_noise.1D 0.01 0.08 registration_fMRI_4d.nii
 
+    i=1
+    cat /home/medialab/data/template/ROI_index.txt | while read line; do
+        roi_value=$(echo $line | tr -d '\r')
+
+        3dmaskave \
+            -quiet \
+            -mrange $(echo $roi_value-0.1 | bc) $(echo $roi_value+0.1 | bc) \
+            -mask /home/medialab/data/template/AAL1.nii
+            fMRI_removenoise.nii > time_series${i}.1D
+
+        i=`expr $i + 1`
+    done;
+
+    ### Step 4: ends ###
 
 
-    # cannot make sure all nii files are valid, so need the time stamp now
 
 
     
