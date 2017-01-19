@@ -2,20 +2,6 @@
 
 # use for preprocessing data
 
-fMRI_imageIDs=(`cat $1`)
-MRI_imageIDs=(`cat $2`)
-
-
-ID_Number=5
-for ((i=0; $i<ID_Number; i++))
-do
-    echo $i
-    echo ${fMRI_imageIDs[i]}
-done
-
-
-
-
 function processing(){
     fMRI_postFix=$1
     MRI_ID=$2
@@ -25,8 +11,9 @@ function processing(){
 
     ### Step 1: preprocessing of T1 images ###
     cd /home/medialab/data/ADNI/process_test/MRI/MRI_$MRI_ID
-    dcm2nii -g n -n y .
+    dcm2nii -g n -n y /home/medialab/data/ADNI/process_test/MRI/MRI_$MRI_ID
     rm *.dcm co*.nii o*.nii
+    echo "/n/n/n/n"ls *
     mv *.nii T1.nii
     # remove skull
     3dSkullStrip -o_ply skullstrip_mask.nii -input T1.nii
@@ -36,7 +23,7 @@ function processing(){
 
     ### Step 2: preprocessing of fMRI images ###
     cd /home/medialab/data/ADNI/process_test/fMRI/fMRI_$fMRI_postFix
-    dcm2nii -g n -n y .
+    dcm2nii -g n -n y /home/medialab/data/ADNI/process_test/fMRI/fMRI_$fMRI_postFix
     mkdir ./niiFolder
     cp ./*$fMRI_timeStamp*_*_*.nii ./niiFolder
     rm *
@@ -137,10 +124,41 @@ function processing(){
 	  3dBandpass -prefix fMRI_removenoise.nii -mask registration_fMRI_0003.nii \
                -ort fMRI_noise.1D 0.01 0.08 registration_fMRI_4d.nii
 
+    i=1
+    cat /home/medialab/data/template/ROI_index.txt | while read line; do
+        roi_value=$(echo $line | tr -d '\r')
 
+        3dmaskave \
+            -quiet \
+            -mrange $(echo $roi_value-0.1 | bc) $(echo $roi_value+0.1 | bc) \
+            -mask /home/medialab/data/template/AAL1.nii
+            fMRI_removenoise.nii > time_series${i}.1D
 
-    # cannot make sure all nii files are valid, so need the time stamp now
+        i=`expr $i + 1`
+    done;
 
+    ### Step 4: ends ###
 
-    
 }
+
+
+
+
+
+fMRI_imageIDs=(`cat $1`)
+MRI_imageIDs=(`cat $2`)
+
+
+Core=2
+ID_Number=5
+for ((i=0; $i<ID_Number; i++))
+do
+    ((c=c%Core)); ((c++==0)) && wait
+    echo $i
+    echo ${fMRI_imageIDs[i]}
+    processing ${fMRI_imageIDs[i]} ${MRI_imageIDs[i]} &
+done
+
+
+
+
