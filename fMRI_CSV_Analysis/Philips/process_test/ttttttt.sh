@@ -29,10 +29,6 @@ function processing(){
     rm *.dcm
     keywords=^$MRI_timeStamp
     ls | grep -v $keywords |xargs rm
-<<<<<<< HEAD
-=======
-    echo `ls *`
->>>>>>> dd57e99c1201f5d54642996af915db2afa2cb4cb
     mv *.nii T1.nii
 
     # remove skull
@@ -46,7 +42,6 @@ function processing(){
     mkdir /home/medialab/data/ADNI/$folder_name/fMRI/$fMRI_postFix/niiFolder
     cp /home/medialab/data/ADNI/$folder_name/fMRI/$fMRI_postFix/*$fMRI_timeStamp*_*_*.nii \
        /home/medialab/data/ADNI/$folder_name/fMRI/$fMRI_postFix/niiFolder
-<<<<<<< HEAD
 
     rm /home/medialab/data/ADNI/$folder_name/fMRI/$fMRI_postFix/*
 
@@ -160,11 +155,6 @@ function processing(){
     done
 
     }
-=======
-    rm /home/medialab/data/ADNI/$folder_name/fMRI/$fMRI_postFix/*
-    
-}
->>>>>>> dd57e99c1201f5d54642996af915db2afa2cb4cb
 
 
 
@@ -191,10 +181,3 @@ do
     echo $i
     processing ${fMRI_imageIDs[i]} ${MRI_imageIDs[i]} $folder_name& 
 done
-<<<<<<< HEAD
-=======
-
-
-
-
->>>>>>> dd57e99c1201f5d54642996af915db2afa2cb4cb
