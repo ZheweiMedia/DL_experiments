@@ -73,13 +73,13 @@ with open('Clean_MRI_ImageID','w') as f:
                 if subject.MRI_baseline != None:
                     MRI_list.append(subject.MRI_baseline)
                     f.write(subject.MRI_baseline)
-                    f.write(',')
+                    f.write(' ')
                 if subject.MRI_other:
                     for ID in subject.MRI_other:
                         if ID != None:
                             MRI_list.append(ID)
                             f.write(ID)
-                            f.write(',')
+                            f.write(' ')
 
 print('We have', Subjects_in_group, 'subjects.')
 print('MRI Image:', len(MRI_list))
@@ -90,13 +90,13 @@ with open('Clean_fMRI_ImageID','w') as f:
             if subject.fMRI_baseline != None:
                 fMRI_list.append(subject.fMRI_baseline)
                 f.write(subject.fMRI_baseline)
-                f.write(',')
+                f.write(' ')
             if subject.fMRI_other:
                 for ID in subject.fMRI_other:
                     if ID != None:
                         fMRI_list.append(ID)
                         f.write(ID)
-                        f.write(',')
+                        f.write(' ')
 print('fMRI Image:', len(fMRI_list))
 
 with gzip.open("Clean_imageID.gz", "wb") as output_file:

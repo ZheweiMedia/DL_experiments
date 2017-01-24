@@ -2,6 +2,8 @@
 
 # use for preprocessing data
 
+# usage: bash ttttttt.sh test_Clean_fMRI_ImageID test_Clean_MRI_ImageID process_test
+
 function processing(){
     fMRI_postFix=$1
     MRI_postFix=$2
@@ -119,7 +121,7 @@ function processing(){
 	  ### Step 3: ends ###
 
 
-	  ### Step 4: Remove noise signal ###
+    ### Step 4: Remove noise signal ###
 
 	  ## segment anatomical image
 	  fsl5.0-fast -o T1_segm_A -t 1 -n 3 -g -p registration_T1.nii
@@ -127,7 +129,7 @@ function processing(){
 	  ## Get mrean signal of CSF segment
 	  3dmaskave -quiet -mask T1_segm_A_seg_0.nii registration_fMRI_4d.nii > fMRI_csf.1D
 
-	  ## motion correction in the standard space
+    ## motion correction in the standard space
 	  3dvolreg -prefix _mc_F.nii -1Dfile fMRI_motion.1D -Fourier -twopass \
              -zpad 4 -base 50 registration_fMRI_4d.nii
 
@@ -149,11 +151,12 @@ function processing(){
             -quiet \
             -mrange $(echo $roi_value-0.1 | bc) $(echo $roi_value+0.1 | bc) \
             -mask ~/data/template/AAL2.nii \
-            fMRI_removenoise.nii > _t${i}.1D
+            fMRI_removenoise.nii > /home/medialab/data/ADNI/$folder_name/fMRI/$fMRI_postFix/_t${i}.1D
 
         i=`expr $i + 1`
     done
-
+    rm -r /home/medialab/data/ADNI/$folder_name/fMRI/$fMRI_postFix/niiFolder
+    
     }
 
 
