@@ -34,7 +34,7 @@ do
     mkdir /home/medialab/data/ADNI/fMRI_${iid}
     cp $dcm_fMRI /home/medialab/data/ADNI/fMRI_${iid}
     dcm2nii -g n -n y /home/medialab/data/ADNI/fMRI_${iid}
-    cp /home/medialab/data/ADNI/fMRI_${iid}/*$timeFile*_*_100.nii /home/medialab/data/ADNI/fMRI_check/fMRI_${iid}.nii
+    cp /home/medialab/data/ADNI/fMRI_${iid}/*$timeFilt*_*_100.nii /home/medialab/data/ADNI/fMRI_check/fMRI_${iid}.nii
     rm -r /home/medialab/data/ADNI/fMRI_${iid}) &
 done
 )
