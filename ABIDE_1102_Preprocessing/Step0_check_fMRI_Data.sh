@@ -49,7 +49,7 @@ for xmlfile in $xmlfiles; do
         fslsplit *.nii fMRI_
         mv fMRI_0050.nii ../$subjectID.nii
         rm ./*.nii
-        cd $dataFolder
+        cd /home/medialab/data/$dataFolder
     fi
     
 done
