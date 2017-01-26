@@ -1,4 +1,3 @@
-
 """
 1. After we check the fMRI image, we get the bad data ID.
 2. Now I plan to ge the clean image IDs, that means remove the bad fMRI image ID
@@ -6,6 +5,8 @@
 
 
 """
+
+
 
 import gzip
 import pickle
@@ -24,15 +25,16 @@ class _EachSubject:
         self.fMRI_other = list()
 
 
-with gzip.open("Original_imageID.gz", "rb") as original_file:
+with gzip.open("Original_Moco_imageID.gz", "rb") as original_file:
     Original_Data = pickle.load(original_file)
 
 
 print(len(Original_Data))
-bad_ImageID_List = ['257275', '272229', '296788', '229146', '248516', '249407',
-                    '282008', '297689', '312870', '313953', '316542', '317121',
-                    '322060', '336708', '341918', '365243', '368889', '377213',
-                    '424849', '348187', '373523',]
+bad_ImageID_List = ['300838', '260529', '254961', '256326', '256302', '236916',
+                    '265547', '271882', '283128', '289550', '294230', '308600',
+                    '314429', '315515', '331750', '339689', '355088', '359008',
+                    '363491', '367477', '369851', '373880', '381181', '381381',
+                    '387038', ]
 
 # travel all Original_Data
 for subject in Original_Data:

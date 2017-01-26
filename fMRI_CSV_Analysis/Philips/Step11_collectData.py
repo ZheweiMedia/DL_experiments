@@ -49,7 +49,8 @@ def read_1D_files(imageID):
             signals = zone_singal;
         else:
             signals = numpy.concatenate((signals, zone_singal))
-    # signals = signals.reshape((120,-1))
+    signals = signals.reshape((120,-1))
+    signals = numpy.transpose(signals)
     return signals
 
 with gzip.open('Clean_imageID.gz', 'rb') as input_file:
@@ -63,7 +64,6 @@ for subject in subjects_list:
     if subject.DX_Group == "AD" or subject.DX_Group == "Normal":
         # baseline
         if subject.fMRI_baseline != None:
-            print(subject.fMRI_baseline)
             signals = read_1D_files(subject.fMRI_baseline)
             subject2.fMRI_baseline = {subject.fMRI_baseline:signals}
         other_list = list()
@@ -88,21 +88,26 @@ for subject in Subjects_with_data:
     file_name = '/home/medialab/data/ADNI/Philips/results/'+subject.DX_Group+'/'+subject.SubjectID+'.txt'
     with open(file_name, 'w') as f:
         if subject.fMRI_baseline:
-            content = list(subject.fMRI_baseline[list(subject.fMRI_baseline.keys())[0]])
+            content = subject.fMRI_baseline[list(subject.fMRI_baseline.keys())[0]]
             print (subject.fMRI_baseline.keys())
             print (subject.SubjectID)
-            for c in content:
-                f.write(str(c))
-                f.write(' ')
-            f.write('\n\n')
-        if subject.fMRI_other:
-            for other in subject.fMRI_other:
-                content = list(other[list(other.keys())[0]])
-                for c in content:
+            for list_no in range(content.shape[1]):
+                current_list = list(content[:,list_no])
+                for c in current_list:
                     f.write(str(c))
                     f.write(' ')
-                f.write('\n\n')
-
+                f.write('\n')
+            f.write('\n')
+        if subject.fMRI_other:
+            for other in subject.fMRI_other:
+                content = other[list(other.keys())[0]]
+                for list_no in range(content.shape[1]):
+                    current_list = list(content[:,list_no])
+                    for c in current_list:
+                        f.write(str(c))
+                        f.write(' ')
+                    f.write('\n')
+                f.write('\n')
 
 
 
