@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # use for preprocessing data
-# usage: bash Step10_preprocessing.sh fMRI_IDs MRI_IDs Philips
+# usage: bash Step10_preprocessing.sh fMRI_IDs MRI_IDs Philips sample_numbers
 
 function processing(){
     fMRI_postFix=$1
@@ -142,18 +142,23 @@ function processing(){
 	  3dBandpass -prefix fMRI_removenoise.nii -mask registration_fMRI_0003.nii \
                -ort fMRI_noise.1D 0.01 0.08 registration_fMRI_4d.nii
 
-    i=1
-    cat ~/data/template/ROI_index.txt | while read line;do
-        roi_value=$(echo $line | tr -d '\r')
+    #i=1
+    #cat ~/data/template/ROI_index.txt | while read line;do
+        #roi_value=$(echo $line | tr -d '\r')
 
-        3dmaskave \
-            -quiet \
-            -mrange $(echo $roi_value-0.1 | bc) $(echo $roi_value+0.1 | bc) \
-            -mask ~/data/template/AAL2.nii \
-            fMRI_removenoise.nii > /home/medialab/data/ADNI/$folder_name/fMRI/$fMRI_postFix/_t${i}.1D
+        #3dmaskave \
+            #-quiet \
+            #-mrange $(echo $roi_value-0.1 | bc) $(echo $roi_value+0.1 | bc) \
+            #-mask ~/data/template/AAL2.nii \
+            #fMRI_removenoise.nii > /home/medialab/data/ADNI/$folder_name/fMRI/$fMRI_postFix/_t${i}.1D
 
-        i=`expr $i + 1`
-    done
+        #i=`expr $i + 1`
+    #done
+    #rm -r /home/medialab/data/ADNI/$folder_name/fMRI/$fMRI_postFix/niiFolder
+
+    mkdir /home/medialab/data/ADNI/$folder_name/fMRI/$fMRI_postFix/result_image/
+    mv /home/medialab/data/ADNI/$folder_name/fMRI/$fMRI_postFix/niiFolder/fMRI_removenoise.nii \
+       /home/medialab/data/ADNI/$folder_name/fMRI/$fMRI_postFix/result_image/
     rm -r /home/medialab/data/ADNI/$folder_name/fMRI/$fMRI_postFix/niiFolder
     
     }
@@ -168,7 +173,8 @@ folder_name=$3
 
 
 Core=6
-ID_Number=261
+
+ID_Number=$4
 range_array=()
 
 for ((i=0; $i<ID_Number; i++));
