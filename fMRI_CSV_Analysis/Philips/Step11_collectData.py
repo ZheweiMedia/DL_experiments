@@ -78,36 +78,39 @@ for subject in subjects_list:
 print(len(Subjects_with_data))
 #for subject in Subjects_with_data:
 #    print(subject.fMRI_other)
-# print(Subjects_with_data[-4].fMRI_other)
-# print(Subjects_with_data[-1].fMRI_baseline[list(Subjects_with_data[-1].fMRI_baseline.keys())[0]])
+print(Subjects_with_data[-1].fMRI_baseline)
+#print(Subjects_with_data[-1].fMRI_baseline[list(Subjects_with_data[-1].fMRI_baseline.keys())[0]])
 #with gzip.open("Clean_imageID_with_Data.gz", "wb") as output_file:
 #    pickle.dump(Subjects_with_data, output_file)
 
 
-for subject in Subjects_with_data:
-    file_name = '/home/medialab/data/ADNI/Philips/results/'+subject.DX_Group+'/'+subject.SubjectID+'.txt'
-    with open(file_name, 'w') as f:
-        if subject.fMRI_baseline:
-            content = subject.fMRI_baseline[list(subject.fMRI_baseline.keys())[0]]
-            print (subject.fMRI_baseline.keys())
-            print (subject.SubjectID)
-            for list_no in range(content.shape[1]):
-                current_list = list(content[:,list_no])
-                for c in current_list:
-                    f.write(str(c))
-                    f.write(' ')
-                f.write('\n')
-            f.write('\n')
-        if subject.fMRI_other:
-            for other in subject.fMRI_other:
-                content = other[list(other.keys())[0]]
-                for list_no in range(content.shape[1]):
-                    current_list = list(content[:,list_no])
-                    for c in current_list:
-                        f.write(str(c))
-                        f.write(' ')
-                    f.write('\n')
-                f.write('\n')
+#for subject in Subjects_with_data:
+    #file_name = '/home/medialab/data/ADNI/Philips/results/'+subject.DX_Group+'/'+subject.SubjectID+'.txt'
+    #with open(file_name, 'w') as f:
+        #if subject.fMRI_baseline:
+            #content = subject.fMRI_baseline[list(subject.fMRI_baseline.keys())[0]]
+            #print (subject.fMRI_baseline.keys())
+            #print (subject.SubjectID)
+            #for list_no in range(content.shape[1]):
+                #current_list = list(content[:,list_no])
+                #for c in current_list:
+                    #f.write(str(c))
+                    #f.write(' ')
+                #f.write('\n')
+            #f.write('\n')
+        #if subject.fMRI_other:
+            #for other in subject.fMRI_other:
+                #content = other[list(other.keys())[0]]
+                #for list_no in range(content.shape[1]):
+                    #current_list = list(content[:,list_no])
+                    #for c in current_list:
+                        #f.write(str(c))
+                        #f.write(' ')
+                    #f.write('\n')
+                #f.write('\n')
+
+
+
 
 
 
