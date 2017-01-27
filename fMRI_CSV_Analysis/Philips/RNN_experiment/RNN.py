@@ -23,7 +23,7 @@ valid_percentage = 0.1
 test_percentage = 0.1
 
 Groups = 2
-hd_notes = 30
+hd_notes = 3
 BATCH_SIZE = 30
 nb_epoch = 150
 
@@ -100,6 +100,7 @@ test_index = index_of_subjects[train_number+valid_number:]
 train_data, train_label = read_data(train_index, subjects_list)
 valid_data, valid_label = read_data(valid_index, subjects_list)
 test_data, test_label = read_data(test_index, subjects_list)
+# TODO: normalize data
 
 print ('*'*40)
 print ('We have training subjects:',train_number)
@@ -123,7 +124,7 @@ model.add(LSTM(hd_notes, input_shape=(timesteps, featureNo),\
                             init='normal',\
                             inner_init='identity',\
                             activation='sigmoid', return_sequences=False,\
-                            dropout_W=0, dropout_U=0))
+                            dropout_W=0.4, dropout_U=0))
 model.add(Dense(Groups))
 model.add(Activation('softmax'))
 adad = Adadelta(lr=1.0, rho=0.95, epsilon=1e-08, decay=0.0)
