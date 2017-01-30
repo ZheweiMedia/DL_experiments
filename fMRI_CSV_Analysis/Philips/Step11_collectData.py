@@ -40,6 +40,7 @@ def read_1D_files(imageID):
     signals = numpy.empty([2, 2])
     for zone_no in range(1,121):
         file_name = glob.glob('/home/medialab/data/ADNI/Philips/fMRI/fMRI_'\
+
                               +imageID+'_*/_t'+str(zone_no)+'.1D')
         with open(file_name[0], 'rb') as f:
             zone_singal = list()
@@ -59,7 +60,7 @@ with gzip.open('Clean_imageID.gz', 'rb') as input_file:
 print (len(subjects_list))
 Subjects_with_data = list()
 
-for subject in subjects_list:
+for sbject in subjects_list:
     subject2 = _Subject_with_data(subject.SubjectID, subject.DX_Group)
     if subject.DX_Group == "AD" or subject.DX_Group == "Normal":
         # baseline
