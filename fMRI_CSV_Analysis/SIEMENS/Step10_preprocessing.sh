@@ -159,6 +159,8 @@ function processing(){
     mkdir /home/medialab/data/ADNI/$folder_name/fMRI/$fMRI_postFix/result_image/
     mv /home/medialab/data/ADNI/$folder_name/fMRI/$fMRI_postFix/niiFolder/fMRI_removenoise.nii \
        /home/medialab/data/ADNI/$folder_name/fMRI/$fMRI_postFix/result_image/
+    mv /home/medialab/data/ADNI/$folder_name/fMRI/$fMRI_postFix/niiFolder/registration_fMRI_4d.nii \
+       /home/medialab/data/ADNI/$folder_name/fMRI/$fMRI_postFix/result_image/
     rm -r /home/medialab/data/ADNI/$folder_name/fMRI/$fMRI_postFix/niiFolder
     
     }
