@@ -1,4 +1,4 @@
-hrm -r /home/medialab/data/ADNI/process_test_Philips
+rm -r /home/medialab/data/ADNI/process_test_Philips
 
 mkdir /home/medialab/data/ADNI/process_test_Philips
 

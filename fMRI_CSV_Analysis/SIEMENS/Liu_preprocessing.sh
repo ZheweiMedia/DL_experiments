@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # use for preprocessing data
-# usage: bash Step10_preprocessing.sh fMRI_IDs MRI_IDs Philips 3
+# usage: bash Step10_preprocessing.sh fMRI_IDs MRI_IDs Philips sample_numbers
 
 function processing(){
     fMRI_postFix=$1
@@ -70,17 +70,15 @@ function processing(){
 
     ## splite and clean .nii files
 	  fslsplit despike.nii despike
-	  rm slicetiming.nii motioncorrection.nii despike.nii fMRI_4d.nii
+	  # rm slicetiming.nii motioncorrection.nii despike.nii fMRI_4d.nii
 
     ### Step 2: ends ###
 
     ### Step 3: Get functional-to-standard image registration ###
 
 	  # Get functional-to-anatomical image registration
-    # !!
-    # !!!!!!!!!!!!!!!!!!!!!!!!!!! T1.nii
 	  flirt -omat func2anat.mat -cost corratio -dof 12 -interp trilinear -ref \
-          /home/medialab/data/ADNI/$folder_name/MRI/$MRI_postFix/T1.nii \
+          /home/medialab/data/ADNI/$folder_name/MRI/$MRI_postFix/skullstrip.nii \
           -in despike0050.nii
 
     # Get anatimical-to-standard image registration
@@ -101,8 +99,7 @@ function processing(){
 	  despike_fileNo=${despike_fileNo[0]}
 	  
 	  echo $despike_fileNo
-
-	  ## Apply functional-to-anatimical image registration
+	  ## Apply functional-to-standard image registration
 	  i=0
 	  while [ $i -lt $despike_fileNo ];
 	  do
@@ -113,18 +110,9 @@ function processing(){
 	      else
 		        fMRI_index=0$i
 	      fi
-
-        flirt -out fMRI_in_MRI_space_$fMRI_index.nii -interp trilinear -applyxfm \
-              -init func2anat.mat -ref ~/data/ADNI/$folder_name/MRI/$MRI_postFix/T1.nii \
-              -in despike$fMRI_index.nii
-        # remove the skull of fMRI
-
-        3dcalc -prefix fMRI_skullstrip_$fMRI_index.nii -expr 'a*step(b)' \
-               -b ~/data/ADNI/$folder_name/MRI/$MRI_postFix/skullstrip_mask.nii \
-               -a fMRI_in_MRI_space_$fMRI_index.nii
 	      
 	      flirt -out registration_fMRI_$fMRI_index.nii -interp trilinear -applyxfm \
-              -init anat2stnd.mat -ref ~/data/template/std_skullstrip.nii.gz -in fMRI_skullstrip_$fMRI_index.nii
+              -init func2stnd.mat -ref ~/data/template/std_skullstrip.nii.gz -in despike$fMRI_index.nii
 	      i=`expr $i + 1`
 	  done
 
@@ -151,13 +139,29 @@ function processing(){
 	  1dcat fMRI_csf.1D fMRI_motion.1D fMRI_motion_deriv.1D > fMRI_noise.1D
 
 	  ## Regress out the 'noise signal' from functional image
-	  3dBandpass -prefix fMRI_removenoise_Bandpass.nii -mask registration_fMRI_0003.nii \
+	  3dBandpass -prefix fMRI_removenoise.nii -mask registration_fMRI_0003.nii \
                -ort fMRI_noise.1D 0.01 0.08 registration_fMRI_4d.nii
 
-    3dBandpass -prefix fMRI_removenoise_Highpass.nii -mask registration_fMRI_0003.nii \
-               -ort fMRI_noise.1D 0.02 999 registration_fMRI_4d.nii
+    #i=1
+    #cat ~/data/template/ROI_index.txt | while read line;do
+        #roi_value=$(echo $line | tr -d '\r')
 
-    
+        #3dmaskave \
+            #-quiet \
+            #-mrange $(echo $roi_value-0.1 | bc) $(echo $roi_value+0.1 | bc) \
+            #-mask ~/data/template/AAL2.nii \
+            #fMRI_removenoise.nii > /home/medialab/data/ADNI/$folder_name/fMRI/$fMRI_postFix/_t${i}.1D
+
+        #i=`expr $i + 1`
+    #done
+    #rm -r /home/medialab/data/ADNI/$folder_name/fMRI/$fMRI_postFix/niiFolder
+
+    #mkdir /home/medialab/data/ADNI/$folder_name/fMRI/$fMRI_postFix/result_image/
+    #mv /home/medialab/data/ADNI/$folder_name/fMRI/$fMRI_postFix/niiFolder/fMRI_removenoise.nii \
+       #/home/medialab/data/ADNI/$folder_name/fMRI/$fMRI_postFix/result_image/
+    #mv /home/medialab/data/ADNI/$folder_name/fMRI/$fMRI_postFix/niiFolder/registration_fMRI_4d.nii \
+       #/home/medialab/data/ADNI/$folder_name/fMRI/$fMRI_postFix/result_image/
+    #rm -r /home/medialab/data/ADNI/$folder_name/fMRI/$fMRI_postFix/niiFolder
     
     }
 
@@ -171,6 +175,7 @@ folder_name=$3
 
 
 Core=6
+
 ID_Number=$4
 range_array=()
 
