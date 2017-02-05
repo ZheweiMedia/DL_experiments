@@ -155,55 +155,9 @@ function processing(){
                -ort fMRI_noise.1D 0.01 0.08 registration_fMRI_4d.nii
 
     3dBandpass -prefix fMRI_removenoise_Highpass.nii -mask registration_fMRI_0003.nii \
-               -ort fMRI_noise.1D 0.02 99999 registration_fMRI_4d.nii
+               -ort fMRI_noise.1D 0.02 999 registration_fMRI_4d.nii
 
     
-    mkdir /home/medialab/data/ADNI/$folder_name/fMRI/$fMRI_postFix/Bandpass
-    
-    mkdir /home/medialab/data/ADNI/$folder_name/fMRI/$fMRI_postFix/Highpass
-
-    mkdir /home/medialab/data/ADNI/$folder_name/fMRI/$fMRI_postFix/Original
-
-    i=1
-    cat ~/data/template/ROI_index.txt | while read line;do
-        roi_value=$(echo $line | tr -d '\r')
-
-        3dmaskave \
-            -quiet \
-            -mrange $(echo $roi_value-0.1 | bc) $(echo $roi_value+0.1 | bc) \
-            -mask ~/data/template/AAL2.nii \
-            fMRI_removenoise_Bandpass.nii > /home/medialab/data/ADNI/$folder_name/fMRI/$fMRI_postFix/Bandpass/_t${i}.1D
-
-        i=`expr $i + 1`
-    done
-    
-    i=1
-    cat ~/data/template/ROI_index.txt | while read line;do
-        roi_value=$(echo $line | tr -d '\r')
-
-        3dmaskave \
-            -quiet \
-            -mrange $(echo $roi_value-0.1 | bc) $(echo $roi_value+0.1 | bc) \
-            -mask ~/data/template/AAL2.nii \
-            fMRI_removenoise_Highpass.nii > /home/medialab/data/ADNI/$folder_name/fMRI/$fMRI_postFix/Highpass/_t${i}.1D
-
-        i=`expr $i + 1`
-    done
-    
-    i=1
-    cat ~/data/template/ROI_index.txt | while read line;do
-        roi_value=$(echo $line | tr -d '\r')
-
-        3dmaskave \
-            -quiet \
-            -mrange $(echo $roi_value-0.1 | bc) $(echo $roi_value+0.1 | bc) \
-            -mask ~/data/template/AAL2.nii \
-            registration_fMRI_4d.nii > /home/medialab/data/ADNI/$folder_name/fMRI/$fMRI_postFix/Original/_t${i}.1D
-
-        i=`expr $i + 1`
-    done
-    
-    rm -r /home/medialab/data/ADNI/$folder_name/fMRI/$fMRI_postFix/niiFolder
     }
 
 
