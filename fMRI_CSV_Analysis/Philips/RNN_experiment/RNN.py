@@ -121,10 +121,11 @@ featureNo = train_data.shape[2]
 print ("Building model...")
 model = Sequential()
 model.add(LSTM(hd_notes, input_shape=(timesteps, featureNo),\
-                            init='normal',\
-                            inner_init='identity',\
-                            activation='sigmoid', return_sequences=False,\
-                            dropout_W=0.4, dropout_U=0))
+               init='normal',inner_init='identity',\
+               activation='sigmoid', return_sequences=False,\
+               W_regularizer=None, U_regularizer=None, \
+               b_regularizer=None,\
+               dropout_W=0.0, dropout_U=0))
 model.add(Dense(Groups))
 model.add(Activation('softmax'))
 adad = Adadelta(lr=1.0, rho=0.95, epsilon=1e-08, decay=0.0)

@@ -18,6 +18,9 @@ cd /home/medialab/data/ADNI/Philips/ADNI
 MRI_XMLS=`find ./ -name "*MPRAGE*.xml"`
 fMRI_XMLS=`find ./ -name "*Resting_State_fMRI*.xml"`
 
+rm -r /home/medialab/data/ADNI/Philips/MRI
+rm -r /home/medialab/data/ADNI/Philips/fMRI
+
 mkdir /home/medialab/data/ADNI/Philips/MRI
 mkdir /home/medialab/data/ADNI/Philips/fMRI
 
