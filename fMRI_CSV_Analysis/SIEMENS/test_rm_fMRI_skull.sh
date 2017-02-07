@@ -137,27 +137,7 @@ function processing(){
     ### Step 4: Remove noise signal ###
 
 	  ## segment anatomical image
-	  fsl5.0-fast -o T1_segm_A -t 1 -n 3 -g -p registration_T1.nii
-
-	  ## Get mrean signal of CSF segment
-	  3dmaskave -quiet -mask T1_segm_A_seg_0.nii registration_fMRI_4d.nii > fMRI_csf.1D
-
-    ## motion correction in the standard space
-	  3dvolreg -prefix _mc_F.nii -1Dfile fMRI_motion.1D -Fourier -twopass \
-             -zpad 4 -base 50 registration_fMRI_4d.nii
-
-	  ## Get motion derivative
-	  1d_tool.py -write fMRI_motion_deriv.1D -derivative -infile fMRI_motion.1D
-
-	  ## concatenate CSF signal, motion correction, motion derivative into 'noise signal'
-	  1dcat fMRI_csf.1D fMRI_motion.1D fMRI_motion_deriv.1D > fMRI_noise.1D
-
-	  ## Regress out the 'noise signal' from functional image
-	  3dBandpass -prefix fMRI_removenoise_Bandpass.nii -mask registration_fMRI_0003.nii \
-               -ort fMRI_noise.1D 0.01 0.08 registration_fMRI_4d.nii
-
-    3dBandpass -prefix fMRI_removenoise_Highpass.nii -mask registration_fMRI_0003.nii \
-               -ort fMRI_noise.1D 0.02 999 registration_fMRI_4d.nii
+	  fsl5.0-fast -o T1_segm_A -t 1 -n 3 -g -p /home/medialab/data/ADNI/$folder_name/MRI/$MRI_postFix/skullstrip.nii
 
     
     }

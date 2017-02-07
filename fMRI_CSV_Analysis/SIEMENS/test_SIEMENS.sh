@@ -1,4 +1,4 @@
-hrm -r /home/medialab/data/ADNI/process_test_SIEMENS
+rm -r /home/medialab/data/ADNI/process_test_SIEMENS
 
 mkdir /home/medialab/data/ADNI/process_test_SIEMENS
 

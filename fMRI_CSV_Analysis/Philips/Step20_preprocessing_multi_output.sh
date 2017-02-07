@@ -81,7 +81,7 @@ function processing(){
     # !!!!!!!!!!!!!!!!!!!!!!!!!!! T1.nii
     # dof set as 6, so now it is rigid registration
 	  flirt -omat func2anat.mat -cost corratio -dof 6 -interp trilinear -ref \
-          /home/medialab/data/ADNI/$folder_name/MRI/$MRI_postFix/T1.nii \
+          /home/medialab/data/ADNI/$folder_name/MRI/$MRI_postFix/skullstrip.nii \
           -in despike0050.nii
 
     # Get anatimical-to-standard image registration
@@ -117,7 +117,7 @@ function processing(){
 
         # fMRI to T1 space
         flirt -out fMRI_in_MRI_space_$fMRI_index.nii -interp trilinear -applyxfm \
-              -init func2anat.mat -ref ~/data/ADNI/$folder_name/MRI/$MRI_postFix/T1.nii \
+              -init func2anat.mat -ref ~/data/ADNI/$folder_name/MRI/$MRI_postFix/skullstrip.nii \
               -in despike$fMRI_index.nii
 
         # remove the skull of fMRI
