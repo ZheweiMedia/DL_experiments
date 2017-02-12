@@ -76,26 +76,15 @@ function processing(){
 
     ### Step 3: Get functional-to-standard image registration ###
 
-	  # Get functional-to-anatomical image registration
-    # !!
-    # !!!!!!!!!!!!!!!!!!!!!!!!!!! T1.nii
-    # dof set as 6, so now it is rigid registration
-	  flirt -omat func2anat.mat -cost corratio -dof 6 -interp trilinear -ref \
-          /home/medialab/data/ADNI/$folder_name/MRI/$MRI_postFix/skullstrip.nii \
-          -in despike0050.nii
+	  
 
-    # Get anatimical-to-standard image registration
-	  flirt -omat anat2stnd.mat -cost corratio -dof 12 -interp trilinear -ref \
-          ~/data/template/std_skullstrip.nii.gz -in \
-          /home/medialab/data/ADNI/$folder_name/MRI/$MRI_postFix/skullstrip.nii
-
-    # apply MRI to standard registration
-	  flirt -out registration_T1.nii -interp trilinear -applyxfm -init anat2stnd.mat \
-          -ref ~/data/template/std_skullstrip.nii.gz -in \
-          /home/medialab/data/ADNI/$folder_name/MRI/$MRI_postFix/skullstrip.nii
-
-    # Get functional-to-standard image transformation
-	  convert_xfm -omat func2stnd.mat -concat anat2stnd.mat func2anat.mat
+    # Get anatimical-to-standard image registration, and generate .1D matrix
+    align_epi_anat.py -dset1 /home/medialab/data/ADNI/$folder_name/MRI/$MRI_postFix/skullstrip.nii \
+                      -dset2 ~/data/template/std_skullstrip.nii.gz \
+                      -dset1to2  -dset1_strip None -dset2_strip None \
+                      -volreg_method 3dAllineate
+	  # transfer .HEAD and .BRIK to nii, we need to segement this nii as GM,WM, CSF later
+    3dAFNItoNIFTI -prefix registration_T1 skullstrip*.BRIK skullstrip*.HEAD
 
     despike_fileNo=`ls despike*.nii | wc`
 	  despike_fileNo=($despike_fileNo)
@@ -115,18 +104,21 @@ function processing(){
 		        fMRI_index=0$i
 	      fi
 
-        # fMRI to T1 space
-        flirt -out fMRI_in_MRI_space_$fMRI_index.nii -interp trilinear -applyxfm \
-              -init func2anat.mat -ref ~/data/ADNI/$folder_name/MRI/$MRI_postFix/skullstrip.nii \
-              -in despike$fMRI_index.nii
+        # fMRI to std space
+        3dAllineate -base ~/data/template/std_skullstrip.nii.gz \
+                    -input despike$fMRI_index.nii \
+                    -1Dmatrix_apply skullstrip*.1D \
+                    -prefix registration_fMRI_$fMRI_index
+        
+        # transfer the format
+        #dAFNItoNIFTI registration_fMRI_$fMRI_index*.HEAD \
+                      #egistration_fMRI_$fMRI_index*.BRIK
 
         # remove the skull of fMRI
-        3dcalc -prefix fMRI_skullstrip_$fMRI_index.nii -expr 'a*step(b)' \
-               -b ~/data/ADNI/$folder_name/MRI/$MRI_postFix/skullstrip_mask.nii \
-               -a fMRI_in_MRI_space_$fMRI_index.nii
-	      
-	      flirt -out registration_fMRI_$fMRI_index.nii -interp trilinear -applyxfm \
-              -init anat2stnd.mat -ref ~/data/template/std_skullstrip.nii.gz -in fMRI_skullstrip_$fMRI_index.nii
+        3dcalc -prefix registration_fMRI_$fMRI_index.nii\
+               -expr 'a*step(b)'\
+               -b ~/data/template/MNI152_T1_2mm_brain_mask.nii.gz \
+               -a registration_fMRI_$fMRI_index*.HEAD
 	      i=`expr $i + 1`
 	  done
 
@@ -137,7 +129,6 @@ function processing(){
     ### Step 4: Remove noise signal ###
 
 	  ## segment anatomical image
-	  fsl5.0-fast -o T1_segm_A -t 1 -n 3 -g -p /home/medialab/data/ADNI/$folder_name/MRI/$MRI_postFix/skullstrip.nii
 
     
     }
