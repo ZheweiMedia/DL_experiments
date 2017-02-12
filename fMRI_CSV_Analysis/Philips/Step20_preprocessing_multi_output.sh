@@ -157,7 +157,7 @@ function processing(){
                -ort fMRI_noise.1D 0.01 0.08 registration_fMRI_4d.nii
 
     3dBandpass -prefix fMRI_removenoise_Highpass.nii -mask registration_fMRI_0003.nii \
-               -ort fMRI_noise.1D 0.02 99999 registration_fMRI_4d.nii
+               -ort fMRI_noise.1D 0.02 99999 registration_fMRI_4d.niiema
 
     
     mkdir /home/medialab/data/ADNI/$folder_name/fMRI/$fMRI_postFix/Bandpass

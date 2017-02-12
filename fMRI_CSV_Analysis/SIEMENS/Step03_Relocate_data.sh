@@ -4,7 +4,7 @@
 # so basically we separate them as MRI folder and fMRI folder, and in each folder,
 # the image folder is named as their image ID.
 
-# How to use: bash Step04_relocate_data.sh Clean_fMRI_ImageID Clean_MRI_ImageID 
+# How to use: bash Step03_relocate_data.sh Clean_fMRI_ImageID Clean_MRI_ImageID 
 
 
 # first, load MRI and fMRI image IDs

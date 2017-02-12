@@ -81,10 +81,14 @@ function processing(){
     # Get anatimical-to-standard image registration, and generate .1D matrix
     align_epi_anat.py -dset1 /home/medialab/data/ADNI/$folder_name/MRI/$MRI_postFix/skullstrip.nii \
                       -dset2 ~/data/template/std_skullstrip.nii.gz \
-                      -dset1to2  -dset1_strip None -dset2_strip None \
+                      -dset1to2  \
+                      -dset1_strip None -dset2_strip None \
                       -volreg_method 3dAllineate
-	  # transfer .HEAD and .BRIK to nii, we need to segement this nii as GM,WM, CSF later
-    3dAFNItoNIFTI -prefix registration_T1 skullstrip*.BRIK skullstrip*.HEAD
+	  # registrate T1 to std space. we need to segement this nii as GM,WM, CSF later
+    3dAllineate -base ~/data/template/std_skullstrip.nii.gz \
+                -input /home/medialab/data/ADNI/$folder_name/MRI/$MRI_postFix/skullstrip.nii\
+                -1Dmatrix_apply skullstrip*.1D \
+                -prefix registration_T1.nii
 
     despike_fileNo=`ls despike*.nii | wc`
 	  despike_fileNo=($despike_fileNo)
@@ -110,9 +114,6 @@ function processing(){
                     -1Dmatrix_apply skullstrip*.1D \
                     -prefix registration_fMRI_$fMRI_index
         
-        # transfer the format
-        #dAFNItoNIFTI registration_fMRI_$fMRI_index*.HEAD \
-                      #egistration_fMRI_$fMRI_index*.BRIK
 
         # remove the skull of fMRI
         3dcalc -prefix registration_fMRI_$fMRI_index.nii\
