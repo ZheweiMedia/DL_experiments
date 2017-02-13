@@ -154,7 +154,7 @@ function processing(){
 
         i=`expr $i + 1`
     done
-    rm -r /home/medialab/data/ADNI/$folder_name/fMRI/$fMRI_postFix/niiFolder
+    # rm -r /home/medialab/data/ADNI/$folder_name/fMRI/$fMRI_postFix/niiFolder
     
     }
 
@@ -167,8 +167,8 @@ MRI_imageIDs=(`cat $2`)
 folder_name=$3
 
 
-Core=6
-ID_Number=261
+Core=1
+ID_Number=3
 range_array=()
 
 for ((i=0; $i<ID_Number; i++));
