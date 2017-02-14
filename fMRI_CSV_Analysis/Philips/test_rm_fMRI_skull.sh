@@ -84,7 +84,10 @@ function processing(){
                       -dset1to2  -dset1_strip None -dset2_strip None \
                       -volreg_method 3dAllineate
 	  # transfer .HEAD and .BRIK to nii, we need to segement this nii as GM,WM, CSF later
-    3dAFNItoNIFTI -prefix registration_T1 skullstrip*.BRIK skullstrip*.HEAD
+    3dAllineate -base ~/data/template/std_skullstrip.nii.gz \
+                -input /home/medialab/data/ADNI/$folder_name/MRI/$MRI_postFix/skullstrip.nii\
+                -1Dmatrix_apply skullstrip*.1D \
+                -prefix registration_T1.nii
 
     despike_fileNo=`ls despike*.nii | wc`
 	  despike_fileNo=($despike_fileNo)

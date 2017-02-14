@@ -27,7 +27,7 @@ do
     # IMPORTANT:
     time=`xmllint --xpath '//project/subject/study/series/dateAcquired/text()' $X`
 
-    # string of time in files
+    # string of ttmime in files
     timeYear=${time:0:4}
     timeMonthDay=${time:5:5}
     timeMonth=${timeMonthDay:0:2}
