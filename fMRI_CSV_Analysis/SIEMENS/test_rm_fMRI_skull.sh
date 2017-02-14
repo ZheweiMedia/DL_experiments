@@ -86,7 +86,7 @@ function processing(){
     mv skullstrip_shft.1D T1_shft.1D
 
     align_epi_anat.py -dset1 /home/medialab/data/ADNI/$folder_name/MRI/$MRI_postFix/skullstrip_shft.nii \
-                      -dset2 ~/data/template/std_skullstrip.nii.gz \
+                      -dset2 ~/data/template/std_skullstrip.nii \
                       -dset1to2  -dset1_strip None -dset2_strip None \
                       -volreg_method 3dAllineate
 
@@ -96,7 +96,7 @@ function processing(){
     3dAllineate -base ~/data/template/std_skullstrip.nii.gz \
                 -input /home/medialab/data/ADNI/$folder_name/MRI/$MRI_postFix/skullstrip_shft.nii\
                 -1Dmatrix_apply T1_to_std.1D \
-                -prefix registration_T1.nii
+                -prefix registration_T1.nii.gz
 
     despike_fileNo=`ls despike*.nii | wc`
 	  despike_fileNo=($despike_fileNo)
@@ -120,23 +120,23 @@ function processing(){
         3dAllineate -base ~/data/template/std_skullstrip.nii.gz \
                     -input despike$fMRI_index.nii \
                     -1Dmatrix_apply T1_shft.1D \
-                    -prefix _fMRI_${fMRI_index}_shft.nii
+                    -prefix _fMRI_${fMRI_index}_shft.nii.gz
 
         # fMRI to std
         3dAllineate -base ~/data/template/std_skullstrip.nii.gz \
-                    -input _fMRI_${fMRI_index}_shft.nii \
+                    -input _fMRI_${fMRI_index}_shft.nii.gz \
                     -1Dmatrix_apply T1_to_std.1D \
-                    -prefix registration_fMRI_${fMRI_index}_with_skull.nii
+                    -prefix registration_fMRI_${fMRI_index}_with_skull.nii.gz
         
         # transfer the format
         #dAFNItoNIFTI registration_fMRI_$fMRI_index*.HEAD \
                       #egistration_fMRI_$fMRI_index*.BRIK
 
         # remove the skull of fMRI
-        3dcalc -prefix registration_fMRI_$fMRI_index.nii\
+        3dcalc -prefix registration_fMRI_$fMRI_index.nii.gz\
                -expr 'a*step(b)'\
                -b ~/data/template/MNI152_T1_2mm_brain_mask.nii.gz \
-               -a registration_fMRI_${fMRI_index}_with_skull.nii
+               -a registration_fMRI_${fMRI_index}_with_skull.nii.gz
 	      i=`expr $i + 1`
 	  done
 
