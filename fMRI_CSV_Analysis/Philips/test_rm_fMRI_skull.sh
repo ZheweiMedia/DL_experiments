@@ -76,17 +76,26 @@ function processing(){
 
     ### Step 3: Get functional-to-standard image registration ###
 
-	  
+	  ## Get anatimical-to-standard image registration, and generate .1D matrix
+    # Two steps:
+    # firstly, @Align_Centers
+    # second step: align_epi_anat.py
+    @Align_Centers -base ~/data/template/std_skullstrip.nii.gz \
+     -dset /home/medialab/data/ADNI/$folder_name/MRI/$MRI_postFix/skullstrip.nii
 
-    # Get anatimical-to-standard image registration, and generate .1D matrix
-    align_epi_anat.py -dset1 /home/medialab/data/ADNI/$folder_name/MRI/$MRI_postFix/skullstrip.nii \
+    mv skullstrip_shft.1D T1_shft.1D
+
+    align_epi_anat.py -dset1 /home/medialab/data/ADNI/$folder_name/MRI/$MRI_postFix/skullstrip_shft.nii \
                       -dset2 ~/data/template/std_skullstrip.nii.gz \
                       -dset1to2  -dset1_strip None -dset2_strip None \
                       -volreg_method 3dAllineate
-	  # transfer .HEAD and .BRIK to nii, we need to segement this nii as GM,WM, CSF later
+
+    mv skullstrip*.1D T1_to_std.1D
+
+	  # T1 to std space, we need to segement this nii as GM,WM, CSF later
     3dAllineate -base ~/data/template/std_skullstrip.nii.gz \
-                -input /home/medialab/data/ADNI/$folder_name/MRI/$MRI_postFix/skullstrip.nii\
-                -1Dmatrix_apply skullstrip*.1D \
+                -input /home/medialab/data/ADNI/$folder_name/MRI/$MRI_postFix/skullstrip_shft.nii\
+                -1Dmatrix_apply T1_to_std.1D \
                 -prefix registration_T1.nii
 
     despike_fileNo=`ls despike*.nii | wc`
@@ -107,11 +116,17 @@ function processing(){
 		        fMRI_index=0$i
 	      fi
 
-        # fMRI to std space
+        # fMRI to std spacemove close to std
         3dAllineate -base ~/data/template/std_skullstrip.nii.gz \
                     -input despike$fMRI_index.nii \
-                    -1Dmatrix_apply skullstrip*.1D \
-                    -prefix registration_fMRI_$fMRI_index
+                    -1Dmatrix_apply T1_shft.1D \
+                    -prefix _fMRI_${fMRI_index}_shft.nii
+
+        # fMRI to std
+        3dAllineate -base ~/data/template/std_skullstrip.nii.gz \
+                    -input _fMRI_${fMRI_index}_shft.nii \
+                    -1Dmatrix_apply T1_to_std.1D \
+                    -prefix registration_fMRI_${fMRI_index}_with_skull.nii
         
         # transfer the format
         #dAFNItoNIFTI registration_fMRI_$fMRI_index*.HEAD \
@@ -121,38 +136,9 @@ function processing(){
         3dcalc -prefix registration_fMRI_$fMRI_index.nii\
                -expr 'a*step(b)'\
                -b ~/data/template/MNI152_T1_2mm_brain_mask.nii.gz \
-               -a registration_fMRI_$fMRI_index*.HEAD
+               -a registration_fMRI_${fMRI_index}_with_skull.nii
 	      i=`expr $i + 1`
 	  done
-
-    fslmerge -t registration_fMRI_4d.nii registration_fMRI*.nii
-	  ### Step 3: ends ###
-
-
-    ### Step 4: Remove noise signal ###
-
-	  ## segment anatomical image
-	  fsl5.0-fast -o T1_segm_A -t 1 -n 3 -g -p registration_T1.nii
-
-	  ## Get mrean signal of CSF segment
-	  3dmaskave -quiet -mask T1_segm_A_seg_0.nii registration_fMRI_4d.nii > fMRI_csf.1D
-
-    ## motion correction in the standard space
-	  3dvolreg -prefix _mc_F.nii -1Dfile fMRI_motion.1D -Fourier -twopass \
-             -zpad 4 -base 50 registration_fMRI_4d.nii
-
-	  ## Get motion derivative
-	  1d_tool.py -write fMRI_motion_deriv.1D -derivative -infile fMRI_motion.1D
-
-	  ## concatenate CSF signal, motion correction, motion derivative into 'noise signal'
-	  1dcat fMRI_csf.1D fMRI_motion.1D fMRI_motion_deriv.1D > fMRI_noise.1D
-
-	  ## Regress out the 'noise signal' from functional image
-	  3dBandpass -prefix fMRI_removenoise_Bandpass.nii -mask registration_fMRI_0003.nii \
-               -ort fMRI_noise.1D 0.02 0.1 registration_fMRI_4d.nii
-
-    3dBandpass -prefix fMRI_removenoise_Highpass.nii -mask registration_fMRI_0003.nii \
-               -ort fMRI_noise.1D 0.02 99999 registration_fMRI_4d.nii
 
     
     }
