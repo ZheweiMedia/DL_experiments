@@ -90,7 +90,7 @@ function processing(){
                       -dset1to2  -dset1_strip None -dset2_strip None \
                       -volreg_method 3dAllineate
 
-    mv skullstrip*.1D T1_to_std.1D
+    mv skullstrip_al_mat.aff12.1D T1_to_std.1D
 
 	  # T1 to std space, we need to segement this nii as GM,WM, CSF later
     3dAllineate -base ~/data/template/std_skullstrip.nii.gz \
