@@ -31,10 +31,7 @@ function processing(){
     keywords=^$MRI_timeStamp
     ls | grep -v $keywords |xargs rm
     mv *.nii T1.nii
-
-    # remove skull
-    3dSkullStrip -o_ply skullstrip_mask.nii -input T1.nii
-    3dcalc -prefix skullstrip.nii -expr 'a*step(b)' -b skullstrip_mask.nii -a T1.nii
+    
     ### End of Step 1 ###
 
     ### Step 2: preprocessing of fMRI images ###
@@ -76,69 +73,12 @@ function processing(){
 
     ### Step 3: Get functional-to-standard image registration ###
 
-	  ## Get anatimical-to-standard image registration, and generate .1D matrix
-    # Two steps:
-    # firstly, @Align_Centers
-    # second step: align_epi_anat.py
-    @Align_Centers -base ~/data/template/std_skullstrip.nii.gz \
-     -dset /home/medialab/data/ADNI/$folder_name/MRI/$MRI_postFix/skullstrip.nii
+	  python3.5 /home/medialab/Zhewei/fMRI_CSV_Analysis/SIEMENS/utility00_SPM.py \
+              /home/medialab/data/ADNI/$folder_name/MRI/$MRI_postFix/T1.nii \
+              despike*.nii
 
-    mv skullstrip_shft.1D T1_shft.1D
+    ### Step 3: ends ###
 
-    align_epi_anat.py -dset1 /home/medialab/data/ADNI/$folder_name/MRI/$MRI_postFix/skullstrip_shft.nii \
-                      -dset2 ~/data/template/std_skullstrip.nii \
-                      -dset1to2  -dset1_strip None -dset2_strip None \
-                      -volreg_method 3dAllineate
-
-    mv skullstrip_al_mat.aff12.1D T1_to_std.1D
-
-	  # T1 to std space, we need to segement this nii as GM,WM, CSF later
-    3dAllineate -base ~/data/template/std_skullstrip.nii.gz \
-                -input /home/medialab/data/ADNI/$folder_name/MRI/$MRI_postFix/skullstrip_shft.nii\
-                -1Dmatrix_apply T1_to_std.1D \
-                -prefix registration_T1.nii.gz
-
-    despike_fileNo=`ls despike*.nii | wc`
-	  despike_fileNo=($despike_fileNo)
-	  despike_fileNo=${despike_fileNo[0]}
-	  
-	  echo $despike_fileNo
-
-	  ## Apply functional-to-anatimical image registration
-	  i=0
-	  while [ $i -lt $despike_fileNo ];
-	  do
-	      if [ $i -lt 10 ]; then
-		        fMRI_index=000$i
-	      elif [ $i -lt 100 ]; then
-		        fMRI_index=00$i
-	      else
-		        fMRI_index=0$i
-	      fi
-
-        # fMRI to std spacemove close to std
-        3dAllineate -base ~/data/template/std_skullstrip.nii.gz \
-                    -input despike$fMRI_index.nii \
-                    -1Dmatrix_apply T1_shft.1D \
-                    -prefix _fMRI_${fMRI_index}_shft.nii.gz
-
-        # fMRI to std
-        3dAllineate -base ~/data/template/std_skullstrip.nii.gz \
-                    -input _fMRI_${fMRI_index}_shft.nii.gz \
-                    -1Dmatrix_apply T1_to_std.1D \
-                    -prefix registration_fMRI_${fMRI_index}_with_skull.nii.gz
-        
-        # transfer the format
-        #dAFNItoNIFTI registration_fMRI_$fMRI_index*.HEAD \
-                      #egistration_fMRI_$fMRI_index*.BRIK
-
-        # remove the skull of fMRI
-        3dcalc -prefix registration_fMRI_$fMRI_index.nii.gz\
-               -expr 'a*step(b)'\
-               -b ~/data/template/MNI152_T1_2mm_brain_mask.nii.gz \
-               -a registration_fMRI_${fMRI_index}_with_skull.nii.gz
-	      i=`expr $i + 1`
-	  done
 
     
     }

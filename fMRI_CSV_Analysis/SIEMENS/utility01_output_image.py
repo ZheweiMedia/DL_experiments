@@ -29,6 +29,7 @@ print (math.floor(std_nii.shape[1]/2))
 
 std_image = std_nii.get_data()[:,math.floor(std_nii.shape[1]/2),:]
 
+temp_img = 
 print (std_image[45,:])
 
 scipy.misc.imsave('/home/medialab/data/ADNI/process_test_SIEMENS/std.png', std_image)
