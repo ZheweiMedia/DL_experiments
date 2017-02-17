@@ -110,9 +110,9 @@ function processing(){
     ## remove skull of MRI
     mv /home/medialab/data/ADNI/$folder_name/MRI/$MRI_postFix/wT1.nii .
 
-    3dcalc -prefix registration_T1.nii -expr 'a*step(b)' \
-           -b ~/data/template/MNI152_T1_2mm_brain_mask.nii.gz \
-           -a wT1.nii
+    fslmaths wT1.nii \
+             -mas ~/data/template/MNI152_T1_2mm_brain_mask.nii.gz registration_T1.nii
+    
 	  ## segment anatomical image
 	  fsl5.0-fast -o T1_segm_A -t 1 -n 3 -g -p registration_T1.nii
 
@@ -138,7 +138,7 @@ function processing(){
 
     ## Generate modified AAL2 corresponding to fMRI
     3dAutomask -prefix fMRI_mask.nii _fMRI_brain_0003.nii
-    3dcalc -prefix AAL2_for_fMRI.nii -expr 'a*step(b)' -b fMRI_mask.nii -a AAL2_after_mask.nii
+    fslmaths ~/data/template/AAL2_after_stdmask.nii -mas fMRI_mask.nii AAL2_for_fMRI.nii
 
     ## final results
     mkdir /home/medialab/data/ADNI/$folder_name/fMRI/$fMRI_postFix/Bandpass
