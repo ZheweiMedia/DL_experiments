@@ -125,7 +125,7 @@ function processing(){
 	  ## segment anatomical image
 	  fsl5.0-fast -o T1_segm_A -t 1 -n 3 -g -p registration_T1.nii
 
-	  ## Get mrean signal of CSF segment
+	  ## Get mean signal of CSF segment
 	  3dmaskave -quiet -mask T1_segm_A_seg_0.nii registration_fMRI_4d.nii > fMRI_csf.1D
 
     ## motion correction in the standard space

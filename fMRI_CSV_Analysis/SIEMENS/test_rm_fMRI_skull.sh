@@ -73,12 +73,118 @@ function processing(){
 
     ### Step 3: Get functional-to-standard image registration ###
 
+    ## registration of fMRI and std by spm ##
 	  python3.5 /home/medialab/Zhewei/fMRI_CSV_Analysis/SIEMENS/utility00_SPM.py \
               /home/medialab/data/ADNI/$folder_name/MRI/$MRI_postFix/T1.nii \
               despike*.nii
+    ## registration done ##
 
+    ## remove skull of fMRI
+    wdespike_fileNo=`ls wdespike*.nii | wc`
+	  wdespike_fileNo=($wdespike_fileNo)
+	  wdespike_fileNo=${wdespike_fileNo[0]}
+	  
+	  i=0
+	  while [ $i -lt $wdespike_fileNo ];
+	  do
+	      if [ $i -lt 10 ]; then
+		        fMRI_index=000$i
+	      elif [ $i -lt 100 ]; then
+		        fMRI_index=00$i
+	      else
+		        fMRI_index=0$i
+	      fi
+        3dcalc -prefix _fMRI_brain_$fMRI_index.nii -expr 'a*step(b)' \
+               -b ~/data/template/MNI152_T1_2mm_brain_mask.nii.gz \
+               -a wdespike$fMRI_index.nii
+        i=`expr $i + 1`
+	  done
+    ## remove skull of fMRI done
+
+    fslmerge -t registration_fMRI_4d.nii _fMRI_brain_*.nii
+    
     ### Step 3: ends ###
 
+    ### Step 4: Remove noise signal ###
+
+    ## remove skull of MRI
+    mv /home/medialab/data/ADNI/$folder_name/MRI/$MRI_postFix/wT1.nii .
+
+    3dcalc -prefix registration_T1.nii -expr 'a*step(b)' \
+           -b ~/data/template/MNI152_T1_2mm_brain_mask.nii.gz \
+           -a wT1.nii
+	  ## segment anatomical image
+	  fsl5.0-fast -o T1_segm_A -t 1 -n 3 -g -p registration_T1.nii
+
+    ## Get mean signal of CSF segment
+	  3dmaskave -quiet -mask T1_segm_A_seg_0.nii registration_fMRI_4d.nii > fMRI_csf.1D
+
+    ## motion correction in the standard space
+	  3dvolreg -prefix _mc_F.nii -1Dfile fMRI_motion.1D -Fourier -twopass \
+             -zpad 4 -base 50 registration_fMRI_4d.nii
+
+	  ## Get motion derivative
+	  1d_tool.py -write fMRI_motion_deriv.1D -derivative -infile fMRI_motion.1D
+
+	  ## concatenate CSF signal, motion correction, motion derivative into 'noise signal'
+	  1dcat fMRI_csf.1D fMRI_motion.1D fMRI_motion_deriv.1D > fMRI_noise.1D
+
+	  ## Regress out the 'noise signal' from functional image
+	  3dBandpass -prefix fMRI_removenoise_Bandpass.nii -mask _fMRI_brain_0003.nii \
+               -ort fMRI_noise.1D 0.02 0.1 registration_fMRI_4d.nii
+
+    3dBandpass -prefix fMRI_removenoise_Highpass.nii -mask _fMRI_brain_0003.nii \
+               -ort fMRI_noise.1D 0.02 99999 registration_fMRI_4d.nii
+
+    ## Generate modified AAL2 corresponding to fMRI
+    3dAutomask -prefix fMRI_mask.nii _fMRI_brain_0003.nii
+    3dcalc -prefix AAL2_for_fMRI.nii -expr 'a*step(b)' -b fMRI_mask.nii -a AAL2_after_mask.nii
+
+    ## final results
+    mkdir /home/medialab/data/ADNI/$folder_name/fMRI/$fMRI_postFix/Bandpass
+    
+    mkdir /home/medialab/data/ADNI/$folder_name/fMRI/$fMRI_postFix/Highpass
+
+    mkdir /home/medialab/data/ADNI/$folder_name/fMRI/$fMRI_postFix/Original
+
+    i=1
+    cat ~/data/template/ROI_index.txt | while read line;do
+        roi_value=$(echo $line | tr -d '\r')
+
+        3dmaskave \
+            -quiet \
+            -mrange $(echo $roi_value-0.1 | bc) $(echo $roi_value+0.1 | bc) \
+            -mask AAL2_for_fMRI.nii \
+            fMRI_removenoise_Bandpass.nii > /home/medialab/data/ADNI/$folder_name/fMRI/$fMRI_postFix/Bandpass/_t${i}.1D
+
+        i=`expr $i + 1`
+    done
+
+    i=1
+    cat ~/data/template/ROI_index.txt | while read line;do
+        roi_value=$(echo $line | tr -d '\r')
+
+        3dmaskave \
+            -quiet \
+            -mrange $(echo $roi_value-0.1 | bc) $(echo $roi_value+0.1 | bc) \
+            -mask AAL2_for_fMRI.nii \
+            fMRI_removenoise_Highpass.nii > /home/medialab/data/ADNI/$folder_name/fMRI/$fMRI_postFix/Highpass/_t${i}.1D
+
+        i=`expr $i + 1`
+    done
+
+    i=1
+    cat ~/data/template/ROI_index.txt | while read line;do
+        roi_value=$(echo $line | tr -d '\r')
+
+        3dmaskave \
+            -quiet \
+            -mrange $(echo $roi_value-0.1 | bc) $(echo $roi_value+0.1 | bc) \
+            -mask AAL2_for_fMRI.nii \
+            registration_fMRI_4d.nii > /home/medialab/data/ADNI/$folder_name/fMRI/$fMRI_postFix/Original/_t${i}.1D
+
+        i=`expr $i + 1`
+    done
 
     
     }
