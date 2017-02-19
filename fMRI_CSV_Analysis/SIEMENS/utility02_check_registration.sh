@@ -10,7 +10,7 @@ mkdir ~/data/ADNI/$folder_name/check_registration/
 
 for i in ${fMRI_imageIDs[@]};
 do
-    cp ~/data/ADNI/$folder_name/fMRI/$i/niiFolder/wdespike0058.nii \
+    cp ~/data/ADNI/$folder_name/fMRI/$i/niiFolder/_fMRI_brain_0058.nii \
        ~/data/ADNI/$folder_name/check_registration/fMRI_$i.nii
     cp ~/data/ADNI/$folder_name/fMRI/$i/niiFolder/registration_T1.nii \
        ~/data/ADNI/$folder_name/check_registration/MRI_$i.nii

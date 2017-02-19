@@ -31,10 +31,7 @@ function processing(){
     keywords=^$MRI_timeStamp
     ls | grep -v $keywords |xargs rm
     mv *.nii T1.nii
-
-    # remove skull
-    3dSkullStrip -o_ply skullstrip_mask.nii -input T1.nii
-    3dcalc -prefix skullstrip.nii -expr 'a*step(b)' -b skullstrip_mask.nii -a T1.nii
+    
     ### End of Step 1 ###
 
     ### Step 2: preprocessing of fMRI images ###
@@ -76,29 +73,19 @@ function processing(){
 
     ### Step 3: Get functional-to-standard image registration ###
 
+    ## registration of fMRI and std by spm ##
+	  python3.5 /home/medialab/Zhewei/fMRI_CSV_Analysis/SIEMENS/utility00_SPM.py \
+              /home/medialab/data/ADNI/$folder_name/MRI/$MRI_postFix/T1.nii \
+              despike*.nii
+    ## registration done ##
+
+    ## remove skull of fMRI
+    wdespike_fileNo=`ls wdespike*.nii | wc`
+	  wdespike_fileNo=($wdespike_fileNo)
+	  wdespike_fileNo=${wdespike_fileNo[0]}
 	  
-
-    # Get anatimical-to-standard image registration, and generate .1D matrix
-    align_epi_anat.py -dset1 /home/medialab/data/ADNI/$folder_name/MRI/$MRI_postFix/skullstrip.nii \
-                      -dset2 ~/data/template/std_skullstrip.nii.gz \
-                      -dset1to2  \
-                      -dset1_strip None -dset2_strip None \
-                      -volreg_method 3dAllineate
-	  # registrate T1 to std space. we need to segement this nii as GM,WM, CSF later
-    3dAllineate -base ~/data/template/std_skullstrip.nii.gz \
-                -input /home/medialab/data/ADNI/$folder_name/MRI/$MRI_postFix/skullstrip.nii\
-                -1Dmatrix_apply skullstrip*.1D \
-                -prefix registration_T1.nii
-
-    despike_fileNo=`ls despike*.nii | wc`
-	  despike_fileNo=($despike_fileNo)
-	  despike_fileNo=${despike_fileNo[0]}
-	  
-	  echo $despike_fileNo
-
-	  ## Apply functional-to-anatimical image registration
 	  i=0
-	  while [ $i -lt $despike_fileNo ];
+	  while [ $i -lt $wdespike_fileNo ];
 	  do
 	      if [ $i -lt 10 ]; then
 		        fMRI_index=000$i
@@ -107,32 +94,30 @@ function processing(){
 	      else
 		        fMRI_index=0$i
 	      fi
-
-        # fMRI to std space
-        3dAllineate -base ~/data/template/std_skullstrip.nii.gz \
-                    -input despike$fMRI_index.nii \
-                    -1Dmatrix_apply skullstrip*.1D \
-                    -prefix registration_fMRI_$fMRI_index
-        
-
-        # remove the skull of fMRI
-        3dcalc -prefix registration_fMRI_$fMRI_index.nii\
-               -expr 'a*step(b)'\
-               -b ~/data/template/MNI152_T1_2mm_brain_mask.nii.gz \
-               -a registration_fMRI_$fMRI_index*.HEAD
-	      i=`expr $i + 1`
+        fslmaths wdespike$fMRI_index.nii\
+                 -mas ~/data/template/MNI152_T1_2mm_brain_mask.nii.gz \
+                 _fMRI_brain_$fMRI_index.nii
+        i=`expr $i + 1`
 	  done
+    ## remove skull of fMRI done
 
-    fslmerge -t registration_fMRI_4d.nii registration_fMRI*.nii
-	  ### Step 3: ends ###
-
+    fslmerge -t registration_fMRI_4d.nii _fMRI_brain_*.nii
+    
+    ### Step 3: ends ###
 
     ### Step 4: Remove noise signal ###
 
+    ## remove skull of MRI
+    mv /home/medialab/data/ADNI/$folder_name/MRI/$MRI_postFix/wT1.nii .
+
+    fslmaths wT1.nii \
+             -mas ~/data/template/MNI152_T1_2mm_brain_mask.nii.gz \
+             registration_T1.nii
+    
 	  ## segment anatomical image
 	  fsl5.0-fast -o T1_segm_A -t 1 -n 3 -g -p registration_T1.nii
 
-	  ## Get mrean signal of CSF segment
+    ## Get mean signal of CSF segment
 	  3dmaskave -quiet -mask T1_segm_A_seg_0.nii registration_fMRI_4d.nii > fMRI_csf.1D
 
     ## motion correction in the standard space
@@ -146,11 +131,61 @@ function processing(){
 	  1dcat fMRI_csf.1D fMRI_motion.1D fMRI_motion_deriv.1D > fMRI_noise.1D
 
 	  ## Regress out the 'noise signal' from functional image
-	  3dBandpass -prefix fMRI_removenoise_Bandpass.nii -mask registration_fMRI_0003.nii \
+	  3dBandpass -prefix fMRI_removenoise_Bandpass.nii -mask _fMRI_brain_0003.nii \
                -ort fMRI_noise.1D 0.02 0.1 registration_fMRI_4d.nii
 
-    3dBandpass -prefix fMRI_removenoise_Highpass.nii -mask registration_fMRI_0003.nii \
+    3dBandpass -prefix fMRI_removenoise_Highpass.nii -mask _fMRI_brain_0003.nii \
                -ort fMRI_noise.1D 0.02 99999 registration_fMRI_4d.nii
+
+    ## Generate modified AAL2 corresponding to fMRI
+    3dAutomask -prefix fMRI_mask.nii _fMRI_brain_0003.nii
+    fslmaths ~/data/template/AAL2_after_stdmask.nii -mas fMRI_mask.nii AAL2_for_fMRI.nii
+
+    ## final results
+    mkdir /home/medialab/data/ADNI/$folder_name/fMRI/$fMRI_postFix/Bandpass
+    
+    mkdir /home/medialab/data/ADNI/$folder_name/fMRI/$fMRI_postFix/Highpass
+
+    mkdir /home/medialab/data/ADNI/$folder_name/fMRI/$fMRI_postFix/Original
+
+    i=1
+    cat ~/data/template/ROI_index.txt | while read line;do
+        roi_value=$(echo $line | tr -d '\r')
+
+        3dmaskave \
+            -quiet \
+            -mrange $(echo $roi_value-0.1 | bc) $(echo $roi_value+0.1 | bc) \
+            -mask AAL2_for_fMRI.nii \
+            fMRI_removenoise_Bandpass.nii > /home/medialab/data/ADNI/$folder_name/fMRI/$fMRI_postFix/Bandpass/_t${i}.1D
+
+        i=`expr $i + 1`
+    done
+
+    i=1
+    cat ~/data/template/ROI_index.txt | while read line;do
+        roi_value=$(echo $line | tr -d '\r')
+
+        3dmaskave \
+            -quiet \
+            -mrange $(echo $roi_value-0.1 | bc) $(echo $roi_value+0.1 | bc) \
+            -mask AAL2_for_fMRI.nii \
+            fMRI_removenoise_Highpass.nii > /home/medialab/data/ADNI/$folder_name/fMRI/$fMRI_postFix/Highpass/_t${i}.1D
+
+        i=`expr $i + 1`
+    done
+
+    i=1
+    cat ~/data/template/ROI_index.txt | while read line;do
+        roi_value=$(echo $line | tr -d '\r')
+
+        3dmaskave \
+            -quiet \
+            -mrange $(echo $roi_value-0.1 | bc) $(echo $roi_value+0.1 | bc) \
+            -mask AAL2_for_fMRI.nii \
+            registration_fMRI_4d.nii > /home/medialab/data/ADNI/$folder_name/fMRI/$fMRI_postFix/Original/_t${i}.1D
+
+        i=`expr $i + 1`
+    done
 
     
     }

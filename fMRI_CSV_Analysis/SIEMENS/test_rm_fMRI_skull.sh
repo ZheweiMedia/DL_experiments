@@ -94,9 +94,9 @@ function processing(){
 	      else
 		        fMRI_index=0$i
 	      fi
-        3dcalc -prefix _fMRI_brain_$fMRI_index.nii -expr 'a*step(b)' \
-               -b ~/data/template/MNI152_T1_2mm_brain_mask.nii.gz \
-               -a wdespike$fMRI_index.nii
+        fslmaths wdespike$fMRI_index.nii\
+                 -mas ~/data/template/MNI152_T1_2mm_brain_mask.nii.gz \
+                 _fMRI_brain_$fMRI_index.nii
         i=`expr $i + 1`
 	  done
     ## remove skull of fMRI done
@@ -111,7 +111,8 @@ function processing(){
     mv /home/medialab/data/ADNI/$folder_name/MRI/$MRI_postFix/wT1.nii .
 
     fslmaths wT1.nii \
-             -mas ~/data/template/MNI152_T1_2mm_brain_mask.nii.gz registration_T1.nii
+             -mas ~/data/template/MNI152_T1_2mm_brain_mask.nii.gz \
+             registration_T1.nii
     
 	  ## segment anatomical image
 	  fsl5.0-fast -o T1_segm_A -t 1 -n 3 -g -p registration_T1.nii
