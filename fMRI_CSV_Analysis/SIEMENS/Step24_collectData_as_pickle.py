@@ -13,7 +13,7 @@ import numpy
 import glob
 
 
-folder_name = 'Bandpass'
+folder_name = 'Original'
 
 
 
@@ -87,35 +87,8 @@ print(len(Subjects_with_data))
 #    print(subject.fMRI_other)
 # print(Subjects_with_data[-4].fMRI_other)
 # print(Subjects_with_data[-1].fMRI_baseline[list(Subjects_with_data[-1].fMRI_baseline.keys())[0]])
-#with gzip.open("Clean_imageID_with_Data.gz", "wb") as output_file:
-#    pickle.dump(Subjects_with_data, output_file)
-
-
-for subject in Subjects_with_data:
-    file_name = '/home/medialab/data/ADNI/SIEMENS/results/' + folder_name + '/' +subject.DX_Group+'/'+subject.SubjectID+'.txt'
-    with open(file_name, 'w') as f:
-        if subject.fMRI_baseline:
-            content_array = subject.fMRI_baseline[list(subject.fMRI_baseline.keys())[0]]
-            print (content_array.shape)
-            print (subject.fMRI_baseline.keys())
-            print (subject.SubjectID)
-            for row in range(content_array.shape[0]):
-                content = list(content_array[row,:])
-                for c in content:
-                    f.write(str(c))
-                    f.write(' ')
-                f.write('\n')
-            f.write('\n')
-        if subject.fMRI_other:
-            for other in subject.fMRI_other:
-                content_array = other[list(other.keys())[0]]
-                for row in range(content_array.shape[0]):
-                    content = list(content_array[row,:])
-                    for c in content:
-                        f.write(str(c))
-                        f.write(' ')
-                    f.write('\n')
-                f.write('\n')
+with gzip.open("Clean_imageID_with_Data_Original.gz", "wb") as output_file:
+    pickle.dump(Subjects_with_data, output_file)
 
 
 
