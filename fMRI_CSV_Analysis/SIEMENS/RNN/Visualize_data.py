@@ -200,82 +200,18 @@ test_data = normalize(test_data)
 #                                                     train_label, valid_label, test_label)
 
 
-# data balance
-train_data, train_label = balance(train_data, train_label)
+data = numpy.concatenate((train_data, valid_data, test_data))
+label = numpy.concatenate((train_label, valid_label, test_label))
 
-# data inverse
-train_data_inverse = train_data[:,::-1,:]
+label =  list(label)
 
-train_data = numpy.concatenate((train_data, train_data_inverse))
-train_label = numpy.concatenate((train_label, train_label))
+for iNo, i in enumerate(label):
+    if i == 0:
+        plotNC, = plt.plot(data[iNo,:, 41], 'o-', color = 'g', label = 'Normal', alpha = 0.7)
+    else:
+        plotAD, = plt.plot(data[iNo,:, 41], 'o-', color = 'r', label = 'AD', alpha = 0.7)
 
-# separate as sections
-
-train_data, train_label = section_ofData(train_data, train_label)
-valid_data, valid_label = section_ofData(valid_data, valid_label)
-test_data, test_label = section_ofData(test_data, test_label)
-
-
-print ('*'*40)
-print ('We have training subjects:',train_number)
-print ('We have validation subjects:',valid_number)
-print ('We have test subjects:',test_number)
-print ('We have training images:', train_data.shape[0])
-print ('We have validation images:', valid_data.shape[0])
-print ('We have test images:', test_data.shape[0])
-print ('*'*40)
-
-
-
-Y_train = np_utils.to_categorical(train_label, Groups)
-Y_test = np_utils.to_categorical(test_label, Groups)
-Y_valid = np_utils.to_categorical(valid_label, Groups)
-
-timesteps = train_data.shape[1]
-featureNo = train_data.shape[2]
-
-print ("Building model...")
-model = Sequential()
-model.add(LSTM(hd_notes, input_shape=(timesteps, featureNo),\
-               init='normal',inner_init='identity',\
-               activation='sigmoid', return_sequences=False,\
-               W_regularizer=None, U_regularizer=None, \
-               b_regularizer=None,\
-               dropout_W=0.8, dropout_U=0.8))
-model.add(Dense(Groups))
-model.add(Activation('softmax'))
-adad = Adadelta(lr=1.0, rho=0.95, epsilon=1e-08, decay=0.0)
-model.compile(loss='categorical_crossentropy', optimizer='RMSprop', \
-              metrics=["accuracy"])
-
-print ("Training model...")
-history = model.fit(train_data, Y_train, \
-                    batch_size = BATCH_SIZE, nb_epoch=nb_epoch, \
-                    verbose=1, validation_data=(valid_data, Y_valid))
-
-scores = model.evaluate(test_data, Y_test, verbose=1)
-print ('RNN test score:', scores[0])
-print ('RNN test accuracy:', scores[1])
-print ('True Labels:', test_label)
-print (model.predict_classes(test_data))
-print ('Baseline of training is:',numpy.mean(train_label))
-print ('Baseline of validation is:', numpy.mean(valid_label))
-
-# summarize history for accuracy
-plt.plot(history.history['acc'])
-plt.plot(history.history['val_acc'])
-plt.title('model accuracy')
-plt.ylabel('accuracy')
-plt.xlabel('epoch')
-plt.legend(['train', 'validation'], loc='upper left')
-plt.show()
-# summarize history for loss
-plt.plot(history.history['loss'])
-plt.plot(history.history['val_loss'])
-plt.title('model loss')
-plt.ylabel('loss')
-plt.xlabel('epoch')
-plt.legend(['train', 'validation'], loc='upper left')
+plt.legend(handles=[plotNC, plotAD], loc='upper left')
 plt.show()
 
 
