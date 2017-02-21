@@ -12,7 +12,11 @@ from keras.layers.core import Dense, Activation
 from keras.layers import LSTM
 from keras.initializations import normal, identity
 from keras.optimizers import Adadelta, RMSprop
+from keras.regularizers import l1,l2
 import matplotlib.pyplot as plt
+
+from sklearn.svm import LinearSVC
+from sklearn.feature_selection import SelectFromModel
 
 
 
@@ -25,9 +29,9 @@ valid_percentage = 0.1
 test_percentage = 0.1
 
 Groups = 2
-hd_notes = 10
+hd_notes = 20
 BATCH_SIZE = 30
-nb_epoch = 200
+nb_epoch = 250
 
 
 
@@ -117,10 +121,44 @@ def balance(_data, _label):
     return _data, label_list
 
 
+def feature_selction(_train_data, _valid_data, _test_data, _train_label, _valid_label, _test_label):
+    train_imageNo = _train_data.shape[0]
+    valid_imageNo = _valid_data.shape[0]
+    whole_data = numpy.concatenate((_train_data, _valid_data, _test_data))
+    whole_data = whole_data.reshape((-1, 120))
 
+    whole_label = numpy.concatenate((_train_label, _valid_label, _test_label))
+    whole_label = list(whole_label)
 
+    new_label_list = list()
+    for i in whole_label:
+        for j in range(100):
+            new_label_list.append(i)
 
+    assert len(new_label_list) == whole_data.shape[0]
 
+    lsvc = LinearSVC(C=0.1, penalty="l1", dual=False).fit(whole_data, new_label_list)
+    model = SelectFromModel(lsvc, prefit=True)
+    data_new = model.transform(whole_data)
+    print ('After feature selection we have', data_new.shape[1], 'features.')
+
+    data_new = data_new.reshape((-1, 100, data_new.shape[1]))
+    _train_data = data_new[:train_imageNo,:,:]
+    _valid_data = data_new[train_imageNo:train_imageNo+valid_imageNo,:,:]
+    _test_data = data_new[train_imageNo+valid_imageNo:,:,:]
+
+    return _train_data, _valid_data, _test_data
+
+def section_ofData(_data, _data_label):
+    _data_label_newList = list()
+    _data = _data.reshape((-1, 20, _data.shape[2]))
+    for i in _data_label:
+        for j in range(5):
+            _data_label_newList.append(i)
+
+    _data_label_newList = numpy.asarray(_data_label_newList).astype(numpy.float)
+
+    return _data, _data_label_newList
 
 # read data
 with gzip.open('Clean_imageID_with_Data_Bandpass.gz', 'rb') as input_file:
@@ -156,6 +194,12 @@ train_data = normalize(train_data)
 valid_data = normalize(valid_data)
 test_data = normalize(test_data)
 
+# feature slection
+
+#train_data, valid_data, test_data = feature_selction(train_data, valid_data, test_data, \
+#                                                     train_label, valid_label, test_label)
+
+
 # data balance
 train_data, train_label = balance(train_data, train_label)
 
@@ -165,8 +209,11 @@ train_data_inverse = train_data[:,::-1,:]
 train_data = numpy.concatenate((train_data, train_data_inverse))
 train_label = numpy.concatenate((train_label, train_label))
 
-print (train_data.shape)
-print (train_label.shape)
+# separate as sections
+
+train_data, train_label = section_ofData(train_data, train_label)
+valid_data, valid_label = section_ofData(valid_data, valid_label)
+test_data, test_label = section_ofData(test_data, test_label)
 
 
 print ('*'*40)
@@ -194,7 +241,7 @@ model.add(LSTM(hd_notes, input_shape=(timesteps, featureNo),\
                activation='sigmoid', return_sequences=False,\
                W_regularizer=None, U_regularizer=None, \
                b_regularizer=None,\
-               dropout_W=0.8, dropout_U=0.8))
+               dropout_W=0.5, dropout_U=0))
 model.add(Dense(Groups))
 model.add(Activation('softmax'))
 adad = Adadelta(lr=1.0, rho=0.95, epsilon=1e-08, decay=0.0)
@@ -210,7 +257,8 @@ print ('RNN test score:', scores[0])
 print ('RNN test accuracy:', scores[1])
 print ('True Labels:', test_label)
 print (model.predict_classes(test_data))
-print (numpy.mean(train_label))
+print ('Baseline of training is:',numpy.mean(train_label))
+print ('Baseline of validation is:', numpy.mean(valid_label))
 
 # summarize history for accuracy
 plt.plot(history.history['acc'])
