@@ -67,7 +67,7 @@ function processing(){
 
     ## splite and clean .nii files
 	  fslsplit despike.nii despike
-	  rm slicetiming.nii motioncorrection.nii despike.nii fMRI_4d.nii
+	  # rm slicetiming.nii motioncorrection.nii despike.nii fMRI_4d.nii
 
     ### Step 2: ends ###
 
