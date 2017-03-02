@@ -69,7 +69,7 @@ function processing(){
           /home/medialab/data/$folder_name/MRI/$MRI_postFix/skullstrip.nii \
           -in despike0050.nii
 
-    despike_fileNo=`ls despike*.nii | wc`
+    despike_fileNo=`ls despike0*.nii | wc`
 	  despike_fileNo=($despike_fileNo)
 	  despike_fileNo=${despike_fileNo[0]}
 	  
@@ -105,8 +105,10 @@ function processing(){
     ## remove skull of fMRI
     wfMRI_in_MRI_space_fileNo=`ls wfMRI_in_MRI_space_*.nii | wc`
 	  wfMRI_in_MRI_space_fileNo=($wfMRI_in_MRI_space_fileNo)
-	  wfMRI_in_MRI_space_fileNo=${wwfMRI_in_MRI_space_fileNo[0]}
-	  
+	  wfMRI_in_MRI_space_fileNo=${wfMRI_in_MRI_space_fileNo[0]}
+
+    echo $wfMRI_in_MRI_space_fileNo
+
 	  i=0
 	  while [ $i -lt $wfMRI_in_MRI_space_fileNo ];
 	  do
@@ -117,7 +119,7 @@ function processing(){
 	      else
 		        fMRI_index=0$i
 	      fi
-        fslmaths fMRI_in_MRI_space_$fMRI_index.nii\
+        fslmaths wfMRI_in_MRI_space_$fMRI_index.nii\
                  -mas ~/data/template/MNI152_T1_2mm_brain_mask.nii.gz \
                  _fMRI_brain_$fMRI_index.nii
         i=`expr $i + 1`
@@ -131,9 +133,9 @@ function processing(){
     ### Step 4: Remove noise signal ###
 
     ## remove skull of MRI
-    mv /home/medialab/data/$folder_name/MRI/$MRI_postFix/wT1.nii.gz .
+    mv /home/medialab/data/$folder_name/MRI/$MRI_postFix/wT1.nii .
 
-    fslmaths wT1.nii.gz \
+    fslmaths wT1.nii \
              -mas ~/data/template/MNI152_T1_2mm_brain_mask.nii.gz \
              registration_T1.nii
     
