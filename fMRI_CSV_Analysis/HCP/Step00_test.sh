@@ -212,6 +212,12 @@ function processing(){
         i=`expr $i + 1`
     done
 
+    niifiles=`ls *.nii`
+    for nii in ${niifiles[@]};
+    do
+        gzip $nii
+    done
+
     
     }
 
