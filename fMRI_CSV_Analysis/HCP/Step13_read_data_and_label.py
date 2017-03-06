@@ -11,6 +11,8 @@ import sys
 import os
 import numpy
 import glob
+import pickle
+import gzip
 
 
 def read_1D_files(folder, time_length):
@@ -52,3 +54,11 @@ for i in range(subjects_no):
     whole_data[i,:,:] = _signal
 
 print (whole_data.shape)
+
+with gzip.open('Data.pickle.gz', 'w') as datafile:
+    pickle.dump(whole_data, datafile)
+
+with gzip.open('Label.pickle.gz', 'r') as labelfile:
+    whole_label = pickle.load(labelfile)
+
+print (whole_label.shape)
