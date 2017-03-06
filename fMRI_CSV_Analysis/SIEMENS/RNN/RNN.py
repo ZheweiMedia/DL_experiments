@@ -88,13 +88,13 @@ def normalize(_data):
     ## the output should be (ImageNo, timesteps, featureNo)
     output = numpy.zeros((_data.shape[0], _data.shape[2], _data.shape[1]))
     for iNo in range(_data.shape[0]):
-        for tNo in range(_data.shape[2]):
-            _tmp = _data[iNo, :, tNo].astype(numpy.float)
+        for fNo in range(_data.shape[1]):
+            _tmp = _data[iNo, fNO, :].astype(numpy.float)
             #_tmp_mean = numpy.mean(_tmp)
             #_tmp_std = numpy.std(_tmp)
             #_tmp = (_tmp - _tmp_mean)/_tmp_std
             _tmp = _tmp/(numpy.linalg.norm(_tmp))
-            output[iNo, tNo, :] = _tmp
+            output[iNo, :, fNo] = _tmp
 
     return output
 
