@@ -29,9 +29,9 @@ valid_percentage = 0.1
 test_percentage = 0.1
 
 Groups = 2
-hd_notes = 20
+hd_notes = 50
 BATCH_SIZE = 30
-nb_epoch = 250
+nb_epoch = 100
 
 
 
@@ -89,11 +89,12 @@ def normalize(_data):
     output = numpy.zeros((_data.shape[0], _data.shape[2], _data.shape[1]))
     for iNo in range(_data.shape[0]):
         for fNo in range(_data.shape[1]):
-            _tmp = _data[iNo, fNO, :].astype(numpy.float)
+            _tmp = _data[iNo, fNo, :].astype(numpy.float)
             #_tmp_mean = numpy.mean(_tmp)
             #_tmp_std = numpy.std(_tmp)
             #_tmp = (_tmp - _tmp_mean)/_tmp_std
-            _tmp = _tmp/(numpy.linalg.norm(_tmp))
+            if numpy.any(_tmp):
+                _tmp = _tmp/(numpy.linalg.norm(_tmp))
             output[iNo, :, fNo] = _tmp
 
     return output
@@ -111,8 +112,7 @@ def balance(_data, _label):
                     # between -0.2 to 0.2
                     _tmp = numpy.random.rand(1, _data.shape[1], _data.shape[2])*0.4-0.2
                     _new_sample = _data[label_no,:,:]+_tmp
-                    _data = numpy.concatenate((_data,HO
-                                               _new_sample))
+                    _data = numpy.concatenate((_data,_new_sample))
                     label_list.append('1')
 
     else:
@@ -160,6 +160,16 @@ def section_ofData(_data, _data_label):
     _data_label_newList = numpy.asarray(_data_label_newList).astype(numpy.float)
 
     return _data, _data_label_newList
+
+def label_for_keras(_label, timeLength):
+    output = numpy.empty((_label.shape[0], timeLength ,2))
+    for iNo in range(_label.shape[0]):
+        for fNo in range(timeLength):
+            if _label[iNo,] == 0:
+                output[iNo, fNo,:] = [1,0]
+            if _label[iNo,] == 1:
+                output[iNo, fNo, :] = [0,1]
+    return output
 
 # read data
 with gzip.open('Clean_imageID_with_Data_Bandpass.gz', 'rb') as input_file:
@@ -212,9 +222,9 @@ train_label = numpy.concatenate((train_label, train_label))
 
 # separate as sections
 
-train_data, train_label = section_ofData(train_data, train_label)
-valid_data, valid_label = section_ofData(valid_data, valid_label)
-test_data, test_label = section_ofData(test_data, test_label)
+#train_data, train_label = section_ofData(train_data, train_label)
+#valid_data, valid_label = section_ofData(valid_data, valid_label)
+#test_data, test_label = section_ofData(test_data, test_label)
 
 
 print ('*'*40)
@@ -227,10 +237,12 @@ print ('We have test images:', test_data.shape[0])
 print ('*'*40)
 
 
+Y_train = label_for_keras(train_label, train_data.shape[1])
+Y_test = label_for_keras(test_label, train_data.shape[1])
+Y_valid = label_for_keras(valid_label, train_data.shape[1])
 
-Y_train = np_utils.to_categorical(train_label, Groups)
-Y_test = np_utils.to_categorical(test_label, Groups)
-Y_valid = np_utils.to_categorical(valid_label, Groups)
+print (Y_train.shape)
+print (train_data[0,:,:])
 
 timesteps = train_data.shape[1]
 featureNo = train_data.shape[2]
@@ -239,10 +251,10 @@ print ("Building model...")
 model = Sequential()
 model.add(LSTM(hd_notes, input_shape=(timesteps, featureNo),\
                init='normal',inner_init='identity',\
-               activation='sigmoid', return_sequences=False,\
+               activation='sigmoid', return_sequences=True,\
                W_regularizer=None, U_regularizer=None, \
                b_regularizer=None,\
-               dropout_W=0.8, dropout_U=0.8))
+               dropout_W=0.7, dropout_U=0.7))
 model.add(Dense(Groups))
 model.add(Activation('softmax'))
 adad = Adadelta(lr=1.0, rho=0.95, epsilon=1e-08, decay=0.0)
@@ -261,6 +273,17 @@ print ('True Labels:', test_label)
 print (model.predict_classes(test_data))
 print ('Baseline of training is:',numpy.mean(train_label))
 print ('Baseline of validation is:', numpy.mean(valid_label))
+
+prediction = model.predict_classes(test_data)
+predict_label = list()
+for predict in prediction:
+    if numpy.mean(predict) > 0.5:
+        predict_label.append(1)
+    else:
+        predict_label.append(0)
+
+print (predict_label)
+
 
 # summarize history for accuracy
 plt.plot(history.history['acc'])
