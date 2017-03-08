@@ -79,7 +79,7 @@ def label_for_keras(_label):
 with gzip.open('Data.pickle.gz', 'r') as datafile:
     original_data = pickle.load(datafile)
 
-with gzip.open('Label.pickle.gz', 'r') as labelfile:
+with gzip.open('Label_with_5_delay.pickle.gz', 'r') as labelfile:
     wholeLabel = pickle.load(labelfile)
 
 # normalize
