@@ -76,18 +76,18 @@ def label_for_keras(_label):
 
 
 
-with gzip.open('Data.pickle.gz', 'r') as datafile:
+with gzip.open('EMOTION_Data.pickle.gz', 'r') as datafile:
     original_data = pickle.load(datafile)
 
-with gzip.open('Label_with_5_delay.pickle.gz', 'r') as labelfile:
+with gzip.open('EMOTION_Label.pickle.gz', 'r') as labelfile:
     wholeLabel = pickle.load(labelfile)
 
 # normalize
 wholeData = normalize(original_data)
 
 results = list()
-for i in range(50):
-
+for i in range(30):
+    print (i)
     whole_index = [i for i in range(wholeData.shape[0])]
     shuffle(whole_index)
 
@@ -147,6 +147,7 @@ for i in range(50):
 
     results.append(scores[1])
 
+print (results)
 results = numpy.asarray(results)
 print ('The avarage perfomace is:')
 print (numpy.mean(results))

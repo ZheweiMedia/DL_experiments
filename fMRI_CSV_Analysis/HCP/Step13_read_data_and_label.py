@@ -32,6 +32,7 @@ def read_1D_files(folder, time_length):
             signals = zone_singal;
         else:
             signals = numpy.concatenate((signals, zone_singal))
+
     signals = signals.reshape((120,-1))
     return signals
 
@@ -40,7 +41,7 @@ def read_1D_files(folder, time_length):
 
 singal_type = 'Bandpass'
 feature_no = 120
-time_sequence = 171
+time_sequence = 227
 folders_name = list()
 
 with open(sys.argv[1], 'r') as f:
@@ -51,6 +52,8 @@ subjects_no = len(folders_name)
 whole_data = numpy.empty([subjects_no,feature_no,time_sequence])
 for i in range(subjects_no):
     _signal = read_1D_files(folders_name[i], time_sequence)
+    print (_signal.shape)
+    print (folders_name[i])
     whole_data[i,:,:] = _signal
 
 print (whole_data.shape)
@@ -58,7 +61,7 @@ print (whole_data.shape)
 with gzip.open('Data.pickle.gz', 'w') as datafile:
     pickle.dump(whole_data, datafile)
 
-with gzip.open('Label.pickle.gz', 'r') as labelfile:
+with gzip.open('Label.pickle.gz', 'w') as labelfile:
     whole_label = pickle.load(labelfile)
 
 print (whole_label.shape)

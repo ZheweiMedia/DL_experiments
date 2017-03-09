@@ -29,9 +29,9 @@ valid_percentage = 0.1
 test_percentage = 0.1
 
 Groups = 2
-hd_notes = 50
+hd_notes = 10
 BATCH_SIZE = 30
-nb_epoch = 100
+nb_epoch = 300
 
 
 
@@ -205,6 +205,25 @@ train_data = normalize(train_data)
 valid_data = normalize(valid_data)
 test_data = normalize(test_data)
 
+train_data = train_data[:,:,[ 7, 8, 9, 10, 33, 34, 77, \
+                             78, 79, 80, 85, 86, 87, 88, 89, 90, 91, \
+                             92, 93, 94]]
+
+valid_data = valid_data[:,:,[7, 8, 9, 10, 33, 34, 77, \
+                             78, 79, 80, 85, 86, 87, 88, 89, 90, 91, \
+                             92, 93, 94]]
+
+test_data = test_data[:,:,[7, 8, 9, 10, 33, 34, 77, \
+                             78, 79, 80, 85, 86, 87, 88, 89, 90, 91, \
+                             92, 93, 94]]
+
+#test_data = test_data[:,:,[53, 54, 55, 56, 57, 58, 71, 72, 39, 40, \
+#                             1, 2 , 61, 62, 7, 8, 9, 10, 33, 34, 77, \
+#                             78, 79, 80, 85, 86, 87, 88, 89, 90, 91, \
+#                             92, 93, 94]]
+
+
+
 # feature slection
 
 #train_data, valid_data, test_data = feature_selction(train_data, valid_data, test_data, \
@@ -212,7 +231,7 @@ test_data = normalize(test_data)
 
 
 # data balance
-train_data, train_label = balance(train_data, train_label)
+#train_data, train_label = balance(train_data, train_label)
 
 # data inverse
 train_data_inverse = train_data[:,::-1,:]
@@ -237,12 +256,16 @@ print ('We have test images:', test_data.shape[0])
 print ('*'*40)
 
 
-Y_train = label_for_keras(train_label, train_data.shape[1])
-Y_test = label_for_keras(test_label, train_data.shape[1])
-Y_valid = label_for_keras(valid_label, train_data.shape[1])
+#Y_train = label_for_keras(train_label, train_data.shape[1])
+#Y_test = label_for_keras(test_label, train_data.shape[1])
+#Y_valid = label_for_keras(valid_label, train_data.shape[1])
+
+Y_train = np_utils.to_categorical(train_label, Groups)
+Y_test = np_utils.to_categorical(test_label, Groups)
+Y_valid = np_utils.to_categorical(valid_label, Groups)
 
 print (Y_train.shape)
-print (train_data[0,:,:])
+print (train_data.shape)
 
 timesteps = train_data.shape[1]
 featureNo = train_data.shape[2]
@@ -251,14 +274,15 @@ print ("Building model...")
 model = Sequential()
 model.add(LSTM(hd_notes, input_shape=(timesteps, featureNo),\
                init='normal',inner_init='identity',\
-               activation='sigmoid', return_sequences=True,\
+               activation='sigmoid', return_sequences=False,\
                W_regularizer=None, U_regularizer=None, \
                b_regularizer=None,\
-               dropout_W=0.7, dropout_U=0.7))
+               dropout_W=0.2, dropout_U=0.2))
 model.add(Dense(Groups))
 model.add(Activation('softmax'))
+opt = RMSprop(lr=0.01, rho=0.9, epsilon=1e-08, decay=1.0)
 adad = Adadelta(lr=1.0, rho=0.95, epsilon=1e-08, decay=0.0)
-model.compile(loss='categorical_crossentropy', optimizer='RMSprop', \
+model.compile(loss='categorical_crossentropy', optimizer=opt, \
               metrics=["accuracy"])
 
 print ("Training model...")

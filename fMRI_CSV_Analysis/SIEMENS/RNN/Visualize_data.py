@@ -88,13 +88,14 @@ def normalize(_data):
     ## the output should be (ImageNo, timesteps, featureNo)
     output = numpy.zeros((_data.shape[0], _data.shape[2], _data.shape[1]))
     for iNo in range(_data.shape[0]):
-        for tNo in range(_data.shape[2]):
-            _tmp = _data[iNo, :, tNo].astype(numpy.float)
+        for fNo in range(_data.shape[1]):
+            _tmp = _data[iNo, fNo, :].astype(numpy.float)
             #_tmp_mean = numpy.mean(_tmp)
             #_tmp_std = numpy.std(_tmp)
             #_tmp = (_tmp - _tmp_mean)/_tmp_std
-            _tmp = _tmp/(numpy.linalg.norm(_tmp))
-            output[iNo, tNo, :] = _tmp
+            if numpy.any(_tmp):
+                _tmp = _tmp/(numpy.linalg.norm(_tmp))
+            output[iNo, :, fNo] = _tmp
 
     return output
 
@@ -194,6 +195,7 @@ train_data = normalize(train_data)
 valid_data = normalize(valid_data)
 test_data = normalize(test_data)
 
+
 # feature slection
 
 #train_data, valid_data, test_data = feature_selction(train_data, valid_data, test_data, \
@@ -203,13 +205,18 @@ test_data = normalize(test_data)
 data = numpy.concatenate((train_data, valid_data, test_data))
 label = numpy.concatenate((train_label, valid_label, test_label))
 
+data = data[:,:,[53, 54, 55, 56, 57, 58, 71, 72, 39, 40, \
+                             1, 2 , 61, 62, 7, 8, 9, 10, 33, 34, 77, \
+                             78, 79, 80, 85, 86, 87, 88, 89, 90, 91, \
+                             92, 93, 94]]
+
 label =  list(label)
 
 for iNo, i in enumerate(label):
     if i == 0:
-        plotNC, = plt.plot(data[iNo,:, 41], 'o-', color = 'g', label = 'Normal', alpha = 0.7)
+        plotNC, = plt.plot(data[iNo,:, 15], 'o-', color = 'g', label = 'Normal', alpha = 0.7)
     else:
-        plotAD, = plt.plot(data[iNo,:, 41], 'o-', color = 'r', label = 'AD', alpha = 0.7)
+        plotAD, = plt.plot(data[iNo,:, 15], 'o-', color = 'r', label = 'AD', alpha = 0.7)
 
 plt.legend(handles=[plotNC, plotAD], loc='upper left')
 plt.show()

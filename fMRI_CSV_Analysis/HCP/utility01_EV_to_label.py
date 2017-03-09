@@ -2,6 +2,8 @@
 
 Transfer EVs/*.txt to 0,1 labels.
 
+Because we removed the first 5 volume, so need '+5' in line 32.
+
 
 """
 
@@ -27,7 +29,7 @@ for i in range(subjects_no):
     with open(file_name[0], 'rb') as f:
         for line in (raw.strip().split() for raw in f):
             print (line)
-            start = math.floor((float(line[0])+5)/0.72)
+            start = math.floor((float(line[0]))/0.72)+5
             duration = math.floor(float(line[1])/0.72)
             if (start+duration < time_sequence):
                 whole_label[i,start:start+duration] = 1
@@ -35,6 +37,6 @@ for i in range(subjects_no):
                 whole_label[i,start:] = 1
 
 print(whole_label.shape)
-with gzip.open("Label_with_5_delay.pickle.gz", "wb") as output_file:
+with gzip.open("EMOTION_Label.pickle.gz", "wb") as output_file:
     pickle.dump(whole_label, output_file)
 
