@@ -10,6 +10,7 @@
 import pickle
 import gzip
 import numpy
+import math
 from random import shuffle
 from keras.utils import np_utils
 from keras.models import Sequential
@@ -27,16 +28,16 @@ import matplotlib.pyplot as plt
 
 
 
-TRAIN_NO = 56
-VALID_NO = 6
-TEST_NO = 5
-BATCH_SIZE = 30
-nb_epoch = 750
-hd_notes = 10
+TRAIN_rate = 0.8
+VALID_rate = 0.1
+TEST_rate = 0.1
+BATCH_SIZE = 20
+nb_epoch = 400
+hd_notes = 2
 Groups = 2
 
 
-def normalize(_data):
+def rescale(_data):
     ## _data shape: subject number, feature number, time length
     ## the output should be (ImageNo, timesteps, featureNo)
     output = numpy.zeros((_data.shape[0], _data.shape[2], _data.shape[1]))
@@ -49,67 +50,91 @@ def normalize(_data):
 
     return output
 
-def featureSelection(_data, _label):
-    ## _data shape: (ImageNo, timesteps, featureNo)
-    selected_feature_index = list()
+def normalize(_data):
+    ## _data shape: subject number, feature number, time length
+    ## the output should be (ImageNo, timesteps, featureNo)
+    output = numpy.zeros((_data.shape[0], _data.shape[2], _data.shape[1]))
     for iNo in range(_data.shape[0]):
-        for fNo in range(_data.shape[2]):
-            _tmp = _data[iNo, :, fNo]
-            #print (numpy.corrcoef(_tmp, _label[iNo,:])[0,1])
-            #print (fNo)
-            if (numpy.corrcoef(_tmp, _label[iNo,:])[0,1] > 0.3):
-                selected_feature_index.append(fNo)
-    print(set(selected_feature_index))
-    print (len(set(selected_feature_index)))
+        for tNo in range(_data.shape[2]):
+            _tmp = _data[iNo, :, tNo]
+            if numpy.any(_tmp):
+                _tmp_mean = numpy.mean(_tmp)
+                _tmp_std = numpy.std(_tmp)
+                _tmp = (_tmp - _tmp_mean)/_tmp_std
+            output[iNo, tNo, :] = _tmp
 
-
-def label_for_keras(_label):
-    output = numpy.empty((_label.shape[0], _label.shape[1],2))
-    for iNo in range(_label.shape[0]):
-        for fNo in range(_label.shape[1]):
-            if _label[iNo, fNo] == 0:
-                output[iNo, fNo,:] = [1,0]
-            if _label[iNo, fNo] == 1:
-                output[iNo, fNo, :] = [0,1]
     return output
 
 
 
 
-with gzip.open('EMOTION_Data.pickle.gz', 'r') as datafile:
-    original_data = pickle.load(datafile)
+with gzip.open('RELATION_Data.pickle.gz', 'r') as RELATION_datafile:
+    RELATION_data = pickle.load(RELATION_datafile)
 
-with gzip.open('EMOTION_Label_with_5seconds_delay.pickle.gz', 'r') as labelfile:
-    wholeLabel = pickle.load(labelfile)
+with gzip.open('EMOTION_Data.pickle.gz', 'r') as EMOTION_datafile:
+    EMOTION_data = pickle.load(EMOTION_datafile)
+
+print (RELATION_data.shape)
+print (EMOTION_data.shape)
+
+# same size
+RELATION_data = RELATION_data[:,:,:EMOTION_data.shape[2]]
+print (RELATION_data.shape)
+
+# labels
+EMOTION_label = [0 for i in range(EMOTION_data.shape[0])]
+RELATION_label = [1 for i in range(RELATION_data.shape[0])]
+
+
+# concatenate data and labels
+original_data = numpy.concatenate((EMOTION_data, RELATION_data))
+original_label = EMOTION_label + RELATION_label
 
 # normalize
 wholeData = normalize(original_data)
+wholeLabel = numpy.array(original_label)
 
-results = list()
+whole_results = list()
+print(wholeData.shape)
+
 for i in range(30):
     print (i)
     whole_index = [i for i in range(wholeData.shape[0])]
     shuffle(whole_index)
 
+    TRAIN_NO = math.floor(wholeData.shape[0]*TRAIN_rate)
+    VALID_NO = math.floor(wholeData.shape[0]*VALID_rate)
+
     train_data = wholeData[whole_index[:TRAIN_NO],:,:]
-    train_label = wholeLabel[whole_index[:TRAIN_NO],:]
+    train_label = wholeLabel[whole_index[:TRAIN_NO]]
     valid_data = wholeData[whole_index[TRAIN_NO:TRAIN_NO+VALID_NO],:,:]
-    valid_label = wholeLabel[whole_index[TRAIN_NO:TRAIN_NO+VALID_NO],:]
+    valid_label = wholeLabel[whole_index[TRAIN_NO:TRAIN_NO+VALID_NO]]
     test_data = wholeData[whole_index[TRAIN_NO+VALID_NO:],:,:]
-    test_label = wholeLabel[whole_index[TRAIN_NO+VALID_NO:],:]
+    test_label = wholeLabel[whole_index[TRAIN_NO+VALID_NO:]]
+
+    print (TRAIN_NO, VALID_NO)
+    print (train_label)
+
 
     # data inverse
     #train_data_inverse = train_data[:,::-1,:]
-    #train_label_inverse = train_label[:,::-1]
+    #train_label_inverse = train_label
     #train_data = numpy.concatenate((train_data, train_data_inverse))
     #train_label = numpy.concatenate((train_label, train_label_inverse))
 
     print(train_data.shape)
+    print(train_label.shape)
+    print(valid_data.shape)
+    print(valid_label.shape)
+    print(test_data.shape)
+    print(test_label.shape)
 
-    Y_train = label_for_keras(train_label)
-    Y_test = label_for_keras(test_label)
-    Y_valid = label_for_keras(valid_label)
 
+    Y_train =  np_utils.to_categorical(train_label, Groups)
+    Y_test = np_utils.to_categorical(test_label, Groups)
+    Y_valid = np_utils.to_categorical(valid_label, Groups)
+
+    print(Y_valid.shape)
 
     timesteps = train_data.shape[1]
     featureNo = train_data.shape[2]
@@ -118,10 +143,10 @@ for i in range(30):
     model = Sequential()
     model.add(LSTM(hd_notes, input_shape=(timesteps, featureNo),\
                    init='normal',inner_init='identity',\
-                   activation='sigmoid', return_sequences=True,\
+                   activation='tanh', return_sequences=False,\
                    W_regularizer=None, U_regularizer=None, \
                    b_regularizer=None,\
-                   dropout_W=0.0, dropout_U=0.0))
+                   dropout_W=0.8, dropout_U=0.8))
 
     model.add(Dense(Groups))
     model.add(Activation('softmax'))
@@ -144,10 +169,11 @@ for i in range(30):
     print (model.predict_classes(test_data))
     print ('Baseline of training is:',numpy.mean(train_label))
     print ('Baseline of validation is:', numpy.mean(valid_label))
+    print ('Baseline of validation is:', numpy.mean(test_label))
 
-    results.append(scores[1])
+    whole_results.append(scores[1])
 
-print (results)
-results = numpy.asarray(results)
+print (whole_results)
+results = numpy.array(whole_results)
 print ('The avarage perfomace is:')
 print (numpy.mean(results))

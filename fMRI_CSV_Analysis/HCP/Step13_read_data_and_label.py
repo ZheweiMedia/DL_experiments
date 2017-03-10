@@ -58,10 +58,14 @@ for i in range(subjects_no):
 
 print (whole_data.shape)
 
-with gzip.open('Data.pickle.gz', 'w') as datafile:
-    pickle.dump(whole_data, datafile)
+#with gzip.open('RELATION_Data.pickle.gz', 'r') as datafile:
+#    pickle.dump(whole_data, datafile)
 
-with gzip.open('Label.pickle.gz', 'w') as labelfile:
+with gzip.open('RELATION_Data.pickle.gz', 'r') as datafile:
+    whole_data = pickle.load(datafile)
+print (whole_data.shape)
+
+with gzip.open('RELATION_Label.pickle.gz', 'r') as labelfile:
     whole_label = pickle.load(labelfile)
 
 print (whole_label.shape)
