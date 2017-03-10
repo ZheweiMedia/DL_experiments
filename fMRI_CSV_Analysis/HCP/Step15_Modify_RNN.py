@@ -31,8 +31,8 @@ TRAIN_NO = 53
 VALID_NO = 6
 TEST_NO = 6
 BATCH_SIZE = 40
-nb_epoch = 100
-hd_notes = 20
+nb_epoch = 1000
+hd_notes = 10
 Groups = 3
 
 
@@ -99,15 +99,20 @@ whole_index = [i for i in range(wholeData.shape[0])]
 shuffle(whole_index)
 
 train_data = wholeData[whole_index[:TRAIN_NO],:,:]
+#train_data = train_data[:,:,[53, 54, 55, 56, 57, 58, 71, 72, 39, 40, 1, 2 , 61, 62]]
 train_label = wholeLabel[whole_index[:TRAIN_NO],:]
 valid_data = wholeData[whole_index[TRAIN_NO:TRAIN_NO+VALID_NO],:,:]
+#valid_data = valid_data[:,:,[53, 54, 55, 56, 57, 58, 71, 72, 39, 40, 1, 2 , 61, 62]]
 valid_label = wholeLabel[whole_index[TRAIN_NO:TRAIN_NO+VALID_NO],:]
 test_data = wholeData[whole_index[TRAIN_NO+VALID_NO:],:,:]
+#test_data = test_data[:,:,[53, 54, 55, 56, 57, 58, 71, 72, 39, 40, 1, 2 , 61, 62]]
 test_label = wholeLabel[whole_index[TRAIN_NO+VALID_NO:],:]
 
 # data inverse
-train_data_inverse = train_data[:,::-1,:]
-train_label_inverse = train_label[:,::-1]
+#train_data_inverse = train_data[:,::-1,:]
+#train_label_inverse = train_label[:,::-1]
+#train_data = numpy.concatenate((train_data, train_data_inverse))
+#train_label = numpy.concatenate((train_label, train_label_inverse))
 
 print (train_label)
 
@@ -115,8 +120,7 @@ print (numpy.where(train_label == 2)[0].shape[0])
 print (numpy.where(train_label == 2)[1].shape)
 print (train_label.shape)
 
-train_data = numpy.concatenate((train_data, train_data_inverse))
-train_label = numpy.concatenate((train_label, train_label_inverse))
+
 
 print(train_data.shape)
 print(train_label.shape)
@@ -130,7 +134,6 @@ Y_test = label_for_keras(test_label)
 Y_valid = label_for_keras(valid_label)
 
 print(Y_valid.shape)
-print (Y_valid)
 
 timesteps = train_data.shape[1]
 featureNo = train_data.shape[2]
@@ -142,12 +145,12 @@ model.add(LSTM(hd_notes, input_shape=(timesteps, featureNo),\
                activation='sigmoid', return_sequences=True,\
                W_regularizer=None, U_regularizer=None, \
                b_regularizer=None,\
-               dropout_W=0.2, dropout_U=0.2))
+               dropout_W=0.7, dropout_U=0.7))
 
 model.add(Dense(Groups))
 model.add(Activation('softmax'))
 
-model.compile(loss='categorical_crossentropy', optimizer='RMSprop', \
+model.compile(loss='categorical_crossentropy', optimizer='Adagrad', \
               metrics=["accuracy"])
 
 

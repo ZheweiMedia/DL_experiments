@@ -151,7 +151,7 @@ for i in range(30):
     model.add(Dense(Groups))
     model.add(Activation('softmax'))
 
-    model.compile(loss='categorical_crossentropy', optimizer='RMSprop', \
+    model.compile(loss='categorical_crossentropy', optimizer='Adagrad', \
                   metrics=["accuracy"])
 
 

@@ -83,21 +83,35 @@ def read_data(index_list, total_data):
     _array = _array.reshape((len(_data), row_of_imageData, col_of_imageData))
     return _array, label
 
-def normalize(_data):
-    ## the shape is (ImageNo, featureNo, timesteps)
+def resacle(_data):
+    ## _data shape: subject number, feature number, time length
     ## the output should be (ImageNo, timesteps, featureNo)
     output = numpy.zeros((_data.shape[0], _data.shape[2], _data.shape[1]))
     for iNo in range(_data.shape[0]):
         for fNo in range(_data.shape[1]):
             _tmp = _data[iNo, fNo, :].astype(numpy.float)
-            #_tmp_mean = numpy.mean(_tmp)
-            #_tmp_std = numpy.std(_tmp)
-            #_tmp = (_tmp - _tmp_mean)/_tmp_std
             if numpy.any(_tmp):
                 _tmp = _tmp/(numpy.linalg.norm(_tmp))
             output[iNo, :, fNo] = _tmp
 
     return output
+
+def normalize(_data):
+    ## _data shape: subject number, feature number, time length
+    ## the output should be (ImageNo, timesteps, featureNo)
+    output = numpy.zeros((_data.shape[0], _data.shape[2], _data.shape[1]))
+    for iNo in range(_data.shape[0]):
+        for tNo in range(_data.shape[2]):
+            _tmp = _data[iNo, :, tNo].astype(numpy.float)
+            _tmp_mean = numpy.mean(_tmp)
+            _tmp_std = numpy.std(_tmp)
+            _tmp = (_tmp - _tmp_mean)/_tmp_std
+            #if numpy.any(_tmp):
+               # _tmp = _tmp/(numpy.linalg.norm(_tmp))
+            output[iNo, tNo, :] = _tmp
+
+    return output
+
 
 def balance(_data, _label):
     rate = numpy.mean(_label)
@@ -282,7 +296,7 @@ model.add(Dense(Groups))
 model.add(Activation('softmax'))
 opt = RMSprop(lr=0.01, rho=0.9, epsilon=1e-08, decay=1.0)
 adad = Adadelta(lr=1.0, rho=0.95, epsilon=1e-08, decay=0.0)
-model.compile(loss='categorical_crossentropy', optimizer=opt, \
+model.compile(loss='categorical_crossentropy', optimizer='Adagrad', \
               metrics=["accuracy"])
 
 print ("Training model...")
