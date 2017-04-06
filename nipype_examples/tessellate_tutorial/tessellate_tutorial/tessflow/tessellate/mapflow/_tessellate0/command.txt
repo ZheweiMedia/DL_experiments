@@ -1,1 +1,0 @@
-mri_mc /usr/local/freesurfer/subjects/fsaverage/mri/aseg.mgz 2 ./b'Left-Cerebral-White-Matter' 1
