@@ -56,11 +56,10 @@ def normalize(_data):
     for iNo in range(_data.shape[0]):
         for tNo in range(_data.shape[2]):
             _tmp = _data[iNo, :, tNo]
-            _tmp_mean = numpy.mean(_tmp)
-            _tmp_std = numpy.std(_tmp)
-            _tmp = (_tmp - _tmp_mean)/_tmp_std
-            #if numpy.any(_tmp):
-               # _tmp = _tmp/(numpy.linalg.norm(_tmp))
+            if numpy.any(_tmp):
+                _tmp_mean = numpy.mean(_tmp)
+                _tmp_std = numpy.std(_tmp)
+                _tmp = (_tmp - _tmp_mean)/_tmp_std
             output[iNo, tNo, :] = _tmp
 
     return output

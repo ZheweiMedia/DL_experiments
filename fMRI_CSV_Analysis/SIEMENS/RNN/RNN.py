@@ -101,13 +101,12 @@ def normalize(_data):
     ## the output should be (ImageNo, timesteps, featureNo)
     output = numpy.zeros((_data.shape[0], _data.shape[2], _data.shape[1]))
     for iNo in range(_data.shape[0]):
-        for tNo in range(_data.shape[2]):
+        for tNo in range(_data.shape[2]):            
             _tmp = _data[iNo, :, tNo].astype(numpy.float)
-            _tmp_mean = numpy.mean(_tmp)
-            _tmp_std = numpy.std(_tmp)
-            _tmp = (_tmp - _tmp_mean)/_tmp_std
-            #if numpy.any(_tmp):
-               # _tmp = _tmp/(numpy.linalg.norm(_tmp))
+            if numpy.any(_tmp):
+                _tmp_mean = numpy.mean(_tmp)
+                _tmp_std = numpy.std(_tmp)
+                _tmp = (_tmp - _tmp_mean)/_tmp_std
             output[iNo, tNo, :] = _tmp
 
     return output
@@ -248,10 +247,10 @@ test_data = test_data[:,:,[7, 8, 9, 10, 33, 34, 77, \
 #train_data, train_label = balance(train_data, train_label)
 
 # data inverse
-train_data_inverse = train_data[:,::-1,:]
+#train_data_inverse = train_data[:,::-1,:]
 
-train_data = numpy.concatenate((train_data, train_data_inverse))
-train_label = numpy.concatenate((train_label, train_label))
+#train_data = numpy.concatenate((train_data, train_data_inverse))
+#train_label = numpy.concatenate((train_label, train_label))
 
 # separate as sections
 
@@ -291,7 +290,7 @@ model.add(LSTM(hd_notes, input_shape=(timesteps, featureNo),\
                activation='sigmoid', return_sequences=False,\
                W_regularizer=None, U_regularizer=None, \
                b_regularizer=None,\
-               dropout_W=0.2, dropout_U=0.2))
+               dropout_W=0.0, dropout_U=0.0))
 model.add(Dense(Groups))
 model.add(Activation('softmax'))
 opt = RMSprop(lr=0.01, rho=0.9, epsilon=1e-08, decay=1.0)
