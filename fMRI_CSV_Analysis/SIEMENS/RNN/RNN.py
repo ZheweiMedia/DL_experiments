@@ -188,7 +188,7 @@ def label_for_keras(_label, timeLength):
 with gzip.open('Clean_imageID_with_Data_Bandpass.gz', 'rb') as input_file:
     subjects_list = pickle.load(input_file)
 
-
+print (a)
 
 
 total_number = len(subjects_list)
