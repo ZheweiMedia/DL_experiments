@@ -83,19 +83,17 @@ for subject in subjects:
 
 
 # one bad data. cannot read the file 196079, and some images didn't process
-bad_list = ['196079', '756267', '763572', '797153']
+bad_list = ['196079', '224706', '223981']
 for subject in subjects:
     if subject.DX_Group == 'AD' or subject.DX_Group =='Normal':
         #print (subject.SubjectID)
         if subject.fMRI_baseline in bad_list:
             #print (subject.fMRI_baseline)
-            print ('YES')
             subject.fMRI_baseline = None
             subject.MRIBaseline = None
         if subject.fMRI_other:
             for ID in subject.fMRI_other:
                 if ID in bad_list:
-                    print ('YES, HERE')
                     ID_index = subject.fMRI_other.index(ID)
                     subject.fMRI_other[ID_index] = None
                     subject.MRI_other[ID_index] = None
@@ -106,6 +104,7 @@ AD_No = 0
 Normal_No = 0
 MRI_imgNo = 0
 flag = False
+MRI_imgID = list()
 for subject in subjects:
     if subject.DX_Group == 'AD' or subject.DX_Group =='Normal':
         #print (subject.SubjectID)
@@ -113,11 +112,13 @@ for subject in subjects:
         if subject.fMRI_baseline != None:
             #print (subject.fMRI_baseline)
             MRI_imgNo += 1
+            MRI_imgID.append(subject.fMRI_baseline)
             flag = True
         if subject.fMRI_other:
             for ID in subject.fMRI_other:
                 if ID != None:
                     MRI_imgNo += 1
+                    MRI_imgID.append(ID)
                     flag = True
         if flag:
             if subject.DX_Group == 'AD':
@@ -128,6 +129,8 @@ for subject in subjects:
 print ('We have AD subjects:', AD_No)
 print ('We have Normal subjects:', Normal_No)
 print ('We have MRI image:', MRI_imgNo)
+print (len(MRI_imgID))
+
 
 def read_1D_files(fMRI_imageID):
     signals = numpy.empty([2, 2])
@@ -179,5 +182,5 @@ for subject in subjects:
             Subjects_with_data.append(subject2)
 
 
-with gzip.open("smallDataset_imageID_with_Data.gz", "wb") as output_file:
+with gzip.open("LargeDataset_imageID_with_Data.gz", "wb") as output_file:
     pickle.dump(Subjects_with_data, output_file)

@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # use for preprocessing data
-# usage: bash Step10_preprocessing.sh fMRI_IDs MRI_IDs Philips 3
+# usage: 
 
 function processing(){
 
     fMRI_ID=$1
 
-    cd /media/medialab/Seagate\ Expansion\ Drive/ADNI/SIEMENS/fMRI/*$fMRI_ID*/niiFolder/ 
+    cd /home/medialab/data/tmp/*$fMRI_ID*/niiFolder/ 
 
     
 
@@ -37,7 +37,7 @@ function processing(){
 fMRI_imageIDs=(`cat $1`)
 
 Core=6
-# ID_number = 234
+# ID_number = 568
 ID_Number=$2
 range_array=()
 

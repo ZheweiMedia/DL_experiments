@@ -7,31 +7,29 @@
 
 import gzip
 import pickle
+import os
+from glob import glob
 
-class _EachSubject:
-    # each subject is a element of a list
-    def __init__(self, SubjectID, DX_Group, MRI_imageID, fMRI_imageID):
-        self.DX_Group = DX_Group
-        self.SubjectID = SubjectID
-        # baseline 
-        self.MRI_baseline = MRI_imageID
-        self.fMRI_baseline = fMRI_imageID
-        # otherdata after baseline 
-        self.MRI_other = list()
-        self.fMRI_other = list()
+os.chdir('/home/medialab/data/tmp')
 
-class _Subject_with_data:
-    def __init__(self, SubjectID, DX_Group):
-        self.DX_Group = DX_Group
-        self.SubjectID = SubjectID
-        # baseline 
-        self.MRI_baseline = dict()
-        self.fMRI_baseline = dict()
-        # otherdata after baseline 
-        self.MRI_other = list()
-        self.fMRI_other = list()
+fMRI_ID = list()
+for i in glob('*/'):
+    print (i)
+    print (i[5:11])
+    fMRI_ID.append(i[5:11])
 
-with gzip.open('After_Registration_Clean_imageID.gz', 'rb') as input_file:
-    subjects_list = pickle.load(input_file)
+print (len(fMRI_ID))
 
-print (len(subjects_list))
+os.chdir('/home/medialab/Zhewei/fMRI_CSV_Analysis/smallDataset')
+
+with gzip.open("smallDataset_fMRIList", "wb") as output_file:
+    pickle.dump(fMRI_ID, output_file)
+
+
+badDataList = ['224706', '196079', '223981']
+
+with open('fMRI_ID', 'w') as output_file:
+    for ID in fMRI_ID:
+        if ID not in badDataList:
+            output_file.write(ID)
+            output_file.write('\n')
