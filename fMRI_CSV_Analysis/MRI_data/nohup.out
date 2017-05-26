@@ -41398,3 +41398,29 @@ Reorienting as /home/medialab/data/ALL_MRI_Data/24075/o20060911_120654MPRAGEs003
 Saving /home/medialab/data/ALL_MRI_Data/24075/o20060911_120654MPRAGEs003a001.nii
 Cropping NIfTI/Analyze image /home/medialab/data/ALL_MRI_Data/24075/o20060911_120654MPRAGEs003a001.nii
 Saving /home/medialab/data/ALL_MRI_Data/24075/co20060911_120654MPRAGEs003a001.nii
+Warning 3dSkullStrip:****************
+ Surface self intersecting! trying again:
+ smoothing of 84, avoid_vent -1
+Warning 3dSkullStrip:****************
+ Surface self intersecting! trying again:
+ smoothing of 84, avoid_vent -1
+Warning 3dSkullStrip:****************
+ Surface self intersecting! trying again:
+ smoothing of 84, avoid_vent -1
+Warning 3dSkullStrip:****************
+ Surface self intersecting! trying again:
+ smoothing of 84, avoid_vent -1
+Warning 3dSkullStrip:****************
+ Surface self intersecting! trying again:
+ smoothing of 84, avoid_vent -1
+The intensity in the output dataset is a modified version
+of the intensity in the input volume.
+To obtain a masked version of the input with identical values inside
+the brain, you can either use 3dSkullStrip's -orig_vol option
+or run the following command:
+  3dcalc -a T1.nii -b ./skullstrip_mask.nii+orig -expr 'a*step(b)' \
+         -prefix ./skullstrip_mask.nii_orig_vol
+to generate a new masked version of the input.
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+++ Output dataset ./skullstrip.nii
