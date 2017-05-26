@@ -41990,3 +41990,1062 @@ to generate a new masked version of the input.
 ++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
 ++ Authored by: A cast of thousands
 ++ Output dataset ./skullstrip.nii
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 3526 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 3381 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 4873 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 5127 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 4509 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 4860 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1038 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1399 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2529 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2151 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 814 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 874 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 990 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1331 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2147 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2371 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 280 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 289 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2992 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2134 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 719 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 856 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 852 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 745 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 550 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 621 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 443 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 648 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 567 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 561 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 197 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 188 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1858 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1770 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1400 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1313 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1941 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2203 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 463 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 335 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 932 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 946 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 978 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1132 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 220 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 248 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2258 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1861 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1526 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1424 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2095 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2300 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1366 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1413 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 3270 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2098 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 941 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 989 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2310 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2518 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 3892 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 3823 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2065 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2222 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2447 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1345 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1256 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1974 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1173 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1752 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 3528 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 3265 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1349 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 836 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 962 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 994 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1009 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1064 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 293 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 280 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1100 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1057 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 225 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 249 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2296 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 3141 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1285 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1338 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 4942 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 4409 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 755 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1187 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 3200 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 3557 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2603 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2648 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1894 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2117 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 136 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 207 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1125 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 861 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1694 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1795 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 585 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 534 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1887 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2308 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 869 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 809 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 144 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 159 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 53 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 228 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 665 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 371 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 194 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 243 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 174 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 112 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 3526 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 3381 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 4873 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 5127 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 4509 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 4860 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1038 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1399 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2529 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2151 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 814 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 874 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 990 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1331 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2147 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2371 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 280 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 289 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2992 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2134 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 719 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 856 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 852 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 745 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 550 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 621 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 443 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 648 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 567 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 561 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 197 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 188 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1858 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1770 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1400 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1313 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1941 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2203 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 463 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 335 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 932 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 946 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 978 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1132 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 220 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 248 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2258 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1861 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1526 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1424 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2095 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2300 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1366 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1413 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 3270 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2098 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 941 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 989 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2310 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2518 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 3892 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 3823 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2065 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2222 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2447 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1345 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1256 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1974 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1173 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1752 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 3528 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 3265 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1349 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 836 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 962 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 994 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1009 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1064 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 293 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 280 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1100 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1057 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 225 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 249 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2296 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 3141 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1285 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1338 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 4942 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 4409 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 755 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1187 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 3200 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 3557 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2603 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2648 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1894 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2117 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 136 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 207 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1125 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 861 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1694 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1795 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 585 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 534 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1887 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2308 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 869 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 809 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 144 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 159 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 53 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 228 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 665 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 371 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 194 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 243 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 174 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 112 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 3526 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 3381 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 4873 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 5127 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 4509 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 4860 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1038 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1399 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2529 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2151 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 814 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 874 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 990 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1331 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2147 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2371 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 280 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 289 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2992 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2134 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 719 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 856 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 852 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 745 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 550 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 621 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 443 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 648 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 567 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 561 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 197 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 188 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1858 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1770 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1400 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1313 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1941 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2203 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 463 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 335 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 932 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 946 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 978 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1132 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 220 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 248 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2258 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1861 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1526 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1424 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2095 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2300 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1366 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1413 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 3270 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2098 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 941 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 989 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2310 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2518 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 3892 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 3823 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2065 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2222 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2447 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1345 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1256 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1974 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1173 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1752 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 3528 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 3265 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1349 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 836 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 962 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 994 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1009 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1064 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 293 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 280 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1100 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1057 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 225 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 249 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2296 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 3141 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1285 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1338 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 4942 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 4409 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 755 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1187 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 3200 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 3557 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2603 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2648 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1894 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2117 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 136 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 207 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1125 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 861 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1694 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1795 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 585 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 534 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1887 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+Warning 3dSkullStrip: Stubborn intersection remaining at smoothing of 120. Ignoring it.+++ 2308 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 869 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 809 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 144 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 159 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 53 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 228 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 665 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 371 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 194 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 243 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 174 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 112 voxels survive the mask
+The intensity in the output dataset is a modified version
+of the intensity in the input volume.
+To obtain a masked version of the input with identical values inside
+the brain, you can either use 3dSkullStrip's -orig_vol option
+or run the following command:
+  3dcalc -a T1.nii -b ./skullstrip_mask.nii+orig -expr 'a*step(b)' \
+         -prefix ./skullstrip_mask.nii_orig_vol
+to generate a new masked version of the input.
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+++ Output dataset ./skullstrip.nii
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 3526 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 3381 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 4873 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 5127 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 4509 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 4860 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1038 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1399 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2529 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2151 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 814 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 874 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 990 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1331 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2147 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2371 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 280 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 289 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2992 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2134 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 719 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 856 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 852 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 745 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 550 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 621 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 443 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 648 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 567 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 561 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 197 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 188 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1858 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1770 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1400 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1313 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1941 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2203 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 463 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 335 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 932 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 946 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 978 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1132 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 220 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 248 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2258 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1861 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1526 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1424 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2095 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2300 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1366 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1413 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 3270 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2098 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 941 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 989 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2310 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2518 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 3892 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 3823 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2065 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2222 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2447 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1345 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1256 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1974 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1173 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1752 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 3528 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 3265 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1349 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 836 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 962 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 994 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1009 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1064 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 293 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 280 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1100 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1057 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 225 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 249 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2296 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 3141 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1285 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1338 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 4942 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 4409 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 755 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1187 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 3200 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 3557 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2603 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2648 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1894 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2117 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 136 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 207 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1125 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 861 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1694 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1795 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 585 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 534 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 1887 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 2308 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 869 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 809 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 144 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 159 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 53 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 228 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 665 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 371 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 194 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 243 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 174 voxels survive the mask
+++ 3dmaskave: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
++++ 112 voxels survive the mask
+138
+139
+140
+141
+142
+143
+Chris Rorden's dcm2nii :: 4AUGUST2014 (Debian) 64bit BSD License
+reading preferences file /home/medialab/.dcm2nii/dcm2nii.ini
+Data will be exported to /home/medialab/data/ALL_MRI_Data/10252
+Validating 160 potential DICOM images.
+Found 160 DICOM images.
+Converting 160/160  volumes: 1
+ADNI_022_S_0130_MR_MPRAGE_br_raw_20060125095217981_1_S11089_I10252.dcm->20060123_132212MPRAGEs002a001.nii
+ Warning: Siemens interleaved acquisition with an even number of slices. Assume even slices acquired PRIOR to odd slices. Chris Rorden's dcm2nii :: 4AUGUST2014 (Debian) 64bit BSD License
+reading preferences file /home/medialab/.dcm2nii/dcm2nii.ini
+Data will be exported to /home/medialab/data/ALL_MRI_Data/12280
+Validating 160 potential DICOM images.
+Found 160 DICOM images.
+Converting 160/160  volumes: 1
+ADNI_022_S_0219_MR_MPRAGE_br_raw_20060322144839158_1_S12375_I12280.dcm->20060317_133056MPRAGEs003a001.nii
+ Warning: Siemens interleaved acquisition with an even number of slices. Assume even slices acquired PRIOR to odd slices. https://wiki.cimec.unitn.it/tiki-index.php?page=MRIBOLDfMRI
+For slice timing correction: the slice order is Siemens-even interleaved ascending (2,4..,1,3...)
+ brightest voxel was 889: data will be saved as 16-bit signed integer.
+Saving /home/medialab/data/ALL_MRI_Data/10252/20060123_132212MPRAGEs002a001.nii
+Chris Rorden's dcm2nii :: 4AUGUST2014 (Debian) 64bit BSD License
+reading preferences file /home/medialab/.dcm2nii/dcm2nii.ini
+Data will be exported to /home/medialab/data/ALL_MRI_Data/15907
+Validating 160 potential DICOM images.
+Found 160 DICOM images.
+Converting 160/160  volumes: 1
+ADNI_022_S_0543_MR_MPRAGE_br_raw_20060523125651320_1_S14849_I15907.dcm->20060522_091459MPRAGEs003a001.nii
+ Warning: Siemens interleaved acquisition with an even number of slices. Assume even slices acquired PRIOR to odd slices. https://wiki.cimec.unitn.it/tiki-index.php?page=MRIBOLDfMRI
+For slice timing correction: the slice order is Siemens-even interleaved ascending (2,4..,1,3...)
+ brightest voxel was 824: data will be saved as 16-bit signed integer.
+Saving /home/medialab/data/Chris Rorden's dcm2nii :: 4AUGUST2014 (Debian) 64bit BSD License
+reading preferences file /home/medialab/.dcm2nii/dcm2nii.ini
+Data will be exported to /home/medialab/data/ALL_MRI_Data/10117
+Validating 160 potential DICOM images.
+Found 160 DICOM images.
+ConALL_MRI_Data/12280/20060317_133056MPRAGEs003a001.nii
+verting 160/160  volumes: 1
+ADNI_022_S_0096_MR_MPRAGE_br_raw_20060120135818974_1_S11006_I10117.dcm->20060118_120418MPRAGEs003a001.nii
+ Warning: Siemens interleaved acquisition with an even number of slices. Assume even slices acquired PRIOR to odd slices. https://wiki.cimec.unitn.it/tiki-index.php?page=MRIBOLDfMRI
+For slice timing correction: the slice order is Siemens-even interleaved ascending (2,4..,1,3...)
+ brightest voxel was 898: data will be saved as 16-bit signed integer.
+Saving /home/medialab/data/https://wiki.cimec.unitn.it/tiki-index.php?page=MRIBOLDfMRI
+For slice timing correction: the slice order is Siemens-even interleaved ascending (2,4..,1,3...)
+ brightest voxel was 816: data will be saved as 16-bit signed integer.
+Saving /home/medialab/data/Chris Rorden's dcm2nii :: 4AUGUST2014 (Debian) 64bit BSD License
+reading preferences file /home/medialab/.dcm2nii/dcm2nii.ini
+Data will be exported to /home/medialab/data/ALL_MRI_Data/10855
+Validating 160 potential DICOM images.
+Found 160 DICOM images.
+ConALL_MRI_Data/15907/20060522_091459MPRAGEs003a001.nii
+ALL_MRI_Data/10117/20060118_120418MPRAGEs003a001.nii
+verting 160/160  volumes: 1
+ADNI_022_S_0129_MR_MPRAGE_br_raw_20060206133755522_1_S11485_I10855.dcm->20060206_114353MPRAGEs002a001.nii
+ Warning: Siemens interleaved acquisition with an even number of slices. Assume even slices acquired PRIOR to odd slices. https://wiki.cimec.unitn.it/tiki-index.php?page=MRIBOLDfMRI
+For slice timing correction: the slice order is Siemens-even interleaved ascending (2,4..,1,3...)
+ brightest voxel was 873: data will be saved as 16-bit signed integer.
+Saving /home/medialab/data/ALL_MRI_Data/10855/20060206_114353MPRAGEs002a001.nii
+Chris Rorden's dcm2nii :: 4AUGUST2014 (Debian) 64bit BSD License
+reading preferences file /home/medialab/.dcm2nii/dcm2nii.ini
+Data will be exported to /home/medialab/data/ALL_MRI_Data/255992
+Validating 176 potential DICOM images.
+Found 176 DICOM images.
+Converting 176/176  volumes: 1
+ADNI_022_S_4173_MR_MPRAGE_br_raw_20110914160650722_1_S122033_I255992.dcm->20110913_132811MPRAGEs002a1001.nii
+ Warning: Siemens interleaved acquisition with an even number of slices. Assume even slices acquired PRIOR to odd slices. https://wiki.cimec.unitn.it/tiki-index.php?page=MRIBOLDfMRI
+For slice timing correction: the slice order is Siemens-even interleaved ascending (2,4..,1,3...)
+ brightest voxel was 815: data will be saved as 16-bit signed integer.
+Saving /home/medialab/data/ALL_MRI_Data/255992/20110913_132811MPRAGEs002a1001.nii
+Reorienting as /home/medialab/data/ALL_MRI_Data/255992/o20110913_132811MPRAGEs002a1001.nii
+Saving /home/medialab/data/ALL_MRI_Data/255992/o20110913_132811MPRAGEs002a1001.nii
+Cropping NIfTI/Analyze image /home/medialab/data/ALL_MRI_Data/255992/o20110913_132811MPRAGEs002a1001.nii
+Saving /home/medialab/data/ALL_MRI_Data/255992/co20110913_132811MPRAGEs002a1001.nii
+Warning 3dSkullStrip:****************
+ Surface self intersecting! trying again:
+ smoothing of 84, avoid_vent -1
+Warning 3dSkullStrip:****************
+ Surface self intersecting! trying again:
+ smoothing of 84, avoid_vent -1
+Warning 3dSkullStrip:****************
+ Surface self intersecting! trying again:
+ smoothing of 84, avoid_vent -1
+Warning 3dSkullStrip:****************
+ Surface self intersecting! trying again:
+ smoothing of 84, avoid_vent -1
