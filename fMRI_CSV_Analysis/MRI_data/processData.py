@@ -19,12 +19,10 @@ os.chdir('/home/medialab/data/ALL_MRI_Data/ADNI')
 url = '/home/medialab/data/ALL_MRI_Data/ADNI'
 
 with open('/home/medialab/Zhewei/fMRI_CSV_Analysis/MRI_data/Old_MRI_baseline') as f:
-    MRI_baseline = f.read().split(',')
+    MRI_baseline = f.read().split()
 
-print (len(MRI_baseline[:-1]))
+print (len(MRI_baseline))
 
-
-MRI_baseline = MRI_baseline[:-1]
 
 for dirpath, dirnames, filenames in os.walk(url):
     if  filenames:

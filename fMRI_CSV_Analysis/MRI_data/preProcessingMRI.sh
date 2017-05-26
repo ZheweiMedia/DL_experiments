@@ -56,7 +56,7 @@ function processing(){
 MRI_imageIDs=(`cat $1`)
 
 
-Core=2
+Core=6
 
 #ID_Number=515
 ID_Number=$2
