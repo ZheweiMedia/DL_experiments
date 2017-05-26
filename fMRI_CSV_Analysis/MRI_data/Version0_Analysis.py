@@ -31,8 +31,7 @@ description_list = list()
 
 for i in wholeDataofCSV:
     if i['DX Group'] == 'AD' or i['DX Group'] == 'Normal':
-        if i['Description'] == 'MPRAGE' or i['Description'] == 'MP-RAGE' \
-               or i['Description'] == 'MP RAGE':
+        if i['Description'] == 'MPRAGE':
             subject_list.append(i['Subject ID'])
             description_list.append(i['Description'])
 
@@ -89,8 +88,7 @@ for row in wholeDataofCSV:
             ValidData.append(_Subject)
         MRI_ImageID = None
         fMRI_ImageID = None
-        if row['Description'] == 'MPRAGE' or row['Description'] == 'MP-RAGE' \
-           or row['Description'] == 'MP RAGE':
+        if row['Description'] == 'MPRAGE':
             MRI_ImageID = row['Image ID']
         Subject_ID = row['Subject ID']
         iAge = row['Age']
@@ -112,16 +110,14 @@ for row in wholeDataofCSV:
                         print ('ERROR: The GX group changed.')
                     _Subject.MRI_other.append(MRI_ImageID)
             MRI_ImageID = None
-            if row['Description'] == 'MPRAGE' or row['Description'] == 'MP-RAGE' \
-               or row['Description'] == 'MP RAGE':
+            if row['Description'] == 'MPRAGE':
                 MRI_ImageID = row['Image ID']
                 if row['DX Group'] != DX_group:
                     print ('ERROR: The GX group changed.')
             iAge = row['Age']
         else:
             # during a scan
-            if row['Description'] == 'MPRAGE' or row['Description'] == 'MP-RAGE' \
-               or row['Description'] == 'MP RAGE':
+            if row['Description'] == 'MPRAGE':
                 MRI_ImageID = row['Image ID']
                 if row['DX Group'] != DX_group:
                     print ('ERROR: The GX group changed.')
@@ -132,7 +128,7 @@ MRI_list = list()
 MRI_baselineList = list()
 Subjects_in_group = list()
 
-with open('Original_MRI_ImageID_2','w') as f:
+with open('Original_MRI_ImageID_3','w') as f:
     for subject in ValidData:
         if subject.DX_Group == "AD" or subject.DX_Group == "Normal":
             Subjects_in_group.append(subject.SubjectID)
@@ -156,6 +152,11 @@ print('MRI Baseline:', len(MRI_baselineList))
 
 with open('Original_MRI_ImageID', 'r') as f:
     old_MRI_ID = f.read().split(',')
+
+with open('Old_MRI_baseline', 'w') as f:
+    for i in MRI_baselineList:
+        f.write(i)
+        f.write('\n')
 
 print (len(old_MRI_ID))
 print (old_MRI_ID[0])

@@ -1,0 +1,977 @@
+0
+1
+2
+3
+0 1 2 3
+0
+1
+Chris Rorden's dcm2nii :: 4AUGUST2014 (Debian) 64bit BSD License
+reading preferences file /home/medialab/.dcm2nii/dcm2nii.ini
+Data will be exported to /home/medialab/data/ALL_MRI_Data/238627
+Validating 170 potential DICOM images.
+Found 170 DICOM images.
+CoChris Rorden's dcm2nii :: 4AUGUST2014 (Debian) 64bit BSD License
+reading preferences file /home/medialab/.dcm2nii/dcm2nii.ini
+Data will be exported to /home/medialab/data/ALL_MRI_Data/30119
+Validating 170 potential DICOM images.
+Found 170 DICOM images.
+Connverting 170/170  volumes: 1
+ADNI_002_S_0295_MR_MPRAGE_br_raw_20110602125340426_1_S110476_I238627.dcm->20110602_075636MPRAGESENSEs301a1003.nii
+ brightest voxel was 1165: data will be saved as 16-bit signed integer.
+Saving /home/medialab/data/ALL_MRI_Data/2verting 170/170  volumes: 1
+ADNI_002_S_0413_MR_MPRAGE_br_raw_20061117170342571_1_S22684_I30119.dcm->20061115_141346MPRAGESENSEs401a1004.nii
+ brightest voxel was 1106: data will be saved as 16-bit signed integer.
+Saving /home/medialab/data/ALL_MRI_Data/301138627/20110602_075636MPRAGESENSEs301a1003.nii
+Reorienting as /home/medialab/data/ALL_MRI_Data/238627/o20110602_075636MPRAGESENSEs301a1003.nii
+Saving /home/medialab/data/ALL_MRI_Data/238627/o20110602_075636MPRAGESENSEs301a1003.nii
+Cropping NIfTI/Analyze ima9/20061115_141346MPRAGESENSEs401a1004.nii
+Reorienting as /home/medialab/data/ALL_MRI_Data/30119/o20061115_141346MPRAGESENSEs401a1004.nii
+Saving /home/medialab/data/ALL_MRI_Data/30119/o20061115_141346MPRAGESENSEs401a1004.nii
+Cropping NIfTI/Analyze image /hoge /home/medialab/data/ALL_MRI_Data/238627/o20110602_075636MPRAGESENSEs301a1003.nii
+Saving /home/medialab/data/ALL_MRI_Data/238627/co20110602_075636MPRAGESENSEs301a1003.nii
+me/medialab/data/ALL_MRI_Data/30119/o20061115_141346MPRAGESENSEs401a1004.nii
+Saving /home/medialab/data/ALL_MRI_Data/30119/co20061115_141346MPRAGESENSEs401a1004.nii
+** AFNI converts NIFTI_datatype=4 (INT16) in file T1.nii to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
+
+Fatal Signal 2 (SIGINT) received
+
+Fatal Signal 2 (SIGINT) received
+     mri_warp3D_linear
+     mri_warp3D_linear
+    mri_warp3D_linear
+    mri_warp3D_linear
+   mri_brainormalize
+   mri_brainormalize
+  3dSkullStrip
+  3dSkullStrip
+ Bottom of Debug Stack
+ Bottom of Debug Stack
+** AFNI version = AFNI_16.2.16  Compile date = Sep  4 2016
+** [[Precompiled binary linux_openmp_64: Sep  4 2016]]
+** Program Death **
+** AFNI version = AFNI_16.2.16  Compile date = Sep  4 2016
+** [[Precompiled binary linux_openmp_64: Sep  4 2016]]
+** Program Death **
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+++ Authored by: A cast of thousands
+** ERROR (nifti_image_read): failed to find header file for 'skullstrip_mask.nii'
+** ERROR (nifti_image_read): failed to find header file for 'skullstrip_mask.nii'
+[7m** FATAL ERROR:[0m can't open dataset skullstrip_mask.nii
+[7m** FATAL ERROR:[0m can't open dataset skullstrip_mask.nii
+** Program compile date = Sep  4 2016
+** Program compile date = Sep  4 2016
+Image Exception : #22 :: ERROR: Could not open image /home/medialab/data/ALL_MRI_Data/30119/skullstripImage Exception : #
+22 :: ERROR: Could not open image /home/medialab/data/ALL_MRI_Data/238627/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+preProcessingMRI.sh: line 6:  1178 Aborted                 (core dumped) flirt -omat anat2stnd.mat -cost corratio -dof 12 -interp trilinear -ref ~/data/template/std_skullstrip.nii.gz -in /home/medialab/data/ALL_MRI_Data/$MRI_ID/skullstrip.nii
+Image Exception : #22 :: ERROR: Could not open image /home/medialab/data/ALL_MRI_Data/30119/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+preProcessingMRI.sh: line 6:  1246 Aborted                 (core dumped) flirt -out registration_T1.nii -interp trilinear -applyxfm -init anat2stnd.mat -ref ~/data/template/std_skullstrip.nii.gz -in /home/medialab/data/ALL_MRI_Data/$MRI_ID/skullstrip.nii
+preProcessingMRI.sh: line 6:  1177 Aborted                 (core dumped) flirt -omat anat2stnd.mat -cost corratio -dof 12 -interp trilinear -ref ~/data/template/std_skullstrip.nii.gz -in /home/medialab/data/ALL_MRI_Data/$MRI_ID/skullstrip.nii
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t1.1D: No such file or directory
+Image Exception : #22 :: ERROR: Could not open image /home/medialab/data/ALL_MRI_Data/238627/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t2.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t3.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t4.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t5.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t6.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t7.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t8.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t9.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t10.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t11.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t12.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t13.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t14.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t15.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t16.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t17.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t18.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t19.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t20.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t21.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t22.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t23.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t24.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t25.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t26.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t27.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t28.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t29.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t30.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t31.1D: No such file or directory
+preProcessingMRI.sh: line 6:  1258 Aborted                 (core dumped) flirt -out registration_T1.nii -interp trilinear -applyxfm -init anat2stnd.mat -ref ~/data/template/std_skullstrip.nii.gz -in /home/medialab/data/ALL_MRI_Data/$MRI_ID/skullstrip.nii
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t32.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t1.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t33.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t2.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t34.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t3.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t35.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t4.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t36.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t5.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t37.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t6.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t38.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t7.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t39.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t8.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t40.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t9.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t41.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t10.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t42.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t11.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t43.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t12.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t44.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t13.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t45.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t14.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t46.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t47.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t15.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t48.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t16.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t49.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t17.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t50.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t18.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t51.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t19.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t52.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t20.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t53.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t21.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t54.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t22.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t55.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t23.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t56.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t24.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t57.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t25.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t58.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t26.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t59.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t27.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t60.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t28.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t61.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t29.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t62.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t30.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t63.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t31.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t64.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t32.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t65.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t33.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t66.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t34.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t67.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t35.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t68.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t36.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t69.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t37.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t38.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t70.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t71.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t39.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t72.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t40.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t73.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t41.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t74.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t42.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t75.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t43.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t76.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t44.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t45.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t77.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t46.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t78.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t47.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t79.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t48.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t80.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t49.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t81.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t50.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t82.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t51.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t83.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t52.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t84.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t53.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t85.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t54.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t86.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t55.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t87.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t56.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t88.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t57.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t89.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t58.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t90.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t59.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t91.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t60.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t92.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t61.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t93.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t62.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t94.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t63.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t95.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t64.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t96.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t65.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t97.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t66.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t98.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t67.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t99.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t68.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t100.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t69.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t101.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t70.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t102.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t71.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t103.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t72.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t104.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t73.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t105.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t74.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t106.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t75.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t107.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t76.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t108.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t77.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t78.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t109.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t79.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t110.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t80.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t111.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t81.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t112.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t82.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t113.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t83.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t114.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t84.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t115.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t85.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t116.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t86.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t117.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t87.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t118.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t88.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t119.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t89.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t120.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t90.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t91.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t92.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t93.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t94.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t95.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t96.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t97.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t98.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t99.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t100.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t101.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t102.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t103.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t104.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t105.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t106.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t107.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t108.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t109.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t110.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t111.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t112.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t113.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t114.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t115.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t116.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t117.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t118.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t119.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t120.1D: No such file or directory
+0
+1
+2
+3
+0 1 2 3
+0
+1
+Chris Rorden's dcm2nii :: 4AUGUST2014 (Debian) 64bit BSD License
+reading preferences file /home/medialab/.dcm2nii/dcm2nii.ini
+Data will be exported to /home/medialab/data/ALL_MRI_Data/238627
+Validating 3 potential DICOM images.
+Unable to find any DICOM filChris Rorden's dcm2nii :: 4AUGUST2014 (Debian) 64bit BSD License
+reading preferences file /home/medialab/.dcm2nii/dcm2nii.ini
+Data will be exported to /home/medialab/data/ALL_MRI_Data/30119
+Validating 3 potential DICOM images.
+Unable to find any DICOM filees in the path /home/medialab/data/ALL_MRI_Data/238627/T1.nii
+s in the path /home/medialab/data/ALL_MRI_Data/30119/T1.nii
+rm: rm: cannot remove '*.dcm'cannot remove '*.dcm': No such file or directory: No such file or directory
+
+mv: cannot stat '2*.nii': No such file or directory
+mv: cannot stat '2*.nii': No such file or directory
+** AFNI converts NIFTI_datatype=4 (INT16) in file T1.nii to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
+Warning 3dSkullStrip:****************
+ Surface self intersecting! trying again:
+ smoothing of 84, avoid_vent -1
+The intensity in the output dataset is a modified version
+of the intensity in the input volume.
+To obtain a masked version of the input with identical values inside
+the brain, you can either use 3dSkullStrip's -orig_vol option
+or run the following command:
+  3dcalc -a T1.nii -b ./skullstrip_mask.nii+orig -expr 'a*step(b)' \
+         -prefix ./skullstrip_mask.nii_orig_vol
+to generate a new masked version of the input.
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+++ Output dataset ./skullstrip.nii
+Warning 3dSkullStrip:****************
+ Surface self intersecting! trying again:
+ smoothing of 96, avoid_vent -1
+mkdir: cannot create directory ‘/home/medialab/Zhewei/fMRI_CSV_Analysis/MRI_data/MRI_results/238627’: File exists
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t1.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t2.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t3.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t4.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t5.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t6.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t7.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t8.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t9.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t10.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t11.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t12.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t13.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t14.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t15.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t16.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t17.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t18.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t19.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t20.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t21.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t22.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t23.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t24.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t25.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t26.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t27.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t28.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t29.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t30.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t31.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t32.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t33.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t34.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t35.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t36.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t37.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t38.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t39.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t40.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t41.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t42.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t43.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t44.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t45.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t46.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t47.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t48.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t49.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t50.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t51.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t52.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t53.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t54.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t55.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t56.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t57.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t58.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t59.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t60.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t61.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t62.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t63.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t64.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t65.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t66.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t67.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t68.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t69.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t70.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t71.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t72.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t73.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t74.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t75.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t76.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t77.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t78.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t79.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t80.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t81.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t82.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t83.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t84.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t85.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t86.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t87.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t88.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t89.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t90.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t91.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t92.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t93.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t94.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t95.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t96.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t97.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t98.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t99.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t100.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t101.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t102.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t103.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t104.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t105.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t106.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t107.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t108.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t109.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t110.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t111.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t112.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t113.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t114.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t115.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t116.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t117.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t118.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t119.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t120.1D: No such file or directory
+Warning 3dSkullStrip:****************
+ Surface self intersecting! trying again:
+ smoothing of 108, avoid_vent -1
+
+Fatal Signal 15 (SIGTERM) received
+    SUMA_Find_IminImax
+   SUMA_StretchToFitLeCerveau
+  3dSkullStrip
+ Bottom of Debug Stack
+** AFNI version = AFNI_16.2.16  Compile date = Sep  4 2016
+** [[Precompiled binary linux_openmp_64: Sep  4 2016]]
+** Program Death **
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+** ERROR (nifti_image_read): failed to find header file for 'skullstrip_mask.nii'
+[7m** FATAL ERROR:[0m can't open dataset skullstrip_mask.nii
+** Program compile date = Sep  4 2016
+Image Exception : #22 :: ERROR: Could not open image /home/medialab/data/ALL_MRI_Data/30119/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+preProcessingMRI.sh: line 6:  5737 Aborted                 (core dumped) flirt -omat anat2stnd.mat -cost corratio -dof 12 -interp trilinear -ref ~/data/template/std_skullstrip.nii.gz -in /home/medialab/data/ALL_MRI_Data/$MRI_ID/skullstrip.nii
+Image Exception : #22 :: ERROR: Could not open image /home/medialab/data/ALL_MRI_Data/30119/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+preProcessingMRI.sh: line 6:  5787 Aborted                 (core dumped) flirt -out registration_T1.nii -interp trilinear -applyxfm -init anat2stnd.mat -ref ~/data/template/std_skullstrip.nii.gz -in /home/medialab/data/ALL_MRI_Data/$MRI_ID/skullstrip.nii
+mkdir: cannot create directory ‘/home/medialab/Zhewei/fMRI_CSV_Analysis/MRI_data/MRI_results/30119’: File exists
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t1.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t2.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t3.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t4.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t5.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t6.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t7.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t8.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t9.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t10.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t11.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t12.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t13.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t14.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t15.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t16.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t17.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t18.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t19.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t20.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t21.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t22.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t23.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t24.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t25.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t26.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t27.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t28.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t29.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t30.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t31.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t32.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t33.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t34.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t35.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t36.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t37.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t38.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t39.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t40.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t41.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t42.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t43.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t44.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t45.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t46.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t47.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t48.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t49.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t50.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t51.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t52.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t53.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t54.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t55.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t56.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t57.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t58.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t59.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t60.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t61.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t62.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t63.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t64.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t65.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t66.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t67.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t68.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t69.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t70.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t71.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t72.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t73.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t74.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t75.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t76.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t77.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t78.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t79.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t80.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t81.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t82.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t83.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t84.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t85.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t86.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t87.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t88.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t89.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t90.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t91.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t92.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t93.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t94.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t95.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t96.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t97.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t98.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t99.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t100.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t101.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t102.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t103.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t104.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t105.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t106.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t107.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t108.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t109.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t110.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t111.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t112.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t113.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t114.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t115.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t116.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t117.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t118.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t119.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t120.1D: No such file or directory
+2
+3
+preProcessingMRI.sh: line 78: syntax error near unexpected token `done'
+preProcessingMRI.sh: line 78: `done'
+preProcessingMRI.sh: line 77: [i]}: command not found
+Chris Rorden's dcm2nii :: 4AUGUST2014 (Debian) 64bit BSD License
+reading preferences file /home/medialab/.dcm2nii/dcm2nii.ini
+Data will be exported to /home/medialab/data/ALL_MRI_Data/32918
+Validating 170 potential DICOM images.
+Found 170 DICOM images.
+ConChris Rorden's dcm2nii :: 4AUGUST2014 (Debian) 64bit BSD License
+reading preferences file /home/medialab/.dcm2nii/dcm2nii.ini
+Data will be exported to /home/medialab/data/ALL_MRI_Data/243898
+Validating 170 potential DICOM images.
+Found 170 DICOM images.
+Coverting 170/170  volumes: 1
+ADNI_002_S_0559_MR_MPRAGE_br_raw_20061213002358610_1_S23911_I32918.dcm->20061212_094451MPRAGESENSEs401a1004.nii
+ brightest voxel was 1039: data will be saved as 16-bit signed integer.
+Saving /home/medialab/data/ALL_MRI_Data/3291nverting 170/170  volumes: 1
+ADNI_002_S_0685_MR_MPRAGE_br_raw_20110708112410381_1_S114045_I243898.dcm->20110708_070427MPRAGESENSEs301a1003.nii
+ brightest voxel was 1033: data will be saved as 16-bit signed integer.
+Saving /home/medialab/data/ALL_MRI_Data/28/20061212_094451MPRAGESENSEs401a1004.nii
+Reorienting as /home/medialab/data/ALL_MRI_Data/32918/o20061212_094451MPRAGESENSEs401a1004.nii
+Saving /home/medialab/data/ALL_MRI_Data/32918/o20061212_094451MPRAGESENSEs401a1004.nii
+Cropping NIfTI/Analyze image /ho43898/20110708_070427MPRAGESENSEs301a1003.nii
+Reorienting as /home/medialab/data/ALL_MRI_Data/243898/o20110708_070427MPRAGESENSEs301a1003.nii
+Saving /home/medialab/data/ALL_MRI_Data/243898/o20110708_070427MPRAGESENSEs301a1003.nii
+Cropping NIfTI/Analyze imame/medialab/data/ALL_MRI_Data/32918/o20061212_094451MPRAGESENSEs401a1004.nii
+Saving /home/medialab/data/ALL_MRI_Data/32918/co20061212_094451MPRAGESENSEs401a1004.nii
+** AFNI converts NIFTI_datatype=4 (INT16) in file T1.nii to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
+ge /home/medialab/data/ALL_MRI_Data/243898/o20110708_070427MPRAGESENSEs301a1003.nii
+Saving /home/medialab/data/ALL_MRI_Data/243898/co20110708_070427MPRAGESENSEs301a1003.nii
+** AFNI converts NIFTI_datatype=4 (INT16) in file T1.nii to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
+
+Fatal Signal 15 (SIGTERM) received
+    SUMA_LimitCoordToVolume
+   SUMA_StretchToFitLeCerveau
+  3dSkullStrip
+ Bottom of Debug Stack
+** AFNI version = AFNI_16.2.16  Compile date = Sep  4 2016
+** [[Precompiled binary linux_openmp_64: Sep  4 2016]]
+** Program Death **
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+** ERROR (nifti_image_read): failed to find header file for 'skullstrip_mask.nii'
+[7m** FATAL ERROR:[0m can't open dataset skullstrip_mask.nii
+** Program compile date = Sep  4 2016
+Image Exception : #22 :: ERROR: Could not open image /home/medialab/data/ALL_MRI_Data/32918/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+preProcessingMRI.sh: line 6:  7516 Aborted                 (core dumped) flirt -omat anat2stnd.mat -cost corratio -dof 12 -interp trilinear -ref ~/data/template/std_skullstrip.nii.gz -in /home/medialab/data/ALL_MRI_Data/$MRI_ID/skullstrip.nii
+Image Exception : #22 :: ERROR: Could not open image /home/medialab/data/ALL_MRI_Data/32918/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+preProcessingMRI.sh: line 6:  7547 Aborted                 (core dumped) flirt -out registration_T1.nii -interp trilinear -applyxfm -init anat2stnd.mat -ref ~/data/template/std_skullstrip.nii.gz -in /home/medialab/data/ALL_MRI_Data/$MRI_ID/skullstrip.nii
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t1.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t2.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t3.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t4.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t5.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t6.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t7.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t8.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t9.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t10.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t11.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t12.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t13.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t14.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t15.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t16.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t17.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t18.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t19.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t20.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t21.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t22.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t23.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t24.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t25.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t26.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t27.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t28.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t29.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t30.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t31.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t32.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t33.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t34.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t35.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t36.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t37.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t38.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t39.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t40.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t41.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t42.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t43.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t44.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t45.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t46.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t47.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t48.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t49.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t50.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t51.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t52.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t53.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t54.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t55.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t56.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t57.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t58.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t59.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t60.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t61.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t62.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t63.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t64.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t65.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t66.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t67.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t68.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t69.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t70.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t71.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t72.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t73.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t74.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t75.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t76.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t77.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t78.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t79.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t80.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t81.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t82.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t83.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t84.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t85.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t86.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t87.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t88.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t89.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t90.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t91.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t92.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t93.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t94.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t95.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t96.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t97.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t98.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t99.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t100.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t101.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t102.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t103.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t104.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t105.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t106.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t107.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t108.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t109.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t110.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t111.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t112.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t113.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t114.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t115.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t116.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t117.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t118.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t119.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t120.1D: No such file or directory
+
+Fatal Signal 15 (SIGTERM) received
+    SUMA_Find_IminImax
+   SUMA_StretchToFitLeCerveau
+  3dSkullStrip
+ Bottom of Debug Stack
+** AFNI version = AFNI_16.2.16  Compile date = Sep  4 2016
+** [[Precompiled binary linux_openmp_64: Sep  4 2016]]
+** Program Death **
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+** ERROR (nifti_image_read): failed to find header file for 'skullstrip_mask.nii'
+[7m** FATAL ERROR:[0m can't open dataset skullstrip_mask.nii
+** Program compile date = Sep  4 2016
+Image Exception : #22 :: ERROR: Could not open image /home/medialab/data/ALL_MRI_Data/243898/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+preProcessingMRI.sh: line 6:  8955 Aborted                 (core dumped) flirt -omat anat2stnd.mat -cost corratio -dof 12 -interp trilinear -ref ~/data/template/std_skullstrip.nii.gz -in /home/medialab/data/ALL_MRI_Data/$MRI_ID/skullstrip.nii
+Image Exception : #22 :: ERROR: Could not open image /home/medialab/data/ALL_MRI_Data/243898/skullstrip
+terminate called after throwing an instance of 'RBD_COMMON::BaseException'
+preProcessingMRI.sh: line 6:  8983 Aborted                 (core dumped) flirt -out registration_T1.nii -interp trilinear -applyxfm -init anat2stnd.mat -ref ~/data/template/std_skullstrip.nii.gz -in /home/medialab/data/ALL_MRI_Data/$MRI_ID/skullstrip.nii
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t1.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t2.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t3.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t4.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t5.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t6.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t7.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t8.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t9.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t10.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t11.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t12.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t13.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t14.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t15.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t16.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t17.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t18.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t19.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t20.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t21.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t22.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t23.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t24.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t25.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t26.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t27.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t28.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t29.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t30.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t31.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t32.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t33.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t34.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t35.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t36.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t37.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t38.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t39.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t40.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t41.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t42.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t43.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t44.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t45.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t46.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t47.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t48.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t49.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t50.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t51.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t52.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t53.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t54.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t55.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t56.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t57.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t58.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t59.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t60.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t61.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t62.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t63.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t64.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t65.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t66.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t67.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t68.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t69.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t70.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t71.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t72.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t73.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t74.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t75.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t76.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t77.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t78.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t79.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t80.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t81.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t82.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t83.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t84.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t85.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t86.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t87.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t88.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t89.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t90.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t91.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t92.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t93.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t94.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t95.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t96.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t97.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t98.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t99.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t100.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t101.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t102.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t103.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t104.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t105.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t106.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t107.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t108.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t109.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t110.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t111.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t112.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t113.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t114.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t115.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t116.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t117.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t118.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t119.1D: No such file or directory
+preProcessingMRI.sh: line 43: /home/medialab/data/ADNI//fMRI//_t120.1D: No such file or directory
+0
+1
+2
+3
+0 1 2 3
+0
+1
+Chris Rorden's dcm2nii :: 4AUGUST2014 (Debian) 64bit BSD License
+reading preferences file /home/medialab/.dcm2nii/dcm2nii.ini
+Data will be exported to /home/medialab/data/ALL_MRI_Data/30119
+Validating 170 potential DICOM images.
+Found 170 DICOM images.
+ConChris Rorden's dcm2nii :: 4AUGUST2014 (Debian) 64bit BSD License
+reading preferences file /home/medialab/.dcm2nii/dcm2nii.ini
+Data will be exported to /home/medialab/data/ALL_MRI_Data/238627
+Validating 170 potential DICOM images.
+Found 170 DICOM images.
+Coverting 170/170  volumes: 1
+ADNI_002_S_0413_MR_MPRAGE_br_raw_20061117170342571_1_S22684_I30119.dcm->20061115_141346MPRAGESENSEs401a1004.nii
+ brightest voxel was 1106: data will be saved as 16-bit signed integer.
+Saving /home/medialab/data/ALL_MRI_Data/3011nverting 170/170  volumes: 1
+ADNI_002_S_0295_MR_MPRAGE_br_raw_20110602125340426_1_S110476_I238627.dcm->20110602_075636MPRAGESENSEs301a1003.nii
+ brightest voxel was 1165: data will be saved as 16-bit signed integer.
+Saving /home/medialab/data/ALL_MRI_Data/29/20061115_141346MPRAGESENSEs401a1004.nii
+Reorienting as /home/medialab/data/ALL_MRI_Data/30119/o20061115_141346MPRAGESENSEs401a1004.nii
+Saving /home/medialab/data/ALL_MRI_Data/30119/o20061115_141346MPRAGESENSEs401a1004.nii
+Cropping NIfTI/Analyze image /ho38627/20110602_075636MPRAGESENSEs301a1003.nii
+Reorienting as /home/medialab/data/ALL_MRI_Data/238627/o20110602_075636MPRAGESENSEs301a1003.nii
+Saving /home/medialab/data/ALL_MRI_Data/238627/o20110602_075636MPRAGESENSEs301a1003.nii
+Cropping NIfTI/Analyze imame/medialab/data/ALL_MRI_Data/30119/o20061115_141346MPRAGESENSEs401a1004.nii
+Saving /home/medialab/data/ALL_MRI_Data/30119/co20061115_141346MPRAGESENSEs401a1004.nii
+** AFNI converts NIFTI_datatype=4 (INT16) in file T1.nii to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
+ge /home/medialab/data/ALL_MRI_Data/238627/o20110602_075636MPRAGESENSEs301a1003.nii
+Saving /home/medialab/data/ALL_MRI_Data/238627/co20110602_075636MPRAGESENSEs301a1003.nii
