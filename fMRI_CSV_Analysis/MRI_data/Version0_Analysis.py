@@ -5,7 +5,11 @@ If in one scan we have MPRAGE or MP-RAGE, choose one of them (the one show itsel
 
 
 import csv
-
+import numpy
+from glob import glob
+import os
+import pickle
+import gzip
 
 class _EachSubject:
     # each subject is a element of a list
@@ -16,6 +20,18 @@ class _EachSubject:
         self.MRI_baseline = {MRI_imageID: list()}
         # otherdata after baseline 
         self.MRI_other = list()
+
+
+class _Subject_with_data:
+    def __init__(self, SubjectID, DX_Group):
+        self.DX_Group = DX_Group
+        self.SubjectID = SubjectID
+        # baseline 
+        self.MRI_baseline = dict()
+        self.fMRI_baseline = dict()
+        # otherdata after baseline 
+        self.MRI_other = list()
+        self.fMRI_other = list()
 
 wholeDataofCSV = list()
 with open ('idaSearch_5_24_2017.csv', 'r') as csvfile:
@@ -122,7 +138,7 @@ for row in wholeDataofCSV:
                 if row['DX Group'] != DX_group:
                     print ('ERROR: The GX group changed.')
 
-print (len(ValidData))
+print ('ValidData:', len(ValidData))
 # print the MRI IDs
 MRI_list = list()
 MRI_baselineList = list()
@@ -150,13 +166,48 @@ print('We have', len(Subjects_in_group), 'subjects.')
 print('MRI Image:', len(MRI_list))
 print('MRI Baseline:', len(MRI_baselineList))
 
-with open('Original_MRI_ImageID', 'r') as f:
-    old_MRI_ID = f.read().split(',')
+def read_1D_files(fMRI_imageID):
+    signals = numpy.empty([2, 2])
+    for zone_no in range(1,121):
+        file_name = glob('/home/medialab/Zhewei/fMRI_CSV_Analysis/MRI_data/MRI_results/'\
+                              +fMRI_imageID+'/' + '_t'+str(zone_no)+'.1D')
+        try:
+            open(file_name[0], 'rb')
+            pass
+        except IndexError:
+            print (fMRI_imageID)
+        with open(file_name[0], 'rb') as f:
+            zone_singal = list()
+            if os.stat(file_name[0]).st_size != 0:
+                for i in f.readlines():
+                    zone_singal.append(str(i)[1:][1:-3])
+            else:
+                for i in range(100):
+                    zone_singal.append('0.0') 
+        if zone_no == 1:
+            signals = zone_singal;
+        else:
+            signals = numpy.concatenate((signals, zone_singal))
+    signals = signals.reshape((120,-1))
+    return signals
 
-with open('Old_MRI_baseline', 'w') as f:
-    for i in MRI_baselineList:
-        f.write(i)
-        f.write('\n')
 
-print (len(old_MRI_ID))
-print (old_MRI_ID[0])
+
+Subjects_with_data = list()
+flag = False
+for subject in ValidData:
+    if subject.DX_Group == 'AD' or subject.DX_Group =='Normal':
+        flag = False
+        subject2 = _Subject_with_data(subject.SubjectID, subject.DX_Group)
+        # baseline
+        if subject.MRI_baseline != None:
+            MRI_baseline_ID = list(subject.MRI_baseline.keys())[0]
+            signals = read_1D_files(MRI_baseline_ID)
+            subject2.MRI_baseline = {MRI_baseline_ID:signals}
+            flag = True
+        if flag:
+            Subjects_with_data.append(subject2)
+
+
+with gzip.open("MRIDataset_imageID_with_Data.gz", "wb") as output_file:
+    pickle.dump(Subjects_with_data, output_file)

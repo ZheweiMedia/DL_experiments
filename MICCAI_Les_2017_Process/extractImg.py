@@ -18,7 +18,7 @@ train_percentage = 0.8
 test_percentage = 0.2
 random.seed(123)
 
-url = '/home/medialab/data/Challenges/MICCAI_Les_2017'
+url = '/home/medialab/data/Challenges/MICCAI_Les_2017/GE3T'
 urlForTrain = '/home/medialab/Zhewei/MICCAI_Les_2017_Process/data/train'
 urlForTest = '/home/medialab/Zhewei/MICCAI_Les_2017_Process/data/test'
 
