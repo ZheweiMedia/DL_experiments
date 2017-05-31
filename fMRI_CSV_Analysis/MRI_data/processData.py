@@ -14,9 +14,9 @@ from distutils.dir_util import copy_tree
 
 
 
-os.chdir('/home/medialab/data/ALL_MRI_Data/ADNI')
+os.chdir('/home/medialab/data/ALL_MRI_Data/DATA/ADNI')
 
-url = '/home/medialab/data/ALL_MRI_Data/ADNI'
+url = '/home/medialab/data/ALL_MRI_Data/DATA/ADNI'
 
 with open('/home/medialab/Zhewei/fMRI_CSV_Analysis/MRI_data/Old_MRI_baseline') as f:
     MRI_baseline = f.read().split()

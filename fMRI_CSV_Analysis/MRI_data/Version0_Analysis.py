@@ -166,24 +166,27 @@ print('We have', len(Subjects_in_group), 'subjects.')
 print('MRI Image:', len(MRI_list))
 print('MRI Baseline:', len(MRI_baselineList))
 
-def read_1D_files(fMRI_imageID):
+
+
+def read_1D_files(MRI_imageID):
     signals = numpy.empty([2, 2])
     for zone_no in range(1,121):
         file_name = glob('/home/medialab/Zhewei/fMRI_CSV_Analysis/MRI_data/MRI_results/'\
-                              +fMRI_imageID+'/' + '_t'+str(zone_no)+'.1D')
+                              +MRI_imageID+'/' + '_t'+str(zone_no)+'.1D')
         try:
             open(file_name[0], 'rb')
             pass
         except IndexError:
-            print (fMRI_imageID)
+            print (MRI_imageID)
         with open(file_name[0], 'rb') as f:
             zone_singal = list()
             if os.stat(file_name[0]).st_size != 0:
                 for i in f.readlines():
                     zone_singal.append(str(i)[1:][1:-3])
             else:
-                for i in range(100):
-                    zone_singal.append('0.0') 
+                # because we use modified AAL2, sometimes one zone is gone. so
+                # the value will be empty.
+                zone_singal.append('0.0') 
         if zone_no == 1:
             signals = zone_singal;
         else:
