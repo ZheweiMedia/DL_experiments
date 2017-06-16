@@ -47,6 +47,7 @@ for sampleurl in Les_list:
         label = nibabel.load(sampleurl+'/wmh.nii.gz').get_data()
         sample = nibabel.load(sampleurl+'/pre/FLAIR.nii.gz').get_data()
         assert label.shape == sample.shape
+
         # choose the frame with les
         index_list = numpy.where(label == 1)[1]
 
