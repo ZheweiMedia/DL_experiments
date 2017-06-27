@@ -1,20 +1,18 @@
 cd /home/medialab/Zhewei/MICCAI_Les_2017_Process/data/train
 
-rm sample1*.png
-rm sample2*.png
-rm sample3*.png
-rm sample4*.png
-rm sample5*.png
-rm sample6*.png
-rm sample7*.png
-rm sample8*.png
-rm sample9*.png
-rm label1*.png
-rm label2*.png
-rm label3*.png
-rm label4*.png
-rm label5*.png
-rm label6*.png
-rm label7*.png
-rm label8*.png
-rm label9*.png
+
+
+
+index_i=(1 2 3 4 5 6 7 8 9)
+index_j=(0 1 2 3 4 5 6 7 8 9)
+
+for i in "${index_i[@]}"
+do
+    for j in "${index_j[@]}"
+    do
+        echo $i$j
+        rm sample$i$j*
+        rm label$i$j*
+    done
+done
+
