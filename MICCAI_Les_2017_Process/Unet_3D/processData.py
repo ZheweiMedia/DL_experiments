@@ -21,11 +21,11 @@ def readfile(trainfile, trainannotfile, testfile, testannotfile):
 
 
 def data_generator(inputsamplelinks, inputlabellinks, conf, batch_size, rdm=True):
-    images = inputsamplelinks
-    targets = inputlabellinks
-    index = [i for i in range(len(images))]
+    while True:
+        images = inputsamplelinks
+        targets = inputlabellinks
+        index = [i for i in range(len(images))]
 
-    def get_epoch():
         if rdm:
             rng_state = numpy.random.get_state()
             numpy.random.shuffle(images)
@@ -55,8 +55,6 @@ def data_generator(inputsamplelinks, inputlabellinks, conf, batch_size, rdm=True
                 sample_in_batch = 0
                 yield (numpy.copy(all_img), numpy.copy(all_targ))
                 
-
-    return get_epoch
 
 
 def multiclass(dataset, conf):

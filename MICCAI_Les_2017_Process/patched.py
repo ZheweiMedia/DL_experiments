@@ -151,13 +151,13 @@ for sampleurl in Les_list:
                     else:
                         tmp_url_for_uNet_testSample.append(tmp_urlsample)
                         tmp_url_for_uNet_testLabel.append(tmp_urllabel)
-                
+                """
                 with gzip.open(urlsave+'/sample'+str(imageID)+'.tar.gz', 'w') as outputFile:
                    pickle.dump(patch_sample, outputFile)
 
                 with gzip.open(urlsave+'/label'+str(imageID)+'.tar.gz', 'w') as outputFile:
                     pickle.dump(patch_label, outputFile)
-                
+                """
 
                 imageID += 1
 
@@ -165,7 +165,9 @@ for sampleurl in Les_list:
     print (len(testLabelList))
     print (sum(trainLabelList))
     print (sum(testLabelList))
-
+    print ("train", len(tmp_url_for_uNet_trainSample))
+    print ("test", len(tmp_url_for_uNet_testSample))
+    """
     with open('/home/medialab/Zhewei/MICCAI_Les_2017_Process/trainLabel.txt', 'w') as outputFile:
         for i in trainLabelList:
             outputFile.write(str(i))
@@ -197,3 +199,4 @@ for sampleurl in Les_list:
             outputFile.write('\n')
 
     
+    """
