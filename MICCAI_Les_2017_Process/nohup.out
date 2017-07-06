@@ -1,0 +1,395 @@
+Traceback (most recent call last):
+  File "patched.py", line 31, in <module>
+    os.mkdirs(folderFlair)
+AttributeError: module 'os' has no attribute 'mkdirs'
+** AFNI converts NIFTI_datatype=512 (UINT16) in file T1.nii.gz to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
+The intensity in the output dataset is a modified version
+of the intensity in the input volume.
+To obtain a masked version of the input with identical values inside
+the brain, you can either use 3dSkullStrip's -orig_vol option
+or run the following command:
+  3dcalc -a T1.nii.gz -b ./skullstrip_mask.nii.gz+orig -expr 'a*step(b)' \
+         -prefix ./skullstrip_mask.nii.gz_orig_vol
+to generate a new masked version of the input.
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+** AFNI converts NIFTI_datatype=512 (UINT16) in file T1.nii.gz to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
+++ Output dataset ./brain_T1.nii.gz
+** AFNI converts NIFTI_datatype=512 (UINT16) in file T1.nii.gz to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
+The intensity in the output dataset is a modified version
+of the intensity in the input volume.
+To obtain a masked version of the input with identical values inside
+the brain, you can either use 3dSkullStrip's -orig_vol option
+or run the following command:
+  3dcalc -a T1.nii.gz -b ./skullstrip_mask.nii.gz+orig -expr 'a*step(b)' \
+         -prefix ./skullstrip_mask.nii.gz_orig_vol
+to generate a new masked version of the input.
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+** AFNI converts NIFTI_datatype=512 (UINT16) in file T1.nii.gz to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
+++ Output dataset ./brain_T1.nii.gz
+** AFNI converts NIFTI_datatype=512 (UINT16) in file T1.nii.gz to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
+Warning 3dSkullStrip:****************
+ Surface self intersecting! trying again:
+ smoothing of 84, avoid_vent -1
+The intensity in the output dataset is a modified version
+of the intensity in the input volume.
+To obtain a masked version of the input with identical values inside
+the brain, you can either use 3dSkullStrip's -orig_vol option
+or run the following command:
+  3dcalc -a T1.nii.gz -b ./skullstrip_mask.nii.gz+orig -expr 'a*step(b)' \
+         -prefix ./skullstrip_mask.nii.gz_orig_vol
+to generate a new masked version of the input.
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+** AFNI converts NIFTI_datatype=512 (UINT16) in file T1.nii.gz to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
+++ Output dataset ./brain_T1.nii.gz
+** AFNI converts NIFTI_datatype=512 (UINT16) in file T1.nii.gz to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
+The intensity in the output dataset is a modified version
+of the intensity in the input volume.
+To obtain a masked version of the input with identical values inside
+the brain, you can either use 3dSkullStrip's -orig_vol option
+or run the following command:
+  3dcalc -a T1.nii.gz -b ./skullstrip_mask.nii.gz+orig -expr 'a*step(b)' \
+         -prefix ./skullstrip_mask.nii.gz_orig_vol
+to generate a new masked version of the input.
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+** AFNI converts NIFTI_datatype=512 (UINT16) in file T1.nii.gz to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
+++ Output dataset ./brain_T1.nii.gz
+** AFNI converts NIFTI_datatype=512 (UINT16) in file T1.nii.gz to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
+Warning 3dSkullStrip:****************
+ Surface self intersecting! trying again:
+ smoothing of 84, avoid_vent -1
+The intensity in the output dataset is a modified version
+of the intensity in the input volume.
+To obtain a masked version of the input with identical values inside
+the brain, you can either use 3dSkullStrip's -orig_vol option
+or run the following command:
+  3dcalc -a T1.nii.gz -b ./skullstrip_mask.nii.gz+orig -expr 'a*step(b)' \
+         -prefix ./skullstrip_mask.nii.gz_orig_vol
+to generate a new masked version of the input.
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+** AFNI converts NIFTI_datatype=512 (UINT16) in file T1.nii.gz to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
+++ Output dataset ./brain_T1.nii.gz
+** AFNI converts NIFTI_datatype=512 (UINT16) in file T1.nii.gz to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
+[7m*+ WARNING:[0m   If you are performing spatial transformations on an oblique dset, 
+  such as T1.nii.gz,
+  or viewing/combining it with volumes of differing obliquity,
+  you should consider running: 
+     3dWarp -deoblique 
+  on this and  other oblique datasets in the same session.
+ See 3dWarp -help for details.
+++ Oblique dataset:T1.nii.gz is 4.117610 degrees from plumb.
+The intensity in the output dataset is a modified version
+of the intensity in the input volume.
+To obtain a masked version of the input with identical values inside
+the brain, you can either use 3dSkullStrip's -orig_vol option
+or run the following command:
+  3dcalc -a T1.nii.gz -b ./skullstrip_mask.nii.gz+orig -expr 'a*step(b)' \
+         -prefix ./skullstrip_mask.nii.gz_orig_vol
+to generate a new masked version of the input.
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+** AFNI converts NIFTI_datatype=512 (UINT16) in file T1.nii.gz to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
+++ Output dataset ./brain_T1.nii.gz
+** AFNI converts NIFTI_datatype=512 (UINT16) in file T1.nii.gz to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
+Warning 3dSkullStrip:****************
+ Surface self intersecting! trying again:
+ smoothing of 84, avoid_vent -1
+Warning 3dSkullStrip:****************
+ Surface self intersecting! trying again:
+ smoothing of 96, avoid_vent -1
+Warning 3dSkullStrip:****************
+ Surface self intersecting! trying again:
+ smoothing of 108, avoid_vent -1
+Warning 3dSkullStrip:****************
+ Surface self intersecting! trying again:
+ smoothing of 120, avoid_vent -1
+Warning 3dSkullStrip: Stubborn intersection remaining at smoothing of 120. Ignoring it.The intensity in the output dataset is a modified version
+of the intensity in the input volume.
+To obtain a masked version of the input with identical values inside
+the brain, you can either use 3dSkullStrip's -orig_vol option
+or run the following command:
+  3dcalc -a T1.nii.gz -b ./skullstrip_mask.nii.gz+orig -expr 'a*step(b)' \
+         -prefix ./skullstrip_mask.nii.gz_orig_vol
+to generate a new masked version of the input.
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+** AFNI converts NIFTI_datatype=512 (UINT16) in file T1.nii.gz to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
+++ Output dataset ./brain_T1.nii.gz
+** AFNI converts NIFTI_datatype=512 (UINT16) in file T1.nii.gz to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
+The intensity in the output dataset is a modified version
+of the intensity in the input volume.
+To obtain a masked version of the input with identical values inside
+the brain, you can either use 3dSkullStrip's -orig_vol option
+or run the following command:
+  3dcalc -a T1.nii.gz -b ./skullstrip_mask.nii.gz+orig -expr 'a*step(b)' \
+         -prefix ./skullstrip_mask.nii.gz_orig_vol
+to generate a new masked version of the input.
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+** AFNI converts NIFTI_datatype=512 (UINT16) in file T1.nii.gz to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
+++ Output dataset ./brain_T1.nii.gz
+** AFNI converts NIFTI_datatype=512 (UINT16) in file T1.nii.gz to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
+The intensity in the output dataset is a modified version
+of the intensity in the input volume.
+To obtain a masked version of the input with identical values inside
+the brain, you can either use 3dSkullStrip's -orig_vol option
+or run the following command:
+  3dcalc -a T1.nii.gz -b ./skullstrip_mask.nii.gz+orig -expr 'a*step(b)' \
+         -prefix ./skullstrip_mask.nii.gz_orig_vol
+to generate a new masked version of the input.
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+** AFNI converts NIFTI_datatype=512 (UINT16) in file T1.nii.gz to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
+++ Output dataset ./brain_T1.nii.gz
+** AFNI converts NIFTI_datatype=512 (UINT16) in file T1.nii.gz to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
+Warning 3dSkullStrip:****************
+ Surface self intersecting! trying again:
+ smoothing of 84, avoid_vent -1
+Warning 3dSkullStrip:****************
+ Surface self intersecting! trying again:
+ smoothing of 96, avoid_vent -1
+The intensity in the output dataset is a modified version
+of the intensity in the input volume.
+To obtain a masked version of the input with identical values inside
+the brain, you can either use 3dSkullStrip's -orig_vol option
+or run the following command:
+  3dcalc -a T1.nii.gz -b ./skullstrip_mask.nii.gz+orig -expr 'a*step(b)' \
+         -prefix ./skullstrip_mask.nii.gz_orig_vol
+to generate a new masked version of the input.
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+** AFNI converts NIFTI_datatype=512 (UINT16) in file T1.nii.gz to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
+++ Output dataset ./brain_T1.nii.gz
+** AFNI converts NIFTI_datatype=512 (UINT16) in file T1.nii.gz to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
+The intensity in the output dataset is a modified version
+of the intensity in the input volume.
+To obtain a masked version of the input with identical values inside
+the brain, you can either use 3dSkullStrip's -orig_vol option
+or run the following command:
+  3dcalc -a T1.nii.gz -b ./skullstrip_mask.nii.gz+orig -expr 'a*step(b)' \
+         -prefix ./skullstrip_mask.nii.gz_orig_vol
+to generate a new masked version of the input.
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+** AFNI converts NIFTI_datatype=512 (UINT16) in file T1.nii.gz to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
+++ Output dataset ./brain_T1.nii.gz
+** AFNI converts NIFTI_datatype=512 (UINT16) in file T1.nii.gz to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
+The intensity in the output dataset is a modified version
+of the intensity in the input volume.
+To obtain a masked version of the input with identical values inside
+the brain, you can either use 3dSkullStrip's -orig_vol option
+or run the following command:
+  3dcalc -a T1.nii.gz -b ./skullstrip_mask.nii.gz+orig -expr 'a*step(b)' \
+         -prefix ./skullstrip_mask.nii.gz_orig_vol
+to generate a new masked version of the input.
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+** AFNI converts NIFTI_datatype=512 (UINT16) in file T1.nii.gz to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
+++ Output dataset ./brain_T1.nii.gz
+** AFNI converts NIFTI_datatype=512 (UINT16) in file T1.nii.gz to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
+The intensity in the output dataset is a modified version
+of the intensity in the input volume.
+To obtain a masked version of the input with identical values inside
+the brain, you can either use 3dSkullStrip's -orig_vol option
+or run the following command:
+  3dcalc -a T1.nii.gz -b ./skullstrip_mask.nii.gz+orig -expr 'a*step(b)' \
+         -prefix ./skullstrip_mask.nii.gz_orig_vol
+to generate a new masked version of the input.
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+** AFNI converts NIFTI_datatype=512 (UINT16) in file T1.nii.gz to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
+++ Output dataset ./brain_T1.nii.gz
+** AFNI converts NIFTI_datatype=512 (UINT16) in file T1.nii.gz to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
+Warning 3dSkullStrip:****************
+ Surface self intersecting! trying again:
+ smoothing of 84, avoid_vent -1
+The intensity in the output dataset is a modified version
+of the intensity in the input volume.
+To obtain a masked version of the input with identical values inside
+the brain, you can either use 3dSkullStrip's -orig_vol option
+or run the following command:
+  3dcalc -a T1.nii.gz -b ./skullstrip_mask.nii.gz+orig -expr 'a*step(b)' \
+         -prefix ./skullstrip_mask.nii.gz_orig_vol
+to generate a new masked version of the input.
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+** AFNI converts NIFTI_datatype=512 (UINT16) in file T1.nii.gz to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
+++ Output dataset ./brain_T1.nii.gz
+** AFNI converts NIFTI_datatype=512 (UINT16) in file T1.nii.gz to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
+Warning 3dSkullStrip:****************
+ Surface self intersecting! trying again:
+ smoothing of 84, avoid_vent -1
+Warning 3dSkullStrip:****************
+ Surface self intersecting! trying again:
+ smoothing of 96, avoid_vent -1
+Warning 3dSkullStrip:****************
+ Surface self intersecting! trying again:
+ smoothing of 108, avoid_vent -1
+Warning 3dSkullStrip:****************
+ Surface self intersecting! trying again:
+ smoothing of 120, avoid_vent -1
+The intensity in the output dataset is a modified version
+of the intensity in the input volume.
+To obtain a masked version of the input with identical values inside
+the brain, you can either use 3dSkullStrip's -orig_vol option
+or run the following command:
+  3dcalc -a T1.nii.gz -b ./skullstrip_mask.nii.gz+orig -expr 'a*step(b)' \
+         -prefix ./skullstrip_mask.nii.gz_orig_vol
+to generate a new masked version of the input.
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+** AFNI converts NIFTI_datatype=512 (UINT16) in file T1.nii.gz to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
+++ Output dataset ./brain_T1.nii.gz
+** AFNI converts NIFTI_datatype=512 (UINT16) in file T1.nii.gz to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
+The intensity in the output dataset is a modified version
+of the intensity in the input volume.
+To obtain a masked version of the input with identical values inside
+the brain, you can either use 3dSkullStrip's -orig_vol option
+or run the following command:
+  3dcalc -a T1.nii.gz -b ./skullstrip_mask.nii.gz+orig -expr 'a*step(b)' \
+         -prefix ./skullstrip_mask.nii.gz_orig_vol
+to generate a new masked version of the input.
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+** AFNI converts NIFTI_datatype=512 (UINT16) in file T1.nii.gz to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
+++ Output dataset ./brain_T1.nii.gz
+** AFNI converts NIFTI_datatype=512 (UINT16) in file T1.nii.gz to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
+The intensity in the output dataset is a modified version
+of the intensity in the input volume.
+To obtain a masked version of the input with identical values inside
+the brain, you can either use 3dSkullStrip's -orig_vol option
+or run the following command:
+  3dcalc -a T1.nii.gz -b ./skullstrip_mask.nii.gz+orig -expr 'a*step(b)' \
+         -prefix ./skullstrip_mask.nii.gz_orig_vol
+to generate a new masked version of the input.
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+** AFNI converts NIFTI_datatype=512 (UINT16) in file T1.nii.gz to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
+++ Output dataset ./brain_T1.nii.gz
+** AFNI converts NIFTI_datatype=512 (UINT16) in file T1.nii.gz to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
+The intensity in the output dataset is a modified version
+of the intensity in the input volume.
+To obtain a masked version of the input with identical values inside
+the brain, you can either use 3dSkullStrip's -orig_vol option
+or run the following command:
+  3dcalc -a T1.nii.gz -b ./skullstrip_mask.nii.gz+orig -expr 'a*step(b)' \
+         -prefix ./skullstrip_mask.nii.gz_orig_vol
+to generate a new masked version of the input.
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+** AFNI converts NIFTI_datatype=512 (UINT16) in file T1.nii.gz to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
+++ Output dataset ./brain_T1.nii.gz
+** AFNI converts NIFTI_datatype=512 (UINT16) in file T1.nii.gz to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
+The intensity in the output dataset is a modified version
+of the intensity in the input volume.
+To obtain a masked version of the input with identical values inside
+the brain, you can either use 3dSkullStrip's -orig_vol option
+or run the following command:
+  3dcalc -a T1.nii.gz -b ./skullstrip_mask.nii.gz+orig -expr 'a*step(b)' \
+         -prefix ./skullstrip_mask.nii.gz_orig_vol
+to generate a new masked version of the input.
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+** AFNI converts NIFTI_datatype=512 (UINT16) in file T1.nii.gz to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
+++ Output dataset ./brain_T1.nii.gz
+** AFNI converts NIFTI_datatype=512 (UINT16) in file T1.nii.gz to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
+The intensity in the output dataset is a modified version
+of the intensity in the input volume.
+To obtain a masked version of the input with identical values inside
+the brain, you can either use 3dSkullStrip's -orig_vol option
+or run the following command:
+  3dcalc -a T1.nii.gz -b ./skullstrip_mask.nii.gz+orig -expr 'a*step(b)' \
+         -prefix ./skullstrip_mask.nii.gz_orig_vol
+to generate a new masked version of the input.
+++ 3dcalc: AFNI version=AFNI_16.2.16 (Sep  4 2016) [64-bit]
+++ Authored by: A cast of thousands
+** AFNI converts NIFTI_datatype=512 (UINT16) in file T1.nii.gz to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
+++ Output dataset ./brain_T1.nii.gz
+Traceback (most recent call last):
+  File "patched.py", line 46, in <module>
+    print (a)
+NameError: name 'a' is not defined

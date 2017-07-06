@@ -27,19 +27,21 @@ Les_list = list()
 for dirpath, dirnames, filenames in os.walk(url):
     if filenames:
         if filenames[0] == 'wmh.nii.gz':
-            foldername = '/home/medialab/Zhewei/MICCAI_Les_2017_Process/data/'+dirpath[-3:]
-            #os.mkdir(foldername)
+            #folderFlair = '/home/medialab/Zhewei/MICCAI_Les_2017_Process/data/'+dirpath[-3:]+'/FLAIR'
+            #os.makedirs(folderFlair)
+            #copy2(dirpath+'/pre/FLAIR.nii.gz', folderFlair)
+            foldername = '/home/medialab/Zhewei/MICCAI_Les_2017_Process/data/'+dirpath[-3:]+'/T1'
+            #os.makedirs(foldername, exist_ok=True)
             #copy2(dirpath+'/wmh.nii.gz', foldername)
-            #copy2(dirpath+'/pre/FLAIR.nii.gz', foldername)
+            #copy2(dirpath+'/pre/T1.nii.gz', foldername)
             #os.chdir(foldername)
-            #bashCommand = '3dSkullStrip -o_ply skullstrip_mask.nii.gz -input FLAIR.nii.gz'
+            #bashCommand = '3dSkullStrip -o_ply skullstrip_mask.nii.gz -input T1.nii.gz'
             #subprocess.call(bashCommand, shell=True)
-            #bashCommand = '3dcalc -prefix brain_FLAIR.nii.gz -expr \'a*step(b)\' -b skullstrip_mask.nii.gz -a FLAIR.nii.gz'
+            #bashCommand = '3dcalc -prefix brain_T1.nii.gz -expr \'a*step(b)\' -b skullstrip_mask.nii.gz -a T1.nii.gz'
             #subprocess.call(bashCommand, shell=True)
-            #bashCommand = 'fsl5.0-fast -o T1_segm_A -t 1 -n 3 -g -p brain_FLAIR.nii'
+            #bashCommand = 'fsl5.0-fast -o T1_segm_A -t 1 -n 3 -g -p brain_T1.nii'
             #subprocess.call(bashCommand, shell=True)
             Les_list.append(foldername)
-
 
 train_percentage = 0.8
 totalSample = len(Les_list)
@@ -103,22 +105,31 @@ tmp_url_for_uNet_testLabel = list()
 print (trainSampleList)
 for sampleurl in Les_list:
     print (sampleurl)
+    path, basepath = os.path.split(sampleurl)
     label = nibabel.load(sampleurl+'/wmh.nii.gz').get_data()
-    sample = nibabel.load(sampleurl+'/brain_FLAIR.nii.gz').get_data().astype(float)
+    sample = nibabel.load(sampleurl+'/brain_T1.nii.gz').get_data().astype(float)# T1
     Seg_0 = nibabel.load(sampleurl+'/T1_segm_A_seg_0.nii').get_data()
     Seg_1 = nibabel.load(sampleurl+'/T1_segm_A_seg_1.nii').get_data()
     Seg_2 = nibabel.load(sampleurl+'/T1_segm_A_seg_2.nii').get_data()
+    flair = nibabel.load(path+'/FLAIR/FLAIR.nii.gz').get_data().astype(float)
+    print ('Original shape:', flair.shape)
     x_min, x_max, y_min, y_max, z_min, z_max = xyz_size(sample)
     label = label[x_min:x_max, y_min:y_max, z_min:z_max]
     sample = sample[x_min:x_max, y_min:y_max, z_min:z_max]
     Seg_0 = Seg_0[x_min:x_max, y_min:y_max, z_min:z_max]
     Seg_1 = Seg_1[x_min:x_max, y_min:y_max, z_min:z_max]
     Seg_2 = Seg_2[x_min:x_max, y_min:y_max, z_min:z_max]
+    flair = flair[x_min:x_max, y_min:y_max, z_min:z_max]
 
     tmp_sample = sample.reshape((-1, 1))
     tmp_sample = scale(tmp_sample, axis=0, with_mean=True, with_std=True, copy=True)
     sample = tmp_sample.reshape((sample.shape[0], sample.shape[1], sample.shape[2]))
-    print (sample.shape)
+
+    tmp_flair = flair.reshape((-1, 1))
+    tmp_flair = scale(tmp_flair, axis=0, with_mean=True, with_std=True, copy=True)
+    flair = tmp_flair.reshape((flair.shape[0], flair.shape[1], flair.shape[2]))
+    print ('After crop:', flair.shape)
+    
     for x in range(math.ceil((sample.shape[0]-patch_size[0])/patch_strid[0])+1):
         for y in range(math.ceil((sample.shape[1]-patch_size[1])/patch_strid[1])+1):
             for z in range(math.ceil((sample.shape[2]-patch_size[2])/patch_strid[2])+1):
@@ -131,6 +142,9 @@ for sampleurl in Les_list:
                 patch_Seg_1 = Seg_1[x_start:x_start+patch_size[0], y_start:y_start+patch_size[1], z_start:z_start+patch_size[2]]
                 patch_Seg_2 = Seg_2[x_start:x_start+patch_size[0], y_start:y_start+patch_size[1], z_start:z_start+patch_size[2]]
                 patch_sample = numpy.stack((patch_sample, patch_Seg_0, patch_Seg_1, patch_Seg_2), axis = 3)
+                patch_flair = flair[x_start:x_start+patch_size[0], y_start:y_start+patch_size[1], z_start:z_start+patch_size[2]]
+                patch_flair = numpy.stack((patch_flair, patch_Seg_0, patch_Seg_1, patch_Seg_2), axis = 3)
+                patch_sample = numpy.concatenate((patch_sample, patch_flair), axis = 3)
                 patch_label = label[x_start:x_start+patch_size[0], y_start:y_start+patch_size[1], z_start:z_start+patch_size[2]]
                 if numpy.any(patch_label == 1.0) or numpy.any(patch_label == 2.0):
                     labelOfPatch = 1
@@ -143,21 +157,21 @@ for sampleurl in Les_list:
                     urlsave = urlForTest
                     testLabelList.append(labelOfPatch)
                 if labelOfPatch == 1 :
-                    tmp_urlsample = urlsave+'/sample'+str(imageID)+'.tar.gz'
-                    tmp_urllabel = urlsave+'/label'+str(imageID)+'.tar.gz'
+                    tmp_urlsample = urlsave+'/sample'+str(imageID)+'.nii.gz'
+                    tmp_urllabel = urlsave+'/label'+str(imageID)+'.nii.gz'
                     if sampleurl in trainSampleList:
                         tmp_url_for_uNet_trainSample.append(tmp_urlsample)
                         tmp_url_for_uNet_trainLabel.append(tmp_urllabel)
                     else:
                         tmp_url_for_uNet_testSample.append(tmp_urlsample)
                         tmp_url_for_uNet_testLabel.append(tmp_urllabel)
-                """
-                with gzip.open(urlsave+'/sample'+str(imageID)+'.tar.gz', 'w') as outputFile:
-                   pickle.dump(patch_sample, outputFile)
+                
+                patch_sample = nibabel.Nifti1Image(patch_sample, numpy.eye(4))
+                nibabel.save(patch_sample, urlsave+'/sample'+str(imageID)+'.nii.gz')
+                patch_label = patch_label.reshape((patch_label.shape[0], patch_label.shape[1], patch_label.shape[2], 1)).astype(numpy.int16)
+                patch_label = nibabel.Nifti1Image(patch_label, numpy.eye(4))
+                nibabel.save(patch_label, urlsave+'/label'+str(imageID)+'.nii.gz')
 
-                with gzip.open(urlsave+'/label'+str(imageID)+'.tar.gz', 'w') as outputFile:
-                    pickle.dump(patch_label, outputFile)
-                """
 
                 imageID += 1
 
@@ -167,7 +181,7 @@ for sampleurl in Les_list:
     print (sum(testLabelList))
     print ("train", len(tmp_url_for_uNet_trainSample))
     print ("test", len(tmp_url_for_uNet_testSample))
-    """
+
     with open('/home/medialab/Zhewei/MICCAI_Les_2017_Process/trainLabel.txt', 'w') as outputFile:
         for i in trainLabelList:
             outputFile.write(str(i))
@@ -199,4 +213,4 @@ for sampleurl in Les_list:
             outputFile.write('\n')
 
     
-    """
+
