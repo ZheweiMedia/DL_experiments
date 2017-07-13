@@ -8,6 +8,8 @@ from keras.layers import Conv3D, MaxPooling3D, UpSampling3D, Activation
 from keras.optimizers import Adam
 from keras.models import load_model
 from keras.callbacks import ModelCheckpoint, CSVLogger, Callback, LearningRateScheduler
+from keras.layers.core import Lambda
+import theano
 
 
 try:
@@ -18,7 +20,7 @@ except ImportError:
 
 
 
-def unet_model_3d(input_shape, downsize_filters_factor=1, pool_size=(2, 2, 2), n_labels=1,
+def unet_model_3d(config, input_shape, downsize_filters_factor=1, pool_size=(2, 2, 2), n_labels=1,
                   initial_learning_rate=0.00001, deconvolution=False):
     """
     Builds the 3D UNet Keras model.
@@ -33,9 +35,148 @@ def unet_model_3d(input_shape, downsize_filters_factor=1, pool_size=(2, 2, 2), n
     increases the amount memory required during training.
     :return: Untrained 3D UNet Model
     """
+    def collapse(features1, features2, Channels, config):
+        collapseLayer = Conv3D(1, (1,1,1), activation='relu', padding='same')# same collapseLayer or not....
+        AllFeatures = list()
+        #for featureIndex in range(Channels):
+        #    tmp_input1 = Lambda(lambda x,y:x[:,:,:,:,y:y+1], output_shape=config["collapse_shape"])(features1, featureIndex)
+        #    tmp_input2 = Lambda(lambda x,y:x[:,:,:,:,y:y+1], output_shape=config["collapse_shape"])(features2, featureIndex)
+        #    tmp_inputs = concatenate([tmp_input1, tmp_input2], axis=-1)
+        #    tmp_inputs = Conv3D(1, (1,1,1), activation='relu', padding='same')(tmp_inputs)
+        #    AllFeatures.append(tmp_inputs)
+
+        def outfeature1(x):
+            return x[:,:,:,:,0:1]
+        def outfeature2(x):
+            return x[:,:,:,:,1:2]
+        def outfeature3(x):
+            return x[:,:,:,:,2:3]
+        def outfeature4(x):
+            return x[:,:,:,:,3:4]
+        def outfeature5(x):
+            return x[:,:,:,:,4:5]
+        def outfeature6(x):
+            return x[:,:,:,:,5:6]
+        def outfeature7(x):
+            return x[:,:,:,:,6:7]
+        def outfeature8(x):
+            return x[:,:,:,:,7:8]
+        def outfeature9(x):
+            return x[:,:,:,:,8:9]
+        def outfeature10(x):
+            return x[:,:,:,:,9:10]
+        def outfeature11(x):
+            return x[:,:,:,:,10:11]
+        def outfeature12(x):
+            return x[:,:,:,:,11:12]
+        def outfeature13(x):
+            return x[:,:,:,:,12:13]
+        def outfeature14(x):
+            return x[:,:,:,:,13:14]
+        def outfeature15(x):
+            return x[:,:,:,:,14:15]
+        def outfeature16(x):
+            return x[:,:,:,:,15:16]
+        tmp_input1 = Lambda(outfeature1, output_shape=config["collapse_shape"])(features1)
+        tmp_input2 = Lambda(outfeature1, output_shape=config["collapse_shape"])(features2)
+        tmp_inputs = concatenate([tmp_input1, tmp_input2], axis=-1)
+        tmp_inputs = Conv3D(1, (1,1,1), activation='relu', padding='same')(tmp_inputs)
+        AllFeatures.append(tmp_inputs)
+        tmp_input1 = Lambda(outfeature2, output_shape=config["collapse_shape"])(features1)
+        tmp_input2 = Lambda(outfeature2, output_shape=config["collapse_shape"])(features2)
+        tmp_inputs = concatenate([tmp_input1, tmp_input2], axis=-1)
+        tmp_inputs = Conv3D(1, (1,1,1), activation='relu', padding='same')(tmp_inputs)
+        AllFeatures.append(tmp_inputs)
+        tmp_input1 = Lambda(outfeature3, output_shape=config["collapse_shape"])(features1)
+        tmp_input2 = Lambda(outfeature3, output_shape=config["collapse_shape"])(features2)
+        tmp_inputs = concatenate([tmp_input1, tmp_input2], axis=-1)
+        tmp_inputs = Conv3D(1, (1,1,1), activation='relu', padding='same')(tmp_inputs)
+        AllFeatures.append(tmp_inputs)
+        tmp_input1 = Lambda(outfeature4, output_shape=config["collapse_shape"])(features1)
+        tmp_input2 = Lambda(outfeature4, output_shape=config["collapse_shape"])(features2)
+        tmp_inputs = concatenate([tmp_input1, tmp_input2], axis=-1)
+        tmp_inputs = Conv3D(1, (1,1,1), activation='relu', padding='same')(tmp_inputs)
+        AllFeatures.append(tmp_inputs)
+        tmp_input1 = Lambda(outfeature5, output_shape=config["collapse_shape"])(features1)
+        tmp_input2 = Lambda(outfeature5, output_shape=config["collapse_shape"])(features2)
+        tmp_inputs = concatenate([tmp_input1, tmp_input2], axis=-1)
+        tmp_inputs = Conv3D(1, (1,1,1), activation='relu', padding='same')(tmp_inputs)
+        AllFeatures.append(tmp_inputs)
+        tmp_input1 = Lambda(outfeature6, output_shape=config["collapse_shape"])(features1)
+        tmp_input2 = Lambda(outfeature6, output_shape=config["collapse_shape"])(features2)
+        tmp_inputs = concatenate([tmp_input1, tmp_input2], axis=-1)
+        tmp_inputs = Conv3D(1, (1,1,1), activation='relu', padding='same')(tmp_inputs)
+        AllFeatures.append(tmp_inputs)
+        tmp_input1 = Lambda(outfeature7, output_shape=config["collapse_shape"])(features1)
+        tmp_input2 = Lambda(outfeature7, output_shape=config["collapse_shape"])(features2)
+        tmp_inputs = concatenate([tmp_input1, tmp_input2], axis=-1)
+        tmp_inputs = Conv3D(1, (1,1,1), activation='relu', padding='same')(tmp_inputs)
+        AllFeatures.append(tmp_inputs)
+        tmp_input1 = Lambda(outfeature8, output_shape=config["collapse_shape"])(features1)
+        tmp_input2 = Lambda(outfeature8, output_shape=config["collapse_shape"])(features2)
+        tmp_inputs = concatenate([tmp_input1, tmp_input2], axis=-1)
+        tmp_inputs = Conv3D(1, (1,1,1), activation='relu', padding='same')(tmp_inputs)
+        AllFeatures.append(tmp_inputs)
+        tmp_input1 = Lambda(outfeature9, output_shape=config["collapse_shape"])(features1)
+        tmp_input2 = Lambda(outfeature9, output_shape=config["collapse_shape"])(features2)
+        tmp_inputs = concatenate([tmp_input1, tmp_input2], axis=-1)
+        tmp_inputs = Conv3D(1, (1,1,1), activation='relu', padding='same')(tmp_inputs)
+        AllFeatures.append(tmp_inputs)
+        tmp_input1 = Lambda(outfeature10, output_shape=config["collapse_shape"])(features1)
+        tmp_input2 = Lambda(outfeature10, output_shape=config["collapse_shape"])(features2)
+        tmp_inputs = concatenate([tmp_input1, tmp_input2], axis=-1)
+        tmp_inputs = Conv3D(1, (1,1,1), activation='relu', padding='same')(tmp_inputs)
+        AllFeatures.append(tmp_inputs)
+        tmp_input1 = Lambda(outfeature11, output_shape=config["collapse_shape"])(features1)
+        tmp_input2 = Lambda(outfeature11, output_shape=config["collapse_shape"])(features2)
+        tmp_inputs = concatenate([tmp_input1, tmp_input2], axis=-1)
+        tmp_inputs = Conv3D(1, (1,1,1), activation='relu', padding='same')(tmp_inputs)
+        AllFeatures.append(tmp_inputs)
+        tmp_input1 = Lambda(outfeature12, output_shape=config["collapse_shape"])(features1)
+        tmp_input2 = Lambda(outfeature12, output_shape=config["collapse_shape"])(features2)
+        tmp_inputs = concatenate([tmp_input1, tmp_input2], axis=-1)
+        tmp_inputs = Conv3D(1, (1,1,1), activation='relu', padding='same')(tmp_inputs)
+        AllFeatures.append(tmp_inputs)
+        tmp_input1 = Lambda(outfeature13, output_shape=config["collapse_shape"])(features1)
+        tmp_input2 = Lambda(outfeature13, output_shape=config["collapse_shape"])(features2)
+        tmp_inputs = concatenate([tmp_input1, tmp_input2], axis=-1)
+        tmp_inputs = Conv3D(1, (1,1,1), activation='relu', padding='same')(tmp_inputs)
+        AllFeatures.append(tmp_inputs)
+        tmp_input1 = Lambda(outfeature14, output_shape=config["collapse_shape"])(features1)
+        tmp_input2 = Lambda(outfeature14, output_shape=config["collapse_shape"])(features2)
+        tmp_inputs = concatenate([tmp_input1, tmp_input2], axis=-1)
+        tmp_inputs = Conv3D(1, (1,1,1), activation='relu', padding='same')(tmp_inputs)
+        AllFeatures.append(tmp_inputs)
+        tmp_input1 = Lambda(outfeature15, output_shape=config["collapse_shape"])(features1)
+        tmp_input2 = Lambda(outfeature15, output_shape=config["collapse_shape"])(features2)
+        tmp_inputs = concatenate([tmp_input1, tmp_input2], axis=-1)
+        tmp_inputs = Conv3D(1, (1,1,1), activation='relu', padding='same')(tmp_inputs)
+        AllFeatures.append(tmp_inputs)
+        tmp_input1 = Lambda(outfeature16, output_shape=config["collapse_shape"])(features1)
+        tmp_input2 = Lambda(outfeature16, output_shape=config["collapse_shape"])(features2)
+        tmp_inputs = concatenate([tmp_input1, tmp_input2], axis=-1)
+        tmp_inputs = Conv3D(1, (1,1,1), activation='relu', padding='same')(tmp_inputs)
+        AllFeatures.append(tmp_inputs)
+        outputs = concatenate(AllFeatures, axis=-1)
+        return outputs
+
     inputs = Input(input_shape)
+    # split, encode
+    FEATURE_CHANNEL = 16
+    def outinput1(x):
+        return x[:,:,:,:,:4]
+    def outinput2(x):
+        return x[:,:,:,:,4:]
+    input1 = Lambda(outinput1, output_shape=config["input1_shape"])(inputs)
+    input2 = Lambda(outinput2, output_shape=config["input2_shape"])(inputs)
+    Encoder = Conv3D(int(FEATURE_CHANNEL/downsize_filters_factor), (3,3,3), activation='relu', padding='same')
+    inputs1_feature = Encoder(input1)
+    inputs2_feature = Encoder(input2)
+    # Cross-Modality CNN
+    CM_CNN = collapse(inputs1_feature, inputs2_feature, FEATURE_CHANNEL, config)
+    #CM_CNN = concatenate([inputs1_feature, inputs2_feature], axis=-1)
     conv1 = Conv3D(int(32/downsize_filters_factor), (3, 3, 3), activation='relu',
-                   padding='same')(inputs)
+                   padding='same')(CM_CNN)
     conv1 = Conv3D(int(64/downsize_filters_factor), (3, 3, 3), activation='relu',
                    padding='same')(conv1)
     pool1 = MaxPooling3D(pool_size=pool_size)(conv1)
@@ -141,10 +282,10 @@ def train_model(model, model_file, training_generator, validation_generator, ste
                         validation_data=validation_generator,
                         validation_steps=validation_steps,
                         pickle_safe=True,
-                        callbacks=get_callbacks(model_file, initial_learning_rate=initial_learning_rate,
+                        callbacks=get_callbacks(model, model_file, initial_learning_rate=initial_learning_rate,
                                                 learning_rate_drop=learning_rate_drop,
                                                 learning_rate_epochs=learning_rate_epochs))
-    model.save(model_file)
+    #model.save(model_file)
 
 
 

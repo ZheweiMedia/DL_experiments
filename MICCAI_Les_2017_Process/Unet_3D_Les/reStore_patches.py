@@ -103,8 +103,8 @@ tmp_url_for_uNet_testLabel = list()
 print (trainSampleList)
 for sampleurl in Les_list:
     print (sampleurl)
-    label = nibabel.load(sampleurl+'/wmh.nii.gz').get_data()
-    sample = nibabel.load(sampleurl+'/brain_FLAIR.nii.gz').get_data().astype(float)
+    label = nibabel.load(sampleurl+'/T1/wmh.nii.gz').get_data()
+    sample = nibabel.load(sampleurl+'/T1/brain_T1.nii.gz').get_data().astype(float)# T1
     pred = numpy.zeros(label.shape)
     
     x_min, x_max, y_min, y_max, z_min, z_max = xyz_size(sample)

@@ -9,7 +9,7 @@ from model import unet_model_3d, train_model, load_old_model
 import numpy, gzip, pickle
 import nibabel
 
-url = '/home/medialab/Zhewei/MICCAI_Les_2017_Process/Unet_3D_Les/'
+url = '/home/medialab/Zhewei/MICCAI_Les_2017_Process/Unet_3D_Les/BAK/'
 
 trainlinks, trainannotlinks, testlinks, testannotlinks = readfile(url+'link/UnetSample_train.txt',\
                                                                 url+'link/UnetLabel_train.txt', \
@@ -41,12 +41,15 @@ train_model(model=model, model_file=config["model_file"], training_generator=tra
 """
 
 model = load_old_model(config["model_file"])
+model.get_weights()
+print (a)
 evaluate_list = list()
 total_eval = 0
 total_No = 0
 for sample, target in validation_generator:
     if total_No < 2600:
         each_loss = model.evaluate(sample, target)[1]
+        print (each_loss)
         evaluate_list.append(each_loss)
         total_eval += each_loss
         total_No += 10

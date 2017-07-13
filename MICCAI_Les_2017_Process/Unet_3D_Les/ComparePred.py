@@ -31,7 +31,7 @@ for iNo, i in enumerate(testannotlinks):
     basename = os.path.basename(i)
     basename = os.path.splitext(os.path.splitext(basename)[0])[0]
     basename = basename[5:]
-    shutil.move('/home/medialab/Zhewei/MICCAI_Les_2017_Process/data/predict_les/'+str(iNo)+'.nii.gz', \
+    shutil.copy('/home/medialab/Zhewei/MICCAI_Les_2017_Process/data/predict_les/'+str(iNo)+'.nii.gz', \
                 '/home/medialab/Zhewei/MICCAI_Les_2017_Process/data/compare/'+str(basename)+'.nii.gz')
     shutil.copy(i, '/home/medialab/Zhewei/MICCAI_Les_2017_Process/data/compare/gt'+str(basename)+'.nii.gz')
 

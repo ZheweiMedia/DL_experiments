@@ -19,7 +19,7 @@ class SaveLossHistory(Callback):
         self.losses.append(logs.get('loss'))
         pickle_dump(self.losses, "loss_history.pkl")
 
-def get_callbacks(model_file, initial_learning_rate, learning_rate_drop, learning_rate_epochs, logging_dir="."):
+def get_callbacks(model, model_file, initial_learning_rate, learning_rate_drop, learning_rate_epochs, logging_dir="."):
     model_checkpoint = ModelCheckpoint(model_file, save_best_only=True)
     logger = CSVLogger(os.path.join(logging_dir, "training.log"))
     history = SaveLossHistory()
